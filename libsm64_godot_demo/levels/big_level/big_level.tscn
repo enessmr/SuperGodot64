@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://cedir682bcs2s"]
+
+[ext_resource type="Texture2D" uid="uid://d0ipccf6g5cxx" path="res://libsm64_godot_demo/resources/icon.svg" id="1_m2w7j"]
+[ext_resource type="Script" uid="uid://bl0pfpmowxtu1" path="res://addons/libsm64_godot/components/libsm64_surface_properties_component.gd" id="2_8s6sn"]
+[ext_resource type="LibSM64SurfaceProperties" uid="uid://bs00vmksj0yos" path="res://libsm64_godot_demo/resources/burning_libsm64_surface_properties.tres" id="3_ula8u"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jd0mv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_6ms8b"]
+sky_material = SubResource("ProceduralSkyMaterial_jd0mv")
+
+[sub_resource type="Environment" id="Environment_b0ykq"]
+background_mode = 2
+sky = SubResource("Sky_6ms8b")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l68y1"]
+albedo_texture = ExtResource("1_m2w7j")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qrbky"]
+material = SubResource("StandardMaterial3D_l68y1")
+size = Vector2(75, 75)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xlgjx"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ukkr4"]
+size = Vector3(15, 6, 15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yfan3"]
+size = Vector3(3, 3, 15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8s6sn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lirrq"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qd023"]
+material = SubResource("StandardMaterial3D_lirrq")
+size = Vector2(3, 3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8dfvk"]
+size = Vector2(7, 22)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu0en"]
+transparency = 1
+albedo_color = Color(0.0588235, 0.407843, 1, 0.360784)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yk641"]
+material = SubResource("StandardMaterial3D_lu0en")
+size = Vector2(7, 22)
+
+[node name="BigLevel" type="Node3D" unique_id=265469502]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1134747978]
+environment = SubResource("Environment_b0ykq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=920614786]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1745619029 groups=["libsm64_static_surfaces"]]
+mesh = SubResource("PlaneMesh_qrbky")
+
+[node name="Box" type="MeshInstance3D" parent="." unique_id=159485057 groups=["libsm64_static_surfaces"]]
+transform = Transform3D(0.860466, 0, -0.509507, 0, 1, 0, 0.509507, 0, 0.860466, 13.456, 1, -11.395)
+mesh = SubResource("BoxMesh_xlgjx")
+
+[node name="Plaform" type="MeshInstance3D" parent="." unique_id=1482060809 groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 30)
+mesh = SubResource("BoxMesh_ukkr4")
+
+[node name="Steps" type="MeshInstance3D" parent="." unique_id=773971277 groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.5, 30)
+mesh = SubResource("BoxMesh_yfan3")
+
+[node name="Steps2" type="MeshInstance3D" parent="." unique_id=759544359 groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, 30)
+mesh = SubResource("BoxMesh_yfan3")
+
+[node name="WCBox" type="MeshInstance3D" parent="." unique_id=1146236329 groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.268885, 3, -6.2700887)
+mesh = SubResource("BoxMesh_8s6sn")
+
+[node name="FireFloor" type="MeshInstance3D" parent="." unique_id=898095803 groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.00046, 0, 9.5)
+mesh = SubResource("PlaneMesh_qd023")
+skeleton = NodePath("../../..")
+
+[node name="LibSM64SurfacePropertiesComponent" type="Node" parent="FireFloor" unique_id=12593541]
+script = ExtResource("2_8s6sn")
+surface_properties = ExtResource("3_ula8u")
+
+[node name="Pool" type="Node3D" parent="." unique_id=1661247483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.540403, 0, 0)
+
+[node name="PoolFloor" type="MeshInstance3D" parent="Pool" unique_id=753902149 groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, -7, 0)
+mesh = SubResource("PlaneMesh_8dfvk")
+
+[node name="PoolWall" type="MeshInstance3D" parent="Pool" unique_id=569373470 groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -15, -3.5, 0)
+mesh = SubResource("PlaneMesh_8dfvk")
+
+[node name="PoolSurface" type="MeshInstance3D" parent="Pool" unique_id=1732075205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 0, 0)
+mesh = SubResource("PlaneMesh_yk641")
