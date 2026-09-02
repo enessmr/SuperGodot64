@@ -242,7 +242,7 @@ var _wing_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_
 var _metal_wing_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_wing_material.tres") as StandardMaterial3D
 var _metal_wing_vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres") as StandardMaterial3D
 var _wing_vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_wing_material.tres") as StandardMaterial3D
-var _metal_vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_metal_material.tres") as StandardMaterial3D
+var _metal_vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres") as StandardMaterial3D
 
 
 var _physics_time_since_last_tick := 0.0

@@ -5,6 +5,7 @@ extends MeshInstance3D
 
 @export var cap_time := 100.0
 @export var give_radius := 2.0
+@export var meshwc: VCBox3D # i cant do shit
 
 var _used := false
 @onready var _mario: LibSM64Mario = null
@@ -29,9 +30,8 @@ func _on_used():
 		return
 	await get_tree().create_timer(5.0).timeout
 	_used = false
-	var mesh := $"./MCBox3D" if has_node("WCBox3D") else null
-	if mesh:
-		mesh.visible = true
+	if meshwc:
+		meshwc.visible = true
 	
 
 func _give_wing_cap() -> void:
@@ -39,10 +39,9 @@ func _give_wing_cap() -> void:
 		return
 	_used = true
 	if _mario:
-		_mario.interact_cap(LibSM64.MarioFlags.MARIO_METAL_CAP, cap_time)
+		_mario.interact_cap(LibSM64.MarioFlags.MARIO_VANISH_CAP, cap_time)
 
 	# hide visual mesh if present, then free shortly after
-	var mesh := $"./MCBox3D" if has_node("WCBox3D") else null
-	if mesh:
-		mesh.visible = false
+	if meshwc:
+		meshwc.visible = false
 	_on_used()

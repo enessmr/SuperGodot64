@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bkomodvbhg5g4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw"]
+render_priority = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+
+[resource]
+next_pass = SubResource("StandardMaterial3D_mw")
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+metallic = 1.0
+roughness = 0.1
