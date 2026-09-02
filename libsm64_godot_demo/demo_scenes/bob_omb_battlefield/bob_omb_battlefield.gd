@@ -13,11 +13,14 @@ var _libsm64_was_init := false
 func _ready() -> void:
 	%BattlefieldMesh.mesh = BombOmbBattlefieldSurfaces.generate_godot_mesh()
 	%BattlefieldMesh.mesh.surface_set_material(0, preload("res://libsm64_godot_demo/resources/bob_omb_battlefield_material.tres"))
-
+	DiscordRPC.app_id = 1544689931560026183
+	DiscordRPC.large_image = "game"
+	DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
+	DiscordRPC.refresh()
 	if LibSM64Global.rom.is_empty():
 		%RomPickerDialog.pick_rom()
 	else:
-		_init_libsm64()
+		_init_libsm64() 
 
 
 func _unhandled_input(event: InputEvent) -> void:

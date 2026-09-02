@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhiuog3b3iyge"
-path.s3tc="res://.godot/imported/libsm64_mario.svg-32ef7a69fcb48e77b2855cf788040f33.s3tc.ctex"
+uid="uid://bthmu3eslu3l2"
+path.s3tc="res://.godot/imported/vanish_cap_box_front.rgba16.png-09e888b82c843052baf2dccfa3b4cf4d.s3tc.ctex"
 metadata={
-"has_editor_variant": true,
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
-source_file="res://addons/libsm64_godot/libsm64_mario/libsm64_mario.svg"
-dest_files=["res://.godot/imported/libsm64_mario.svg-32ef7a69fcb48e77b2855cf788040f33.s3tc.ctex"]
+source_file="res://models/vanish_cap_box_front.rgba16.png"
+dest_files=["res://.godot/imported/vanish_cap_box_front.rgba16.png-09e888b82c843052baf2dccfa3b4cf4d.s3tc.ctex"]
 
 [params]
 
@@ -41,6 +40,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
-svg/scale=1.0
-editor/scale_with_editor_scale=true
-editor/convert_colors_with_editor_theme=true

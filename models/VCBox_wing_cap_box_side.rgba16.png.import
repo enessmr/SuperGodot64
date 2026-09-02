@@ -2,18 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhiuog3b3iyge"
-path.s3tc="res://.godot/imported/libsm64_mario.svg-32ef7a69fcb48e77b2855cf788040f33.s3tc.ctex"
+uid="uid://c6mvh401dpcy3"
+path.s3tc="res://.godot/imported/VCBox_wing_cap_box_side.rgba16.png-866b16e618db4d4d4f041edeb34c70b7.s3tc.ctex"
 metadata={
-"has_editor_variant": true,
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
+}
+generator_parameters={
+"md5": "e2e9907aacc0f5d49a09d50890fd0b2b"
 }
 
 [deps]
 
-source_file="res://addons/libsm64_godot/libsm64_mario/libsm64_mario.svg"
-dest_files=["res://.godot/imported/libsm64_mario.svg-32ef7a69fcb48e77b2855cf788040f33.s3tc.ctex"]
+source_file="res://models/VCBox_wing_cap_box_side.rgba16.png"
+dest_files=["res://.godot/imported/VCBox_wing_cap_box_side.rgba16.png-866b16e618db4d4d4f041edeb34c70b7.s3tc.ctex"]
 
 [params]
 
@@ -41,6 +43,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
-svg/scale=1.0
-editor/scale_with_editor_scale=true
-editor/convert_colors_with_editor_theme=true

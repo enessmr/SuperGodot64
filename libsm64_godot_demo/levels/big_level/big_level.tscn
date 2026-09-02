@@ -3,6 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://d0ipccf6g5cxx" path="res://libsm64_godot_demo/resources/icon.svg" id="1_m2w7j"]
 [ext_resource type="Script" uid="uid://bl0pfpmowxtu1" path="res://addons/libsm64_godot/components/libsm64_surface_properties_component.gd" id="2_8s6sn"]
 [ext_resource type="LibSM64SurfaceProperties" uid="uid://bs00vmksj0yos" path="res://libsm64_godot_demo/resources/burning_libsm64_surface_properties.tres" id="3_ula8u"]
+[ext_resource type="ArrayMesh" uid="uid://bvb2knvae2v2" path="res://models/WCBox.tres" id="5_yk641"]
+[ext_resource type="Script" uid="uid://bcww7b2li6njs" path="res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/WCBox.gd" id="6_7x0id"]
+[ext_resource type="ArrayMesh" uid="uid://dx1prymol1tsp" path="res://models/MCBox.tres" id="6_yk641"]
+[ext_resource type="Script" uid="uid://x0h37j081xx4" path="res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/MCBox.gd" id="8_7x0id"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jd0mv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -32,8 +36,6 @@ size = Vector3(15, 6, 15)
 
 [sub_resource type="BoxMesh" id="BoxMesh_yfan3"]
 size = Vector3(3, 3, 15)
-
-[sub_resource type="BoxMesh" id="BoxMesh_8s6sn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lirrq"]
 albedo_color = Color(1, 0, 0, 1)
@@ -81,10 +83,6 @@ mesh = SubResource("BoxMesh_yfan3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, 30)
 mesh = SubResource("BoxMesh_yfan3")
 
-[node name="WCBox" type="MeshInstance3D" parent="." unique_id=1146236329 groups=["libsm64_static_surfaces"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.268885, 3, -6.2700887)
-mesh = SubResource("BoxMesh_8s6sn")
-
 [node name="FireFloor" type="MeshInstance3D" parent="." unique_id=898095803 groups=["libsm64_static_surfaces"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.00046, 0, 9.5)
 mesh = SubResource("PlaneMesh_qd023")
@@ -108,3 +106,13 @@ mesh = SubResource("PlaneMesh_8dfvk")
 [node name="PoolSurface" type="MeshInstance3D" parent="Pool" unique_id=1732075205]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 0, 0)
 mesh = SubResource("PlaneMesh_yk641")
+
+[node name="WCBox3D" type="MeshInstance3D" parent="." unique_id=2027195880 groups=["libsm64_static_objects"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.268883, 3, -6.2700887)
+mesh = ExtResource("5_yk641")
+script = ExtResource("6_7x0id")
+
+[node name="MCBox3D" type="MeshInstance3D" parent="." unique_id=1984899797 groups=["libsm64_static_objects"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 17.942322, 3, -6.2700887)
+mesh = ExtResource("6_yk641")
+script = ExtResource("8_7x0id")

@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhiuog3b3iyge"
-path.s3tc="res://.godot/imported/libsm64_mario.svg-32ef7a69fcb48e77b2855cf788040f33.s3tc.ctex"
+uid="uid://d3m6msyoio3ky"
+path.s3tc="res://.godot/imported/WCBox_ICON.svg-f27e0f08def6403b14770b40e3e7f450.s3tc.ctex"
 metadata={
-"has_editor_variant": true,
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
-source_file="res://addons/libsm64_godot/libsm64_mario/libsm64_mario.svg"
-dest_files=["res://.godot/imported/libsm64_mario.svg-32ef7a69fcb48e77b2855cf788040f33.s3tc.ctex"]
+source_file="res://models/WCBox_ICON.svg"
+dest_files=["res://.godot/imported/WCBox_ICON.svg-f27e0f08def6403b14770b40e3e7f450.s3tc.ctex"]
 
 [params]
 
@@ -42,5 +41,5 @@ process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
 svg/scale=1.0
-editor/scale_with_editor_scale=true
-editor/convert_colors_with_editor_theme=true
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

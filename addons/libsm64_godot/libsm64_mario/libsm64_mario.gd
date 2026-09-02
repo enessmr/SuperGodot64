@@ -239,6 +239,11 @@ var _default_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm
 var _vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres") as StandardMaterial3D
 var _metal_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_material.tres") as StandardMaterial3D
 var _wing_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_wing_material.tres") as StandardMaterial3D
+var _metal_wing_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_wing_material.tres") as StandardMaterial3D
+var _metal_wing_vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres") as StandardMaterial3D
+var _wing_vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_wing_material.tres") as StandardMaterial3D
+var _metal_vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_metal_material.tres") as StandardMaterial3D
+
 
 var _physics_time_since_last_tick := 0.0
 var _reset_interpolation_next_tick := false
@@ -288,15 +293,24 @@ func _update_lerped_members_from_mario_state(lerp_t: float) -> void:
 
 func _update_mesh(lerp_t: float) -> void:
 	var material: StandardMaterial3D
-	match _flags & LibSM64.MARIO_SPECIAL_CAPS:
-		LibSM64.MARIO_VANISH_CAP:
-			material = _vanish_material
-		LibSM64.MARIO_METAL_CAP:
-			material = _metal_material
-		LibSM64.MARIO_WING_CAP:
-			material = _wing_material
-		_:
-			material = _default_material
+	var caps := _flags & LibSM64.MARIO_SPECIAL_CAPS
+
+	if caps == (LibSM64.MARIO_METAL_CAP | LibSM64.MARIO_WING_CAP):
+		material = _metal_wing_material
+	elif caps == (LibSM64.MARIO_METAL_CAP | LibSM64.MARIO_VANISH_CAP | LibSM64.MARIO_WING_CAP):
+		material = _metal_wing_vanish_material
+	elif caps == (LibSM64.MARIO_WING_CAP | LibSM64.MARIO_VANISH_CAP):
+		material = _wing_vanish_material
+	elif caps == (LibSM64.MARIO_METAL_CAP | LibSM64.MARIO_VANISH_CAP):
+		material = _metal_vanish_material
+	elif caps == LibSM64.MARIO_VANISH_CAP:
+		material = _vanish_material
+	elif caps == LibSM64.MARIO_METAL_CAP:
+		material = _metal_material
+	elif caps == LibSM64.MARIO_WING_CAP:
+		material = _wing_material
+	else:
+		material = _default_material
 
 	var array_mesh_triangles: Array
 	if interpolate:
@@ -338,13 +352,21 @@ func create() -> void:
 	_id = LibSM64.mario_create(global_position)
 	if _id < 0:
 		return
+
 	face_angle = global_rotation.y
 
 	_mario_interpolator.mario_state_current = LibSM64MarioState.new()
 	_mario_interpolator.mario_state_current.position = global_position
 	_mario_interpolator.mario_state_current.face_angle = _face_angle
 	_mario_interpolator.mario_state_current.health = FULL_HEALTH
-	_mario_interpolator.array_mesh_triangles_current = [PackedVector3Array(), PackedVector3Array(), null, PackedColorArray(), PackedVector2Array(), null, null, null, null, null, null, null, null]
+	_mario_interpolator.array_mesh_triangles_current = [
+		PackedVector3Array(),
+		PackedVector3Array(),
+		null,
+		PackedColorArray(),
+		PackedVector2Array(),
+		null, null, null, null, null, null, null
+	]
 
 	_mario_interpolator.mario_state_previous = _mario_interpolator.mario_state_current
 	_mario_interpolator.array_mesh_triangles_previous = _mario_interpolator.array_mesh_triangles_current
@@ -355,7 +377,10 @@ func create() -> void:
 	_wing_material.next_pass.albedo_texture = LibSM64Global.mario_texture
 	_metal_material.next_pass.albedo_texture = LibSM64Global.mario_texture
 	_vanish_material.next_pass.albedo_texture = LibSM64Global.mario_texture
-
+	_metal_wing_material.next_pass.albedo_texture = LibSM64Global.mario_texture
+	_metal_wing_vanish_material.next_pass.albedo_texture = LibSM64Global.mario_texture
+	_wing_vanish_material.next_pass.albedo_texture = LibSM64Global.mario_texture
+	_metal_vanish_material.next_pass.albedo_texture = LibSM64Global.mario_texture
 
 ## Delete mario inside the [code]libsm64[/code] world.
 func delete() -> void:

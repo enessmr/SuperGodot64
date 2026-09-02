@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dprpekyttg0g6" path="res://libsm64_godot_demo/shared/hud/hud.tscn" id="4_e6d56"]
 [ext_resource type="PackedScene" uid="uid://b14covao5gpeh" path="res://libsm64_godot_demo/shared/rom_picker_dialog/rom_picker_dialog.tscn" id="5_oe0ua"]
 [ext_resource type="Script" uid="uid://drownbnkaxrbk" path="res://libsm64_godot_demo/shared/input_config/input_config.gd" id="6_5b41d"]
+[ext_resource type="ArrayMesh" uid="uid://bvb2knvae2v2" path="res://models/WCBox.tres" id="8_c1w8k"]
+[ext_resource type="ArrayMesh" uid="uid://dx1prymol1tsp" path="res://models/MCBox.tres" id="9_3ucge"]
+[ext_resource type="Script" uid="uid://bcww7b2li6njs" path="res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/WCBox.gd" id="9_k6jwh"]
+[ext_resource type="Script" uid="uid://x0h37j081xx4" path="res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/MCBox.gd" id="10_jupr8"]
+[ext_resource type="ArrayMesh" uid="uid://duxhdktxr65xh" path="res://models/VCBox.tres" id="11_4tv6h"]
+[ext_resource type="Script" uid="uid://dhduuurvp7qq8" path="res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/VCBox.gd" id="11_jupr8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w06lu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,12 +24,27 @@ sky_material = SubResource("ProceduralSkyMaterial_w06lu")
 background_mode = 2
 sky = SubResource("Sky_fjdmo")
 tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_0ti8p"]
+ssr_enabled = true
 
 [node name="BobOmbBattlefield" type="Node3D" unique_id=394103755]
 script = ExtResource("1_k4bkk")
+
+[node name="WCBox3D" type="MeshInstance3D" parent="." unique_id=1986788146 groups=["libsm64_static_objects"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -62.225, 3, 6.176)
+mesh = ExtResource("8_c1w8k")
+script = ExtResource("9_k6jwh")
+
+[node name="WCBox3D2" type="MeshInstance3D" parent="." unique_id=117123552 groups=["libsm64_static_objects"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 11.895, 13.24, -69.961)
+mesh = ExtResource("8_c1w8k")
+script = ExtResource("9_k6jwh")
+metadata/_custom_type_script = "uid://bcww7b2li6njs"
+
+[node name="WCBox3D3" type="MeshInstance3D" parent="." unique_id=1842359735 groups=["libsm64_static_objects"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -19.383, 34.72, 41.325)
+mesh = ExtResource("8_c1w8k")
+script = ExtResource("9_k6jwh")
+metadata/_custom_type_script = "uid://bcww7b2li6njs"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1440695222]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -39,6 +60,14 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3144, 11.8729, -21.092)
 script = ExtResource("2_uah3x")
 camera = NodePath("CameraRig/Camera3D")
+interpolate = null
+mario_inputs_stick_left = null
+mario_inputs_stick_right = null
+mario_inputs_stick_up = null
+mario_inputs_stick_down = null
+mario_inputs_button_a = null
+mario_inputs_button_b = null
+mario_inputs_button_z = null
 
 [node name="CameraRig" parent="LibSM64Mario" unique_id=1984771685 instance=ExtResource("3_x3dge")]
 
@@ -64,11 +93,15 @@ visible = false
 [node name="InputConfig" type="Node" parent="." unique_id=2075111149]
 script = ExtResource("6_5b41d")
 
-[node name="WCBox" type="Node3D" parent="." unique_id=1840718997]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.225, 3, 6.176)
+[node name="MCBox3D" type="MeshInstance3D" parent="." unique_id=1014507125 groups=["libsm64_static_objects"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -60.786, 3, 6.176)
+mesh = ExtResource("9_3ucge")
+script = ExtResource("10_jupr8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WCBox" unique_id=1986788146 groups=["libsm64_static_objects"]]
-mesh = SubResource("BoxMesh_0ti8p")
+[node name="VCBox3D" type="MeshInstance3D" parent="." unique_id=378408401 groups=["libsm64_static_objects"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -59.347, 3, 6.176)
+mesh = ExtResource("11_4tv6h")
+script = ExtResource("11_jupr8")
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="rom_loaded" from="Interface/RomPickerDialog" to="." method="_on_rom_picker_dialog_rom_loaded"]
