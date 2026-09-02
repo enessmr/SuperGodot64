@@ -2,55 +2,29 @@
 class_name LibSM64Mario
 extends Node3D
 ## Node that instances a Mario into a scenario and provides an interface to control it.
-##
-## This class exposes Mario's state, actions, and interactions within the [code]libsm64[/code] world.
-## It includes methods for creating, deleting, teleporting, and controlling Mario,
-## as well as handling his health, velocity, and special abilities.
 
-
-## Value that represents Mario being at full health.
 const FULL_HEALTH = 0x0880
-## Value that represents one health wedge.
 const HEALTH_WEDGE = 0x0100
 
-
-## Emitted when Mario's action changes.
 signal action_changed(action: LibSM64.ActionFlags)
-## Emitted when Mario's flags change.
 signal flags_changed(flags: LibSM64.MarioFlags)
-## Emitted when Mario's particle flags change.
 signal particle_flags_changed(particle_flags: LibSM64.ParticleFlags)
-## Emitted when Mario's health changes.
 signal health_changed(health: int)
-## Emitted when Mario's health wedges change.
 signal health_wedges_changed(health_wedges: int)
 
-## Camera instance that follows Mario. Necessary for resolving Mario's inputs.
 @export var camera: Camera3D
-
-## if [code]true[/code], linearly interpolate Mario and transform
-## from the SM64 engine's hardcoded 30 frames per second to the tick rate
-## of the current [code]tick_process_mode[/code].
 @export var interpolate := true
 
 @export_group("Mario Inputs Actions", "mario_inputs_")
-## Action equivalent to pushing the joystick to the left.
 @export var mario_inputs_stick_left := &"libsm64_mario_inputs_stick_left"
-## Action equivalent to pushing the joystick to the right.
 @export var mario_inputs_stick_right := &"libsm64_mario_inputs_stick_right"
-## Action equivalent to pushing the joystick upwards.
 @export var mario_inputs_stick_up := &"libsm64_mario_inputs_stick_up"
-## Action equivalent to pushing the joystick downwards.
 @export var mario_inputs_stick_down := &"libsm64_mario_inputs_stick_down"
-## Action equivalent to pushing the A button.
 @export var mario_inputs_button_a := &"libsm64_mario_inputs_button_a"
-## Action equivalent to pushing the B button.
 @export var mario_inputs_button_b := &"libsm64_mario_inputs_button_b"
-## Action equivalent to pushing the Z button.
 @export var mario_inputs_button_z := &"libsm64_mario_inputs_button_z"
 
 var _id := -1
-## Mario's internal [code]libsm64[/code] ID. If [code]-1[/code], Mario hasn't been created.
 var id: int:
 	get:
 		return _id
@@ -60,7 +34,7 @@ var _action := LibSM64.ActionFlags.ACT_UNINITIALIZED:
 		if value != _action:
 			_action = value
 			action_changed.emit(_action)
-## The current action state of Mario. This determines his animation and behavior state (e.g., jumping, running, swimming).
+
 var action: LibSM64.ActionFlags:
 	get:
 		return _action
@@ -70,13 +44,12 @@ var action: LibSM64.ActionFlags:
 		LibSM64.set_mario_action(_id, value)
 		_action = value
 
-## The current action state of Mario as a [StringName].
 var action_name: StringName:
 	get:
 		return _to_action_name(_action)
 
 var _anim_id := LibSM64.MarioAnimID.MARIO_ANIM_SLOW_LEDGE_GRAB
-## The ID of the current animation being played for Mario. This corresponds to specific animations defined in [enum LibSM64.MarioAnimID].
+
 var anim_id: LibSM64.MarioAnimID:
 	get:
 		return _anim_id
@@ -87,7 +60,7 @@ var anim_id: LibSM64.MarioAnimID:
 		_anim_id = value
 
 var _anim_frame := 0
-## The current frame of Mario's animation. This value is used to track the progress of the current animation sequence.
+
 var anim_frame: int:
 	get:
 		return _anim_frame
@@ -102,7 +75,7 @@ var _flags := 0 as LibSM64.MarioFlags:
 		if value != _flags:
 			_flags = value
 			flags_changed.emit(_flags)
-## Various status flags that affect Mario's state and behavior (e.g., cap status, metal state, invincibility).
+
 var flags: LibSM64.MarioFlags:
 	get:
 		return _flags
@@ -117,13 +90,13 @@ var _particle_flags := 0 as LibSM64.ParticleFlags:
 		if value != _particle_flags:
 			_particle_flags = value
 			particle_flags_changed.emit(_particle_flags)
-## Flags indicating which particles should be spawned around Mario (e.g., dust, bubbles, sparkles).
+
 var particle_flags: LibSM64.ParticleFlags:
 	get:
 		return _particle_flags
 
 var _velocity := Vector3()
-## Mario's current velocity vector, indicating both the direction and speed of his movement.
+
 var velocity: Vector3:
 	get:
 		return _velocity
@@ -132,12 +105,13 @@ var velocity: Vector3:
 			return
 		LibSM64.set_mario_velocity(_id, value)
 		_velocity = value
+
 		if _mario_interpolator.mario_state_current:
 			_mario_interpolator.mario_state_current.velocity = _velocity
 			_mario_interpolator.mario_state_previous.velocity = _velocity
 
 var _forward_velocity := 0.0
-## Mario's current forward velocity (in meters per second). This value indicates how fast Mario is moving in the direction he is facing.
+
 var forward_velocity: float:
 	get:
 		return _forward_velocity
@@ -146,6 +120,7 @@ var forward_velocity: float:
 			return
 		LibSM64.set_mario_forward_velocity(_id, value)
 		_forward_velocity = value
+
 		if _mario_interpolator.mario_state_current:
 			_mario_interpolator.mario_state_current.forward_velocity = _forward_velocity
 			_mario_interpolator.mario_state_previous.forward_velocity = _forward_velocity
@@ -154,7 +129,7 @@ var _face_angle := 0.0:
 	set(value):
 		global_rotation.y = value
 		_face_angle = value
-## The angle (in radians) that Mario is facing in the horizontal plane. [code]0.0[/code] points along the negative X axis.
+
 var face_angle: float:
 	get:
 		return _face_angle
@@ -163,6 +138,7 @@ var face_angle: float:
 			return
 		LibSM64.set_mario_face_angle(_id, value)
 		_face_angle = value
+
 		if _mario_interpolator.mario_state_current:
 			_mario_interpolator.mario_state_current.face_angle = _face_angle
 			_mario_interpolator.mario_state_previous.face_angle = _face_angle
@@ -173,7 +149,7 @@ var _health := FULL_HEALTH:
 			_health = value
 			health_changed.emit(_health)
 			health_wedges_changed.emit(health_wedges)
-## Mario's current health value. This is a 16 bit value: upper byte is the number of health wedges; the lower byte is the portion of next wedge.
+
 var health: int:
 	get:
 		return _health
@@ -183,19 +159,19 @@ var health: int:
 		LibSM64.set_mario_health(_id, value)
 		_health = value
 
-## Mario's current health value in health wedges. This is a number between [code]0[/code] and [code]8[/code].
 var health_wedges: int:
 	get:
 		return _health >> 0x8 if _health > 0 else 0x0
 	set(value):
 		if _id < 0:
 			return
+
 		var new_health := value << 0x8 if value > 0 else 0x0
 		LibSM64.set_mario_health(_id, new_health)
 		_health = new_health
 
 var _invincibility_time := 0.0
-## The remaining time (in seconds) of Mario's invincibility state.
+
 var invincibility_time: float:
 	get:
 		return _invincibility_time
@@ -204,12 +180,13 @@ var invincibility_time: float:
 			return
 		LibSM64.set_mario_invincibility(_id, value)
 		_invincibility_time = value
+
 		if _mario_interpolator.mario_state_current:
 			_mario_interpolator.mario_state_current.invincibility_time = _invincibility_time
 			_mario_interpolator.mario_state_previous.invincibility_time = _invincibility_time
 
 var _water_level_in_libsm64 := -100000
-## The height of the water level in the [code]libsm64[/code] world for this Mario instance. If Mario is below this level, he will be considered swimming.
+
 var water_level: float:
 	get:
 		return float(_water_level_in_libsm64) / LibSM64.scale_factor
@@ -220,7 +197,7 @@ var water_level: float:
 		_water_level_in_libsm64 = int(value * LibSM64.scale_factor)
 
 var _gas_level_in_libsm64 := -100000
-## The height of the gas level in the [code]libsm64[/code] world for this Mario instance. If Mario is below this level, he will start coughing and take damage, eventually choking to death.
+
 var gas_level: float:
 	get:
 		return float(_gas_level_in_libsm64) / LibSM64.scale_factor
@@ -235,15 +212,37 @@ var _mesh: ArrayMesh
 
 var _mario_interpolator := LibSM64MarioInterpolator.new()
 
-var _default_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_default_material.tres") as StandardMaterial3D
-var _vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres") as StandardMaterial3D
-var _metal_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_material.tres") as StandardMaterial3D
-var _wing_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_wing_material.tres") as StandardMaterial3D
-var _metal_wing_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_wing_material.tres") as StandardMaterial3D
-var _metal_wing_vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres") as StandardMaterial3D
-var _wing_vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_wing_material.tres") as StandardMaterial3D
-var _metal_vanish_material := preload("res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres") as StandardMaterial3D
+var _default_material := preload(
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_default_material.tres"
+) as StandardMaterial3D
 
+var _vanish_material := preload(
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres"
+) as StandardMaterial3D
+
+var _metal_material := preload(
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_material.tres"
+) as StandardMaterial3D
+
+var _wing_material := preload(
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_wing_material.tres"
+) as StandardMaterial3D
+
+var _metal_wing_material := preload(
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_wing_material.tres"
+) as StandardMaterial3D
+
+var _metal_wing_vanish_material := preload(
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres"
+) as StandardMaterial3D
+
+var _wing_vanish_material := preload(
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres"
+) as StandardMaterial3D
+
+var _metal_vanish_material := preload(
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres"
+) as StandardMaterial3D
 
 var _physics_time_since_last_tick := 0.0
 var _reset_interpolation_next_tick := false
@@ -251,8 +250,10 @@ var _reset_interpolation_next_tick := false
 
 func _ready() -> void:
 	## Mario's mesh vertices are in global space.
+
 	_mesh_instance = MeshInstance3D.new()
 	add_child(_mesh_instance)
+
 	_mesh_instance.top_level = true
 	_mesh_instance.position = Vector3.ZERO
 	_mesh_instance.rotation = Vector3.ZERO
@@ -260,25 +261,45 @@ func _ready() -> void:
 	_mesh = ArrayMesh.new()
 	_mesh_instance.mesh = _mesh
 
+	# Native Godot Alpha Hash for Vanish Cap.
+	#
+	# Keep the existing LibSM64 material and texture chain intact.
+	# Alpha Hash performs screen-space dithering instead of replacing
+	# the material with a custom shader.
+	_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
+	_vanish_material.albedo_color.a = 0.5
+
 
 func _process(delta: float) -> void:
 	if _id < 0:
 		return
 
 	var lerp_t := _calculate_lerp_t()
+
 	_update_lerped_members_from_mario_state(lerp_t)
 	_update_mesh(lerp_t)
 
 
 func _calculate_lerp_t() -> float:
-	var sm64_ticks_per_physics_tick := Engine.physics_ticks_per_second * LibSM64.tick_delta_time
-	var sm64_tick_fraction := _physics_time_since_last_tick / LibSM64.tick_delta_time
-	var physics_fraction := Engine.get_physics_interpolation_fraction() / sm64_ticks_per_physics_tick
+	var sm64_ticks_per_physics_tick := (
+		Engine.physics_ticks_per_second * LibSM64.tick_delta_time
+	)
+
+	var sm64_tick_fraction := (
+		_physics_time_since_last_tick / LibSM64.tick_delta_time
+	)
+
+	var physics_fraction := (
+		Engine.get_physics_interpolation_fraction() /
+		sm64_ticks_per_physics_tick
+	)
+
 	return sm64_tick_fraction + physics_fraction
 
 
 func _update_lerped_members_from_mario_state(lerp_t: float) -> void:
 	var mario_state: LibSM64MarioState
+
 	if interpolate:
 		mario_state = _mario_interpolator.interpolate_mario_state(lerp_t)
 	else:
@@ -297,31 +318,64 @@ func _update_mesh(lerp_t: float) -> void:
 
 	if caps == (LibSM64.MARIO_METAL_CAP | LibSM64.MARIO_WING_CAP):
 		material = _metal_wing_material
-	elif caps == (LibSM64.MARIO_METAL_CAP | LibSM64.MARIO_VANISH_CAP | LibSM64.MARIO_WING_CAP):
+
+	elif caps == (
+		LibSM64.MARIO_METAL_CAP |
+		LibSM64.MARIO_VANISH_CAP |
+		LibSM64.MARIO_WING_CAP
+	):
 		material = _metal_wing_vanish_material
-	elif caps == (LibSM64.MARIO_WING_CAP | LibSM64.MARIO_VANISH_CAP):
+
+	elif caps == (
+		LibSM64.MARIO_WING_CAP |
+		LibSM64.MARIO_VANISH_CAP
+	):
 		material = _wing_vanish_material
-	elif caps == (LibSM64.MARIO_METAL_CAP | LibSM64.MARIO_VANISH_CAP):
+
+	elif caps == (
+		LibSM64.MARIO_METAL_CAP |
+		LibSM64.MARIO_VANISH_CAP
+	):
 		material = _metal_vanish_material
+
 	elif caps == LibSM64.MARIO_VANISH_CAP:
 		material = _vanish_material
+
 	elif caps == LibSM64.MARIO_METAL_CAP:
 		material = _metal_material
+
 	elif caps == LibSM64.MARIO_WING_CAP:
 		material = _wing_material
+
 	else:
 		material = _default_material
 
 	var array_mesh_triangles: Array
-	if interpolate:
-		array_mesh_triangles = _mario_interpolator.interpolate_array_mesh_triangles(lerp_t)
-	else:
-		array_mesh_triangles = _mario_interpolator.array_mesh_triangles_current
 
-	if not array_mesh_triangles.is_empty() and not array_mesh_triangles[ArrayMesh.ARRAY_VERTEX].is_empty():
+	if interpolate:
+		array_mesh_triangles = (
+			_mario_interpolator.interpolate_array_mesh_triangles(lerp_t)
+		)
+	else:
+		array_mesh_triangles = (
+			_mario_interpolator.array_mesh_triangles_current
+		)
+
+	if (
+		not array_mesh_triangles.is_empty()
+		and not array_mesh_triangles[ArrayMesh.ARRAY_VERTEX].is_empty()
+	):
 		_mesh.clear_surfaces()
-		_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, array_mesh_triangles)
-		_mesh_instance.set_surface_override_material(0, material)
+
+		_mesh.add_surface_from_arrays(
+			Mesh.PRIMITIVE_TRIANGLES,
+			array_mesh_triangles
+		)
+
+		_mesh_instance.set_surface_override_material(
+			0,
+			material
+		)
 
 
 func _physics_process(delta: float) -> void:
@@ -329,9 +383,12 @@ func _physics_process(delta: float) -> void:
 		return
 
 	_physics_time_since_last_tick += delta
+
 	while _physics_time_since_last_tick >= LibSM64.tick_delta_time:
 		_tick()
+
 		_physics_time_since_last_tick -= LibSM64.tick_delta_time
+
 		_update_non_lerped_members_from_mario_state()
 
 
@@ -344,32 +401,45 @@ func _update_non_lerped_members_from_mario_state() -> void:
 	_particle_flags = _mario_interpolator.mario_state_current.particle_flags
 
 
-## Create Mario (requires initializing [code]libsm64[/code] via the [method LibSM64Global.init] method).
 func create() -> void:
 	if _id >= 0:
 		delete()
 
 	_id = LibSM64.mario_create(global_position)
+
 	if _id < 0:
 		return
 
 	face_angle = global_rotation.y
 
 	_mario_interpolator.mario_state_current = LibSM64MarioState.new()
+
 	_mario_interpolator.mario_state_current.position = global_position
 	_mario_interpolator.mario_state_current.face_angle = _face_angle
 	_mario_interpolator.mario_state_current.health = FULL_HEALTH
+
 	_mario_interpolator.array_mesh_triangles_current = [
 		PackedVector3Array(),
 		PackedVector3Array(),
 		null,
 		PackedColorArray(),
 		PackedVector2Array(),
-		null, null, null, null, null, null, null
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null
 	]
 
-	_mario_interpolator.mario_state_previous = _mario_interpolator.mario_state_current
-	_mario_interpolator.array_mesh_triangles_previous = _mario_interpolator.array_mesh_triangles_current
+	_mario_interpolator.mario_state_previous = (
+		_mario_interpolator.mario_state_current
+	)
+
+	_mario_interpolator.array_mesh_triangles_previous = (
+		_mario_interpolator.array_mesh_triangles_current
+	)
 
 	reset_interpolation()
 
@@ -382,72 +452,96 @@ func create() -> void:
 	_wing_vanish_material.next_pass.albedo_texture = LibSM64Global.mario_texture
 	_metal_vanish_material.next_pass.albedo_texture = LibSM64Global.mario_texture
 
-## Delete mario inside the [code]libsm64[/code] world.
+
 func delete() -> void:
 	if _id < 0:
 		return
+
 	LibSM64.mario_delete(_id)
 	_id = -1
 
 
-## Teleport mario in the [code]libsm64[/code] world.
 func teleport(to_global_position: Vector3) -> void:
 	if _id < 0:
 		return
+
 	LibSM64.set_mario_position(_id, to_global_position)
+
 	global_position = to_global_position
+
 	_mario_interpolator.mario_state_current.position = global_position
 	_mario_interpolator.mario_state_previous.position = global_position
+
 	reset_interpolation()
 
 
-## Set angle of mario in the [code]libsm64[/code] world.
 func set_angle(to_global_rotation: Quaternion) -> void:
 	if _id < 0:
 		return
+
 	LibSM64.set_mario_angle(_id, to_global_rotation)
+
 	_face_angle = to_global_rotation.get_euler().y
+
 	_mario_interpolator.mario_state_current.face_angle = _face_angle
 	_mario_interpolator.mario_state_previous.face_angle = _face_angle
+
 	reset_interpolation()
 
 
-## Make Mario take damage in amount of health wedges from a source position.
-func take_damage(damage: int, subtype: int, source_position: Vector3) -> void:
+func take_damage(
+	damage: int,
+	subtype: int,
+	source_position: Vector3
+) -> void:
 	if _id < 0:
 		return
-	LibSM64.mario_take_damage(_id, damage, subtype, source_position)
+
+	LibSM64.mario_take_damage(
+		_id,
+		damage,
+		subtype,
+		source_position
+	)
 
 
-## Heal Mario a specific amount of wedges.
 func heal(wedges: int) -> void:
 	if _id < 0:
 		return
+
 	LibSM64.mario_heal(_id, wedges)
 
 
-## Kill Mario.
 func kill() -> void:
 	if _id < 0:
 		return
+
 	LibSM64.mario_kill(_id)
 
 
-## Equip special cap.
-func interact_cap(cap_flag: LibSM64.MarioFlags, cap_time := 0.0, play_music := true) -> void:
+func interact_cap(
+	cap_flag: LibSM64.MarioFlags,
+	cap_time := 0.0,
+	play_music := true
+) -> void:
 	if _id < 0:
 		return
-	LibSM64.mario_interact_cap(_id, cap_flag, cap_time, play_music)
+
+	LibSM64.mario_interact_cap(
+		_id,
+		cap_flag,
+		cap_time,
+		play_music
+	)
 
 
-## Extend current special cap time.
 func extend_cap(cap_time: float) -> void:
 	if _id < 0:
 		return
+
 	LibSM64.mario_extend_cap(_id, cap_time)
 
 
-## Reset interpolation next tick.
 func reset_interpolation() -> void:
 	_reset_interpolation_next_tick = true
 
@@ -455,14 +549,31 @@ func reset_interpolation() -> void:
 func _make_mario_inputs() -> LibSM64MarioInputs:
 	var mario_inputs := LibSM64MarioInputs.new()
 
-	mario_inputs.stick = Input.get_vector(mario_inputs_stick_left, mario_inputs_stick_right, mario_inputs_stick_up, mario_inputs_stick_down)
+	mario_inputs.stick = Input.get_vector(
+		mario_inputs_stick_left,
+		mario_inputs_stick_right,
+		mario_inputs_stick_up,
+		mario_inputs_stick_down
+	)
 
 	var look_direction := camera.global_transform.basis.z
-	mario_inputs.cam_look = Vector2(look_direction.x, look_direction.z)
 
-	mario_inputs.button_a = Input.is_action_pressed(mario_inputs_button_a)
-	mario_inputs.button_b = Input.is_action_pressed(mario_inputs_button_b)
-	mario_inputs.button_z = Input.is_action_pressed(mario_inputs_button_z)
+	mario_inputs.cam_look = Vector2(
+		look_direction.x,
+		look_direction.z
+	)
+
+	mario_inputs.button_a = Input.is_action_pressed(
+		mario_inputs_button_a
+	)
+
+	mario_inputs.button_b = Input.is_action_pressed(
+		mario_inputs_button_b
+	)
+
+	mario_inputs.button_z = Input.is_action_pressed(
+		mario_inputs_button_z
+	)
 
 	return mario_inputs
 
@@ -473,17 +584,31 @@ func _tick() -> void:
 
 	var mario_inputs := _make_mario_inputs()
 
-	_mario_interpolator.mario_state_previous = _mario_interpolator.mario_state_current
-	_mario_interpolator.array_mesh_triangles_previous = _mario_interpolator.array_mesh_triangles_current
+	_mario_interpolator.mario_state_previous = (
+		_mario_interpolator.mario_state_current
+	)
 
-	var mario_tick_output := LibSM64.mario_tick(_id, mario_inputs)
+	_mario_interpolator.array_mesh_triangles_previous = (
+		_mario_interpolator.array_mesh_triangles_current
+	)
+
+	var mario_tick_output := LibSM64.mario_tick(
+		_id,
+		mario_inputs
+	)
 
 	_mario_interpolator.mario_state_current = mario_tick_output[0]
 	_mario_interpolator.array_mesh_triangles_current = mario_tick_output[1]
 
 	if _reset_interpolation_next_tick:
-		_mario_interpolator.mario_state_previous = _mario_interpolator.mario_state_current
-		_mario_interpolator.array_mesh_triangles_previous = _mario_interpolator.array_mesh_triangles_current
+		_mario_interpolator.mario_state_previous = (
+			_mario_interpolator.mario_state_current
+		)
+
+		_mario_interpolator.array_mesh_triangles_previous = (
+			_mario_interpolator.array_mesh_triangles_current
+		)
+
 		_reset_interpolation_next_tick = false
 
 

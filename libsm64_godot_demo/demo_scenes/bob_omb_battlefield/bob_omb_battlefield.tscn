@@ -60,7 +60,7 @@ environment = SubResource("Environment_wxohf")
 unique_name_in_owner = true
 
 [node name="LibSM64Mario" type="Node3D" parent="." unique_id=1692650312 node_paths=PackedStringArray("camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3144, 11.8729, -21.092)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.44959, 2.748735, 6.135)
 script = ExtResource("2_uah3x")
 camera = NodePath("CameraRig/Camera3D")
 
