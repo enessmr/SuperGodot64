@@ -47,9 +47,11 @@ func _init_libsm64() -> void:
 	if not _libsm64_was_init:
 		push_error("Failed to initialize LibSM64Global")
 		return
-
+		
+	%LibSM64StaticSurfacesHandler.load_static_surfaces()
 	BombOmbBattlefieldSurfaces.load_static_surfaces()
-
+	%LibSM64SurfaceObjectsHandler.load_all_surface_objects()
+	
 	lib_sm_64_mario.create()
 	lib_sm_64_mario.interact_cap(start_cap)
 

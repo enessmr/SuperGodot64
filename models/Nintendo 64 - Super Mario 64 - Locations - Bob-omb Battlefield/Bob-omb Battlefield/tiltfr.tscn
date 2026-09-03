@@ -1,0 +1,48 @@
+[gd_scene format=4 uid="uid://bx0i4bcyipvil"]
+
+[ext_resource type="PackedScene" uid="uid://5itrxst757cx" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Bob-omb Battlefield/Bob-omb Battlefield/tiltfr.blend" id="1_ks8kp"]
+[ext_resource type="Texture2D" uid="uid://m16085b7tj8r" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Bob-omb Battlefield/Bob-omb Battlefield/tex_9006000.png" id="2_vnagk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71cjq"]
+resource_name = "Material1"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+albedo_texture = ExtResource("2_vnagk")
+roughness = 0.8
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_funi7"]
+_surfaces = [{
+"aabb": AABB(-1.8982702, 0.2765131, -8.720385, 3.4802606, 0.49167156, 17.439907),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAwAAAAIAAgABAAQAAwAFAAAABQABAAAAAgAGAAMABgAFAAMABAAGAAIABwABAAUABAABAAcABwAFAAYABAAHAAYA"),
+"name": "Material1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD//wAAAAAAAP7///8AAAAAAAAAAAAA//8AAAAAAAAAAAAA//8AAP////8AAAAA//8AAP//AAD///7///8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m3qxt"]
+resource_name = "tiltfr_meshMesh0_1"
+_surfaces = [{
+"aabb": AABB(-1.8982702, 0.2765131, -8.720385, 3.4802606, 0.49167156, 17.439907),
+"attribute_data": PackedByteArray("D6f/f94A/397pRCSAABWk5QB/38Pp///lAH//w+n/38Pp///3gD/fw+n/3/eAP//AABWkw+n/397pRCS3gD/fw+n/38AAFaT/3/wiv9//385m/9/OZvwipKK//8PpwTzD6f//5KKBPM="),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgABAAMABAAFAAYABwAFAAQACAAJAAoACwAJAAgADAANAA4ADwAQABEAEgATABQAEgAUABUAFgAXABgAFgAZABcA"),
+"material": SubResource("StandardMaterial3D_71cjq"),
+"name": "Material1",
+"primitive": 3,
+"uv_scale": Vector4(6.3359375, 1.9648438, 0, 0),
+"vertex_count": 26,
+"vertex_data": PackedByteArray("AAD//wAAAAAAAP7///8MAAAAAAAAAAAAAAAAAP//DQAAAAAAAABU1f//AAD//1TV//8AAAAAVNUAAAAA//9U1f////8AAFTVAAD+////VNUAAP//AABU1f///v///1TV//8AAP///7//////AAD/v///AAAAAP+////+/////7//////AAD/v///AAD///+/AAAAAP//AIAAAP7///8AgP///v///wCA//8AAP//AID//wAAAAD//wAA//8AAP//AAAAAAAA////////AAD///8//38GQA2A/z//fwdADoCqKlTVqipU1aoqVNWqKlTVVNWqKlTVqipU1aoqVNWqKiCAQQAggEEAIIBBAP9/AAD/fwAA/38AAP9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_funi7")
+
+[node name="tiltfr" unique_id=763896547 instance=ExtResource("1_ks8kp")]
+
+[node name="meshMesh0_1" parent="." index="0" unique_id=258099874]
+mesh = SubResource("ArrayMesh_m3qxt")

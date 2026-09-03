@@ -11,6 +11,7 @@ signal flags_changed(flags: LibSM64.MarioFlags)
 signal particle_flags_changed(particle_flags: LibSM64.ParticleFlags)
 signal health_changed(health: int)
 signal health_wedges_changed(health_wedges: int)
+var vanish_cap: bool = false
 
 @export var camera: Camera3D
 @export var interpolate := true
@@ -268,6 +269,24 @@ func _ready() -> void:
 	# the material with a custom shader.
 	_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_vanish_material.albedo_color.a = 0.5
+	_metal_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
+	_metal_vanish_material.albedo_color.a = 0.5
+	_metal_wing_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
+	_metal_wing_vanish_material.albedo_color.a = 0.5
+	_wing_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
+	_wing_vanish_material.albedo_color.a = 0.5
+	
+func alpha_set(alpha_mario: float) -> void:
+	_default_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
+	_default_material.albedo_color.a = alpha_mario
+
+	_vanish_material.albedo_color.a = alpha_mario
+	_metal_material.albedo_color.a = alpha_mario
+	_wing_material.albedo_color.a = alpha_mario
+	_metal_wing_material.albedo_color.a = alpha_mario
+	_metal_wing_vanish_material.albedo_color.a = alpha_mario
+	_wing_vanish_material.albedo_color.a = alpha_mario
+	_metal_vanish_material.albedo_color.a = alpha_mario
 
 
 func _process(delta: float) -> void:
@@ -275,6 +294,8 @@ func _process(delta: float) -> void:
 		return
 
 	var lerp_t := _calculate_lerp_t()
+
+	vanish_cap = (_flags & LibSM64.MARIO_VANISH_CAP) != 0
 
 	_update_lerped_members_from_mario_state(lerp_t)
 	_update_mesh(lerp_t)
@@ -349,6 +370,57 @@ func _update_mesh(lerp_t: float) -> void:
 
 	else:
 		material = _default_material
+	
+	if caps == LibSM64.MARIO_VANISH_CAP:
+		# Ensure typed value for cap_time (fixes inference error)
+		var cap_time: float = 0.0
+		var mstate := _mario_interpolator.mario_state_current
+		if mstate:
+			if typeof(mstate) == TYPE_DICTIONARY:
+				if mstate.has("cap_time"):
+					cap_time = float(mstate["cap_time"])
+			else:
+				if mstate.has_method("get"):
+					var maybe := mstate.get("cap_time")
+					if maybe != null:
+						cap_time = float(maybe)
+
+		# When cap is nearly finished, flicker between special and normal material.
+		var use_default_material := false
+		if cap_time > 0.0 and cap_time <= 2.0:
+			use_default_material = int(Time.get_ticks_msec() / 80.0) % 2 == 0
+
+		# Vanish cap also uses alpha-hash flicker; keep that behavior.
+		if cap_time > 0.0 and cap_time <= 2.0:
+			_vanish_material.transparency = (
+				BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
+				if int(Time.get_ticks_msec() / 80.0) % 2 == 0
+				else BaseMaterial3D.TRANSPARENCY_DISABLED
+			)
+		else:
+			_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
+
+	# Decide whether to temporarily show the default material when cap is about to end.
+	var cap_time_mesh: float = 0.0
+	var mstate_mesh := _mario_interpolator.mario_state_current
+	if mstate_mesh:
+		if typeof(mstate_mesh) == TYPE_DICTIONARY:
+			if mstate_mesh.has("cap_time"):
+				cap_time_mesh = float(mstate_mesh["cap_time"])
+		else:
+			if mstate_mesh.has_method("get"):
+				var maybe_mesh := mstate_mesh.get("cap_time")
+				if maybe_mesh != null:
+					cap_time_mesh = float(maybe_mesh)
+
+	var use_default_material_for_mesh := false
+	if (caps & (LibSM64.MARIO_METAL_CAP | LibSM64.MARIO_VANISH_CAP)) != 0:
+		if cap_time_mesh > 0.0 and cap_time_mesh <= 2.0:
+			use_default_material_for_mesh = int(Time.get_ticks_msec() / 80.0) % 2 == 0
+
+	var final_material := material
+	if use_default_material_for_mesh:
+		final_material = _default_material
 
 	var array_mesh_triangles: Array
 
@@ -374,7 +446,7 @@ func _update_mesh(lerp_t: float) -> void:
 
 		_mesh_instance.set_surface_override_material(
 			0,
-			material
+			final_material
 		)
 
 
@@ -540,7 +612,6 @@ func extend_cap(cap_time: float) -> void:
 		return
 
 	LibSM64.mario_extend_cap(_id, cap_time)
-
 
 func reset_interpolation() -> void:
 	_reset_interpolation_next_tick = true

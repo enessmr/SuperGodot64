@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 16 16">
+
+  <defs>
+    <linearGradient
+        id="fade"
+        x1="0"
+        y1="0"
+        x2="1"
+        y2="0">
+
+      <!-- Completely opaque through the left half -->
+      <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="1"/>
+
+      <!-- Fade toward the right -->
+      <stop offset="0.625" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="0.75" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="0.875" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <mask
+        id="fadeMask"
+        maskUnits="userSpaceOnUse"
+        x="0"
+        y="0"
+        width="16"
+        height="16">
+
+      <rect
+          x="0"
+          y="0"
+          width="16"
+          height="16"
+          fill="url(#fade)"/>
+    </mask>
+  </defs>
+
+  <path
+      fill="#fa9b9b"
+      fill-opacity="1"
+      stroke="#fa9b9b"
+      stroke-width="0.968309"
+      stroke-linecap="butt"
+      stroke-linejoin="miter"
+      stroke-opacity="1"
+      mask="url(#fadeMask)"
+      d="M 8.3524263,0.495967
+         6.4712674,0.90414304
+         4.5013746,2.217405
+         2.5314818,4.3292724
+         1.2359658,6.6008608
+         0.88103021,7.7011614
+         0.73905572,9.1918913
+         0.95201787,9.4935864
+         0.49060123,10.114725
+         0.50835033,10.558395
+         1.1117405,11.836162
+         0.93427263,12.102365
+         1.076247,12.936463
+         1.5021694,13.504359
+         2.2475348,13.717322
+         4.0399599,13.415626
+         4.8563121,14.285219
+         5.8678793,15.101572
+         8.6718705,15.492
+         9.3994887,15.137065
+         10.038373,15.208055
+         10.55303,14.9596
+         12.008266,13.273655
+         12.203481,13.415628
+         12.753631,13.18492
+         12.877859,12.776744
+         13.694212,12.723514
+         14.989726,11.9604
+         15.468889,10.91334
+         14.971979,9.7952819
+         14.333094,9.1031574
+         12.256721,8.9789302
+         12.008265,8.4287796
+         11.901783,7.0622772
+         13.534488,6.7783287
+         15.025217,5.7667619
+         14.79451,5.0391438
+         14.155625,4.7906888
+         12.3632,4.524487
+         12.380947,3.8856028
+         12.185732,2.8030489
+         11.688822,1.8092291
+         10.535282,0.99287705 Z"/>
+
+</svg>

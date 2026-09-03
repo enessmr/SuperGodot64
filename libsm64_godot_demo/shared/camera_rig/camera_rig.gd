@@ -26,31 +26,49 @@ func _process(delta: float) -> void:
 	elif look_direction.length() > 0:
 		update_rotation(look_direction * sensitivity_gamepad * delta)
 
-	rotation.y = wrapf(rotation.y, -PI, PI)
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	var mouse_event := event as InputEventMouseMotion
+
 	if mouse_event and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		_input_relative += mouse_event.relative
 
 
 func update_rotation(offset: Vector2) -> void:
+	# Yaw is intentionally NOT wrapped.
+	# This allows the camera to pass through 180 degrees
+	# without jumping from PI to -PI.
 	rotation.y -= offset.x
-	rotation.x += offset.y * -1.0 if is_y_inverted else offset.y
+
+	if is_y_inverted:
+		rotation.x -= offset.y
+	else:
+		rotation.x += offset.y
+
 	rotation.x = clamp(rotation.x, ANGLE_X_MIN, ANGLE_X_MAX)
-	rotation.z = 0
+
+	# Keep roll disabled.
+	rotation.z = 0.0
 
 
 # Returns the direction of the camera movement from the player
 func get_look_direction() -> Vector2:
-	return Vector2(Input.get_axis("camera_right", "camera_left"), Input.get_axis("camera_up", "camera_down")).normalized()
+	return Vector2(
+		Input.get_axis("camera_right", "camera_left"),
+		Input.get_axis("camera_up", "camera_down")
+	).normalized()
 
 
 # Returns the move direction of the character controlled by the player
 func get_move_direction() -> Vector3:
 	return Vector3(
-		Input.get_axis("libsm64_mario_inputs_stick_right", "libsm64_mario_inputs_stick_left"),
+		Input.get_axis(
+			"libsm64_mario_inputs_stick_right",
+			"libsm64_mario_inputs_stick_left"
+		),
 		0,
-		Input.get_axis("libsm64_mario_inputs_stick_down", "libsm64_mario_inputs_stick_up")
+		Input.get_axis(
+			"libsm64_mario_inputs_stick_down",
+			"libsm64_mario_inputs_stick_up"
+		)
 	)

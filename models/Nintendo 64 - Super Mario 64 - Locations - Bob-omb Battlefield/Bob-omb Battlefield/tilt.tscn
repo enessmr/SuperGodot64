@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bhihgm18ww24i"]
+
+[ext_resource type="PackedScene" uid="uid://ndmvtr031i3q" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Bob-omb Battlefield/Bob-omb Battlefield/tilt.blend" id="1_dpmiu"]
+
+[node name="tilt" unique_id=1567864831 instance=ExtResource("1_dpmiu")]
+
+[node name="meshMesh0_1" parent="." index="0" unique_id=1791733265]
+transform = Transform3D(0.001, 0, 0, 0, -4.371139e-11, -0.001, 0, 0.001, -4.371139e-11, 0, 0, 0)
