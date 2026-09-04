@@ -29,6 +29,7 @@
 [ext_resource type="Animation" uid="uid://wtbgg4otleco" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/gltf/release.anim" id="28_0mtt7"]
 [ext_resource type="Animation" uid="uid://cuaxesh2ib18a" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/rest.anim" id="29_3uhyg"]
 [ext_resource type="Animation" uid="uid://dq0usqkov57uv" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/gltf/resthold.anim" id="30_80bhc"]
+[ext_resource type="Script" uid="uid://dp35slbbrbs08" path="res://libsm64_godot_demo/shared/hud/pausemenu.gd" id="30_ri1hq"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qo70i"]
 panorama = ExtResource("4_gg4l8")
@@ -632,15 +633,17 @@ fade_duration = 0.7
 fade_wait = 0.3
 
 [node name="TeleporterCVLayer" type="CanvasLayer" parent="Teleporter" unique_id=1008618311]
+layer = 3
 
 [node name="ColorRect" type="ColorRect" parent="Teleporter/TeleporterCVLayer" unique_id=1282140387]
-z_index = 4096
+z_index = 1024
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [node name="LibSM64SurfacePropertiesComponent" type="Node" parent="Teleporter" unique_id=450738581]
 script = ExtResource("22_pa7bu")
@@ -661,15 +664,17 @@ fade_duration = 0.7
 fade_wait = 0.3
 
 [node name="TeleporterCVLayer" type="CanvasLayer" parent="Teleporter2" unique_id=1133660378]
+layer = 3
 
 [node name="ColorRect" type="ColorRect" parent="Teleporter2/TeleporterCVLayer" unique_id=1389247694]
-z_index = 4096
+z_index = 1024
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [node name="LibSM64SurfacePropertiesComponent" type="Node" parent="Teleporter2" unique_id=1290126500]
 script = ExtResource("22_pa7bu")
@@ -715,7 +720,48 @@ libraries/Custom = SubResource("AnimationLibrary_x8n0f")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.7166138e-05, -0.026022911, 0)
 shape = SubResource("BoxShape3D_0nkfa")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=86053298 node_paths=PackedStringArray("current")]
+layer = 2
+visible = false
+script = ExtResource("30_ri1hq")
+current = NodePath(".")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=1918911930]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PanelContainer" unique_id=1519313656]
+z_index = 1022
+layout_mode = 2
+color = Color(0, 0, 0, 0.5058824)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/PanelContainer" unique_id=426225438]
+z_index = 1023
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/PanelContainer/Panel" unique_id=775758833]
+z_index = 1023
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -33.5
+offset_right = 244.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return To Main Menu"
+flat = true
+
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="rom_loaded" from="Interface/RomPickerDialog" to="." method="_on_rom_picker_dialog_rom_loaded"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/Panel/Button" to="CanvasLayer" method="_on_button_pressed"]
 
 [editable path="LibSM64Mario/CameraRig"]

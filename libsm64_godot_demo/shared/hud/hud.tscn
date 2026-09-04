@@ -1,16 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dprpekyttg0g6"]
+[gd_scene format=3 uid="uid://dprpekyttg0g6"]
 
-[ext_resource type="Script" path="res://libsm64_godot_demo/shared/hud/hud.gd" id="1_gwlej"]
+[ext_resource type="Script" uid="uid://p1tpa8piabb2" path="res://libsm64_godot_demo/shared/hud/hud.gd" id="1_gwlej"]
 
-[node name="HUD" type="PanelContainer"]
+[node name="HUD" type="PanelContainer" unique_id=1741846333]
 offset_right = 150.0
 offset_bottom = 104.0
 script = ExtResource("1_gwlej")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1749914308]
 layout_mode = 2
 
-[node name="MarioInfoLabel" type="Label" parent="VBoxContainer"]
+[node name="MarioInfoLabel" type="Label" parent="VBoxContainer" unique_id=1177919553]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Action: %s
@@ -19,8 +19,16 @@ Invicibility Time: %.2f
 Face angle: %dº
 Forward velocity: %.2f"
 
-[node name="ReturnButton" type="Button" parent="VBoxContainer"]
+[node name="ReturnButton" type="Button" parent="VBoxContainer" unique_id=885406609]
 layout_mode = 2
 text = "Return to Main Menu"
+
+[node name="PauseMenuPanel" type="PanelContainer" parent="." unique_id=1910440139]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="PauseMenuVBox" type="VBoxContainer" parent="PauseMenuPanel" unique_id=1532810078]
+layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]

@@ -15,6 +15,13 @@ var _input_relative := Vector2.ZERO
 
 
 func _process(delta: float) -> void:
+	if not player:
+		return
+
+	if player.play_mode != LibSM64Mario.PlayMode.NORMAL:
+		_input_relative = Vector2.ZERO
+		return
+
 	global_transform.origin = player.global_transform.origin
 
 	var look_direction := get_look_direction()
@@ -28,6 +35,10 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"ui_cancel"):
+		_input_relative = Vector2.ZERO
+		return
+
 	var mouse_event := event as InputEventMouseMotion
 
 	if mouse_event and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
