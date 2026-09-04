@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b4n6vr1utqly6" path="res://addons/libsm64_godot/libsm64_mario/libsm64_mario.gd" id="2_uah3x"]
 [ext_resource type="PackedScene" uid="uid://yt8kbrfd41gi" path="res://libsm64_godot_demo/shared/camera_rig/camera_rig.tscn" id="3_x3dge"]
 [ext_resource type="PackedScene" uid="uid://dprpekyttg0g6" path="res://libsm64_godot_demo/shared/hud/hud.tscn" id="4_e6d56"]
+[ext_resource type="Texture2D" uid="uid://iciud4yc2j0n" path="res://assets/Backgrounds/selected_sprites_10/sprite-1-1.png" id="4_gg4l8"]
 [ext_resource type="PackedScene" uid="uid://b14covao5gpeh" path="res://libsm64_godot_demo/shared/rom_picker_dialog/rom_picker_dialog.tscn" id="5_oe0ua"]
 [ext_resource type="Script" uid="uid://bcya1lu4scue6" path="res://libsm64_godot_demo/workaround.gd" id="6_2m751"]
 [ext_resource type="Script" uid="uid://drownbnkaxrbk" path="res://libsm64_godot_demo/shared/input_config/input_config.gd" id="6_5b41d"]
@@ -22,13 +23,18 @@
 [ext_resource type="Script" uid="uid://snaocr6l3w1y" path="res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/tilt.gd" id="19_lb43m"]
 [ext_resource type="Script" uid="uid://d25hw6f5dof25" path="res://assets/Teleporter.gd" id="21_yho8d"]
 [ext_resource type="Script" uid="uid://bl0pfpmowxtu1" path="res://addons/libsm64_godot/components/libsm64_surface_properties_component.gd" id="22_pa7bu"]
+[ext_resource type="Script" uid="uid://4il4x2i7u2oc" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/purpleswitch.gd" id="24_rumaj"]
+[ext_resource type="ArrayMesh" uid="uid://co8ia1uc5h3ej" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/newmesh.tres" id="25_0nkfa"]
+[ext_resource type="Animation" uid="uid://b0ry1gs7xv18" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/gltf/push.anim" id="27_ri1hq"]
+[ext_resource type="Animation" uid="uid://wtbgg4otleco" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/gltf/release.anim" id="28_0mtt7"]
+[ext_resource type="Animation" uid="uid://cuaxesh2ib18a" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/rest.anim" id="29_3uhyg"]
+[ext_resource type="Animation" uid="uid://dq0usqkov57uv" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/gltf/resthold.anim" id="30_80bhc"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w06lu"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qo70i"]
+panorama = ExtResource("4_gg4l8")
 
 [sub_resource type="Sky" id="Sky_fjdmo"]
-sky_material = SubResource("ProceduralSkyMaterial_w06lu")
+sky_material = SubResource("PanoramaSkyMaterial_qo70i")
 
 [sub_resource type="Environment" id="Environment_wxohf"]
 background_mode = 2
@@ -37,6 +43,7 @@ tonemap_mode = 2
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
+glow_enabled = true
 fog_enabled = true
 fog_mode = 1
 fog_light_energy = 0.62
@@ -45,6 +52,7 @@ fog_sky_affect = 0.0
 fog_depth_curve = 41.423645
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pxfdq"]
+height = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_84846"]
 resource_name = "f3dlite_material.011"
@@ -167,10 +175,254 @@ albedo_color = Color(1, 1, 1, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lb43m"]
 material = SubResource("StandardMaterial3D_pxfdq")
-size = Vector3(6.4035645, 0.032592773, 2.5380402)
+size = Vector3(4.4680176, 0.032592773, 5.016285)
 
 [sub_resource type="LibSM64SurfaceProperties" id="LibSM64SurfaceProperties_pxfdq"]
 surface_type = 50
+
+[sub_resource type="LibSM64SurfaceProperties" id="LibSM64SurfaceProperties_0nkfa"]
+surface_type = 21
+terrain_type = 1
+
+[sub_resource type="Animation" id="Animation_0nkfa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D/CollisionShape3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area3D/CollisionShape3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area3D/CollisionShape3D:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.032562, 2.0325623, 0.31602186)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("meshMesh0_1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.19939166, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("meshMesh0_1:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5707964, 1.9852338e-23, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("meshMesh0_1:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("meshMesh0_1:blend_shapes/Key 1")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("meshMesh0_1:blend_shapes/Key 2")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Area3D/CollisionShape3D:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.7166138e-05, -0.026022911, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b1gkn"]
+_data = {
+&"Push": ExtResource("27_ri1hq"),
+&"RESET": SubResource("Animation_0nkfa"),
+&"Release": ExtResource("28_0mtt7"),
+&"Rest": ExtResource("29_3uhyg"),
+&"RestHold": ExtResource("30_80bhc")
+}
+
+[sub_resource type="Animation" id="Animation_tdn48"]
+resource_name = "RESET"
+length = 0.0407
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D/CollisionShape3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.7166138e-05, 0.16188176, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area3D/CollisionShape3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area3D/CollisionShape3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area3D/CollisionShape3D:shape:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.032562, 2.0325623, 0.31602186)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("meshMesh0_1:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.19939166, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("meshMesh0_1:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5707964, 1.9852338e-23, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("meshMesh0_1:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("meshMesh0_1:blend_shapes/Key 1")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("meshMesh0_1:blend_shapes/Key 2")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x8n0f"]
+_data = {
+&"RESET": SubResource("Animation_tdn48")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0nkfa"]
+size = Vector3(2.032562, 2.0325623, 0.31602186)
 
 [node name="BobOmbBattlefield" type="Node3D" unique_id=394103755]
 script = ExtResource("1_k4bkk")
@@ -197,8 +449,9 @@ meshwc = NodePath(".")
 metadata/_custom_type_script = "uid://bcww7b2li6njs"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1440695222]
-transform = Transform3D(-0.4698516, 0.76448095, -0.44137147, 4.520862e-08, 0.49999848, 0.8660263, 0.88274556, 0.40690377, -0.23492506, 0, 0, 0)
+transform = Transform3D(1.0000001, 0, 0, 0, 0.5, 0.86602545, 0, -0.86602557, 0.49999997, 0, 0, 0)
 shadow_enabled = true
+sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=686835774]
 environment = SubResource("Environment_wxohf")
@@ -218,11 +471,11 @@ transform = Transform3D(0.7175367, 0, 0.6965207, 0, 1, 0, -0.6965207, 0, 0.71753
 [node name="Camera3D" parent="LibSM64Mario/CameraRig" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.86602503, 0.4999998, 0, -0.4999998, 0.86602503, 0, 3.852, 5.571)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="LibSM64Mario" unique_id=1028747598 node_paths=PackedStringArray("mario")]
+[node name="MarioRB" type="RigidBody3D" parent="LibSM64Mario" unique_id=1028747598 node_paths=PackedStringArray("mario")]
 script = ExtResource("6_2m751")
 mario = NodePath("..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LibSM64Mario/RigidBody3D" unique_id=450521596]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LibSM64Mario/MarioRB" unique_id=450521596]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_pxfdq")
 
@@ -345,7 +598,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2392235, 7.16365, -23.030
 [node name="StaticBody3D" type="StaticBody3D" parent="Tilting Platform" unique_id=1620050107]
 
 [node name="HingeJoint3D" type="HingeJoint3D" parent="Tilting Platform/StaticBody3D" unique_id=1937858578]
-transform = Transform3D(-0.761161, 0, -0.64856297, 0, 1, 0, 0.64856297, 0, -0.761161, 0, 0, 0)
+transform = Transform3D(-0.70855, 0, -0.70566064, 0, 1, 0, 0.70566064, 0, -0.70855, 0, 0, 0)
 node_a = NodePath("..")
 node_b = NodePath("RigidBody3D")
 angular_limit/enable = true
@@ -353,7 +606,7 @@ angular_limit/upper = 0.9424778
 angular_limit/lower = -0.9424778
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Tilting Platform/StaticBody3D/HingeJoint3D" unique_id=821962412]
-transform = Transform3D(-0.761161, 0, 0.64856297, 0, 1, 0, -0.64856297, 0, -0.761161, 0, 0.23506498, 0)
+transform = Transform3D(-0.70855, 0, 0.70566064, 0, 1, 0, -0.70566064, 0, -0.70855, 0, 0.23506498, 0)
 mass = 100.0
 script = ExtResource("19_lb43m")
 spring_strength = 200.0
@@ -369,11 +622,12 @@ shape = SubResource("ConvexPolygonShape3D_lb43m")
 [node name="FinalLibSM64MarioLoc" type="Marker3D" parent="." unique_id=1408477677]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.153465, 5.8431687, -65.93589)
 
-[node name="Teleporter" type="MeshInstance3D" parent="." unique_id=845545114 node_paths=PackedStringArray("WARP_NODE_B") groups=["libsm64_surface_objects"]]
+[node name="Teleporter" type="MeshInstance3D" parent="." unique_id=845545114 node_paths=PackedStringArray("WARP_NODE_B", "destination_teleporter") groups=["libsm64_surface_objects"]]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 53.72817, 26.810392, 5.5842943)
 mesh = SubResource("BoxMesh_lb43m")
 script = ExtResource("21_yho8d")
-WARP_NODE_B = NodePath("../FinalLibSM64MarioLoc")
+WARP_NODE_B = NodePath("PointB")
+destination_teleporter = NodePath("../Teleporter2")
 fade_duration = 0.7
 fade_wait = 0.3
 
@@ -392,6 +646,74 @@ mouse_filter = 2
 script = ExtResource("22_pa7bu")
 surface_properties = SubResource("LibSM64SurfaceProperties_pxfdq")
 metadata/_custom_type_script = "uid://bl0pfpmowxtu1"
+
+[node name="PointB" type="Marker3D" parent="Teleporter" unique_id=223843918]
+transform = Transform3D(0.87772626, 0, 0.47916237, 0, 1, 0, -0.47916237, 0, 0.87772626, 54.957645, 38.355225, 16.52234)
+top_level = true
+
+[node name="Teleporter2" type="MeshInstance3D" parent="." unique_id=1819385423 node_paths=PackedStringArray("WARP_NODE_B", "destination_teleporter") groups=["libsm64_surface_objects"]]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 53.774605, 37.945534, 17.613678)
+mesh = SubResource("BoxMesh_lb43m")
+script = ExtResource("21_yho8d")
+WARP_NODE_B = NodePath("PointB")
+destination_teleporter = NodePath("../Teleporter")
+fade_duration = 0.7
+fade_wait = 0.3
+
+[node name="TeleporterCVLayer" type="CanvasLayer" parent="Teleporter2" unique_id=1133660378]
+
+[node name="ColorRect" type="ColorRect" parent="Teleporter2/TeleporterCVLayer" unique_id=1389247694]
+z_index = 4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LibSM64SurfacePropertiesComponent" type="Node" parent="Teleporter2" unique_id=1290126500]
+script = ExtResource("22_pa7bu")
+surface_properties = SubResource("LibSM64SurfaceProperties_pxfdq")
+metadata/_custom_type_script = "uid://bl0pfpmowxtu1"
+
+[node name="PointB" type="Marker3D" parent="Teleporter2" unique_id=1580997584]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 53.965347, 26.830618, 5.550854)
+top_level = true
+
+[node name="Elevator" type="Node3D" parent="." unique_id=1084343856]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.081593, 4.797922, 17.829643)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Elevator" unique_id=1897163794]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Elevator/AnimatableBody3D" unique_id=1309969502]
+
+[node name="AnimatableBody3D2" type="AnimatableBody3D" parent="Elevator" unique_id=457098077]
+
+[node name="Cave" type="Node3D" parent="." unique_id=1202600290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.562996, 0.0011442155, -24.863337)
+
+[node name="purpleswitch1" type="Node3D" parent="Cave" unique_id=2110130905]
+transform = Transform3D(-0.42261833, 0, 0.90630776, 0, 1, 0, -0.90630776, 0, -0.42261833, -2.940075, 0, -0.4563694)
+script = ExtResource("24_rumaj")
+
+[node name="meshMesh0_1" type="MeshInstance3D" parent="Cave/purpleswitch1" unique_id=1264676275 groups=["libsm64_surface_objects"]]
+transform = Transform3D(1, -1.9852338e-23, -8.6777325e-31, 0, -4.371139e-08, 1, -1.9852338e-23, -1, -4.371139e-08, 0, 0.19939166, 0)
+mesh = ExtResource("25_0nkfa")
+
+[node name="LibSM64SurfacePropertiesComponent" type="Node" parent="Cave/purpleswitch1/meshMesh0_1" unique_id=1175228275]
+script = ExtResource("22_pa7bu")
+surface_properties = SubResource("LibSM64SurfaceProperties_0nkfa")
+metadata/_custom_type_script = "uid://bl0pfpmowxtu1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cave/purpleswitch1" unique_id=326769342]
+libraries/ = SubResource("AnimationLibrary_b1gkn")
+libraries/Custom = SubResource("AnimationLibrary_x8n0f")
+
+[node name="Area3D" type="Area3D" parent="Cave/purpleswitch1" unique_id=408897341]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cave/purpleswitch1/Area3D" unique_id=1755585076]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.7166138e-05, -0.026022911, 0)
+shape = SubResource("BoxShape3D_0nkfa")
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="rom_loaded" from="Interface/RomPickerDialog" to="." method="_on_rom_picker_dialog_rom_loaded"]

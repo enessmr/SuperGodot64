@@ -280,13 +280,64 @@ func alpha_set(alpha_mario: float) -> void:
 	_default_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_default_material.albedo_color.a = alpha_mario
 
+	_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_vanish_material.albedo_color.a = alpha_mario
+
+	_metal_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_metal_material.albedo_color.a = alpha_mario
+
+	_wing_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_wing_material.albedo_color.a = alpha_mario
+
+	_metal_wing_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_metal_wing_material.albedo_color.a = alpha_mario
+
+	_metal_wing_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_metal_wing_vanish_material.albedo_color.a = alpha_mario
+
+	_wing_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_wing_vanish_material.albedo_color.a = alpha_mario
+
+	_metal_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_metal_vanish_material.albedo_color.a = alpha_mario
+
+	var materials := [
+		_default_material,
+		_vanish_material,
+		_metal_material,
+		_wing_material,
+		_metal_wing_material,
+		_metal_wing_vanish_material,
+		_wing_vanish_material,
+		_metal_vanish_material
+	]
+
+	for material in materials:
+		if material.next_pass is BaseMaterial3D:
+			var texture_pass := material.next_pass as BaseMaterial3D
+			texture_pass.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
+			texture_pass.albedo_color.a = alpha_mario
+
+func alpha_reset() -> void:
+	var materials := [
+		_default_material,
+		_vanish_material,
+		_metal_material,
+		_wing_material,
+		_metal_wing_material,
+		_metal_wing_vanish_material,
+		_wing_vanish_material,
+		_metal_vanish_material
+	]
+
+	for material in materials:
+		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
+		material.albedo_color.a = 1.0
+
+		if material.next_pass is BaseMaterial3D:
+			var texture_pass := material.next_pass as BaseMaterial3D
+			texture_pass.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
+			texture_pass.albedo_color.a = 1.0
 
 
 func _process(delta: float) -> void:

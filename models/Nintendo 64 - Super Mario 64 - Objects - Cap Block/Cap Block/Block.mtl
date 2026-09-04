@@ -1,0 +1,39 @@
+newmtl Mat7
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_8017E28.png
+
+newmtl Mat6
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_8017628.png
+
+newmtl Mat5
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_8013628.png
+
+newmtl Mat4
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_8012E28.png
+
+newmtl Mat3
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_8014E28.png
+
+newmtl Mat2
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_8014628.png
+
+newmtl Mat1
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_8016628.png
+
+newmtl Mat0
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_8015E28.png

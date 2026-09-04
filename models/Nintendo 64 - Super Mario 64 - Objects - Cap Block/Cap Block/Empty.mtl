@@ -1,0 +1,11 @@
+newmtl Mat1
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_8025168.png
+map_d tex_8025168.png
+
+newmtl vertexColors
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd vertexColors_empty.png
+map_d vertexColors_empty.png

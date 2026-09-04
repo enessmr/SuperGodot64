@@ -1,0 +1,9 @@
+newmtl Mat1
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_800C128.png
+
+newmtl Mat0
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_800C0A8.png
