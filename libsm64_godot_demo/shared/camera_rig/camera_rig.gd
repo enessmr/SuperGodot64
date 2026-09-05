@@ -12,7 +12,27 @@ const ANGLE_X_MAX := PI / 3
 @onready var player := get_parent() as LibSM64Mario
 
 var _input_relative := Vector2.ZERO
+var _locked : bool = false
+signal lock
+signal unlock
 
+func set_locked(value: bool) -> void:
+	if _locked == value:
+		return
+
+	_locked = value
+
+	if _locked:
+		lock.emit()
+	else:
+		unlock.emit()
+
+func unlock_rig() -> void:
+	if not _locked:
+		return
+
+	_locked = false
+	unlock.emit()
 
 func _process(delta: float) -> void:
 	if not player:
@@ -26,6 +46,9 @@ func _process(delta: float) -> void:
 
 	var look_direction := get_look_direction()
 	var _move_direction := get_move_direction()
+
+	if _locked:
+		return
 
 	if _input_relative.length() > 0:
 		update_rotation(_input_relative * sensitivity_mouse * delta)
