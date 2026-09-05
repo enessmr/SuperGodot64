@@ -14,7 +14,7 @@ signal health_wedges_changed(health_wedges: int)
 
 var vanish_cap: bool = false
 
-@export var camera: Camera3D
+@export var camera: Node3D
 @export var interpolate := true
 
 @export_group("Mario Inputs Actions", "mario_inputs_")
@@ -248,35 +248,35 @@ var _mesh: ArrayMesh
 var _mario_interpolator := LibSM64MarioInterpolator.new()
 
 var _default_material := preload(
-	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_default_material.tres"
+    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_default_material.tres"
 ) as StandardMaterial3D
 
 var _vanish_material := preload(
-	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres"
+    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres"
 ) as StandardMaterial3D
 
 var _metal_material := preload(
-	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_material.tres"
+    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_material.tres"
 ) as StandardMaterial3D
 
 var _wing_material := preload(
-	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_wing_material.tres"
+    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_wing_material.tres"
 ) as StandardMaterial3D
 
 var _metal_wing_material := preload(
-	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_wing_material.tres"
+    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_wing_material.tres"
 ) as StandardMaterial3D
 
 var _metal_wing_vanish_material := preload(
-	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres"
+    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres"
 ) as StandardMaterial3D
 
 var _wing_vanish_material := preload(
-	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres"
+    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres"
 ) as StandardMaterial3D
 
 var _metal_vanish_material := preload(
-	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres"
+    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres"
 ) as StandardMaterial3D
 
 
@@ -300,10 +300,11 @@ var play_mode := PlayMode.NORMAL
 
 var _collecting_star := false
 
+# Added to keep track of collected stars
+var stars_collected := 0
+
 
 func _ready() -> void:
-	## Mario's mesh vertices are in global space.
-
 	_mesh_instance = MeshInstance3D.new()
 	add_child(_mesh_instance)
 
@@ -313,12 +314,6 @@ func _ready() -> void:
 
 	_mesh = ArrayMesh.new()
 	_mesh_instance.mesh = _mesh
-
-	# Native Godot Alpha Hash for Vanish Cap.
-	#
-	# Keep the existing LibSM64 material and texture chain intact.
-	# Alpha Hash performs screen-space dithering instead of replacing
-	# the material with a custom shader.
 
 	_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_vanish_material.albedo_color.a = 0.5
@@ -500,13 +495,11 @@ func _update_mesh(lerp_t: float) -> void:
 					if maybe != null:
 						cap_time = float(maybe)
 
-		# When cap is nearly finished, flicker between special and normal material.
 		var use_default_material := false
 
 		if cap_time > 0.0 and cap_time <= 2.0:
 			use_default_material = int(Time.get_ticks_msec() / 80.0) % 2 == 0
 
-		# Vanish cap also uses alpha-hash flicker.
 		if cap_time > 0.0 and cap_time <= 2.0:
 			_vanish_material.transparency = (
 				BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
@@ -998,25 +991,27 @@ func collect_star() -> void:
 
 	_collecting_star = true
 
-	# Wait until Mario is actually airborne first.
-	#
-	# This prevents an already-grounded Mario from immediately
-	# triggering the star dance.
 	while not _is_mario_airborne():
 		await get_tree().physics_frame
 
-	# Now wait for Mario to land on ANY surface.
 	while _is_mario_airborne():
 		await get_tree().physics_frame
 
-	# Mario has landed.
 	action = LibSM64.ACT_STAR_DANCE_EXIT
 
-	# TEMPORARY ONLY.
-	# This 0.7 second state will be removed in the final game.
 	await get_tree().create_timer(0.7).timeout
 
 	_collecting_star = false
+
+
+# ============================================================
+# NEW POWER STAR COLLECTION FUNCTION
+# ============================================================
+# Called by PowerStar3D when Mario touches a star.
+# The PowerStar3D script handles all the camera cutscene logic,
+# pausing Mario, and playing the sound effects.
+func _get_power_star(_star_id: int) -> void:
+	stars_collected += 1
 
 
 func is_collecting_star() -> bool:

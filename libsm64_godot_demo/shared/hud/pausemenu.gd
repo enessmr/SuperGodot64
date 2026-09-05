@@ -50,11 +50,11 @@ func _toggle_pause_menu() -> void:
 		return
 
 	if _mario.play_mode == LibSM64Mario.PlayMode.PAUSED:
-		current.hide()
+		pause_menu_panel.hide()
 		LibSM64.play_sound_global(LibSM64.SOUND_MENU_PAUSE)
 		_mario.resume_game()
 	else:
-		current.show()
+		pause_menu_panel.show()
 		LibSM64.play_sound_global(LibSM64.SOUND_MENU_PAUSE)
 		_mario.pause_game()
 

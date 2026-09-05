@@ -23,12 +23,4 @@ Forward velocity: %.2f"
 layout_mode = 2
 text = "Return to Main Menu"
 
-[node name="PauseMenuPanel" type="PanelContainer" parent="." unique_id=1910440139]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="PauseMenuVBox" type="VBoxContainer" parent="PauseMenuPanel" unique_id=1532810078]
-layout_mode = 2
-
 [connection signal="pressed" from="VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]

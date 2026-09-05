@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b14covao5gpeh" path="res://libsm64_godot_demo/shared/rom_picker_dialog/rom_picker_dialog.tscn" id="5_oe0ua"]
 [ext_resource type="Script" uid="uid://bcya1lu4scue6" path="res://libsm64_godot_demo/workaround.gd" id="6_2m751"]
 [ext_resource type="Script" uid="uid://drownbnkaxrbk" path="res://libsm64_godot_demo/shared/input_config/input_config.gd" id="6_5b41d"]
+[ext_resource type="Texture2D" uid="uid://dwqqxrof1by6x" path="res://assets/sprite-7-4.png" id="6_b1gkn"]
 [ext_resource type="ArrayMesh" uid="uid://bvb2knvae2v2" path="res://models/WCBox.tres" id="8_c1w8k"]
 [ext_resource type="ArrayMesh" uid="uid://dx1prymol1tsp" path="res://models/MCBox.tres" id="9_3ucge"]
 [ext_resource type="Script" uid="uid://bcww7b2li6njs" path="res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/WCBox.gd" id="9_k6jwh"]
@@ -30,6 +31,11 @@
 [ext_resource type="Animation" uid="uid://cuaxesh2ib18a" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/rest.anim" id="29_3uhyg"]
 [ext_resource type="Animation" uid="uid://dq0usqkov57uv" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/gltf/resthold.anim" id="30_80bhc"]
 [ext_resource type="Script" uid="uid://dp35slbbrbs08" path="res://libsm64_godot_demo/shared/hud/pausemenu.gd" id="30_ri1hq"]
+[ext_resource type="ArrayMesh" uid="uid://irh3fmv8q22d" path="res://models/EBox.tres" id="31_0mtt7"]
+[ext_resource type="Script" uid="uid://c1lftadwb37b7" path="res://assets/EBox.gd" id="32_3uhyg"]
+[ext_resource type="Script" uid="uid://d2kel0c3xe50" path="res://libsm64_godot_demo/resources/exclamationboxspawnableobjects.gd" id="33_80bhc"]
+[ext_resource type="PackedScene" uid="uid://cogupkrgo1k35" path="res://models/Nintendo 64 - Super Mario 64 - Objects - Power Star/Power Star/star.tscn" id="34_3yayu"]
+[ext_resource type="Script" uid="uid://dw1eldpluvr31" path="res://libsm64_godot_demo/shared/globals/level_globals.gd" id="34_dyj3n"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qo70i"]
 panorama = ExtResource("4_gg4l8")
@@ -51,6 +57,24 @@ fog_light_energy = 0.62
 fog_density = 0.7209
 fog_sky_affect = 0.0
 fog_depth_curve = 41.423645
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3yayu"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8n0f"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("6_b1gkn")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_b1gkn"]
+material = SubResource("StandardMaterial3D_x8n0f")
+size = Vector2(0.5, 0.5)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pxfdq"]
 height = 1.5
@@ -128,6 +152,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofmd5")
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lb43m"]
+points = PackedVector3Array(-2.036712, 0.1380881, -8.858811, 1.8388214, 0.9685595, 8.857911, 1.8388214, 0.1380881, 8.857911, 1.8388214, 0.9685595, -8.858811, -2.036712, 0.9685595, 8.857911, -2.036712, 0.1380881, 8.857911, 1.8388214, 0.1380881, -8.858811, -2.036712, 0.9685595, -8.858811)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71cjq"]
 resource_name = "Material1"
 cull_mode = 2
@@ -166,9 +193,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_funi7")
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lb43m"]
-points = PackedVector3Array(-2.036712, 0.1380881, -8.858811, 1.8388214, 0.9685595, 8.857911, 1.8388214, 0.1380881, 8.857911, 1.8388214, 0.9685595, -8.858811, -2.036712, 0.9685595, 8.857911, -2.036712, 0.1380881, 8.857911, 1.8388214, 0.1380881, -8.858811, -2.036712, 0.9685595, -8.858811)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxfdq"]
 transparency = 1
@@ -425,6 +449,11 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_0nkfa"]
 size = Vector3(2.032562, 2.0325623, 0.31602186)
 
+[sub_resource type="Resource" id="Resource_3uhyg"]
+script = ExtResource("33_80bhc")
+object_type = "Star"
+metadata/_custom_type_script = "uid://d2kel0c3xe50"
+
 [node name="BobOmbBattlefield" type="Node3D" unique_id=394103755]
 script = ExtResource("1_k4bkk")
 
@@ -462,11 +491,18 @@ unique_name_in_owner = true
 visible = false
 
 [node name="LibSM64Mario" type="Node3D" parent="." unique_id=1692650312 node_paths=PackedStringArray("camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.171852, 27.743372, -0.10188484)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.773918, 36.64499, 47.27876)
 script = ExtResource("2_uah3x")
-camera = NodePath("CameraRig/Camera3D")
+camera = NodePath("CameraRig")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="LibSM64Mario" unique_id=1476477493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+fixed_fps = 144
+process_material = SubResource("ParticleProcessMaterial_3yayu")
+draw_pass_1 = SubResource("QuadMesh_b1gkn")
 
 [node name="CameraRig" parent="LibSM64Mario" unique_id=1984771685 instance=ExtResource("3_x3dge")]
+unique_name_in_owner = true
 transform = Transform3D(0.7175367, 0, 0.6965207, 0, 1, 0, -0.6965207, 0, 0.7175367, 0, 0, 0)
 
 [node name="Camera3D" parent="LibSM64Mario/CameraRig" index="0"]
@@ -480,6 +516,10 @@ mario = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_pxfdq")
 
+[node name="Camera_StarGrab" type="Marker3D" parent="LibSM64Mario" unique_id=1996113799]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8240433, 3.3999977)
+
 [node name="LibSM64AudioStreamPlayer" type="LibSM64AudioStreamPlayer" parent="." unique_id=1090871714]
 unique_name_in_owner = true
 
@@ -489,7 +529,48 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HUD" parent="Interface" unique_id=1703329737 instance=ExtResource("4_e6d56")]
+[node name="CanvasLayer" type="CanvasLayer" parent="Interface" unique_id=86053298 node_paths=PackedStringArray("current")]
+layer = 2
+script = ExtResource("30_ri1hq")
+current = NodePath(".")
+
+[node name="PauseMenuPanel" type="PanelContainer" parent="Interface/CanvasLayer" unique_id=1918911930]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Interface/CanvasLayer/PauseMenuPanel" unique_id=1519313656]
+z_index = 1022
+layout_mode = 2
+color = Color(0, 0, 0, 0.5058824)
+
+[node name="Panel" type="Panel" parent="Interface/CanvasLayer/PauseMenuPanel" unique_id=426225438]
+z_index = 1023
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Button" type="Button" parent="Interface/CanvasLayer/PauseMenuPanel/Panel" unique_id=775758833]
+z_index = 1023
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -33.5
+offset_right = 244.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return To Main Menu"
+flat = true
+
+[node name="DebugHUD" parent="Interface" unique_id=1703329737 instance=ExtResource("4_e6d56")]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 173.0
@@ -498,6 +579,7 @@ offset_bottom = 136.0
 [node name="RomPickerDialog" parent="Interface" unique_id=2031306569 instance=ExtResource("5_oe0ua")]
 unique_name_in_owner = true
 visible = false
+always_on_top = true
 
 [node name="InputConfig" type="Node" parent="." unique_id=2075111149]
 script = ExtResource("6_5b41d")
@@ -599,7 +681,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2392235, 7.16365, -23.030
 [node name="StaticBody3D" type="StaticBody3D" parent="Tilting Platform" unique_id=1620050107]
 
 [node name="HingeJoint3D" type="HingeJoint3D" parent="Tilting Platform/StaticBody3D" unique_id=1937858578]
-transform = Transform3D(-0.70855, 0, -0.70566064, 0, 1, 0, 0.70566064, 0, -0.70855, 0, 0, 0)
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 0, 0, 0)
 node_a = NodePath("..")
 node_b = NodePath("RigidBody3D")
 angular_limit/enable = true
@@ -607,18 +689,20 @@ angular_limit/upper = 0.9424778
 angular_limit/lower = -0.9424778
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Tilting Platform/StaticBody3D/HingeJoint3D" unique_id=821962412]
-transform = Transform3D(-0.70855, 0, 0.70566064, 0, 1, 0, -0.70566064, 0, -0.70855, 0, 0.23506498, 0)
-mass = 100.0
+transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, 0, 0.27008104, 0)
+mass = 50.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -2, 0)
 script = ExtResource("19_lb43m")
 spring_strength = 200.0
 
-[node name="meshMesh0_1" type="MeshInstance3D" parent="Tilting Platform/StaticBody3D/HingeJoint3D/RigidBody3D" unique_id=1659745697 groups=["libsm64_surface_objects"]]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, -0.50664663, 0)
-mesh = SubResource("ArrayMesh_lb43m")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tilting Platform/StaticBody3D/HingeJoint3D/RigidBody3D" unique_id=1270896074]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, -0.50664663, 0)
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, -0.5416627, 0)
 shape = SubResource("ConvexPolygonShape3D_lb43m")
+
+[node name="meshMesh0_1" type="MeshInstance3D" parent="Tilting Platform/StaticBody3D/HingeJoint3D/RigidBody3D" unique_id=1659745697 groups=["libsm64_surface_objects"]]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, -0.5416627, 0)
+mesh = SubResource("ArrayMesh_lb43m")
 
 [node name="FinalLibSM64MarioLoc" type="Marker3D" parent="." unique_id=1408477677]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.153465, 5.8431687, -65.93589)
@@ -720,48 +804,31 @@ libraries/Custom = SubResource("AnimationLibrary_x8n0f")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.7166138e-05, -0.026022911, 0)
 shape = SubResource("BoxShape3D_0nkfa")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=86053298 node_paths=PackedStringArray("current")]
-layer = 2
+[node name="Sky Island" type="Node3D" parent="." unique_id=1540373388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.314063, 30.719347, 43.622715)
+
+[node name="Star" parent="Sky Island" unique_id=1405926056 instance=ExtResource("34_3yayu")]
+transform = Transform3D(-2, 0, -3.019916e-07, 0, 2, 0, 3.019916e-07, 0, -2, 0, 3.233282, 11.763054)
 visible = false
-script = ExtResource("30_ri1hq")
-current = NodePath(".")
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=1918911930]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="YellowBoxStarLocation" type="Marker3D" parent="Sky Island" unique_id=174875855]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.233282, 11.763054)
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PanelContainer" unique_id=1519313656]
-z_index = 1022
-layout_mode = 2
-color = Color(0, 0, 0, 0.5058824)
+[node name="EBox1" type="MeshInstance3D" parent="Sky Island" unique_id=88475494 node_paths=PackedStringArray("YellowBoxStar") groups=["libsm64_static_objects"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.233282, 11.763054)
+mesh = ExtResource("31_0mtt7")
+script = ExtResource("32_3uhyg")
+respawn_time = 10.0
+object_spawnable = SubResource("Resource_3uhyg")
+YellowBoxStar = NodePath("../Star")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/PanelContainer" unique_id=426225438]
-z_index = 1023
-layout_mode = 2
-mouse_filter = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/PanelContainer/Panel" unique_id=775758833]
-z_index = 1023
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -244.0
-offset_top = -33.5
-offset_right = 244.0
-offset_bottom = 33.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Return To Main Menu"
-flat = true
+[node name="LevelGlobals" type="Node" parent="." unique_id=676943002]
+unique_name_in_owner = true
+script = ExtResource("34_dyj3n")
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="pressed" from="Interface/CanvasLayer/PauseMenuPanel/Panel/Button" to="Interface/CanvasLayer" method="_on_button_pressed"]
 [connection signal="rom_loaded" from="Interface/RomPickerDialog" to="." method="_on_rom_picker_dialog_rom_loaded"]
-[connection signal="pressed" from="CanvasLayer/PanelContainer/Panel/Button" to="CanvasLayer" method="_on_button_pressed"]
 
 [editable path="LibSM64Mario/CameraRig"]

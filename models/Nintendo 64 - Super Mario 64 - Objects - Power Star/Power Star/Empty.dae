@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+    <asset>
+        <contributor>
+            <authoring_tool>Supear Mardian SixDaeFour</authoring_tool>
+        </contributor>
+        <created>2026-03-11T22:35:27.947Z</created>
+        <modified>2026-03-11T22:35:27.947Z</modified>
+		<unit meter="0.01" name="centimeter" />
+        <up_axis>Y_UP</up_axis>
+    </asset>
+    <library_images>
+        <image id="tex_vertexColors">
+            <init_from>vertexColors_empty.png</init_from>
+        </image>
+    </library_images>
+    <library_effects>
+        <effect id="effect1">
+            <profile_COMMON>
+                <newparam sid="surface1">
+                    <surface type="2D">
+                        <init_from>tex_vertexColors</init_from>
+                    </surface>
+                </newparam>
+                <newparam sid="sampler1">
+                    <sampler2D>
+                        <source>surface1</source>
+                    </sampler2D>
+                </newparam>
+                <technique sid="COMMON">
+                    <blinn>
+                        <diffuse>
+                            <texture texture="sampler1" texcoord="UVSET0"></texture>
+                        </diffuse>
+                    </blinn>
+                </technique>
+            </profile_COMMON>
+        </effect>
+    </library_effects>
+    <library_materials>
+        <material id="mat1" name="vertexColors">
+            <instance_effect url="#effect1"/>
+        </material>
+    </library_materials>
+    <library_geometries>
+        <geometry id="meshMesh0_VC1">
+            <mesh>
+                <source id="pointsMesh0_VC1">
+                    <float_array id="pointarrayMesh0_VC1" count="36">0 8 -89 190 -201 0 0 -129 0 146 -42 0 0 8 90 257 84 0 -145 -42 0 -189 -201 0 -256 84 0 0 246 0 96 99 0 -95 99 0</float_array>
+                    <technique_common>
+                        <accessor count="12" source="#pointarrayMesh0_VC1" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh0_VC1">
+                    <float_array id="uvarrayMesh0_VC1" count="120">0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75 0.25 0.75</float_array>
+                    <technique_common>
+                        <accessor count="60" source="#uvarrayMesh0_VC1" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh0_VC1">
+                    <input semantic="POSITION" source="#pointsMesh0_VC1"/>
+                </vertices>
+                <polylist count="20" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh0_VC1"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh0_VC1" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 3 3 4 1 5 2 6 1 7 4 8 1 9 3 10 4 11 5 12 3 13 0 14 4 15 3 16 5 17 6 18 7 19 4 20 7 21 2 22 4 23 8 24 6 25 4 26 9 27 4 28 10 29 9 30 11 31 4 32 4 33 5 34 10 35 11 36 8 37 4 38 0 39 2 40 7 41 0 42 7 43 6 44 0 45 6 46 8 47 0 48 8 49 11 50 0 51 11 52 9 53 10 54 5 55 0 56 10 57 0 58 9 59</p>
+                </polylist>
+            </mesh>
+        </geometry>
+    </library_geometries>
+    <library_visual_scenes>
+        <visual_scene id="VisualSceneNode">
+            <node id="node_Node0" name="Node0_shadow">
+                <node id="node_Node1" name="Node1_scale">
+                    <scale sid="scale">0.25 0.25 0.25</scale>
+                    <node id="node_Node2" name="Node2_display">
+                        <node id="node_Node3" name="Node3_display">
+                            <node id="node_Mesh0_VC1" name="Mesh0_VC">
+                                <instance_geometry url="#meshMesh0_VC1">
+                                    <bind_material>
+                                        <technique_common>
+                                            <instance_material symbol="Material1" target="#mat1">
+                                                <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                            </instance_material>
+                                        </technique_common>
+                                    </bind_material>
+                                </instance_geometry>
+                            </node>
+                        </node>
+                    </node>
+                </node>
+            </node>
+        </visual_scene>
+    </library_visual_scenes>
+    <scene>
+        <instance_visual_scene url="#VisualSceneNode"/>
+    </scene>
+</COLLADA>

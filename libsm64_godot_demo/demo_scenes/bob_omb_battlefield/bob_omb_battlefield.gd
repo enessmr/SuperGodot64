@@ -13,10 +13,10 @@ var _libsm64_was_init := false
 func _ready() -> void:
 	%BattlefieldMesh.mesh = BombOmbBattlefieldSurfaces.generate_godot_mesh()
 	%BattlefieldMesh.mesh.surface_set_material(0, preload("res://libsm64_godot_demo/resources/bob_omb_battlefield_material.tres"))
-	DiscordRPC.app_id = 1544689931560026183
-	DiscordRPC.large_image = "game"
-	DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
-	DiscordRPC.refresh()
+	# DiscordRPC.app_id = 1544689931560026183
+	# DiscordRPC.large_image = "game"
+	# DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
+	# DiscordRPC.refresh()
 	if LibSM64Global.rom.is_empty():
 		%RomPickerDialog.pick_rom()
 	else:
@@ -55,7 +55,7 @@ func _init_libsm64() -> void:
 	lib_sm_64_mario.create()
 	lib_sm_64_mario.interact_cap(start_cap)
 
-	%HUD.mario = lib_sm_64_mario
+	%DebugHUD.mario = lib_sm_64_mario
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 

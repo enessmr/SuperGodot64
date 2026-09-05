@@ -39,7 +39,8 @@ func _give_wing_cap() -> void:
 		return
 	_used = true
 	if _mario:
-		_mario.interact_cap(LibSM64.MarioFlags.MARIO_WING_CAP, cap_time)
+		# _mario.interact_cap(LibSM64.MarioFlags.MARIO_WING_CAP, cap_time)
+		LibSM64.play_sound(LibSM64.SOUND_MARIO_HERE_WE_GO, _mario.global_position)
 
 	# hide visual mesh if present, then free shortly after
 	if meshwc:
