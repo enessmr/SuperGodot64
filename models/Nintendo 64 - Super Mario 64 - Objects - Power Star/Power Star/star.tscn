@@ -45,15 +45,16 @@ _data = {
 &"rotation": SubResource("Animation_tbe8u")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lvgu4"]
-size = Vector3(0.513, 0.51285946, 0.44700012)
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxqoo"]
+size = Vector3(0.33600232, 0.185, 0.29931107)
 
-[node name="Star" type="Node3D" unique_id=1405926056 node_paths=PackedStringArray("anim")]
+[node name="Star" type="Node3D" unique_id=1405926056 node_paths=PackedStringArray("anim", "mesh")]
 script = ExtResource("2_lvgu4")
 anim = NodePath("AnimationPlayer")
+mesh = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1398703507]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, 0, 0, 0)
 mesh = ExtResource("1_tbe8u")
 
 [node name="Trail3D" type="Trail3D" parent="MeshInstance3D" unique_id=1975678914]
@@ -66,8 +67,8 @@ libraries/ = SubResource("AnimationLibrary_lvgu4")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=704416681]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=771738299]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.00022414327, 0.009947627, -0.0022120923)
-shape = SubResource("BoxShape3D_lvgu4")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1413664544]
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, 0.014498495, 0.01724638, 0.00919681)
+shape = SubResource("BoxShape3D_hxqoo")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

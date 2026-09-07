@@ -5,31 +5,32 @@ extends Node3D
 @onready var area_3d: Area3D = $Area3D
 @onready var particle = %Sparkles
 
-@export var give_radius := 2.0
+@export var give_radius: float = 2.0
 @export var anim: AnimationPlayer
 
 @export_category("Star")
-@export var star_id := 1
+@export var star_id: int = 1
 
 @export_category("Star Spawn")
 @export var star_spawn_height_curve: Curve
 @export var star_spawn_horizontal_curve: Curve
-@export var star_spawn_duration := 1.0
-@export var star_spawn_offset := 3.0
+@export var star_spawn_duration: float = 1.0
+@export var star_spawn_offset: float = 3.0
+@export var mesh: MeshInstance3D
 
-var _star_spawn_active := false
-var _star_spawn_time := 0.0
+var _star_spawn_active: bool = false
+var _star_spawn_time: float = 0.0
 
-var _star_spawn_old_pos := Vector3.ZERO
-var _star_spawn_target_pos := Vector3.ZERO
+var _star_spawn_old_pos: Vector3 = Vector3.ZERO
+var _star_spawn_target_pos: Vector3 = Vector3.ZERO
 
 var _mario: LibSM64Mario = null
 var _camera_rig: Node3D = null
 var _camera_3d: Camera3D = null
-var _camera_star_grab: Node3D = null
+var _camera_star_grab: Marker3D = null
 
-var _is_collected := false
-var _star_grab_active := false
+var _is_collected: bool = false
+var _star_grab_active: bool = false
 
 
 func _ready() -> void:
@@ -57,7 +58,7 @@ func _find_mactors_and_camera() -> void:
 			"CameraRig",
 			true,
 			false
-		)
+		) as Node3D
 
 	if is_instance_valid(_camera_rig) and not is_instance_valid(_camera_3d):
 		_camera_3d = _camera_rig.find_child(
@@ -71,26 +72,35 @@ func _find_mactors_and_camera() -> void:
 			"Camera_StarGrab",
 			true,
 			false
-		)
+		) as Marker3D
 
 
 func _process(delta: float) -> void:
 	if _star_spawn_active:
 		_update_star_spawn(delta)
-	else:
-		rotation_degrees.y += 180.0 * delta
+		return
 
-		if visible and not _is_collected:
-			if not is_instance_valid(_mario):
-				_find_mactors_and_camera()
+	rotation_degrees.y += 180.0 * delta
 
-			if is_instance_valid(_mario):
-				var dist: float = global_position.distance_to(
-					_mario.global_position
-				)
+	# During the star cutscene, continuously force Mario's
+	# libsm64 face angle toward the camera.
+	if _star_grab_active and is_instance_valid(_mario):
+		if is_instance_valid(_camera_rig):
+			_mario.face_toward_global_position(
+				_camera_rig.global_position
+			)
 
-				if dist <= give_radius:
-					_try_collect(_mario)
+	if visible and not _is_collected:
+		if not is_instance_valid(_mario):
+			_find_mactors_and_camera()
+
+		if is_instance_valid(_mario):
+			var dist: float = global_position.distance_to(
+				_mario.global_position
+			)
+
+			if dist <= give_radius:
+				_try_collect(_mario)
 
 
 func play_star_spawn_animation(spawn_pos: Variant = null) -> void:
@@ -122,11 +132,11 @@ func play_star_spawn_animation(spawn_pos: Variant = null) -> void:
 	area_3d.set_deferred("monitorable", false)
 
 	if is_instance_valid(_mario):
-		get_tree().create_timer(0.2).timeout.connect(func():
-			if is_instance_valid(_mario):
-				_play_star_spawn_sounds()
-				CONNECT_ONE_SHOT
+		get_tree().create_timer(0.2).timeout.connect(
+			_play_star_spawn_sounds,
+			CONNECT_ONE_SHOT
 		)
+
 
 func _play_star_spawn_sounds() -> void:
 	if not is_instance_valid(_mario):
@@ -198,6 +208,9 @@ func _activate_star() -> void:
 
 
 func _try_collect(mario: LibSM64Mario) -> void:
+	if _star_spawn_active:
+		return
+
 	if _is_collected or _star_grab_active:
 		return
 
@@ -208,13 +221,10 @@ func _try_collect(mario: LibSM64Mario) -> void:
 	_star_grab_active = true
 	_mario = mario
 
-	# Stop Mario's forward movement immediately.
 	_mario.forward_velocity = 0.0
+	_mario._collecting_star = true
 
-	# Hide the star immediately.
 	_collect()
-
-	# Begin the collection sequence.
 	_start_star_grab()
 
 
@@ -234,51 +244,48 @@ func _start_star_grab() -> void:
 
 	if not is_instance_valid(_camera_rig):
 		_star_grab_active = false
+		_mario._collecting_star = false
 		return
 
 	if not is_instance_valid(_camera_star_grab):
 		_star_grab_active = false
+		_mario._collecting_star = false
 		return
 
-	# Save the camera rig's original transform.
 	var rig_orig_transform: Transform3D = _camera_rig.global_transform
 
-	# Save process modes.
-	var mario_old_mode := _mario.process_mode
-	var rig_old_mode := _camera_rig.process_mode
+	mesh.visible = false
 
-	var cam_old_mode := (
-		_camera_3d.process_mode
-		if is_instance_valid(_camera_3d)
-		else Node.PROCESS_MODE_INHERIT
+	LibSM64.play_sound(
+		LibSM64.SOUND_MENU_STAR_SOUND,
+		_mario.global_position
 	)
 
-	# Mario MUST remain active here.
-	# LibSM64 needs to continue running so Mario can actually land.
 	await _wait_for_mario_to_land()
 
 	if not is_instance_valid(_mario):
+		_star_grab_active = false
 		return
 
 	if not is_instance_valid(_camera_rig):
+		_star_grab_active = false
+		_mario._collecting_star = false
 		return
 
 	if not is_instance_valid(_camera_star_grab):
 		_find_mactors_and_camera()
 
 	if not is_instance_valid(_camera_star_grab):
+		_star_grab_active = false
+		_mario._collecting_star = false
 		return
 
-	# Star collection sound.
-	LibSM64.play_sound(
-		LibSM64.SOUND_MENU_STAR_SOUND,
-		_mario.global_position
-	)
-
-	# Move CameraRig to Camera_StarGrab.
+	# Camera_StarGrab supplies the complete target transform.
 	var target_pos: Vector3 = _camera_star_grab.global_position
+	var target_rot: Vector3 = _camera_star_grab.global_rotation
 
-	var tween := get_tree().create_tween()
+	var tween: Tween = get_tree().create_tween()
+	tween.set_parallel(true)
 
 	tween.tween_property(
 		_camera_rig,
@@ -287,35 +294,39 @@ func _start_star_grab() -> void:
 		0.5
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
+	tween.tween_property(
+		_camera_rig,
+		"global_rotation",
+		target_rot,
+		0.5
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
 	await tween.finished
 
 	if not is_instance_valid(_mario):
+		_star_grab_active = false
 		return
 
 	if not is_instance_valid(_camera_rig):
+		_star_grab_active = false
 		return
 
-	# Make the CAMERA RIG itself face Mario.
-	# CameraRig uses -Z as its forward direction.
-	_camera_rig.look_at(
-		_mario.global_position,
-		Vector3.UP
-	)
-
-	# Start Mario's star dance only after the camera is positioned
-	# and facing him.
 	LibSM64.set_mario_action(
 		_mario.id,
-		LibSM64.ACT_STAR_DANCE_EXIT
+		LibSM64.ACT_STAR_DANCE_NO_EXIT
 	)
 
-	# Star dance / collection music.
+	# Face Mario toward the camera rig using libsm64's
+	# internal face-angle API instead of Node3D.look_at().
+	_mario.face_toward_global_position(
+		_camera_rig.global_position
+	)
+
 	LibSM64.play_music(
 		LibSM64.SEQ_PLAYER_LEVEL,
 		LibSM64.SEQ_EVENT_CUTSCENE_COLLECT_STAR
 	)
 
-	# Sparkles.
 	particle.emitting = true
 
 	await get_tree().create_timer(0.4).timeout
@@ -323,7 +334,6 @@ func _start_star_grab() -> void:
 	if is_instance_valid(particle):
 		particle.emitting = false
 
-	# Mario's "Here we go!" sound.
 	await get_tree().create_timer(1.0).timeout
 
 	if is_instance_valid(_mario):
@@ -332,33 +342,49 @@ func _start_star_grab() -> void:
 			_mario.global_position
 		)
 
-	# Let the star dance/cutscene play.
 	await get_tree().create_timer(3.0).timeout
 
-	# Extra delay before returning control.
 	await get_tree().create_timer(0.3).timeout
 
-	# Restore the original camera transform.
-	if is_instance_valid(_camera_rig):
-		_camera_rig.global_transform = rig_orig_transform
+	await get_tree().create_timer(4.0).timeout
 
-	# Restore processing.
 	if is_instance_valid(_mario):
-		_mario.process_mode = mario_old_mode
+		LibSM64.set_mario_action(
+			_mario._id,
+			LibSM64.ACT_IDLE
+		)
 
+	# Return to the exact transform the CameraRig had before the cutscene.
 	if is_instance_valid(_camera_rig):
-		_camera_rig.process_mode = rig_old_mode
+		var return_tween: Tween = get_tree().create_tween()
+		return_tween.set_parallel(true)
 
-	if is_instance_valid(_camera_3d):
-		_camera_3d.process_mode = cam_old_mode
+		return_tween.tween_property(
+			_camera_rig,
+			"global_position",
+			rig_orig_transform.origin,
+			0.5
+		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+		return_tween.tween_property(
+			_camera_rig,
+			"global_rotation",
+			rig_orig_transform.basis.get_euler(),
+			0.5
+		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+		await return_tween.finished
+
+		_camera_rig.global_transform = rig_orig_transform
+		%LevelGlobals.play_musik()
+
+	if is_instance_valid(_mario):
+		_mario._collecting_star = false
 
 	_star_grab_active = false
 
 
 func _wait_for_mario_to_land() -> void:
-	# Do NOT disable Mario before this function.
-	# LibSM64 needs to keep updating Mario's physics.
-
 	var safety_time: float = 0.0
 
 	while safety_time < 5.0:
@@ -368,11 +394,6 @@ func _wait_for_mario_to_land() -> void:
 		var delta: float = get_process_delta_time()
 		safety_time += delta
 
-		# Mario has stopped moving vertically.
-		#
-		# A small delay prevents the cutscene from triggering
-		# on a frame where Mario happens to have zero Y velocity
-		# before actually touching the ground.
 		if absf(_mario.velocity.y) <= 0.01:
 			await get_tree().process_frame
 
@@ -386,14 +407,17 @@ func _wait_for_mario_to_land() -> void:
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	var mario := area.get_parent() as LibSM64Mario
+	if _star_spawn_active:
+		return
 
-	if mario:
+	var mario: LibSM64Mario = area.get_parent() as LibSM64Mario
+
+	if is_instance_valid(mario):
 		_try_collect(mario)
 
 
 func _make_default_height_curve() -> Curve:
-	var curve := Curve.new()
+	var curve: Curve = Curve.new()
 
 	curve.add_point(Vector2(0.0, 0.0))
 	curve.add_point(Vector2(0.25, 0.15))
@@ -405,7 +429,7 @@ func _make_default_height_curve() -> Curve:
 
 
 func _make_default_horizontal_curve() -> Curve:
-	var curve := Curve.new()
+	var curve: Curve = Curve.new()
 
 	curve.add_point(Vector2(0.0, 0.0))
 	curve.add_point(Vector2(0.5, 0.35))

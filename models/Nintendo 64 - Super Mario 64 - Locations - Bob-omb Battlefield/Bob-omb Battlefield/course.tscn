@@ -9,7 +9,6 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7e4n6"]
 resource_name = "Material1"
-cull_mode = 2
 albedo_texture = ExtResource("2_kq7ln")
 roughness = 0.8
 metadata/_gltf_primary_texture_coord = 0
@@ -48,7 +47,6 @@ shadow_mesh = SubResource("ArrayMesh_lvqdr")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dxuh"]
 resource_name = "Material.001"
-cull_mode = 2
 albedo_texture = ExtResource("3_26fkv")
 roughness = 0.5
 metadata/_gltf_primary_texture_coord = 0
@@ -90,7 +88,6 @@ shadow_mesh = SubResource("ArrayMesh_7vxbw")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxpo4"]
 resource_name = "Material.018"
 transparency = 4
-cull_mode = 2
 albedo_texture = ExtResource("3_s88tk")
 roughness = 0.5
 texture_filter = 5
@@ -173,7 +170,6 @@ shadow_mesh = SubResource("ArrayMesh_qt7n6")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7e6s8"]
 resource_name = "Material.022"
 transparency = 4
-cull_mode = 2
 albedo_texture = ExtResource("5_p1rec")
 roughness = 0.5
 metadata/_gltf_primary_texture_coord = 0
@@ -213,150 +209,126 @@ shadow_mesh = SubResource("ArrayMesh_u62t2")
 [node name="course" unique_id=1757629785 instance=ExtResource("1_6q4tl")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 
-[node name="Light" parent="." index="0" unique_id=1904619244]
+[node name="Light" parent="." index="0" unique_id=286413202]
 visible = false
 light_energy = 0.0
 
-[node name="Camera" parent="." index="1" unique_id=1355459462]
+[node name="Camera" parent="." index="1" unique_id=816989642]
 visible = false
 
-[node name="Empty" parent="." index="2" unique_id=1576861278]
+[node name="Empty" parent="." index="2" unique_id=1912460671]
 visible = false
 
-[node name="meshMesh0_1" parent="." index="3" unique_id=379741611]
+[node name="meshMesh0_1" parent="." index="3" unique_id=406596152]
 mesh = SubResource("ArrayMesh_wt4u8")
 
-[node name="meshMesh0_2" parent="." index="4" unique_id=2135817370]
+[node name="meshMesh1_2" parent="." index="5" unique_id=1906591058]
 visible = false
 
-[node name="meshMesh0_VC2" parent="." index="5" unique_id=343223057]
+[node name="meshMesh1_VC2" parent="." index="6" unique_id=424018139]
 visible = false
 
-[node name="meshMesh1_2" parent="." index="7" unique_id=469357835]
+[node name="meshMesh2_2" parent="." index="8" unique_id=61124066]
 visible = false
 
-[node name="meshMesh1_VC2" parent="." index="8" unique_id=476815338]
+[node name="meshMesh2_VC2" parent="." index="9" unique_id=1581002970]
 visible = false
 
-[node name="meshMesh2_2" parent="." index="10" unique_id=1458395477]
+[node name="meshMesh3_2" parent="." index="11" unique_id=850776268]
 visible = false
 
-[node name="meshMesh2_VC2" parent="." index="11" unique_id=574332774]
+[node name="meshMesh3_VC2" parent="." index="12" unique_id=858727513]
 visible = false
 
-[node name="meshMesh3_2" parent="." index="13" unique_id=146899624]
+[node name="meshMesh4_VC2" parent="." index="14" unique_id=1434341797]
 visible = false
 
-[node name="meshMesh3_VC2" parent="." index="14" unique_id=807197441]
+[node name="meshMesh5_2" parent="." index="16" unique_id=554789250]
 visible = false
 
-[node name="meshMesh4_VC2" parent="." index="16" unique_id=1721646555]
+[node name="meshMesh5_VC2" parent="." index="17" unique_id=2113636235]
 visible = false
 
-[node name="meshMesh5_2" parent="." index="18" unique_id=1023314747]
+[node name="meshMesh6_2" parent="." index="19" unique_id=1219331286]
 visible = false
 
-[node name="meshMesh5_VC2" parent="." index="19" unique_id=525245261]
+[node name="meshMesh6_VC2" parent="." index="20" unique_id=231329705]
 visible = false
 
-[node name="meshMesh6_2" parent="." index="21" unique_id=33508357]
+[node name="meshMesh8_2" parent="." index="23" unique_id=1257503431]
 visible = false
 
-[node name="meshMesh6_VC2" parent="." index="22" unique_id=1084552985]
+[node name="meshMesh8_VC2" parent="." index="24" unique_id=600913691]
 visible = false
 
-[node name="meshMesh7_2" parent="." index="24" unique_id=1541671235]
+[node name="meshMesh9_2" parent="." index="26" unique_id=835410775]
 visible = false
 
-[node name="meshMesh7_VC2" parent="." index="25" unique_id=331746945]
+[node name="meshMesh9_VC2" parent="." index="27" unique_id=331175726]
 visible = false
 
-[node name="meshMesh8_2" parent="." index="27" unique_id=655837650]
+[node name="meshMesh10_2" parent="." index="29" unique_id=2039951715]
 visible = false
 
-[node name="meshMesh8_VC2" parent="." index="28" unique_id=1582908911]
+[node name="meshMesh10_VC2" parent="." index="30" unique_id=500911284]
 visible = false
 
-[node name="meshMesh9_2" parent="." index="30" unique_id=561842579]
+[node name="meshMesh11_2" parent="." index="32" unique_id=1876824298]
 visible = false
 
-[node name="meshMesh9_VC2" parent="." index="31" unique_id=1911215779]
+[node name="meshMesh11_VC2" parent="." index="33" unique_id=527825214]
 visible = false
 
-[node name="meshMesh10_2" parent="." index="33" unique_id=2140806719]
+[node name="meshMesh12_2" parent="." index="35" unique_id=1539397002]
 visible = false
 
-[node name="meshMesh10_VC2" parent="." index="34" unique_id=74278333]
+[node name="meshMesh12_VC2" parent="." index="36" unique_id=1300229331]
 visible = false
 
-[node name="meshMesh11_2" parent="." index="36" unique_id=1628718887]
+[node name="meshMesh13_1" parent="." index="37" unique_id=1145726576]
 visible = false
 
-[node name="meshMesh11_VC2" parent="." index="37" unique_id=161272139]
-visible = false
-
-[node name="meshMesh12_2" parent="." index="39" unique_id=1247539113]
-visible = false
-
-[node name="meshMesh12_VC2" parent="." index="40" unique_id=2000122240]
-visible = false
-
-[node name="meshMesh13_1" parent="." index="41" unique_id=868348847]
-visible = false
-
-[node name="meshMesh16_1" parent="." index="44" unique_id=653000496]
+[node name="meshMesh16_1" parent="." index="40" unique_id=1645215817]
 mesh = SubResource("ArrayMesh_p1rec")
 
-[node name="meshMesh16_2" parent="." index="45" unique_id=1973055967]
+[node name="meshMesh16_2" parent="." index="41" unique_id=1877812137]
 visible = false
 
-[node name="meshMesh16_VC1" parent="." index="46" unique_id=282438491]
+[node name="meshMesh17_2" parent="." index="43" unique_id=700455150]
 visible = false
 
-[node name="meshMesh16_VC2" parent="." index="47" unique_id=1765912013]
+[node name="meshMesh17_VC2" parent="." index="44" unique_id=1521853828]
 visible = false
 
-[node name="meshMesh17_2" parent="." index="49" unique_id=1415177962]
-visible = false
-
-[node name="meshMesh17_VC2" parent="." index="50" unique_id=498744258]
-visible = false
-
-[node name="meshMesh18_1" parent="." index="51" unique_id=1406556904]
+[node name="meshMesh18_1" parent="." index="45" unique_id=1246079589]
 mesh = SubResource("ArrayMesh_2vhn6")
 
-[node name="meshMesh18_2" parent="." index="52" unique_id=724110965]
+[node name="meshMesh18_2" parent="." index="46" unique_id=952493218]
 visible = false
 
-[node name="meshMesh18_VC2" parent="." index="53" unique_id=1678573420]
+[node name="meshMesh18_VC2" parent="." index="47" unique_id=1323881191]
 visible = false
 
-[node name="meshMesh19_1" parent="." index="54" unique_id=1772585291]
+[node name="meshMesh19_1" parent="." index="48" unique_id=327795885]
 mesh = SubResource("ArrayMesh_i5osi")
 
-[node name="meshMesh19_2" parent="." index="55" unique_id=1544413086]
+[node name="meshMesh19_2" parent="." index="49" unique_id=656842833]
 visible = false
 
-[node name="meshMesh19_VC2" parent="." index="56" unique_id=1079541002]
+[node name="meshMesh19_VC2" parent="." index="50" unique_id=1181675273]
 visible = false
 
-[node name="meshMesh20_1" parent="." index="57" unique_id=82993801]
+[node name="meshMesh20_1" parent="." index="51" unique_id=283498126]
 mesh = SubResource("ArrayMesh_j6ydq")
 
-[node name="meshMesh20_2" parent="." index="58" unique_id=844460252]
+[node name="meshMesh21_2" parent="." index="53" unique_id=537040586]
 visible = false
 
-[node name="meshMesh20_VC2" parent="." index="59" unique_id=1027792726]
+[node name="meshMesh21_VC2" parent="." index="54" unique_id=73064373]
 visible = false
 
-[node name="meshMesh21_2" parent="." index="61" unique_id=285470773]
+[node name="meshMesh22_2" parent="." index="56" unique_id=173385171]
 visible = false
 
-[node name="meshMesh21_VC2" parent="." index="62" unique_id=841384684]
-visible = false
-
-[node name="meshMesh22_2" parent="." index="64" unique_id=772817666]
-visible = false
-
-[node name="meshMesh22_VC2" parent="." index="65" unique_id=458802633]
+[node name="meshMesh22_VC2" parent="." index="57" unique_id=1035248151]
 visible = false

@@ -1,0 +1,341 @@
+[gd_scene format=3 uid="uid://bvp5wvcilkaoq"]
+
+[ext_resource type="Script" uid="uid://dhy1eg3ajw30v" path="res://assets/hud_healthbar.gd" id="1_tdx4m"]
+[ext_resource type="Texture2D" uid="uid://bl5opnytdqs8v" path="res://assets/power_meter/power_meter_left_side.rgba16.png" id="2_d0tvq"]
+[ext_resource type="Texture2D" uid="uid://hklag4v5iyem" path="res://assets/power_meter/power_meter_right_side.rgba16.png" id="3_ge6jt"]
+[ext_resource type="Texture2D" uid="uid://cepg66co57c85" path="res://assets/power_meter/power_meter_full.rgba16.png" id="4_6en80"]
+[ext_resource type="Texture2D" uid="uid://be5jnslgngsf6" path="res://assets/power_meter/power_meter_seven_segments.rgba16.png" id="5_6qbuc"]
+[ext_resource type="Texture2D" uid="uid://cly706al1h42f" path="res://assets/power_meter/power_meter_six_segments.rgba16.png" id="6_wo2et"]
+[ext_resource type="Texture2D" uid="uid://cen1bpplyqfqk" path="res://assets/power_meter/power_meter_five_segments.rgba16.png" id="7_4io5l"]
+[ext_resource type="Texture2D" uid="uid://bpltaqup60ij4" path="res://assets/power_meter/power_meter_four_segments.rgba16.png" id="8_4eqju"]
+[ext_resource type="Texture2D" uid="uid://cg5j77gg35ch8" path="res://assets/power_meter/power_meter_three_segments.rgba16.png" id="9_bk0pk"]
+[ext_resource type="Texture2D" uid="uid://cxdh5emnxmy31" path="res://assets/power_meter/power_meter_two_segments.rgba16.png" id="10_vqxpt"]
+[ext_resource type="Texture2D" uid="uid://dvquyq11nadrp" path="res://assets/power_meter/power_meter_one_segment.rgba16.png" id="11_txep6"]
+
+[sub_resource type="Animation" id="Animation_wo2et"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(540, 112.999985)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/TextureRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(517, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/TextureRect2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(557, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4eqju"]
+resource_name = "move_fromdown"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(540, 112.999985), Vector2(540, -171.00002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/TextureRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(517, 0), Vector2(437, -284)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/TextureRect2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(557, 0), Vector2(557, -284)]
+}
+
+[sub_resource type="Animation" id="Animation_4io5l"]
+resource_name = "move_fromup"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(540, -171.00002), Vector2(540, 112.999985)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/TextureRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(517, -284), Vector2(437, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/TextureRect2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(557, -284), Vector2(557, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4eqju"]
+_data = {
+&"RESET": SubResource("Animation_wo2et"),
+&"move_fromdown": SubResource("Animation_4eqju"),
+&"move_fromup": SubResource("Animation_4io5l")
+}
+
+[node name="hud (healthbar)" type="CanvasLayer" unique_id=723167950 node_paths=PackedStringArray("anim")]
+script = ExtResource("1_tdx4m")
+anim = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1759231445]
+libraries/ = SubResource("AnimationLibrary_4eqju")
+
+[node name="Control" type="Control" parent="." unique_id=1874264802]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=559381722]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47395834
+anchor_top = 0.0015432099
+anchor_right = 0.509838
+anchor_bottom = 0.13117307
+offset_left = -29.0
+offset_top = -1.0
+offset_right = -29.0
+offset_bottom = -1.0
+grow_horizontal = 2
+texture = ExtResource("2_d0tvq")
+expand_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="Control" unique_id=1403375504]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.48400003
+anchor_right = 1.0
+anchor_bottom = 0.13000001
+offset_left = -0.5680542
+offset_right = -555.0
+offset_bottom = -0.23995972
+grow_horizontal = 2
+texture = ExtResource("3_ge6jt")
+expand_mode = 5
+
+[node name="Control" type="Control" parent="Control" unique_id=1449481768]
+layout_mode = 1
+anchor_left = 0.48400003
+anchor_top = 0.20500001
+anchor_right = 0.48900002
+anchor_bottom = 0.20500001
+offset_left = -17.568054
+offset_top = -19.840027
+offset_right = 16.671997
+offset_bottom = 20.160004
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="bar_full" type="TextureRect" parent="Control/Control" unique_id=1346254669]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.528
+anchor_top = 0.53000003
+anchor_right = 0.528
+anchor_bottom = 0.53000003
+offset_left = -28.119995
+offset_top = -116.200005
+offset_right = 17.880005
+offset_bottom = -69.19999
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6en80")
+expand_mode = 1
+
+[node name="bar_7" type="TextureRect" parent="Control/Control" unique_id=826509262]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.528
+anchor_top = 0.53000003
+anchor_right = 0.528
+anchor_bottom = 0.53000003
+offset_left = -28.119995
+offset_top = -116.200005
+offset_right = 17.880005
+offset_bottom = -69.19999
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_6qbuc")
+expand_mode = 1
+
+[node name="bar_6" type="TextureRect" parent="Control/Control" unique_id=339221727]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.528
+anchor_top = 0.53000003
+anchor_right = 0.528
+anchor_bottom = 0.53000003
+offset_left = -28.119995
+offset_top = -116.200005
+offset_right = 17.880005
+offset_bottom = -69.19999
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_wo2et")
+expand_mode = 1
+
+[node name="bar_5" type="TextureRect" parent="Control/Control" unique_id=1430512561]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.528
+anchor_top = 0.53000003
+anchor_right = 0.528
+anchor_bottom = 0.53000003
+offset_left = -28.119995
+offset_top = -116.200005
+offset_right = 17.880005
+offset_bottom = -69.19999
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_4io5l")
+expand_mode = 1
+
+[node name="bar_4" type="TextureRect" parent="Control/Control" unique_id=581591111]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.528
+anchor_top = 0.53000003
+anchor_right = 0.528
+anchor_bottom = 0.53000003
+offset_left = -28.119995
+offset_top = -116.200005
+offset_right = 17.880005
+offset_bottom = -69.19999
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_4eqju")
+expand_mode = 1
+
+[node name="bar_3" type="TextureRect" parent="Control/Control" unique_id=1246209196]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.528
+anchor_top = 0.53000003
+anchor_right = 0.528
+anchor_bottom = 0.53000003
+offset_left = -28.119995
+offset_top = -116.200005
+offset_right = 17.880005
+offset_bottom = -69.19999
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_bk0pk")
+expand_mode = 1
+
+[node name="bar_2" type="TextureRect" parent="Control/Control" unique_id=695775778]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.528
+anchor_top = 0.53000003
+anchor_right = 0.528
+anchor_bottom = 0.53000003
+offset_left = -28.119995
+offset_top = -116.200005
+offset_right = 17.880005
+offset_bottom = -69.19999
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_vqxpt")
+expand_mode = 1
+
+[node name="bar_1" type="TextureRect" parent="Control/Control" unique_id=30242812]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.528
+anchor_top = 0.53000003
+anchor_right = 0.528
+anchor_bottom = 0.53000003
+offset_left = -28.119995
+offset_top = -116.200005
+offset_right = 17.880005
+offset_bottom = -69.19999
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_txep6")
+expand_mode = 1

@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://x0h37j081xx4" path="res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/MCBox.gd" id="10_jupr8"]
 [ext_resource type="ArrayMesh" uid="uid://duxhdktxr65xh" path="res://models/VCBox.tres" id="11_4tv6h"]
 [ext_resource type="Script" uid="uid://dhduuurvp7qq8" path="res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/VCBox.gd" id="11_jupr8"]
+[ext_resource type="PackedScene" uid="uid://bvp5wvcilkaoq" path="res://assets/power_meter/hud_healthbar.tscn" id="11_x8n0f"]
 [ext_resource type="PackedScene" uid="uid://q1yqwupttg0w" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Bob-omb Battlefield/Bob-omb Battlefield/course.tscn" id="13_vuajl"]
 [ext_resource type="Texture2D" uid="uid://b4fnu2ogo6h7j" path="res://models/tree/bubble_tree_bubble_tree_trunk.png" id="15_r1idc"]
 [ext_resource type="Texture2D" uid="uid://pg4sn36yqtpi" path="res://models/tree/bubble_tree_bubble_tree_leaves.png" id="16_vgxls"]
@@ -494,6 +495,14 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.773918, 36.64499, 47.27876)
 script = ExtResource("2_uah3x")
 camera = NodePath("CameraRig")
+interpolate = null
+mario_inputs_stick_left = null
+mario_inputs_stick_right = null
+mario_inputs_stick_up = null
+mario_inputs_stick_down = null
+mario_inputs_button_a = null
+mario_inputs_button_b = null
+mario_inputs_button_z = null
 
 [node name="Sparkles" type="GPUParticles3D" parent="LibSM64Mario" unique_id=1476477493]
 unique_name_in_owner = true
@@ -522,7 +531,7 @@ shape = SubResource("CapsuleShape3D_pxfdq")
 
 [node name="Camera_StarGrab" type="Marker3D" parent="LibSM64Mario" unique_id=1996113799]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8240433, 3.3999977)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8240013, 5.1871567)
 
 [node name="LibSM64AudioStreamPlayer" type="LibSM64AudioStreamPlayer" parent="." unique_id=1090871714]
 unique_name_in_owner = true
@@ -579,6 +588,9 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 173.0
 offset_bottom = 136.0
+
+[node name="HUD" parent="Interface" unique_id=723167950 instance=ExtResource("11_x8n0f")]
+unique_name_in_owner = true
 
 [node name="RomPickerDialog" parent="Interface" unique_id=2031306569 instance=ExtResource("5_oe0ua")]
 unique_name_in_owner = true
@@ -812,7 +824,7 @@ shape = SubResource("BoxShape3D_0nkfa")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.314063, 30.719347, 43.622715)
 
 [node name="Star" parent="Sky Island" unique_id=1405926056 instance=ExtResource("34_3yayu")]
-transform = Transform3D(-2, 0, -3.019916e-07, 0, 2, 0, 3.019916e-07, 0, -2, 0, 3.233282, 11.763054)
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.3367424, 3.2442074, 11.885761)
 visible = false
 
 [node name="YellowBoxStarLocation" type="Marker3D" parent="Sky Island" unique_id=174875855]
@@ -820,7 +832,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.233282, 11.763054)
 
 [node name="EBox1" type="MeshInstance3D" parent="Sky Island" unique_id=88475494 node_paths=PackedStringArray("YellowBoxStar") groups=["libsm64_static_objects"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.233282, 11.763054)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3367424, 3.2442074, 11.885761)
 mesh = ExtResource("31_0mtt7")
 script = ExtResource("32_3uhyg")
 respawn_time = 10.0

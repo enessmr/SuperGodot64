@@ -8,6 +8,7 @@ const BombOmbBattlefieldSurfaces = preload("res://libsm64_godot_demo/levels/bob_
 @onready var lib_sm_64_mario: LibSM64Mario = $LibSM64Mario
 
 var _libsm64_was_init := false
+var musik: int = 3
 
 
 func _ready() -> void:
@@ -59,7 +60,8 @@ func _init_libsm64() -> void:
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-	LibSM64.play_music(LibSM64.SEQ_PLAYER_LEVEL, LibSM64.SEQ_LEVEL_GRASS)
+	%LevelGlobals.music = musik
+	%LevelGlobals.play_musik()
 	%LibSM64AudioStreamPlayer.play()
 
 

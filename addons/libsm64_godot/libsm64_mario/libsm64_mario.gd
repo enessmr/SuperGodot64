@@ -15,7 +15,7 @@ signal health_wedges_changed(health_wedges: int)
 var vanish_cap: bool = false
 
 @export var camera: Node3D
-@export var interpolate := true
+@export var interpolate: bool = true
 
 @export_group("Mario Inputs Actions", "mario_inputs_")
 @export var mario_inputs_stick_left := &"libsm64_mario_inputs_stick_left"
@@ -26,7 +26,7 @@ var vanish_cap: bool = false
 @export var mario_inputs_button_b := &"libsm64_mario_inputs_button_b"
 @export var mario_inputs_button_z := &"libsm64_mario_inputs_button_z"
 
-var _id := -1
+var _id: int = -1
 
 var id: int:
 	get:
@@ -69,7 +69,7 @@ var anim_id: LibSM64.MarioAnimID:
 		_anim_id = value
 
 
-var _anim_frame := 0
+var _anim_frame: int = 0
 
 var anim_frame: int:
 	get:
@@ -112,7 +112,7 @@ var particle_flags: LibSM64.ParticleFlags:
 		return _particle_flags
 
 
-var _velocity := Vector3()
+var _velocity: Vector3 = Vector3.ZERO
 
 var velocity: Vector3:
 	get:
@@ -129,7 +129,7 @@ var velocity: Vector3:
 			_mario_interpolator.mario_state_previous.velocity = _velocity
 
 
-var _forward_velocity := 0.0
+var _forward_velocity: float = 0.0
 
 var forward_velocity: float:
 	get:
@@ -146,7 +146,7 @@ var forward_velocity: float:
 			_mario_interpolator.mario_state_previous.forward_velocity = _forward_velocity
 
 
-var _face_angle := 0.0:
+var _face_angle: float = 0.0:
 	set(value):
 		global_rotation.y = value
 		_face_angle = value
@@ -167,7 +167,7 @@ var face_angle: float:
 			_mario_interpolator.mario_state_previous.face_angle = _face_angle
 
 
-var _health := FULL_HEALTH:
+var _health: int = FULL_HEALTH:
 	set(value):
 		if value != _health:
 			_health = value
@@ -193,13 +193,13 @@ var health_wedges: int:
 		if _id < 0:
 			return
 
-		var new_health := value << 0x8 if value > 0 else 0x0
+		var new_health: int = value << 0x8 if value > 0 else 0x0
 
 		LibSM64.set_mario_health(_id, new_health)
 		_health = new_health
 
 
-var _invincibility_time := 0.0
+var _invincibility_time: float = 0.0
 
 var invincibility_time: float:
 	get:
@@ -216,7 +216,7 @@ var invincibility_time: float:
 			_mario_interpolator.mario_state_previous.invincibility_time = _invincibility_time
 
 
-var _water_level_in_libsm64 := -100000
+var _water_level_in_libsm64: int = -100000
 
 var water_level: float:
 	get:
@@ -229,7 +229,7 @@ var water_level: float:
 		_water_level_in_libsm64 = int(value * LibSM64.scale_factor)
 
 
-var _gas_level_in_libsm64 := -100000
+var _gas_level_in_libsm64: int = -100000
 
 var gas_level: float:
 	get:
@@ -248,40 +248,40 @@ var _mesh: ArrayMesh
 var _mario_interpolator := LibSM64MarioInterpolator.new()
 
 var _default_material := preload(
-    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_default_material.tres"
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_default_material.tres"
 ) as StandardMaterial3D
 
 var _vanish_material := preload(
-    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres"
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres"
 ) as StandardMaterial3D
 
 var _metal_material := preload(
-    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_material.tres"
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_material.tres"
 ) as StandardMaterial3D
 
 var _wing_material := preload(
-    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_wing_material.tres"
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_wing_material.tres"
 ) as StandardMaterial3D
 
 var _metal_wing_material := preload(
-    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_wing_material.tres"
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_wing_material.tres"
 ) as StandardMaterial3D
 
 var _metal_wing_vanish_material := preload(
-    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres"
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres"
 ) as StandardMaterial3D
 
 var _wing_vanish_material := preload(
-    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres"
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres"
 ) as StandardMaterial3D
 
 var _metal_vanish_material := preload(
-    "res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres"
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres"
 ) as StandardMaterial3D
 
 
-var _physics_time_since_last_tick := 0.0
-var _reset_interpolation_next_tick := false
+var _physics_time_since_last_tick: float = 0.0
+var _reset_interpolation_next_tick: bool = false
 
 
 enum PlayMode {
@@ -298,10 +298,9 @@ var play_mode := PlayMode.NORMAL
 # TEMPORARY STAR COLLECTION STATE
 # ============================================================
 
-var _collecting_star := false
+var _collecting_star: bool = false
 
-# Added to keep track of collected stars
-var stars_collected := 0
+var stars_collected: int = 0
 
 
 func _ready() -> void:
@@ -353,7 +352,7 @@ func alpha_set(alpha_mario: float) -> void:
 	_metal_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_metal_vanish_material.albedo_color.a = alpha_mario
 
-	var materials := [
+	var materials: Array[BaseMaterial3D] = [
 		_default_material,
 		_vanish_material,
 		_metal_material,
@@ -364,16 +363,15 @@ func alpha_set(alpha_mario: float) -> void:
 		_metal_vanish_material
 	]
 
-	for material in materials:
+	for material: BaseMaterial3D in materials:
 		if material.next_pass is BaseMaterial3D:
-			var texture_pass := material.next_pass as BaseMaterial3D
-
+			var texture_pass: BaseMaterial3D = material.next_pass as BaseMaterial3D
 			texture_pass.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 			texture_pass.albedo_color.a = alpha_mario
 
 
 func alpha_reset() -> void:
-	var materials := [
+	var materials: Array[BaseMaterial3D] = [
 		_default_material,
 		_vanish_material,
 		_metal_material,
@@ -384,13 +382,12 @@ func alpha_reset() -> void:
 		_metal_vanish_material
 	]
 
-	for material in materials:
+	for material: BaseMaterial3D in materials:
 		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
 		material.albedo_color.a = 1.0
 
 		if material.next_pass is BaseMaterial3D:
-			var texture_pass := material.next_pass as BaseMaterial3D
-
+			var texture_pass: BaseMaterial3D = material.next_pass as BaseMaterial3D
 			texture_pass.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
 			texture_pass.albedo_color.a = 1.0
 
@@ -399,7 +396,7 @@ func _process(delta: float) -> void:
 	if _id < 0:
 		return
 
-	var lerp_t := _calculate_lerp_t()
+	var lerp_t: float = _calculate_lerp_t()
 
 	vanish_cap = (_flags & LibSM64.MARIO_VANISH_CAP) != 0
 
@@ -411,15 +408,15 @@ func _calculate_lerp_t() -> float:
 	if play_mode == PlayMode.PAUSED:
 		return 1.0
 
-	var sm64_ticks_per_physics_tick := (
+	var sm64_ticks_per_physics_tick: float = (
 		Engine.physics_ticks_per_second * LibSM64.tick_delta_time
 	)
 
-	var sm64_tick_fraction := (
+	var sm64_tick_fraction: float = (
 		_physics_time_since_last_tick / LibSM64.tick_delta_time
 	)
 
-	var physics_fraction := (
+	var physics_fraction: float = (
 		Engine.get_physics_interpolation_fraction() /
 		sm64_ticks_per_physics_tick
 	)
@@ -438,7 +435,12 @@ func _update_lerped_members_from_mario_state(lerp_t: float) -> void:
 	global_position = mario_state.position
 	_velocity = mario_state.velocity
 	_forward_velocity = mario_state.forward_velocity
-	_face_angle = mario_state.face_angle
+
+	# Do not let libsm64 overwrite the manually controlled
+	# star-collection facing direction.
+	if not _collecting_star:
+		_face_angle = mario_state.face_angle
+
 	_invincibility_time = mario_state.invincibility_time
 
 
@@ -482,7 +484,7 @@ func _update_mesh(lerp_t: float) -> void:
 
 	if caps == LibSM64.MARIO_VANISH_CAP:
 		var cap_time: float = 0.0
-		var mstate := _mario_interpolator.mario_state_current
+		var mstate = _mario_interpolator.mario_state_current
 
 		if mstate:
 			if typeof(mstate) == TYPE_DICTIONARY:
@@ -490,12 +492,12 @@ func _update_mesh(lerp_t: float) -> void:
 					cap_time = float(mstate["cap_time"])
 			else:
 				if mstate.has_method("get"):
-					var maybe := mstate.get("cap_time")
+					var maybe = mstate.get("cap_time")
 
 					if maybe != null:
 						cap_time = float(maybe)
 
-		var use_default_material := false
+		var use_default_material: bool = false
 
 		if cap_time > 0.0 and cap_time <= 2.0:
 			use_default_material = int(Time.get_ticks_msec() / 80.0) % 2 == 0
@@ -506,11 +508,12 @@ func _update_mesh(lerp_t: float) -> void:
 				if int(Time.get_ticks_msec() / 80.0) % 2 == 0
 				else BaseMaterial3D.TRANSPARENCY_DISABLED
 			)
+
 		else:
 			_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 
 	var cap_time_mesh: float = 0.0
-	var mstate_mesh := _mario_interpolator.mario_state_current
+	var mstate_mesh = _mario_interpolator.mario_state_current
 
 	if mstate_mesh:
 		if typeof(mstate_mesh) == TYPE_DICTIONARY:
@@ -518,12 +521,12 @@ func _update_mesh(lerp_t: float) -> void:
 				cap_time_mesh = float(mstate_mesh["cap_time"])
 		else:
 			if mstate_mesh.has_method("get"):
-				var maybe_mesh := mstate_mesh.get("cap_time")
+				var maybe_mesh = mstate_mesh.get("cap_time")
 
 				if maybe_mesh != null:
 					cap_time_mesh = float(maybe_mesh)
 
-	var use_default_material_for_mesh := false
+	var use_default_material_for_mesh: bool = false
 
 	if (caps & (
 		LibSM64.MARIO_METAL_CAP |
@@ -534,7 +537,7 @@ func _update_mesh(lerp_t: float) -> void:
 				int(Time.get_ticks_msec() / 80.0) % 2 == 0
 			)
 
-	var final_material := material
+	var final_material: StandardMaterial3D = material
 
 	if use_default_material_for_mesh:
 		final_material = _default_material
@@ -763,6 +766,26 @@ func set_angle(to_global_rotation: Quaternion) -> void:
 	reset_interpolation()
 
 
+func face_toward_global_position(target_position: Vector3) -> void:
+	if _id < 0:
+		return
+
+	var direction: Vector3 = target_position - global_position
+	direction.y = 0.0
+
+	if direction.length_squared() <= 0.0001:
+		return
+
+	direction = direction.normalized()
+
+	var angle: float = atan2(
+		direction.x,
+		direction.z
+	)
+
+	face_angle = angle
+
+
 func take_damage(
 	damage: int,
 	subtype: int,
@@ -795,8 +818,8 @@ func kill() -> void:
 
 func interact_cap(
 	cap_flag: LibSM64.MarioFlags,
-	cap_time := 0.0,
-	play_music := true
+	cap_time: float = 0.0,
+	play_music: bool = true
 ) -> void:
 	if _id < 0:
 		return
@@ -821,7 +844,7 @@ func reset_interpolation() -> void:
 
 
 func _make_mario_inputs() -> LibSM64MarioInputs:
-	var mario_inputs := LibSM64MarioInputs.new()
+	var mario_inputs: LibSM64MarioInputs = LibSM64MarioInputs.new()
 
 	mario_inputs.stick = Input.get_vector(
 		mario_inputs_stick_left,
@@ -830,7 +853,7 @@ func _make_mario_inputs() -> LibSM64MarioInputs:
 		mario_inputs_stick_down
 	)
 
-	var look_direction := camera.global_transform.basis.z
+	var look_direction: Vector3 = camera.global_transform.basis.z
 
 	mario_inputs.cam_look = Vector2(
 		look_direction.x,
@@ -856,7 +879,7 @@ func _tick() -> void:
 	if _id < 0:
 		return
 
-	var mario_inputs := _make_mario_inputs()
+	var mario_inputs: LibSM64MarioInputs = _make_mario_inputs()
 
 	_mario_interpolator.mario_state_previous = (
 		_mario_interpolator.mario_state_current
@@ -866,7 +889,7 @@ func _tick() -> void:
 		_mario_interpolator.array_mesh_triangles_current
 	)
 
-	var mario_tick_output := LibSM64.mario_tick(
+	var mario_tick_output: Array = LibSM64.mario_tick(
 		_id,
 		mario_inputs
 	)
@@ -885,7 +908,8 @@ func _tick() -> void:
 
 		_reset_interpolation_next_tick = false
 
-var _was_airborne := false
+
+var _was_airborne: bool = false
 
 
 func _is_mario_airborne() -> bool:
