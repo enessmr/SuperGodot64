@@ -110,12 +110,9 @@ func play() -> void:
 	print("SM64 LOGO PLAY")
 
 	apply_frame(frame)
-	LibSM64.play_sound(LibSM64.SOUND_GENERAL_STAR_APPEARS, %Camera.global_position)
+	LibSM64.play_sound(LibSM64.SOUND_MENU_COIN_ITS_A_ME_MARIO, %Camera.global_position)
 
 	frame += 1
-	
-	await get_tree().create_timer(0.9).timeout
-	LibSM64.play_sound(LibSM64.SOUND_MARIO_HERE_WE_GO, %Camera.global_position)
 
 
 func stop() -> void:
