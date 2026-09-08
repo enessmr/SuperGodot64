@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://uiapc66ngfnn"]
+
+[ext_resource type="PackedScene" uid="uid://mdys77tbbvgu" path="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - Logo/Logo/logo.blend" id="1_47kc1"]
+[ext_resource type="Script" uid="uid://dna5y8e7y3ahr" path="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - Logo/Logo/intro_logo.gd" id="2_2bqjb"]
+[ext_resource type="PackedScene" uid="uid://b14covao5gpeh" path="res://libsm64_godot_demo/shared/rom_picker_dialog/rom_picker_dialog.tscn" id="3_v1x42"]
+
+[sub_resource type="Animation" id="Animation_47kc1"]
+resource_name = "intro"
+length = 0.6333366996977479
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2bqjb"]
+_data = {
+&"intro": SubResource("Animation_47kc1")
+}
+
+[sub_resource type="Environment" id="Environment_2bqjb"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="logo" unique_id=252904466 instance=ExtResource("1_47kc1")]
+script = ExtResource("2_2bqjb")
+
+[node name="meshMesh3_1" parent="." index="3" unique_id=632464991]
+visible = false
+
+[node name="meshMesh4_1" parent="." index="4" unique_id=1985697892]
+visible = false
+
+[node name="meshMesh19_1" parent="." index="19" unique_id=410707656]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="20" unique_id=547255784]
+libraries/ = SubResource("AnimationLibrary_2bqjb")
+
+[node name="Camera" type="Camera3D" parent="." index="21" unique_id=1869862025]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 206.36838, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="22" unique_id=1997444269]
+environment = SubResource("Environment_2bqjb")
+
+[node name="LibSM64AudioStreamPlayer" type="LibSM64AudioStreamPlayer" parent="." index="23" unique_id=1036138172]
+unique_name_in_owner = true
+
+[node name="RomPickerDialog" parent="." index="24" unique_id=706427060 instance=ExtResource("3_v1x42")]
+unique_name_in_owner = true
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(515, 180)

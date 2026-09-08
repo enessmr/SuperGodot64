@@ -1,0 +1,24 @@
+newmtl Mat4
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_700C4A0.png
+
+newmtl Mat3
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_700B4A0.png
+
+newmtl vertexColors
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd vertexColors_area1.png
+
+newmtl Mat1
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_7007EA0.png
+
+newmtl Mat0
+Kd 0.800000 0.800000 0.800000
+illum 1
+map_Kd tex_70086A0.png

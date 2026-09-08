@@ -3,7 +3,7 @@
 class_name MCBox3D
 extends MeshInstance3D
 
-@export var cap_time := 100.0
+@export var cap_time := 20.0
 @export var give_radius := 2.0
 @export var meshwc: MCBox3D # i cant do shit
 

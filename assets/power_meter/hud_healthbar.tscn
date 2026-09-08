@@ -76,7 +76,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(517, 0), Vector2(437, -284)]
+"values": [Vector2(517, 0), Vector2(517, -284)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -116,7 +116,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(517, -284), Vector2(437, 0)]
+"values": [Vector2(517, -284), Vector2(517, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -163,7 +163,7 @@ anchor_right = 0.509838
 anchor_bottom = 0.13117307
 offset_left = -29.0
 offset_top = -1.0
-offset_right = -29.0
+offset_right = -28.999084
 offset_bottom = -1.0
 grow_horizontal = 2
 texture = ExtResource("2_d0tvq")
@@ -192,23 +192,22 @@ anchor_bottom = 0.20500001
 offset_left = -17.568054
 offset_top = -19.840027
 offset_right = 16.671997
-offset_bottom = 20.160004
+offset_bottom = 20.159943
 grow_horizontal = 2
 mouse_filter = 2
 
 [node name="bar_full" type="TextureRect" parent="Control/Control" unique_id=1346254669]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.528
 anchor_top = 0.53000003
 anchor_right = 0.528
 anchor_bottom = 0.53000003
-offset_left = -28.119995
-offset_top = -116.200005
+offset_left = -25.119995
+offset_top = -115.200005
 offset_right = 17.880005
-offset_bottom = -69.19999
+offset_bottom = -70.19999
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_6en80")
@@ -216,17 +215,16 @@ expand_mode = 1
 
 [node name="bar_7" type="TextureRect" parent="Control/Control" unique_id=826509262]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.528
 anchor_top = 0.53000003
 anchor_right = 0.528
 anchor_bottom = 0.53000003
-offset_left = -28.119995
-offset_top = -116.200005
+offset_left = -25.119995
+offset_top = -115.200005
 offset_right = 17.880005
-offset_bottom = -69.19999
+offset_bottom = -70.19999
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_6qbuc")

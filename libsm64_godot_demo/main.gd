@@ -1,10 +1,7 @@
 extends Control
 
-
-func _ready() -> void:
-	if LibSM64Global.rom.is_empty():
-		%RomPickerDialog.pick_rom()
-
+func _ready():
+	CustomGlobals.TitleWindow = true
 
 func return_to_menu() -> void:
 	%LevelContainer.get_child(0).queue_free()

@@ -462,7 +462,6 @@ script = ExtResource("1_k4bkk")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -63.006397, 4.7660766, 6.176)
 mesh = ExtResource("8_c1w8k")
 script = ExtResource("9_k6jwh")
-cap_time = 90.0
 meshwc = NodePath(".")
 
 [node name="WCBox3D2" type="MeshInstance3D" parent="." unique_id=117123552 node_paths=PackedStringArray("meshwc") groups=["libsm64_static_objects"]]
@@ -604,14 +603,12 @@ script = ExtResource("6_5b41d")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -61.442, 4.766, 6.176)
 mesh = ExtResource("9_3ucge")
 script = ExtResource("10_jupr8")
-cap_time = 45.0
 meshwc = NodePath(".")
 
 [node name="VCBox3D" type="MeshInstance3D" parent="." unique_id=378408401 node_paths=PackedStringArray("meshwc") groups=["libsm64_static_objects"]]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -59.767, 4.766, 6.176)
 mesh = ExtResource("11_4tv6h")
 script = ExtResource("11_jupr8")
-cap_time = 19.0
 meshwc = NodePath(".")
 
 [node name="course" parent="." unique_id=1757629785 instance=ExtResource("13_vuajl")]

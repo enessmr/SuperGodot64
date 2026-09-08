@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjw13uwutue3a"]
+[gd_scene format=3 uid="uid://bjw13uwutue3a"]
 
-[ext_resource type="Script" path="res://libsm64_godot_demo/main.gd" id="1_w76b2"]
+[ext_resource type="Script" uid="uid://wwotl5oqq8ic" path="res://libsm64_godot_demo/main.gd" id="1_w76b2"]
 [ext_resource type="PackedScene" uid="uid://b14covao5gpeh" path="res://libsm64_godot_demo/shared/rom_picker_dialog/rom_picker_dialog.tscn" id="2_kbqeo"]
+[ext_resource type="Texture2D" uid="uid://bhpmusye7byfd" path="res://assets/blackbg.png" id="3_dl5wy"]
+[ext_resource type="FontFile" uid="uid://bbugorqp10c0d" path="res://assets/Mario64.ttf" id="4_u8ped"]
+[ext_resource type="Texture2D" uid="uid://ckcaygb6svs2t" path="res://assets/Logosm64ai.png" id="5_cit8l"]
 
-[node name="Main" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_pxfdq"]
+font = ExtResource("4_u8ped")
+font_size = 32
+
+[node name="Main" type="Control" unique_id=768705656]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,11 +19,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w76b2")
 
-[node name="RomPickerDialog" parent="." instance=ExtResource("2_kbqeo")]
-unique_name_in_owner = true
-visible = false
+[node name="PickRomButton" type="TextureButton" parent="." unique_id=2003497536]
+z_index = -13
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.8921604, 2.7335682)
+mouse_filter = 1
+texture_normal = ExtResource("3_dl5wy")
+texture_pressed = ExtResource("3_dl5wy")
+texture_hover = ExtResource("3_dl5wy")
+texture_disabled = ExtResource("3_dl5wy")
+texture_focused = ExtResource("3_dl5wy")
+stretch_mode = 0
 
-[node name="DemoSelection" type="VBoxContainer" parent="."]
+[node name="RomPickerDialog" parent="." unique_id=226692284 instance=ExtResource("2_kbqeo")]
+unique_name_in_owner = true
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(515, 180)
+
+[node name="DemoSelection" type="VBoxContainer" parent="." unique_id=956882450]
+z_index = -3100
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,38 +57,143 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PickRomButton" type="Button" parent="DemoSelection"]
-layout_mode = 2
-text = "Pick ROM file"
-
-[node name="HSeparator" type="HSeparator" parent="DemoSelection"]
+[node name="HSeparator" type="HSeparator" parent="DemoSelection" unique_id=1790292565]
 layout_mode = 2
 
-[node name="DemosLabel" type="Label" parent="DemoSelection"]
+[node name="DemosLabel" type="Label" parent="DemoSelection" unique_id=1207677195]
 layout_mode = 2
 text = "Select which scenario to play:"
 
-[node name="InitialScenarioButton" type="Button" parent="DemoSelection"]
+[node name="InitialScenarioButton" type="Button" parent="DemoSelection" unique_id=1778654202]
+z_index = -1
 layout_mode = 2
+disabled = true
 text = "Initial Scenario"
 
-[node name="ManyMariosButton" type="Button" parent="DemoSelection"]
+[node name="ManyMariosButton" type="Button" parent="DemoSelection" unique_id=1392678052]
+z_index = -1
 layout_mode = 2
+disabled = true
 text = "Many Marios"
 
-[node name="FlyingRangeButton" type="Button" parent="DemoSelection"]
+[node name="FlyingRangeButton" type="Button" parent="DemoSelection" unique_id=961881425]
+z_index = -1
 layout_mode = 2
+disabled = true
 text = "Flying Range"
 
-[node name="BobOmbBattlefieldButton" type="Button" parent="DemoSelection"]
+[node name="BobOmbBattlefieldButton" type="Button" parent="DemoSelection" unique_id=1271682030]
+z_index = -1
 layout_mode = 2
+disabled = true
 text = "Bob-Omb Battlefield"
 
-[node name="LevelContainer" type="Node3D" parent="."]
+[node name="LevelContainer" type="Node3D" parent="." unique_id=899726461]
 unique_name_in_owner = true
 
-[connection signal="pressed" from="DemoSelection/PickRomButton" to="." method="_on_pick_rom_button_pressed"]
+[node name="Control" type="Control" parent="." unique_id=666758623]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1519388656]
+visible = false
+z_index = -13
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dl5wy")
+
+[node name="PickRomLabel" type="Label" parent="Control" unique_id=536862858]
+unique_name_in_owner = true
+z_index = -11
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -313.0
+offset_top = 29.5
+offset_right = 323.0
+offset_bottom = 75.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pick a GENIUNE SM64 ROM, by pressing the screen."
+label_settings = SubResource("LabelSettings_pxfdq")
+
+[node name="WrongRomLabel" type="Label" parent="Control" unique_id=284314071]
+unique_name_in_owner = true
+visible = false
+z_index = -11
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -313.0
+offset_top = 29.5
+offset_right = 323.0
+offset_bottom = 75.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "INCORRECT ROM! Please pick a REAL Super Mario 64 (USA) ROM."
+label_settings = SubResource("LabelSettings_pxfdq")
+
+[node name="CorrectRomLabel" type="Label" parent="Control" unique_id=861157353]
+unique_name_in_owner = true
+visible = false
+z_index = -11
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.0
+offset_top = 29.5
+offset_right = 175.0
+offset_bottom = 75.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ROM is correct. Loading..."
+label_settings = SubResource("LabelSettings_pxfdq")
+
+[node name="TextureRect2" type="TextureButton" parent="Control" unique_id=1796835792]
+z_index = -12
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -205.0
+offset_top = -133.0
+offset_right = 286.0
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+texture_normal = ExtResource("5_cit8l")
+texture_pressed = ExtResource("5_cit8l")
+texture_hover = ExtResource("5_cit8l")
+texture_disabled = ExtResource("5_cit8l")
+texture_focused = ExtResource("5_cit8l")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="PickRomButton" to="." method="_on_pick_rom_button_pressed"]
 [connection signal="pressed" from="DemoSelection/InitialScenarioButton" to="." method="_on_initial_scenario_button_pressed"]
 [connection signal="pressed" from="DemoSelection/ManyMariosButton" to="." method="_on_many_marios_button_pressed"]
 [connection signal="pressed" from="DemoSelection/FlyingRangeButton" to="." method="_on_flying_range_button_pressed"]
 [connection signal="pressed" from="DemoSelection/BobOmbBattlefieldButton" to="." method="_on_bob_omb_battlefield_button_pressed"]
+[connection signal="pressed" from="Control/TextureRect2" to="." method="_on_pick_rom_button_pressed"]
