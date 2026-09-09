@@ -82,13 +82,6 @@ environment = SubResource("Environment_mfbt7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.773918, 36.64499, 47.27876)
 script = ExtResource("5_d4rf5")
 camera = NodePath("CameraRig/Camera3D")
-mario_inputs_stick_left = null
-mario_inputs_stick_right = null
-mario_inputs_stick_up = null
-mario_inputs_stick_down = null
-mario_inputs_button_a = null
-mario_inputs_button_b = null
-mario_inputs_button_z = null
 
 [node name="Sparkles" type="GPUParticles3D" parent="LibSM64Mario" unique_id=1460699980]
 unique_name_in_owner = true
@@ -180,6 +173,8 @@ unique_name_in_owner = true
 
 [node name="RomPickerDialog" parent="Interface" unique_id=637481029 instance=ExtResource("12_2ubsg")]
 unique_name_in_owner = true
+oversampling_override = 1.0
+size = Vector2i(515, 180)
 always_on_top = true
 
 [node name="InputConfig" type="Node" parent="." unique_id=1822986213]

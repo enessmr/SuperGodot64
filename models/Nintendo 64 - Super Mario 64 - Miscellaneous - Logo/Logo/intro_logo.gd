@@ -54,15 +54,24 @@ var frame := 0
 var frame_timer := 0.0
 var playing := false
 
+var current_scale := Vector3.ZERO
+var next_scale := Vector3.ZERO
+
 @export_category("Animation")
 @export var play_on_ready := true
 
 
 func _ready() -> void:
-	if LibSM64Global.rom.is_empty():
-		%RomPickerDialog.pick_rom()
+	if SaveManager.has_cached_rom():
+		print("Cached ROM found: ", SaveManager.get_rom_path())
+		LibSM64Global.load_rom_file(SaveManager.get_rom_path())
+	else:
+		print("No cached ROM. Open ROM picker.")
+
 	_libsm64_was_init = LibSM64Global.init()
+
 	%LibSM64AudioStreamPlayer.play()
+
 	logo_meshes = [
 		$meshMesh0_1,
 		$meshMesh1_1,
@@ -101,6 +110,15 @@ func _process(delta: float) -> void:
 		frame_timer -= FRAME_TIME
 		advance_frame()
 
+	var interpolation := frame_timer / FRAME_TIME
+
+	var interpolated_scale := current_scale.lerp(
+		next_scale,
+		interpolation
+	)
+
+	apply_scale(interpolated_scale)
+
 
 func play() -> void:
 	frame = 0
@@ -109,8 +127,15 @@ func play() -> void:
 
 	print("SM64 LOGO PLAY")
 
-	apply_frame(frame)
-	LibSM64.play_sound(LibSM64.SOUND_MENU_COIN_ITS_A_ME_MARIO, %Camera.global_position)
+	current_scale = get_frame_scale(frame)
+	next_scale = get_frame_scale(frame + 1)
+
+	apply_scale(current_scale)
+
+	LibSM64.play_sound(
+		LibSM64.SOUND_MENU_COIN_ITS_A_ME_MARIO,
+		%Camera.global_position
+	)
 
 	frame += 1
 
@@ -120,34 +145,43 @@ func stop() -> void:
 
 
 func advance_frame() -> void:
-	if frame > 90:
+	if frame >= 91:
 		playing = false
+
+		apply_scale(Vector3.ZERO)
+
 		print("SM64 LOGO FINISHED")
-		
+
+		await get_tree().create_timer(0.3).timeout
+
+		get_tree().change_scene_to_packed(
+			preload("res://assets/file_select/file_select.tscn")
+		)
+
 		return
 
-	apply_frame(frame)
+	current_scale = get_frame_scale(frame)
+	next_scale = get_frame_scale(frame + 1)
 
 	frame += 1
 
 
-func apply_frame(current_frame: int) -> void:
-	var current_scale: Vector3
+func get_frame_scale(current_frame: int) -> Vector3:
+	if current_frame < 0:
+		return Vector3.ZERO
 
 	if current_frame < 20:
-		current_scale = SCALE_IN[current_frame] * SM64_TO_GODOT
+		return SCALE_IN[current_frame] * SM64_TO_GODOT
 
 	elif current_frame < 75:
-		current_scale = Vector3.ONE * SM64_TO_GODOT
+		return Vector3.ONE * SM64_TO_GODOT
 
 	elif current_frame < 91:
 		var out_frame := current_frame - 75
-		current_scale = Vector3.ONE * SCALE_OUT[out_frame] * SM64_TO_GODOT
+		return Vector3.ONE * SCALE_OUT[out_frame] * SM64_TO_GODOT
 
 	else:
-		current_scale = Vector3.ZERO
-
-	apply_scale(current_scale)
+		return Vector3.ZERO
 
 
 func apply_scale(new_scale: Vector3) -> void:

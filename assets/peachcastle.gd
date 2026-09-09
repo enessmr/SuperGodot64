@@ -13,10 +13,13 @@ func _ready() -> void:
 	# DiscordRPC.large_image = "game"
 	# DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
 	# DiscordRPC.refresh()
+	if %RomPickerDialog:
+		%RomPickerDialog.rom_loaded.connect(_on_rom_picker_dialog_rom_loaded)
+	
 	if LibSM64Global.rom.is_empty():
 		%RomPickerDialog.pick_rom()
 	else:
-		_init_libsm64() 
+		_init_libsm64()
 
 
 func _unhandled_input(event: InputEvent) -> void:

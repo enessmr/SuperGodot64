@@ -2,8 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://mdys77tbbvgu" path="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - Logo/Logo/logo.blend" id="1_47kc1"]
 [ext_resource type="Script" uid="uid://dna5y8e7y3ahr" path="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - Logo/Logo/intro_logo.gd" id="2_2bqjb"]
-[ext_resource type="PackedScene" uid="uid://b14covao5gpeh" path="res://libsm64_godot_demo/shared/rom_picker_dialog/rom_picker_dialog.tscn" id="3_v1x42"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1x42"]
 resource_name = "Material.002"
 cull_mode = 2
@@ -84,8 +82,3 @@ environment = SubResource("Environment_2bqjb")
 [node name="LibSM64AudioStreamPlayer" type="LibSM64AudioStreamPlayer" parent="." index="23" unique_id=1036138172]
 unique_name_in_owner = true
 
-[node name="RomPickerDialog" parent="." index="24" unique_id=706427060 instance=ExtResource("3_v1x42")]
-unique_name_in_owner = true
-oversampling_override = 1.0
-position = Vector2i(0, 36)
-size = Vector2i(515, 180)
