@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c7cs4njq0bwly"
+path="res://.godot/imported/ButtonWood.obj-6a38dceb7ab24a7878a9f2c09bb38e7e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ButtonWood.obj-6a38dceb7ab24a7878a9f2c09bb38e7e.mesh"]
+
+source_file="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - File Select Menu/File Menu/ButtonWood.obj"
+dest_files=["res://.godot/imported/ButtonWood.obj-6a38dceb7ab24a7878a9f2c09bb38e7e.mesh", "res://.godot/imported/ButtonWood.obj-6a38dceb7ab24a7878a9f2c09bb38e7e.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

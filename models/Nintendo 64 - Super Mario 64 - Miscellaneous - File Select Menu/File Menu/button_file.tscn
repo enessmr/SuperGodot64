@@ -1,0 +1,157 @@
+[gd_scene format=4 uid="uid://csv3pok5rpv8i"]
+
+[ext_resource type="PackedScene" uid="uid://bgi21ba4ui2ko" path="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - File Select Menu/File Menu/ButtonFile.dae" id="1_li10a"]
+[ext_resource type="Texture2D" uid="uid://6afi51yoift3" path="res://assets/file_select/texures/main_menu_seg7.00018.rgba16.png" id="2_li10a"]
+[ext_resource type="Texture2D" uid="uid://sn5tv28b808k" path="res://assets/file_select/texures/main_menu_seg7.01018.rgba16.png" id="3_g1md7"]
+[ext_resource type="Texture2D" uid="uid://lsr6icgs2vpn" path="res://assets/file_select/texures/main_menu_seg7.02018.rgba16.png" id="3_li10a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sa6pw"]
+resource_name = "Mat0"
+cull_mode = 2
+albedo_texture = ExtResource("2_li10a")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_efxpf"]
+_surfaces = [{
+"aabb": AABB(-1.63, -1.22, 0, 3.26, 2.44, 0.29999998),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAgABAAQAAQADAAUABgACAAQAAwAHAAUABwACAAYABQAHAAYA"),
+"name": "Mat0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAAAAyIAQr//8AAP//AAAAAAAAAAD//wAAAADM3wQr//8AADIg+tT//wAAzN/61P//AAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5jp7x"]
+resource_name = "Mesh"
+_surfaces = [{
+"aabb": AABB(-1.63, -1.22, 0, 3.26, 2.44, 0.29999998),
+"attribute_data": PackedByteArray("AAB/9/8X/8x/93/3AAAAAH/X/8z/F38if9d/In/3AAA="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAgABAAQAAQADAAUABgACAAQAAwAHAAUABwACAAYABQAHAAYA"),
+"material": SubResource("StandardMaterial3D_sa6pw"),
+"name": "Mat0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAeZMyIAQr//90k///AAAAAHOTAAD//wAAiZTM3wQr//99kzIg+tT//5mUzN/61P//iJT/////AACBlJQ+58KUP9vAsz/aP1qklc+XQ8BB68nBqFmwbCTm1u5L")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_efxpf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1md7"]
+resource_name = "Mat1"
+cull_mode = 2
+albedo_texture = ExtResource("3_g1md7")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_nll4u"]
+_surfaces = [{
+"aabb": AABB(-1.22, -0.81, 0.29999998, 2.44, 1.62, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgABAAMA"),
+"name": "Mat1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("/////wAAAAD//wAAAAAAAAAA//8AAAAAAAAAAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_it6w4"]
+resource_name = "Mesh2"
+_surfaces = [{
+"aabb": AABB(-1.22, -0.81, 0.29999998, 2.44, 1.62, 1e-05),
+"attribute_data": PackedByteArray("f/sAAH/7f/cAAAAAAAB/9w=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgABAAMA"),
+"material": SubResource("StandardMaterial3D_g1md7"),
+"name": "Mat1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("/////wAAAID//wAAAAAAgAAA//8AAACAAAAAAAAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_nll4u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v5aw"]
+resource_name = "Mat1"
+cull_mode = 2
+albedo_texture = ExtResource("3_li10a")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_s8jfp"]
+resource_name = "Mesh2"
+_surfaces = [{
+"aabb": AABB(-1.22, -0.81, 0.29999998, 2.44, 1.62, 1e-05),
+"attribute_data": PackedByteArray("f/sAAH/7f/cAAAAAAAB/9w=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgABAAMA"),
+"material": SubResource("StandardMaterial3D_7v5aw"),
+"name": "Mat1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("/////wAAAID//wAAAAAAgAAA//8AAACAAAAAAAAAAID/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_nll4u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_li10a"]
+resource_name = "Mat2"
+cull_mode = 2
+roughness = 0.07647059
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dhnes"]
+_surfaces = [{
+"aabb": AABB(-1.63, -1.22, 0, 3.26, 2.44, 1e-05),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgABAAMA"),
+"name": "Mat2",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("16PQP/YonL8AAAAA16PQP/YonD8AAAAA16PQv/YonL8AAAAA16PQv/YonD8AAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_g1md7"]
+resource_name = "Mesh3"
+_surfaces = [{
+"aabb": AABB(-1.63, -1.22, 0, 3.26, 2.44, 1e-05),
+"attribute_data": PackedByteArray("AAAAAACAdz8AAAAAAAAAAACAdz8AgHc/AIB3PwAAAAA="),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgABAAMA"),
+"material": SubResource("StandardMaterial3D_li10a"),
+"name": "Mat2",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("16PQP/YonL8AAAAA16PQP/YonD8AAAAA16PQv/YonL8AAAAA16PQv/YonD8AAAAA/////wAA/7//////AAD/v/////8AAP+//////wAA/78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_dhnes")
+
+[node name="ButtonFile" unique_id=1767405355 instance=ExtResource("1_li10a")]
+
+[node name="Mesh0" parent="Node0_start/Node1_scale/Node2_display/Node3_display" parent_id_path=PackedInt32Array(898516112) index="0" unique_id=1746369610]
+mesh = SubResource("ArrayMesh_5jp7x")
+
+[node name="Mesh1" parent="Node0_start/Node1_scale/Node2_display/Node3_display" parent_id_path=PackedInt32Array(898516112) index="1" unique_id=531650888]
+unique_name_in_owner = true
+mesh = SubResource("ArrayMesh_it6w4")
+
+[node name="Mesh1_NoFile" type="MeshInstance3D" parent="Node0_start/Node1_scale/Node2_display/Node3_display" parent_id_path=PackedInt32Array(898516112) index="2" unique_id=1098010179]
+unique_name_in_owner = true
+visible = false
+mesh = SubResource("ArrayMesh_s8jfp")
+
+[node name="Mesh2" parent="Node0_start/Node1_scale/Node2_display/Node4_display" parent_id_path=PackedInt32Array(634722610) index="0" unique_id=694907808]
+mesh = SubResource("ArrayMesh_g1md7")

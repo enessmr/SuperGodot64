@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://co562140efdce"]
+
+[ext_resource type="FontFile" uid="uid://bbugorqp10c0d" path="res://assets/Mario64.ttf" id="1_y7vka"]
+
+[resource]
+font = ExtResource("1_y7vka")
+font_size = 32

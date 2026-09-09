@@ -1,0 +1,49 @@
+[gd_scene format=4 uid="uid://cgnsvj8n3ig10"]
+
+[ext_resource type="PackedScene" uid="uid://o2m6hk6ifva1" path="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - File Select Menu/File Menu/ButtonWood.dae" id="1_gf8af"]
+[ext_resource type="Texture2D" uid="uid://bdwkb7xggkcwo" path="res://assets/file_select/texures/main_menu_seg7.03468.rgba16.png" id="2_gf8af"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lju2j"]
+resource_name = "Mat0"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_gf8af")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4ta5a"]
+_surfaces = [{
+"aabb": AABB(-1.63, -1.22, 0, 3.26, 2.44, 0.29999998),
+"format": 34896613377,
+"index_count": 84,
+"index_data": PackedByteArray("CQAKAAIACQACAAUACgAJAAAAAAAJAAUAAgAKAAMAAwALAAIABQACAAsABwALAAMABwAFAAsAAwAGAAcABgAFAAcACgAGAAMABgAEAAUAAAAFAAQABgAKAAEACgAAAAEABgAMAAQABgABAAwABAAMAAgACAAMAAEAAAAEAA0ABAAIAA0AAAANAA4AAQAAAA4ADwANAAgACAABAA8ADwAOAA0AAQAOAA8A"),
+"lods": [2.15099, PackedByteArray("AAABAAIAAAACAAUAAgABAAMAAwAFAAIAAQAAAAQAAAAFAAQABwAFAAMAAQAEAAgABgAFAAcAAwAGAAcABgAEAAUAAQAGAAMABgAIAAQABgABAAgA"), 3.2264848, PackedByteArray("AAABAAIAAgABAAMAAQAAAAQAAAACAAUAAwAFAAIAAAAFAAQAAQAGAAMABgAFAAMAAQAEAAYABgAEAAUA")],
+"name": "Mat0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("tA/7FAAAAAC0DwPrAAAAADIgBCv//wAAMiD61P//AABK8PsUAAAAAP//AAAAAAAA/////wAAAADM3/rU//8AAHDoheBVVQAAAAAAAAAAAAAAAP//AAAAAMzfBCv//wAASvAD6wAAAABw6HkfVVUAAI4XeR9VVQAAjheF4FVVAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mu58f"]
+resource_name = "Mesh"
+_surfaces = [{
+"aabb": AABB(-1.63, -1.22, 0, 3.26, 2.44, 0.29999998),
+"attribute_data": PackedByteArray("f+d/DX/n/+F/138if9f/zP8Hfw0AAAAAAAB/9/8X/8z/D3/Xf/cAAH/3f/f/F38i/wf/4f8P/xd/3/8Xf99/1w=="),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray("CQAKAAIACQACAAUACgAJAAAAAAAJAAUAAgAKAAMAAwALAAIABQACAAsABwALAAMABwAFAAsAAwAGAAcABgAFAAcACgAGAAMABgAEAAUAAAAFAAQABgAKAAEACgAAAAEABgAMAAQABgABAAwABAAMAAgACAAMAAEAAAAEAA0ABAAIAA0AAAANAA4AAQAAAA4ADwANAAgACAABAA8ADwAOAA0AAQAOAA8A"),
+"lods": [2.15099, PackedByteArray("AAABAAIAAAACAAUAAgABAAMAAwAFAAIAAQAAAAQAAAAFAAQABwAFAAMAAQAEAAgABgAFAAcAAwAGAAcABgAEAAUAAQAGAAMABgAIAAQABgABAAgA"), 3.2264848, PackedByteArray("AAABAAIAAgABAAMAAQAAAAQAAAACAAUAAwAFAAIAAAAFAAQAAQAGAAMABgAFAAMAAQAEAAYABgAEAAUA")],
+"material": SubResource("StandardMaterial3D_lju2j"),
+"name": "Mat0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("tA/7FAAA+AS0DwPrAABrCTIgBCv//93+MiD61P//kP9K8PsUAAArC///AAAAAM/1/////wAA9/fM3/rU//9v/3DoheBVVY4NAAAAAAAAq+4AAP//AADO4MzfBCv//7H+SvAD6wAAHAhw6HkfVVWQBo4XeR9VVesQjheF4FVVJQjtkJAE8YBzDjtynXIM8hEH6oUc82udtlbkU4IOpQj+EMyUH/4pwbDmuWYPxL4I9/bsjNv+WX8z7cBxugGogHEM")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_4ta5a")
+
+[node name="ButtonWood" unique_id=255427912 instance=ExtResource("1_gf8af")]
+
+[node name="Mesh0" parent="Node0_start/Node1_scale/Node2_display/Node3_display" parent_id_path=PackedInt32Array(1629673202) index="0" unique_id=720935723]
+mesh = SubResource("ArrayMesh_mu58f")

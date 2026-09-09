@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cepxf0jkjvcc8"]
+
+[ext_resource type="Script" uid="uid://b18y4v0xf8u41" path="res://models/camera_test.gd" id="1_2cqkr"]
+[ext_resource type="Texture2D" uid="uid://iciud4yc2j0n" path="res://assets/Backgrounds/selected_sprites_10/sprite-1-1.png" id="2_eatsv"]
+[ext_resource type="PackedScene" uid="uid://yt8kbrfd41gi" path="res://libsm64_godot_demo/shared/camera_rig/camera_rig.tscn" id="5_usj62"]
+[ext_resource type="PackedScene" uid="uid://b14covao5gpeh" path="res://libsm64_godot_demo/shared/rom_picker_dialog/rom_picker_dialog.tscn" id="13_x7fvo"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xo5ex"]
+panorama = ExtResource("2_eatsv")
+
+[sub_resource type="Sky" id="Sky_fjdmo"]
+sky_material = SubResource("PanoramaSkyMaterial_xo5ex")
+
+[sub_resource type="Environment" id="Environment_r7reh"]
+background_mode = 2
+sky = SubResource("Sky_fjdmo")
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_energy = 0.62
+fog_density = 0.7209
+fog_sky_affect = 0.0
+fog_depth_curve = 41.423645
+
+[sub_resource type="BoxMesh" id="BoxMesh_usj62"]
+size = Vector3(20000, 1, 20000)
+
+[node name="CameraTest" type="Node3D" unique_id=1099076205]
+script = ExtResource("1_2cqkr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1710815490]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.5, 0.86602545, 0, -0.86602557, 0.49999997, 0, 0, 0)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=531063771]
+environment = SubResource("Environment_r7reh")
+
+[node name="LibSM64AudioStreamPlayer" type="LibSM64AudioStreamPlayer" parent="." unique_id=290479599]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=980967610 groups=["libsm64_surface_objects"]]
+mesh = SubResource("BoxMesh_usj62")
+
+[node name="RomPickerDialog" parent="." unique_id=1103715917 instance=ExtResource("13_x7fvo")]
+unique_name_in_owner = true
+always_on_top = true
+
+[node name="CameraRig" parent="." unique_id=108563738 instance=ExtResource("5_usj62")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 102.597336, 0)
+
+[node name="Camera3D" parent="CameraRig" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.86602503, 0.4999998, 0, -0.4999998, 0.86602503, 0, 3.852, 5.571)
+
+[editable path="CameraRig"]

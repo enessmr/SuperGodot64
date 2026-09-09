@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://detiu8wmc3y1"
+path="res://.godot/imported/ButtonFile.obj-3c0b6a13b47f1542a3f22a21013f1fbc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ButtonFile.obj-3c0b6a13b47f1542a3f22a21013f1fbc.mesh"]
+
+source_file="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - File Select Menu/File Menu/ButtonFile.obj"
+dest_files=["res://.godot/imported/ButtonFile.obj-3c0b6a13b47f1542a3f22a21013f1fbc.mesh", "res://.godot/imported/ButtonFile.obj-3c0b6a13b47f1542a3f22a21013f1fbc.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

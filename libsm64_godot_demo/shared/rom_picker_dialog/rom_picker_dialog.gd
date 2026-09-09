@@ -23,6 +23,7 @@ func _on_file_selected(path: String) -> void:
 			%CorrectRomLabel.show()
 			%PickRomLabel.hide()
 			%WrongRomLabel.hide()
+			SaveManager.set_rom_from_picker(path)
 			await get_tree().create_timer(1.0).timeout
 			get_tree().change_scene_to_packed(preload("res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - Logo/Logo/intro_logo.tscn"))
 	else:

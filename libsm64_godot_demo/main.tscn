@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://wwotl5oqq8ic" path="res://libsm64_godot_demo/main.gd" id="1_w76b2"]
 [ext_resource type="PackedScene" uid="uid://b14covao5gpeh" path="res://libsm64_godot_demo/shared/rom_picker_dialog/rom_picker_dialog.tscn" id="2_kbqeo"]
 [ext_resource type="Texture2D" uid="uid://bhpmusye7byfd" path="res://assets/blackbg.png" id="3_dl5wy"]
+[ext_resource type="Script" uid="uid://l62pn1e6g5ll" path="res://assets/rompart.gd" id="3_ycqbp"]
 [ext_resource type="FontFile" uid="uid://bbugorqp10c0d" path="res://assets/Mario64.ttf" id="4_u8ped"]
 [ext_resource type="Texture2D" uid="uid://ckcaygb6svs2t" path="res://assets/Logosm64ai.png" id="5_cit8l"]
 
@@ -18,23 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w76b2")
-
-[node name="PickRomButton" type="TextureButton" parent="." unique_id=2003497536]
-z_index = -13
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.8921604, 2.7335682)
-mouse_filter = 1
-texture_normal = ExtResource("3_dl5wy")
-texture_pressed = ExtResource("3_dl5wy")
-texture_hover = ExtResource("3_dl5wy")
-texture_disabled = ExtResource("3_dl5wy")
-texture_focused = ExtResource("3_dl5wy")
-stretch_mode = 0
 
 [node name="RomPickerDialog" parent="." unique_id=226692284 instance=ExtResource("2_kbqeo")]
 unique_name_in_owner = true
@@ -100,6 +84,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("3_ycqbp")
 
 [node name="TextureRect" type="TextureRect" parent="Control" unique_id=1519388656]
 visible = false
@@ -191,9 +176,26 @@ texture_focused = ExtResource("5_cit8l")
 ignore_texture_size = true
 stretch_mode = 0
 
-[connection signal="pressed" from="PickRomButton" to="." method="_on_pick_rom_button_pressed"]
+[node name="PickRomButton" type="TextureButton" parent="Control" unique_id=2003497536]
+z_index = -13
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.8921604, 2.7335682)
+mouse_filter = 1
+texture_normal = ExtResource("3_dl5wy")
+texture_pressed = ExtResource("3_dl5wy")
+texture_hover = ExtResource("3_dl5wy")
+texture_disabled = ExtResource("3_dl5wy")
+texture_focused = ExtResource("3_dl5wy")
+stretch_mode = 0
+
 [connection signal="pressed" from="DemoSelection/InitialScenarioButton" to="." method="_on_initial_scenario_button_pressed"]
 [connection signal="pressed" from="DemoSelection/ManyMariosButton" to="." method="_on_many_marios_button_pressed"]
 [connection signal="pressed" from="DemoSelection/FlyingRangeButton" to="." method="_on_flying_range_button_pressed"]
 [connection signal="pressed" from="DemoSelection/BobOmbBattlefieldButton" to="." method="_on_bob_omb_battlefield_button_pressed"]
 [connection signal="pressed" from="Control/TextureRect2" to="." method="_on_pick_rom_button_pressed"]
+[connection signal="pressed" from="Control/PickRomButton" to="." method="_on_pick_rom_button_pressed"]

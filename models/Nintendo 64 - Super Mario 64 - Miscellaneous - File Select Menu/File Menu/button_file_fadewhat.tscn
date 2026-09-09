@@ -1,0 +1,45 @@
+[gd_scene format=4 uid="uid://dbhtxxvloi32u"]
+
+[ext_resource type="PackedScene" uid="uid://bgi21ba4ui2ko" path="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - File Select Menu/File Menu/ButtonFile.dae" id="1_dmwyq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmwyq"]
+resource_name = "Mat2"
+cull_mode = 2
+roughness = 0.07647059
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dhnes"]
+_surfaces = [{
+"aabb": AABB(-1.63, -1.22, 0, 3.26, 2.44, 1e-05),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgABAAMA"),
+"name": "Mat2",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("16PQP/YonL8AAAAA16PQP/YonD8AAAAA16PQv/YonL8AAAAA16PQv/YonD8AAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4es7b"]
+resource_name = "Mesh3"
+_surfaces = [{
+"aabb": AABB(-1.63, -1.22, 0, 3.26, 2.44, 1e-05),
+"attribute_data": PackedByteArray("AAAAAACAdz8AAAAAAAAAAACAdz8AgHc/AIB3PwAAAAA="),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgABAAMA"),
+"material": SubResource("StandardMaterial3D_dmwyq"),
+"name": "Mat2",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("16PQP/YonL8AAAAA16PQP/YonD8AAAAA16PQv/YonL8AAAAA16PQv/YonD8AAAAA/////wAA/7//////AAD/v/////8AAP+//////wAA/78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_dhnes")
+
+[node name="ButtonFile" unique_id=1767405355 instance=ExtResource("1_dmwyq")]
+
+[node name="Mesh2" parent="Node0_start/Node1_scale/Node2_display/Node4_display" parent_id_path=PackedInt32Array(634722610) index="0" unique_id=694907808]
+mesh = SubResource("ArrayMesh_4es7b")

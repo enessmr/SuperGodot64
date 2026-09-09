@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://bdiebojadmhjf"]
+
+[ext_resource type="Script" uid="uid://c2y7750715xwa" path="res://assets/peachcastle.gd" id="1_7dkyn"]
+[ext_resource type="ArrayMesh" uid="uid://bvb2knvae2v2" path="res://models/WCBox.tres" id="2_fmoem"]
+[ext_resource type="Script" uid="uid://bcww7b2li6njs" path="res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/WCBox.gd" id="3_mejkp"]
+[ext_resource type="Texture2D" uid="uid://iciud4yc2j0n" path="res://assets/Backgrounds/selected_sprites_10/sprite-1-1.png" id="4_gr0vy"]
+[ext_resource type="Script" uid="uid://b4n6vr1utqly6" path="res://addons/libsm64_godot/libsm64_mario/libsm64_mario.gd" id="5_d4rf5"]
+[ext_resource type="Texture2D" uid="uid://dwqqxrof1by6x" path="res://assets/sprite-7-4.png" id="6_tnwy3"]
+[ext_resource type="PackedScene" uid="uid://yt8kbrfd41gi" path="res://libsm64_godot_demo/shared/camera_rig/camera_rig.tscn" id="7_oqwct"]
+[ext_resource type="Script" uid="uid://bcya1lu4scue6" path="res://libsm64_godot_demo/workaround.gd" id="8_3607i"]
+[ext_resource type="Script" uid="uid://dp35slbbrbs08" path="res://libsm64_godot_demo/shared/hud/pausemenu.gd" id="9_u1yra"]
+[ext_resource type="PackedScene" uid="uid://dprpekyttg0g6" path="res://libsm64_godot_demo/shared/hud/hud.tscn" id="10_qiwa3"]
+[ext_resource type="PackedScene" uid="uid://bvp5wvcilkaoq" path="res://assets/power_meter/hud_healthbar.tscn" id="11_16hj0"]
+[ext_resource type="PackedScene" uid="uid://b14covao5gpeh" path="res://libsm64_godot_demo/shared/rom_picker_dialog/rom_picker_dialog.tscn" id="12_2ubsg"]
+[ext_resource type="Script" uid="uid://drownbnkaxrbk" path="res://libsm64_godot_demo/shared/input_config/input_config.gd" id="13_apmjs"]
+[ext_resource type="Script" uid="uid://bbq30kpxivduk" path="res://addons/libsm64_godot/handlers/libsm64_static_surfaces_handler.gd" id="14_1c4mj"]
+[ext_resource type="Script" uid="uid://d0ak76u87aww3" path="res://addons/libsm64_godot/handlers/libsm64_surface_objects_handler.gd" id="15_2mmp3"]
+[ext_resource type="Script" uid="uid://dw1eldpluvr31" path="res://libsm64_godot_demo/shared/globals/level_globals.gd" id="16_s52pt"]
+[ext_resource type="PackedScene" uid="uid://dslerdaxajnnx" path="res://assets/castle_course.tscn" id="17_mejkp"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u7nfp"]
+panorama = ExtResource("4_gr0vy")
+
+[sub_resource type="Sky" id="Sky_fjdmo"]
+sky_material = SubResource("PanoramaSkyMaterial_u7nfp")
+
+[sub_resource type="Environment" id="Environment_mfbt7"]
+background_mode = 2
+sky = SubResource("Sky_fjdmo")
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_energy = 0.62
+fog_density = 0.7209
+fog_sky_affect = 0.0
+fog_depth_curve = 41.423645
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e2tcb"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8n0f"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("6_tnwy3")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_7iwro"]
+material = SubResource("StandardMaterial3D_x8n0f")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fcqgp"]
+height = 1.5
+
+[node name="PeachsCastle" type="Node3D" unique_id=1563220795]
+script = ExtResource("1_7dkyn")
+
+[node name="WCBox3D3" type="MeshInstance3D" parent="." unique_id=788602707 node_paths=PackedStringArray("meshwc") groups=["libsm64_static_objects"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -19.383, 34.72, 41.325)
+mesh = ExtResource("2_fmoem")
+script = ExtResource("3_mejkp")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://bcww7b2li6njs"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1571152061]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.5, 0.86602545, 0, -0.86602557, 0.49999997, 0, 0, 0)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1412721484]
+environment = SubResource("Environment_mfbt7")
+
+[node name="LibSM64Mario" type="Node3D" parent="." unique_id=1121666345 node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.773918, 36.64499, 47.27876)
+script = ExtResource("5_d4rf5")
+camera = NodePath("CameraRig/Camera3D")
+mario_inputs_stick_left = null
+mario_inputs_stick_right = null
+mario_inputs_stick_up = null
+mario_inputs_stick_down = null
+mario_inputs_button_a = null
+mario_inputs_button_b = null
+mario_inputs_button_z = null
+
+[node name="Sparkles" type="GPUParticles3D" parent="LibSM64Mario" unique_id=1460699980]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+emitting = false
+amount = 20
+lifetime = 0.2
+fixed_fps = 144
+process_material = SubResource("ParticleProcessMaterial_e2tcb")
+draw_pass_1 = SubResource("QuadMesh_7iwro")
+
+[node name="CameraRig" parent="LibSM64Mario" unique_id=372826185 instance=ExtResource("7_oqwct")]
+unique_name_in_owner = true
+transform = Transform3D(0.7181263, 0, 0.6959128, 0, 1, 0, -0.6959128, 0, 0.7181263, 0, 0, 0)
+
+[node name="Camera3D" parent="LibSM64Mario/CameraRig" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.86602503, 0.4999998, 0, -0.4999998, 0.86602503, 0, 3.852, 5.571)
+
+[node name="MarioRB" type="RigidBody3D" parent="LibSM64Mario" unique_id=1269487720 node_paths=PackedStringArray("mario")]
+script = ExtResource("8_3607i")
+mario = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LibSM64Mario/MarioRB" unique_id=671093889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_fcqgp")
+
+[node name="Camera_StarGrab" type="Marker3D" parent="LibSM64Mario" unique_id=941196983]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8240013, 5.1871567)
+
+[node name="LibSM64AudioStreamPlayer" type="LibSM64AudioStreamPlayer" parent="." unique_id=1384802747]
+unique_name_in_owner = true
+
+[node name="Interface" type="Control" parent="." unique_id=678909325]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Interface" unique_id=1936644367 node_paths=PackedStringArray("current")]
+layer = 2
+script = ExtResource("9_u1yra")
+current = NodePath(".")
+
+[node name="PauseMenuPanel" type="PanelContainer" parent="Interface/CanvasLayer" unique_id=68706812]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Interface/CanvasLayer/PauseMenuPanel" unique_id=1329081087]
+z_index = 1022
+layout_mode = 2
+color = Color(0, 0, 0, 0.5058824)
+
+[node name="Panel" type="Panel" parent="Interface/CanvasLayer/PauseMenuPanel" unique_id=1731742754]
+z_index = 1023
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Button" type="Button" parent="Interface/CanvasLayer/PauseMenuPanel/Panel" unique_id=687014411]
+z_index = 1023
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -33.5
+offset_right = 244.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return To Main Menu"
+flat = true
+
+[node name="DebugHUD" parent="Interface" unique_id=1741846333 instance=ExtResource("10_qiwa3")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 173.0
+offset_bottom = 136.0
+
+[node name="HUD" parent="Interface" unique_id=723167950 instance=ExtResource("11_16hj0")]
+unique_name_in_owner = true
+
+[node name="RomPickerDialog" parent="Interface" unique_id=637481029 instance=ExtResource("12_2ubsg")]
+unique_name_in_owner = true
+always_on_top = true
+
+[node name="InputConfig" type="Node" parent="." unique_id=1822986213]
+script = ExtResource("13_apmjs")
+
+[node name="LibSM64StaticSurfacesHandler" type="Node" parent="." unique_id=1449684858]
+unique_name_in_owner = true
+script = ExtResource("14_1c4mj")
+
+[node name="LibSM64SurfaceObjectsHandler" type="Node" parent="." unique_id=829264955]
+unique_name_in_owner = true
+script = ExtResource("15_2mmp3")
+
+[node name="LevelGlobals" type="Node" parent="." unique_id=1690062320]
+unique_name_in_owner = true
+script = ExtResource("16_s52pt")
+
+[node name="castleSCALEVERTEX" parent="." unique_id=1251985261 instance=ExtResource("17_mejkp")]
+
+[connection signal="pressed" from="Interface/CanvasLayer/PauseMenuPanel/Panel/Button" to="Interface/CanvasLayer" method="_on_button_pressed"]
+
+[editable path="LibSM64Mario/CameraRig"]

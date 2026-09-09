@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://juj1ttc6xos0"]
+
+[ext_resource type="Script" uid="uid://dtbuxog2xai2s" path="res://assets/file_select/file_select.gd" id="1_ey2bg"]
+[ext_resource type="PackedScene" uid="uid://7jmlb8c35dqx" path="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - File Select Menu/File Menu/button_wood.tscn" id="2_lv1yy"]
+[ext_resource type="PackedScene" uid="uid://csv3pok5rpv8i" path="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - File Select Menu/File Menu/button_file.tscn" id="3_qre4j"]
+[ext_resource type="Script" uid="uid://bqwdgh26pfkik" path="res://models/Nintendo 64 - Super Mario 64 - Miscellaneous - File Select Menu/File Menu/button_file.gd" id="4_rb13m"]
+[ext_resource type="LabelSettings" uid="uid://co562140efdce" path="res://assets/Mario64FileSelect.tres" id="5_rb13m"]
+
+[sub_resource type="Environment" id="Environment_lv1yy"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.5737887, 0.5737887, 0.5737887, 1)
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ph4o0"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxfdq"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_ph4o0")
+
+[sub_resource type="BoxMesh" id="BoxMesh_lv1yy"]
+material = SubResource("StandardMaterial3D_pxfdq")
+size = Vector3(40, 19.5, 1)
+
+[node name="FileSelect" type="Node3D" unique_id=589925954]
+script = ExtResource("1_ey2bg")
+
+[node name="LibSM64AudioStreamPlayer" type="LibSM64AudioStreamPlayer" parent="." unique_id=1696940763]
+unique_name_in_owner = true
+
+[node name="ButtonWood" parent="." unique_id=255427912 instance=ExtResource("2_lv1yy")]
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=737912477]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -12.884898)
+projection = 1
+size = 19.709566
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1789339305]
+environment = SubResource("Environment_lv1yy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=50128798]
+transform = Transform3D(1, 0, 0, 0, -0.23353383, 0.97234875, 0, -0.97234875, -0.23353383, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=891241917]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_lv1yy")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1752336887]
+size = Vector2i(3096, 1080)
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=515604204]
+
+[node name="ButtonFileA" parent="." unique_id=1767405355 instance=ExtResource("3_qre4j")]
+transform = Transform3D(-0.15, 0, -2.2649372e-08, 0, 0.15, 0, 2.2649372e-08, 0, -0.15, 11.124411, 4.895592, -0.7277107)
+script = ExtResource("4_rb13m")
+
+[node name="ButtonFileB" parent="." unique_id=880217437 instance=ExtResource("3_qre4j")]
+transform = Transform3D(-0.15, 0, -2.2649372e-08, 0, 0.15, 0, 2.2649372e-08, 0, -0.15, -11.124, 4.896, -0.728)
+script = ExtResource("4_rb13m")
+
+[node name="ButtonFileC" parent="." unique_id=349581904 instance=ExtResource("3_qre4j")]
+transform = Transform3D(-0.15, 0, -2.2649372e-08, 0, 0.15, 0, 2.2649372e-08, 0, -0.15, 11.124411, -0.88964796, -0.7277107)
+script = ExtResource("4_rb13m")
+
+[node name="ButtonFileD" parent="." unique_id=1825260780 instance=ExtResource("3_qre4j")]
+transform = Transform3D(-0.15, 0, -2.2649372e-08, 0, 0.15, 0, 2.2649372e-08, 0, -0.15, -11.124, -0.88964796, -0.728)
+script = ExtResource("4_rb13m")
+
+[node name="Label3D" type="Label" parent="." unique_id=151431904]
+offset_left = 288.0
+offset_top = 110.0
+offset_right = 340.0
+offset_bottom = 129.0
+text = "MARIO A"
+label_settings = ExtResource("5_rb13m")
+
+[node name="Label3D2" type="Label" parent="." unique_id=1153673140]
+offset_left = 763.0
+offset_top = 110.0
+offset_right = 867.0
+offset_bottom = 148.0
+text = "MARIO B"
+label_settings = ExtResource("5_rb13m")
+
+[node name="Label3D3" type="Label" parent="." unique_id=1422966798]
+offset_left = 288.0
+offset_top = 301.0
+offset_right = 340.0
+offset_bottom = 320.0
+text = "MARIO C"
+label_settings = ExtResource("5_rb13m")
+
+[node name="Label3D4" type="Label" parent="." unique_id=1462374924]
+offset_left = 765.0
+offset_top = 301.0
+offset_right = 869.0
+offset_bottom = 339.0
+text = "MARIO D"
+label_settings = ExtResource("5_rb13m")
