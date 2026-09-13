@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://7d3gufpr7o8n"]
+
+[ext_resource type="PackedScene" uid="uid://rxwjdd1hr87s" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Doors/Doors/Cabin.dae" id="1_gnwld"]
+
+[node name="Cabin" unique_id=544101741 instance=ExtResource("1_gnwld")]
+
+[node name="Mesh0_VC_shade" parent="Node0_trans/Node1_scale/Node2_part/Node3_LOD/Node4_part" parent_id_path=PackedInt32Array(216189525) index="1" unique_id=1929487792]
+visible = false
+
+[node name="Mesh1_VC_shade" parent="Node0_trans/Node1_scale/Node2_part/Node3_LOD/Node4_part" parent_id_path=PackedInt32Array(216189525) index="3" unique_id=1418063851]
+visible = false
+
+[node name="Mesh2_VC_shade" parent="Node0_trans/Node1_scale/Node2_part/Node3_LOD/Node4_part" parent_id_path=PackedInt32Array(216189525) index="5" unique_id=594376968]
+visible = false
+
+[node name="Node6_part" parent="Node0_trans/Node1_scale/Node2_part/Node5_LOD" parent_id_path=PackedInt32Array(1794788931) index="0" unique_id=1241843290]
+visible = false
+
+[node name="Mesh3" parent="Node0_trans/Node1_scale/Node2_part/Node5_LOD/Node6_part" index="0" unique_id=393464289]
+visible = false
+
+[node name="Mesh3_VC_shade" parent="Node0_trans/Node1_scale/Node2_part/Node5_LOD/Node6_part" index="1" unique_id=1239657593]
+visible = false
+
+[node name="Mesh4_VC" parent="Node0_trans/Node1_scale/Node2_part/Node5_LOD/Node6_part" index="2" unique_id=686200063]
+visible = false
+
+[node name="Mesh4_VC_shade" parent="Node0_trans/Node1_scale/Node2_part/Node5_LOD/Node6_part" index="3" unique_id=1939279492]
+visible = false

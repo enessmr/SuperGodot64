@@ -593,6 +593,8 @@ unique_name_in_owner = true
 
 [node name="RomPickerDialog" parent="Interface" unique_id=2031306569 instance=ExtResource("5_oe0ua")]
 unique_name_in_owner = true
+oversampling_override = 1.0
+size = Vector2i(515, 180)
 always_on_top = true
 
 [node name="InputConfig" type="Node" parent="." unique_id=2075111149]

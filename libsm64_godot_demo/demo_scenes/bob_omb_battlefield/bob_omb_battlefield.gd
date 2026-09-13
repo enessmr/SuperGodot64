@@ -52,11 +52,24 @@ func _init_libsm64() -> void:
 	%LibSM64StaticSurfacesHandler.load_static_surfaces()
 	BombOmbBattlefieldSurfaces.load_static_surfaces()
 	%LibSM64SurfaceObjectsHandler.load_all_surface_objects()
-	
+
+	# allow one physics frame so surface nodes are fully registered
+	await get_tree().physics_frame
+
+	print("LibSM64: ROM size=", LibSM64Global.rom.size())
+	print("LibSM64: mario_texture is null?", LibSM64Global.mario_texture == null)
+
 	lib_sm_64_mario.create()
+	print("LibSM64: Mario id=", lib_sm_64_mario.id, " action=", lib_sm_64_mario.action_name)
+	if lib_sm_64_mario.id < 0:
+		push_error("LibSM64: Mario failed to create (id < 0)")
+	elif lib_sm_64_mario.action == LibSM64.ActionFlags.ACT_UNINITIALIZED:
+		push_warning("LibSM64: Mario action uninitialized after create; waiting for first tick")
+
 	lib_sm_64_mario.interact_cap(start_cap)
 
 	%DebugHUD.mario = lib_sm_64_mario
+	%HUD._mario = lib_sm_64_mario
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 

@@ -1,0 +1,1108 @@
+<?xml version="1.0"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+    <asset>
+        <contributor>
+            <authoring_tool>Supear Mardian SixDaeFour</authoring_tool>
+        </contributor>
+        <created>2026-04-02T22:37:08.570Z</created>
+        <modified>2026-04-02T22:37:08.570Z</modified>
+		<unit meter="0.01" name="centimeter" />
+        <up_axis>Y_UP</up_axis>
+    </asset>
+    <library_images>
+        <image id="tex_0">
+            <init_from>tex_300AD10.png</init_from>
+        </image>
+        <image id="tex_1">
+            <init_from>tex_3009D10.png</init_from>
+        </image>
+        <image id="tex_3">
+            <init_from>tex_3013510.png</init_from>
+        </image>
+        <image id="tex_vertexColors">
+            <init_from>vertexColors_door.png</init_from>
+        </image>
+    </library_images>
+    <library_effects>
+        <effect id="effect0">
+            <profile_COMMON>
+                <newparam sid="surface0">
+                    <surface type="2D">
+                        <init_from>tex_0</init_from>
+                    </surface>
+                </newparam>
+                <newparam sid="sampler0">
+                    <sampler2D>
+                        <source>surface0</source>
+                    </sampler2D>
+                </newparam>
+                <technique sid="COMMON">
+                    <blinn>
+                        <diffuse>
+                            <texture texture="sampler0" texcoord="UVSET0"></texture>
+                        </diffuse>
+                    </blinn>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="effect1">
+            <profile_COMMON>
+                <newparam sid="surface1">
+                    <surface type="2D">
+                        <init_from>tex_1</init_from>
+                    </surface>
+                </newparam>
+                <newparam sid="sampler1">
+                    <sampler2D>
+                        <source>surface1</source>
+                    </sampler2D>
+                </newparam>
+                <technique sid="COMMON">
+                    <blinn>
+                        <diffuse>
+                            <texture texture="sampler1" texcoord="UVSET0"></texture>
+                        </diffuse>
+                    </blinn>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="effect3">
+            <profile_COMMON>
+                <newparam sid="surface3">
+                    <surface type="2D">
+                        <init_from>tex_3</init_from>
+                    </surface>
+                </newparam>
+                <newparam sid="sampler3">
+                    <sampler2D>
+                        <source>surface3</source>
+                    </sampler2D>
+                </newparam>
+                <technique sid="COMMON">
+                    <blinn>
+                        <diffuse>
+                            <texture texture="sampler3" texcoord="UVSET0"></texture>
+                        </diffuse>
+                    </blinn>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="effect4">
+            <profile_COMMON>
+                <newparam sid="surface4">
+                    <surface type="2D">
+                        <init_from>tex_vertexColors</init_from>
+                    </surface>
+                </newparam>
+                <newparam sid="sampler4">
+                    <sampler2D>
+                        <source>surface4</source>
+                    </sampler2D>
+                </newparam>
+                <technique sid="COMMON">
+                    <blinn>
+                        <diffuse>
+                            <texture texture="sampler4" texcoord="UVSET0"></texture>
+                        </diffuse>
+                    </blinn>
+                </technique>
+            </profile_COMMON>
+        </effect>
+    </library_effects>
+    <library_materials>
+        <material id="mat0" name="Mat0">
+            <instance_effect url="#effect0"/>
+        </material>
+        <material id="mat1" name="Mat1">
+            <instance_effect url="#effect1"/>
+        </material>
+        <material id="mat3" name="Mat3">
+            <instance_effect url="#effect3"/>
+        </material>
+        <material id="mat4" name="vertexColors">
+            <instance_effect url="#effect4"/>
+        </material>
+    </library_materials>
+    <library_geometries>
+        <geometry id="meshMesh0_1">
+            <mesh>
+                <source id="pointsMesh0_1">
+                    <float_array id="pointarrayMesh0_1" count="48">-12 0 -58 -12 0 59 -12 1024 59 -12 1024 -58 -12 1024 59 604 1024 59 604 1024 -58 604 0 -58 -12 0 59 -12 0 -58 604 0 59 604 0 59 604 0 -58 604 1024 -58 604 1024 59 -12 1024 -58</float_array>
+                    <technique_common>
+                        <accessor count="16" source="#pointarrayMesh0_1" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh0_1">
+                    <float_array id="uvarrayMesh0_1" count="32">0 1 0.966796875 1 0.966796875 0.017578125 0.966796875 0.017578125 0 0.017578125 0 1 0.966796875 1 0 1 0.966796875 0.017578125 0 0.017578125 0.966796875 1 0 1 0.966796875 1 0.966796875 0.017578125 0 0.017578125 0 0.017578125</float_array>
+                    <technique_common>
+                        <accessor count="16" source="#uvarrayMesh0_1" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh0_1">
+                    <input semantic="POSITION" source="#pointsMesh0_1"/>
+                </vertices>
+                <polylist count="8" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh0_1"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh0_1" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 3 3 4 4 5 5 3 3 5 5 6 6 7 7 8 8 9 9 7 7 10 10 8 8 11 11 12 12 13 13 11 11 13 13 14 14 0 0 2 2 15 15</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh0_2">
+            <mesh>
+                <source id="pointsMesh0_2">
+                    <float_array id="pointarrayMesh0_2" count="48">-12 0 -58 -12 0 59 -12 1024 59 -12 1024 -58 -12 1024 59 604 1024 59 604 1024 -58 604 0 -58 -12 0 59 -12 0 -58 604 0 59 604 0 59 604 0 -58 604 1024 -58 604 1024 59 -12 1024 -58</float_array>
+                    <technique_common>
+                        <accessor count="16" source="#pointarrayMesh0_2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh0_2">
+                    <float_array id="uvarrayMesh0_2" count="32">0 1 0.966796875 1 0.966796875 0.017578125 0.966796875 0.017578125 0 0.017578125 0 1 0.966796875 1 0 1 0.966796875 0.017578125 0 0.017578125 0.966796875 1 0 1 0.966796875 1 0.966796875 0.017578125 0 0.017578125 0 0.017578125</float_array>
+                    <technique_common>
+                        <accessor count="16" source="#uvarrayMesh0_2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh0_2">
+                    <input semantic="POSITION" source="#pointsMesh0_2"/>
+                </vertices>
+                <polylist count="8" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh0_2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh0_2" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 3 3 4 4 5 5 3 3 5 5 6 6 7 7 8 8 9 9 7 7 10 10 8 8 11 11 12 12 13 13 11 11 13 13 14 14 0 0 2 2 15 15</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh0_VC2">
+            <mesh>
+                <source id="pointsMesh0_VC2">
+                    <float_array id="pointarrayMesh0_VC2" count="48">-12 0 -58 -12 0 59 -12 1024 59 -12 1024 -58 -12 1024 59 604 1024 59 604 1024 -58 604 0 -58 -12 0 59 -12 0 -58 604 0 59 604 0 59 604 0 -58 604 1024 -58 604 1024 59 -12 1024 -58</float_array>
+                    <technique_common>
+                        <accessor count="16" source="#pointarrayMesh0_VC2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh0_VC2">
+                    <float_array id="uvarrayMesh0_VC2" count="48">0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75</float_array>
+                    <technique_common>
+                        <accessor count="24" source="#uvarrayMesh0_VC2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh0_VC2">
+                    <input semantic="POSITION" source="#pointsMesh0_VC2"/>
+                </vertices>
+                <polylist count="8" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh0_VC2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh0_VC2" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 3 3 4 4 5 5 3 6 5 7 6 8 7 9 8 10 9 11 7 12 10 13 8 14 11 15 12 16 13 17 11 18 13 19 14 20 0 21 2 22 15 23</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh1_1">
+            <mesh>
+                <source id="pointsMesh1_1">
+                    <float_array id="pointarrayMesh1_1" count="24">604 0 -58 -12 0 -58 -12 1024 -58 604 1024 -58 -12 0 59 604 0 59 604 1024 59 -12 1024 59</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh1_1" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh1_1">
+                    <float_array id="uvarrayMesh1_1" count="16">0.951171875 0.111328125 0 0.11328125 0 0.939453125 0.951171875 0.9375 0 0.11328125 0.951171875 0.115234375 0.951171875 0.935546875 0 0.931640625</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#uvarrayMesh1_1" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh1_1">
+                    <input semantic="POSITION" source="#pointsMesh1_1"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh1_1"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh1_1" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 0 2 2 3 3 4 4 5 5 6 6 4 4 6 6 7 7</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh1_2">
+            <mesh>
+                <source id="pointsMesh1_2">
+                    <float_array id="pointarrayMesh1_2" count="24">604 0 -58 -12 0 -58 -12 1024 -58 604 1024 -58 -12 0 59 604 0 59 604 1024 59 -12 1024 59</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh1_2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh1_2">
+                    <float_array id="uvarrayMesh1_2" count="16">0.951171875 0.111328125 0 0.11328125 0 0.939453125 0.951171875 0.9375 0 0.11328125 0.951171875 0.115234375 0.951171875 0.935546875 0 0.931640625</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#uvarrayMesh1_2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh1_2">
+                    <input semantic="POSITION" source="#pointsMesh1_2"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh1_2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh1_2" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 0 2 2 3 3 4 4 5 5 6 6 4 4 6 6 7 7</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh1_VC2">
+            <mesh>
+                <source id="pointsMesh1_VC2">
+                    <float_array id="pointarrayMesh1_VC2" count="24">604 0 -58 -12 0 -58 -12 1024 -58 604 1024 -58 -12 0 59 604 0 59 604 1024 59 -12 1024 59</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh1_VC2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh1_VC2">
+                    <float_array id="uvarrayMesh1_VC2" count="24">0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75</float_array>
+                    <technique_common>
+                        <accessor count="12" source="#uvarrayMesh1_VC2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh1_VC2">
+                    <input semantic="POSITION" source="#pointsMesh1_VC2"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh1_VC2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh1_VC2" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 3 2 4 3 5 4 6 5 7 6 8 4 9 6 10 7 11</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh2_2">
+            <mesh>
+                <source id="pointsMesh2_2">
+                    <float_array id="pointarrayMesh2_2" count="72">512 512 104 456 432 160 512 488 160 512 372 160 572 432 160 596 432 104 512 348 104 432 432 104 512 488 44 456 432 44 512 372 44 572 432 44 512 488 -156 512 372 -156 456 432 -156 432 432 -100 512 512 -100 572 432 -156 512 348 -100 596 432 -100 572 432 -40 512 372 -40 456 432 -40 512 488 -40</float_array>
+                    <technique_common>
+                        <accessor count="24" source="#pointarrayMesh2_2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh2_2">
+                    <float_array id="uvarrayMesh2_2" count="48">0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</float_array>
+                    <technique_common>
+                        <accessor count="24" source="#uvarrayMesh2_2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh2_2">
+                    <input semantic="POSITION" source="#pointsMesh2_2"/>
+                </vertices>
+                <polylist count="36" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh2_2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh2_2" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 2 2 3 3 4 4 2 2 1 1 3 3 5 5 2 2 4 4 5 5 0 0 2 2 6 6 4 4 3 3 7 7 6 6 3 3 7 7 3 3 1 1 6 6 5 5 4 4 0 0 7 7 1 1 8 8 9 9 7 7 9 9 6 6 7 7 8 8 7 7 0 0 9 9 10 10 6 6 10 10 5 5 6 6 10 10 11 11 5 5 11 11 0 0 5 5 11 11 8 8 0 0 12 12 13 13 14 14 12 12 14 14 15 15 12 12 15 15 16 16 12 12 17 17 13 13 17 17 12 12 16 16 14 14 13 13 18 18 13 13 19 19 18 18 13 13 17 17 19 19 14 14 18 18 15 15 17 17 16 16 19 19 18 18 20 20 21 21 15 15 18 18 21 21 18 18 19 19 20 20 16 16 15 15 22 22 15 15 21 21 22 22 19 19 16 16 23 23 19 19 23 23 20 20 16 16 22 22 23 23</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh2_VC1">
+            <mesh>
+                <source id="pointsMesh2_VC1">
+                    <float_array id="pointarrayMesh2_VC1" count="72">512 512 104 456 432 160 512 488 160 512 372 160 572 432 160 596 432 104 512 348 104 432 432 104 512 488 44 456 432 44 512 372 44 572 432 44 512 488 -156 512 372 -156 456 432 -156 432 432 -100 512 512 -100 572 432 -156 512 348 -100 596 432 -100 572 432 -40 512 372 -40 456 432 -40 512 488 -40</float_array>
+                    <technique_common>
+                        <accessor count="24" source="#pointarrayMesh2_VC1" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh2_VC1">
+                    <float_array id="uvarrayMesh2_VC1" count="216">0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75</float_array>
+                    <technique_common>
+                        <accessor count="108" source="#uvarrayMesh2_VC1" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh2_VC1">
+                    <input semantic="POSITION" source="#pointsMesh2_VC1"/>
+                </vertices>
+                <polylist count="36" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh2_VC1"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh2_VC1" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 2 3 3 4 4 5 2 6 1 7 3 8 5 9 2 10 4 11 5 12 0 13 2 14 6 15 4 16 3 17 7 18 6 19 3 20 7 21 3 22 1 23 6 24 5 25 4 26 0 27 7 28 1 29 8 30 9 31 7 32 9 33 6 34 7 35 8 36 7 37 0 38 9 39 10 40 6 41 10 42 5 43 6 44 10 45 11 46 5 47 11 48 0 49 5 50 11 51 8 52 0 53 12 54 13 55 14 56 12 57 14 58 15 59 12 60 15 61 16 62 12 63 17 64 13 65 17 66 12 67 16 68 14 69 13 70 18 71 13 72 19 73 18 74 13 75 17 76 19 77 14 78 18 79 15 80 17 81 16 82 19 83 18 84 20 85 21 86 15 87 18 88 21 89 18 90 19 91 20 92 16 93 15 94 22 95 15 96 21 97 22 98 19 99 16 100 23 101 19 102 23 103 20 104 16 105 22 106 23 107</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh2_VC2">
+            <mesh>
+                <source id="pointsMesh2_VC2">
+                    <float_array id="pointarrayMesh2_VC2" count="72">512 512 104 456 432 160 512 488 160 512 372 160 572 432 160 596 432 104 512 348 104 432 432 104 512 488 44 456 432 44 512 372 44 572 432 44 512 488 -156 512 372 -156 456 432 -156 432 432 -100 512 512 -100 572 432 -156 512 348 -100 596 432 -100 572 432 -40 512 372 -40 456 432 -40 512 488 -40</float_array>
+                    <technique_common>
+                        <accessor count="24" source="#pointarrayMesh2_VC2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh2_VC2">
+                    <float_array id="uvarrayMesh2_VC2" count="216">0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75</float_array>
+                    <technique_common>
+                        <accessor count="108" source="#uvarrayMesh2_VC2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh2_VC2">
+                    <input semantic="POSITION" source="#pointsMesh2_VC2"/>
+                </vertices>
+                <polylist count="36" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh2_VC2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh2_VC2" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 2 3 3 4 4 5 2 6 1 7 3 8 5 9 2 10 4 11 5 12 0 13 2 14 6 15 4 16 3 17 7 18 6 19 3 20 7 21 3 22 1 23 6 24 5 25 4 26 0 27 7 28 1 29 8 30 9 31 7 32 9 33 6 34 7 35 8 36 7 37 0 38 9 39 10 40 6 41 10 42 5 43 6 44 10 45 11 46 5 47 11 48 0 49 5 50 11 51 8 52 0 53 12 54 13 55 14 56 12 57 14 58 15 59 12 60 15 61 16 62 12 63 17 64 13 65 17 66 12 67 16 68 14 69 13 70 18 71 13 72 19 73 18 74 13 75 17 76 19 77 14 78 18 79 15 80 17 81 16 82 19 83 18 84 20 85 21 86 15 87 18 88 21 89 18 90 19 91 20 92 16 93 15 94 22 95 15 96 21 97 22 98 19 99 16 100 23 101 19 102 23 103 20 104 16 105 22 106 23 107</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh3_1">
+            <mesh>
+                <source id="pointsMesh3_1">
+                    <float_array id="pointarrayMesh3_1" count="24">595 916 64 405 544 64 595 544 64 405 916 64 595 544 -63 405 544 -63 405 916 -63 595 916 -63</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh3_1" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh3_1">
+                    <float_array id="uvarrayMesh3_1" count="16">0.9375 1 0 0.03125 0.9375 0.03125 0 1 0.9375 0.03125 0 0.03125 0 1 0.9375 1</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#uvarrayMesh3_1" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh3_1">
+                    <input semantic="POSITION" source="#pointsMesh3_1"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh3_1"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh3_1" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 0 3 3 1 1 4 4 5 5 6 6 4 4 6 6 7 7</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh3_2">
+            <mesh>
+                <source id="pointsMesh3_2">
+                    <float_array id="pointarrayMesh3_2" count="24">595 916 64 405 544 64 595 544 64 405 916 64 595 544 -63 405 544 -63 405 916 -63 595 916 -63</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh3_2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh3_2">
+                    <float_array id="uvarrayMesh3_2" count="16">0.9375 1 0 0.03125 0.9375 0.03125 0 1 0.9375 0.03125 0 0.03125 0 1 0.9375 1</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#uvarrayMesh3_2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh3_2">
+                    <input semantic="POSITION" source="#pointsMesh3_2"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh3_2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh3_2" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 0 3 3 1 1 4 4 5 5 6 6 4 4 6 6 7 7</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh3_VC2">
+            <mesh>
+                <source id="pointsMesh3_VC2">
+                    <float_array id="pointarrayMesh3_VC2" count="24">595 916 64 405 544 64 595 544 64 405 916 64 595 544 -63 405 544 -63 405 916 -63 595 916 -63</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh3_VC2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh3_VC2">
+                    <float_array id="uvarrayMesh3_VC2" count="24">0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75</float_array>
+                    <technique_common>
+                        <accessor count="12" source="#uvarrayMesh3_VC2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh3_VC2">
+                    <input semantic="POSITION" source="#pointsMesh3_VC2"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh3_VC2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh3_VC2" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 3 3 4 1 5 4 6 5 7 6 8 4 9 6 10 7 11</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh4_1">
+            <mesh>
+                <source id="pointsMesh4_1">
+                    <float_array id="pointarrayMesh4_1" count="48">-12 0 -58 -12 0 59 -12 1024 59 -12 1024 -58 -12 1024 59 604 1024 59 604 1024 -58 604 0 -58 -12 0 59 -12 0 -58 604 0 59 604 0 59 604 0 -58 604 1024 -58 604 1024 59 -12 1024 -58</float_array>
+                    <technique_common>
+                        <accessor count="16" source="#pointarrayMesh4_1" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh4_1">
+                    <float_array id="uvarrayMesh4_1" count="32">0 1 0.966796875 1 0.966796875 0.017578125 0.966796875 0.017578125 0 0.017578125 0 1 0.966796875 1 0 1 0.966796875 0.017578125 0 0.017578125 0.966796875 1 0 1 0.966796875 1 0.966796875 0.017578125 0 0.017578125 0 0.017578125</float_array>
+                    <technique_common>
+                        <accessor count="16" source="#uvarrayMesh4_1" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh4_1">
+                    <input semantic="POSITION" source="#pointsMesh4_1"/>
+                </vertices>
+                <polylist count="8" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh4_1"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh4_1" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 3 3 4 4 5 5 3 3 5 5 6 6 7 7 8 8 9 9 7 7 10 10 8 8 11 11 12 12 13 13 11 11 13 13 14 14 0 0 2 2 15 15</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh4_2">
+            <mesh>
+                <source id="pointsMesh4_2">
+                    <float_array id="pointarrayMesh4_2" count="48">-12 0 -58 -12 0 59 -12 1024 59 -12 1024 -58 -12 1024 59 604 1024 59 604 1024 -58 604 0 -58 -12 0 59 -12 0 -58 604 0 59 604 0 59 604 0 -58 604 1024 -58 604 1024 59 -12 1024 -58</float_array>
+                    <technique_common>
+                        <accessor count="16" source="#pointarrayMesh4_2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh4_2">
+                    <float_array id="uvarrayMesh4_2" count="32">0 1 0.966796875 1 0.966796875 0.017578125 0.966796875 0.017578125 0 0.017578125 0 1 0.966796875 1 0 1 0.966796875 0.017578125 0 0.017578125 0.966796875 1 0 1 0.966796875 1 0.966796875 0.017578125 0 0.017578125 0 0.017578125</float_array>
+                    <technique_common>
+                        <accessor count="16" source="#uvarrayMesh4_2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh4_2">
+                    <input semantic="POSITION" source="#pointsMesh4_2"/>
+                </vertices>
+                <polylist count="8" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh4_2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh4_2" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 3 3 4 4 5 5 3 3 5 5 6 6 7 7 8 8 9 9 7 7 10 10 8 8 11 11 12 12 13 13 11 11 13 13 14 14 0 0 2 2 15 15</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh4_VC2">
+            <mesh>
+                <source id="pointsMesh4_VC2">
+                    <float_array id="pointarrayMesh4_VC2" count="48">-12 0 -58 -12 0 59 -12 1024 59 -12 1024 -58 -12 1024 59 604 1024 59 604 1024 -58 604 0 -58 -12 0 59 -12 0 -58 604 0 59 604 0 59 604 0 -58 604 1024 -58 604 1024 59 -12 1024 -58</float_array>
+                    <technique_common>
+                        <accessor count="16" source="#pointarrayMesh4_VC2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh4_VC2">
+                    <float_array id="uvarrayMesh4_VC2" count="48">0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75</float_array>
+                    <technique_common>
+                        <accessor count="24" source="#uvarrayMesh4_VC2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh4_VC2">
+                    <input semantic="POSITION" source="#pointsMesh4_VC2"/>
+                </vertices>
+                <polylist count="8" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh4_VC2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh4_VC2" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 3 3 4 4 5 5 3 6 5 7 6 8 7 9 8 10 9 11 7 12 10 13 8 14 11 15 12 16 13 17 11 18 13 19 14 20 0 21 2 22 15 23</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh5_1">
+            <mesh>
+                <source id="pointsMesh5_1">
+                    <float_array id="pointarrayMesh5_1" count="24">604 0 -58 -12 0 -58 -12 1024 -58 604 1024 -58 -12 0 59 604 0 59 604 1024 59 -12 1024 59</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh5_1" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh5_1">
+                    <float_array id="uvarrayMesh5_1" count="16">0.951171875 0.111328125 0 0.11328125 0 0.939453125 0.951171875 0.9375 0 0.11328125 0.951171875 0.115234375 0.951171875 0.935546875 0 0.931640625</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#uvarrayMesh5_1" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh5_1">
+                    <input semantic="POSITION" source="#pointsMesh5_1"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh5_1"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh5_1" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 0 2 2 3 3 4 4 5 5 6 6 4 4 6 6 7 7</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh5_2">
+            <mesh>
+                <source id="pointsMesh5_2">
+                    <float_array id="pointarrayMesh5_2" count="24">604 0 -58 -12 0 -58 -12 1024 -58 604 1024 -58 -12 0 59 604 0 59 604 1024 59 -12 1024 59</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh5_2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh5_2">
+                    <float_array id="uvarrayMesh5_2" count="16">0.951171875 0.111328125 0 0.11328125 0 0.939453125 0.951171875 0.9375 0 0.11328125 0.951171875 0.115234375 0.951171875 0.935546875 0 0.931640625</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#uvarrayMesh5_2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh5_2">
+                    <input semantic="POSITION" source="#pointsMesh5_2"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh5_2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh5_2" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 0 2 2 3 3 4 4 5 5 6 6 4 4 6 6 7 7</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh5_VC2">
+            <mesh>
+                <source id="pointsMesh5_VC2">
+                    <float_array id="pointarrayMesh5_VC2" count="24">604 0 -58 -12 0 -58 -12 1024 -58 604 1024 -58 -12 0 59 604 0 59 604 1024 59 -12 1024 59</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh5_VC2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh5_VC2">
+                    <float_array id="uvarrayMesh5_VC2" count="24">0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75</float_array>
+                    <technique_common>
+                        <accessor count="12" source="#uvarrayMesh5_VC2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh5_VC2">
+                    <input semantic="POSITION" source="#pointsMesh5_VC2"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh5_VC2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh5_VC2" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 3 2 4 3 5 4 6 5 7 6 8 4 9 6 10 7 11</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh6_2">
+            <mesh>
+                <source id="pointsMesh6_2">
+                    <float_array id="pointarrayMesh6_2" count="72">512 512 104 456 432 160 512 488 160 512 372 160 572 432 160 596 432 104 512 348 104 432 432 104 512 488 44 456 432 44 512 372 44 572 432 44 512 488 -156 512 372 -156 456 432 -156 432 432 -100 512 512 -100 572 432 -156 512 348 -100 596 432 -100 572 432 -40 512 372 -40 456 432 -40 512 488 -40</float_array>
+                    <technique_common>
+                        <accessor count="24" source="#pointarrayMesh6_2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh6_2">
+                    <float_array id="uvarrayMesh6_2" count="48">0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</float_array>
+                    <technique_common>
+                        <accessor count="24" source="#uvarrayMesh6_2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh6_2">
+                    <input semantic="POSITION" source="#pointsMesh6_2"/>
+                </vertices>
+                <polylist count="36" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh6_2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh6_2" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 2 2 3 3 4 4 2 2 1 1 3 3 5 5 2 2 4 4 5 5 0 0 2 2 6 6 4 4 3 3 7 7 6 6 3 3 7 7 3 3 1 1 6 6 5 5 4 4 0 0 7 7 1 1 8 8 9 9 7 7 9 9 6 6 7 7 8 8 7 7 0 0 9 9 10 10 6 6 10 10 5 5 6 6 10 10 11 11 5 5 11 11 0 0 5 5 11 11 8 8 0 0 12 12 13 13 14 14 12 12 14 14 15 15 12 12 15 15 16 16 12 12 17 17 13 13 17 17 12 12 16 16 14 14 13 13 18 18 13 13 19 19 18 18 13 13 17 17 19 19 14 14 18 18 15 15 17 17 16 16 19 19 18 18 20 20 21 21 15 15 18 18 21 21 18 18 19 19 20 20 16 16 15 15 22 22 15 15 21 21 22 22 19 19 16 16 23 23 19 19 23 23 20 20 16 16 22 22 23 23</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh6_VC1">
+            <mesh>
+                <source id="pointsMesh6_VC1">
+                    <float_array id="pointarrayMesh6_VC1" count="72">512 512 104 456 432 160 512 488 160 512 372 160 572 432 160 596 432 104 512 348 104 432 432 104 512 488 44 456 432 44 512 372 44 572 432 44 512 488 -156 512 372 -156 456 432 -156 432 432 -100 512 512 -100 572 432 -156 512 348 -100 596 432 -100 572 432 -40 512 372 -40 456 432 -40 512 488 -40</float_array>
+                    <technique_common>
+                        <accessor count="24" source="#pointarrayMesh6_VC1" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh6_VC1">
+                    <float_array id="uvarrayMesh6_VC1" count="216">0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75 0.3125 0.75</float_array>
+                    <technique_common>
+                        <accessor count="108" source="#uvarrayMesh6_VC1" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh6_VC1">
+                    <input semantic="POSITION" source="#pointsMesh6_VC1"/>
+                </vertices>
+                <polylist count="36" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh6_VC1"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh6_VC1" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 2 3 3 4 4 5 2 6 1 7 3 8 5 9 2 10 4 11 5 12 0 13 2 14 6 15 4 16 3 17 7 18 6 19 3 20 7 21 3 22 1 23 6 24 5 25 4 26 0 27 7 28 1 29 8 30 9 31 7 32 9 33 6 34 7 35 8 36 7 37 0 38 9 39 10 40 6 41 10 42 5 43 6 44 10 45 11 46 5 47 11 48 0 49 5 50 11 51 8 52 0 53 12 54 13 55 14 56 12 57 14 58 15 59 12 60 15 61 16 62 12 63 17 64 13 65 17 66 12 67 16 68 14 69 13 70 18 71 13 72 19 73 18 74 13 75 17 76 19 77 14 78 18 79 15 80 17 81 16 82 19 83 18 84 20 85 21 86 15 87 18 88 21 89 18 90 19 91 20 92 16 93 15 94 22 95 15 96 21 97 22 98 19 99 16 100 23 101 19 102 23 103 20 104 16 105 22 106 23 107</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh6_VC2">
+            <mesh>
+                <source id="pointsMesh6_VC2">
+                    <float_array id="pointarrayMesh6_VC2" count="72">512 512 104 456 432 160 512 488 160 512 372 160 572 432 160 596 432 104 512 348 104 432 432 104 512 488 44 456 432 44 512 372 44 572 432 44 512 488 -156 512 372 -156 456 432 -156 432 432 -100 512 512 -100 572 432 -156 512 348 -100 596 432 -100 572 432 -40 512 372 -40 456 432 -40 512 488 -40</float_array>
+                    <technique_common>
+                        <accessor count="24" source="#pointarrayMesh6_VC2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh6_VC2">
+                    <float_array id="uvarrayMesh6_VC2" count="216">0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75 0.5625 0.75</float_array>
+                    <technique_common>
+                        <accessor count="108" source="#uvarrayMesh6_VC2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh6_VC2">
+                    <input semantic="POSITION" source="#pointsMesh6_VC2"/>
+                </vertices>
+                <polylist count="36" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh6_VC2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh6_VC2" set="0"/>
+                    <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 2 3 3 4 4 5 2 6 1 7 3 8 5 9 2 10 4 11 5 12 0 13 2 14 6 15 4 16 3 17 7 18 6 19 3 20 7 21 3 22 1 23 6 24 5 25 4 26 0 27 7 28 1 29 8 30 9 31 7 32 9 33 6 34 7 35 8 36 7 37 0 38 9 39 10 40 6 41 10 42 5 43 6 44 10 45 11 46 5 47 11 48 0 49 5 50 11 51 8 52 0 53 12 54 13 55 14 56 12 57 14 58 15 59 12 60 15 61 16 62 12 63 17 64 13 65 17 66 12 67 16 68 14 69 13 70 18 71 13 72 19 73 18 74 13 75 17 76 19 77 14 78 18 79 15 80 17 81 16 82 19 83 18 84 20 85 21 86 15 87 18 88 21 89 18 90 19 91 20 92 16 93 15 94 22 95 15 96 21 97 22 98 19 99 16 100 23 101 19 102 23 103 20 104 16 105 22 106 23 107</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh7_1">
+            <mesh>
+                <source id="pointsMesh7_1">
+                    <float_array id="pointarrayMesh7_1" count="24">595 916 59 405 544 59 595 544 59 405 916 59 595 544 -58 405 544 -58 405 916 -58 595 916 -58</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh7_1" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh7_1">
+                    <float_array id="uvarrayMesh7_1" count="16">0.93359375 1 0 0.03125 0.93359375 0.03125 0 1 0.93359375 0.03125 0 0.03125 0 1 0.93359375 1</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#uvarrayMesh7_1" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh7_1">
+                    <input semantic="POSITION" source="#pointsMesh7_1"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh7_1"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh7_1" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 0 3 3 1 1 4 4 5 5 6 6 4 4 6 6 7 7</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh7_2">
+            <mesh>
+                <source id="pointsMesh7_2">
+                    <float_array id="pointarrayMesh7_2" count="24">595 916 59 405 544 59 595 544 59 405 916 59 595 544 -58 405 544 -58 405 916 -58 595 916 -58</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh7_2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh7_2">
+                    <float_array id="uvarrayMesh7_2" count="16">0.93359375 1 0 0.03125 0.93359375 0.03125 0 1 0.93359375 0.03125 0 0.03125 0 1 0.93359375 1</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#uvarrayMesh7_2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh7_2">
+                    <input semantic="POSITION" source="#pointsMesh7_2"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh7_2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh7_2" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 0 3 3 1 1 4 4 5 5 6 6 4 4 6 6 7 7</p>
+                </polylist>
+            </mesh>
+        </geometry>
+        <geometry id="meshMesh7_VC2">
+            <mesh>
+                <source id="pointsMesh7_VC2">
+                    <float_array id="pointarrayMesh7_VC2" count="24">595 916 59 405 544 59 595 544 59 405 916 59 595 544 -58 405 544 -58 405 916 -58 595 916 -58</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#pointarrayMesh7_VC2" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="uvsMesh7_VC2">
+                    <float_array id="uvarrayMesh7_VC2" count="24">0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75 0.0625 0.75</float_array>
+                    <technique_common>
+                        <accessor count="12" source="#uvarrayMesh7_VC2" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="verticesMesh7_VC2">
+                    <input semantic="POSITION" source="#pointsMesh7_VC2"/>
+                </vertices>
+                <polylist count="4" material="Material1">
+                    <input offset="0" semantic="VERTEX" source="#verticesMesh7_VC2"/>
+                    <input offset="1" semantic="TEXCOORD" source="#uvsMesh7_VC2" set="0"/>
+                    <vcount>3 3 3 3</vcount>
+                    <p>0 0 1 1 2 2 0 3 3 4 1 5 4 6 5 7 6 8 4 9 6 10 7 11</p>
+                </polylist>
+            </mesh>
+        </geometry>
+    </library_geometries>
+    <library_visual_scenes>
+        <visual_scene id="VisualSceneNode">
+            <node id="node_Node0" name="Node0_trans">
+                <translate sid="translate">78 0 0</translate>
+                <node id="node_Node1" name="Node1_scale">
+                    <scale sid="scale">0.25 0.25 0.25</scale>
+                    <node id="node_Node2" name="Node2_part">
+                        <translate sid="translate">-300 0 0</translate>
+                        <node id="node_Node3" name="Node3_LOD">
+                            <node id="node_Node4" name="Node4_part">
+                                <node id="node_Mesh0_1" name="Mesh0">
+                                    <instance_geometry url="#meshMesh0_1">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat0">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Mesh0_VC2" name="Mesh0_VC_shade">
+                                    <instance_geometry url="#meshMesh0_VC2">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat4">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Mesh1_1" name="Mesh1">
+                                    <instance_geometry url="#meshMesh1_1">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat1">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Mesh1_VC2" name="Mesh1_VC_shade">
+                                    <instance_geometry url="#meshMesh1_VC2">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat4">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Mesh2_VC1" name="Mesh2_VC">
+                                    <instance_geometry url="#meshMesh2_VC1">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat4">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Mesh2_VC2" name="Mesh2_VC_shade">
+                                    <instance_geometry url="#meshMesh2_VC2">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat4">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Node5" name="Node5_display">
+                                    <node id="node_Node6" name="Node6_display">
+                                        <node id="node_Mesh3_1" name="Mesh3">
+                                            <instance_geometry url="#meshMesh3_1">
+                                                <bind_material>
+                                                    <technique_common>
+                                                        <instance_material symbol="Material1" target="#mat3">
+                                                            <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                        </instance_material>
+                                                    </technique_common>
+                                                </bind_material>
+                                            </instance_geometry>
+                                        </node>
+                                        <node id="node_Mesh3_VC2" name="Mesh3_VC_shade">
+                                            <instance_geometry url="#meshMesh3_VC2">
+                                                <bind_material>
+                                                    <technique_common>
+                                                        <instance_material symbol="Material1" target="#mat4">
+                                                            <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                        </instance_material>
+                                                    </technique_common>
+                                                </bind_material>
+                                            </instance_geometry>
+                                        </node>
+                                    </node>
+                                </node>
+                            </node>
+                        </node>
+                        <node id="node_Node7" name="Node7_LOD">
+                            <node id="node_Node8" name="Node8_part">
+                                <node id="node_Mesh4_1" name="Mesh4">
+                                    <instance_geometry url="#meshMesh4_1">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat0">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Mesh4_VC2" name="Mesh4_VC_shade">
+                                    <instance_geometry url="#meshMesh4_VC2">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat4">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Mesh5_1" name="Mesh5">
+                                    <instance_geometry url="#meshMesh5_1">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat1">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Mesh5_VC2" name="Mesh5_VC_shade">
+                                    <instance_geometry url="#meshMesh5_VC2">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat4">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Mesh6_VC1" name="Mesh6_VC">
+                                    <instance_geometry url="#meshMesh6_VC1">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat4">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Mesh6_VC2" name="Mesh6_VC_shade">
+                                    <instance_geometry url="#meshMesh6_VC2">
+                                        <bind_material>
+                                            <technique_common>
+                                                <instance_material symbol="Material1" target="#mat4">
+                                                    <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                </instance_material>
+                                            </technique_common>
+                                        </bind_material>
+                                    </instance_geometry>
+                                </node>
+                                <node id="node_Node9" name="Node9_display">
+                                    <node id="node_Node10" name="Node10_display">
+                                        <node id="node_Mesh7_1" name="Mesh7">
+                                            <instance_geometry url="#meshMesh7_1">
+                                                <bind_material>
+                                                    <technique_common>
+                                                        <instance_material symbol="Material1" target="#mat3">
+                                                            <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                        </instance_material>
+                                                    </technique_common>
+                                                </bind_material>
+                                            </instance_geometry>
+                                        </node>
+                                        <node id="node_Mesh7_VC2" name="Mesh7_VC_shade">
+                                            <instance_geometry url="#meshMesh7_VC2">
+                                                <bind_material>
+                                                    <technique_common>
+                                                        <instance_material symbol="Material1" target="#mat4">
+                                                            <bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+                                                        </instance_material>
+                                                    </technique_common>
+                                                </bind_material>
+                                            </instance_geometry>
+                                        </node>
+                                    </node>
+                                </node>
+                            </node>
+                        </node>
+                    </node>
+                    <node id="node_Node11" name="Node11_part">
+                    </node>
+                    <node id="node_Node12" name="Node12_part">
+                    </node>
+                </node>
+            </node>
+        </visual_scene>
+    </library_visual_scenes>
+    <scene>
+        <instance_visual_scene url="#VisualSceneNode"/>
+    </scene>
+</COLLADA>
