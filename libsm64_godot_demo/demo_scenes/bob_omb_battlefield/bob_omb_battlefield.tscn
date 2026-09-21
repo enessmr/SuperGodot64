@@ -37,6 +37,8 @@
 [ext_resource type="Script" uid="uid://d2kel0c3xe50" path="res://libsm64_godot_demo/resources/exclamationboxspawnableobjects.gd" id="33_80bhc"]
 [ext_resource type="PackedScene" uid="uid://cogupkrgo1k35" path="res://models/Nintendo 64 - Super Mario 64 - Objects - Power Star/Power Star/star.tscn" id="34_3yayu"]
 [ext_resource type="Script" uid="uid://dw1eldpluvr31" path="res://libsm64_godot_demo/shared/globals/level_globals.gd" id="34_dyj3n"]
+[ext_resource type="Script" uid="uid://c5ubuqwnjoo1b" path="res://assets/coin.gd" id="39_2mypb"]
+[ext_resource type="PackedScene" uid="uid://cc2r0nq7oxhyu" path="res://assets/koopa.tscn" id="39_noeb5"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qo70i"]
 panorama = ExtResource("4_gg4l8")
@@ -78,7 +80,7 @@ material = SubResource("StandardMaterial3D_x8n0f")
 size = Vector2(0.5, 0.5)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pxfdq"]
-height = 1.5
+height = 1.61
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_84846"]
 resource_name = "f3dlite_material.011"
@@ -455,6 +457,16 @@ script = ExtResource("33_80bhc")
 object_type = "Star"
 metadata/_custom_type_script = "uid://d2kel0c3xe50"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evfve"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_noeb5"]
+material = SubResource("StandardMaterial3D_evfve")
+size = Vector3(1, 2.3270264, 1)
+
 [node name="BobOmbBattlefield" type="Node3D" unique_id=394103755]
 script = ExtResource("1_k4bkk")
 
@@ -494,14 +506,6 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.773918, 36.64499, 47.27876)
 script = ExtResource("2_uah3x")
 camera = NodePath("CameraRig")
-interpolate = null
-mario_inputs_stick_left = null
-mario_inputs_stick_right = null
-mario_inputs_stick_up = null
-mario_inputs_stick_down = null
-mario_inputs_button_a = null
-mario_inputs_button_b = null
-mario_inputs_button_z = null
 
 [node name="Sparkles" type="GPUParticles3D" parent="LibSM64Mario" unique_id=1476477493]
 unique_name_in_owner = true
@@ -525,7 +529,7 @@ script = ExtResource("6_2m751")
 mario = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LibSM64Mario/MarioRB" unique_id=450521596]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_pxfdq")
 
 [node name="Camera_StarGrab" type="Marker3D" parent="LibSM64Mario" unique_id=1996113799]
@@ -588,12 +592,14 @@ layout_mode = 0
 offset_right = 173.0
 offset_bottom = 136.0
 
-[node name="HUD" parent="Interface" unique_id=723167950 instance=ExtResource("11_x8n0f")]
+[node name="HUD" parent="Interface" unique_id=723167950 node_paths=PackedStringArray("_mario") instance=ExtResource("11_x8n0f")]
 unique_name_in_owner = true
+_mario = NodePath("../../LibSM64Mario")
 
 [node name="RomPickerDialog" parent="Interface" unique_id=2031306569 instance=ExtResource("5_oe0ua")]
 unique_name_in_owner = true
 oversampling_override = 1.0
+position = Vector2i(0, 36)
 size = Vector2i(515, 180)
 always_on_top = true
 
@@ -840,6 +846,63 @@ YellowBoxStar = NodePath("../Star")
 [node name="LevelGlobals" type="Node" parent="." unique_id=676943002]
 unique_name_in_owner = true
 script = ExtResource("34_dyj3n")
+
+[node name="DebugCoin3D" type="MeshInstance3D" parent="." unique_id=119426862 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.262466, 31.86956, 46.340042)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D" type="MeshInstance3D" parent="." unique_id=592537305 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.46116, 1.1678228, -6.482637)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D2" type="MeshInstance3D" parent="." unique_id=1472492745 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.46116, 1.1678228, -3.382373)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D3" type="MeshInstance3D" parent="." unique_id=2085850541 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.46116, 1.1678228, -0.61290073)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D4" type="MeshInstance3D" parent="." unique_id=1970415811 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.46116, 1.1678228, 1.7132711)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D5" type="MeshInstance3D" parent="." unique_id=1285224320 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.46116, 1.1678228, 4.058752)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D6" type="MeshInstance3D" parent="." unique_id=1453329532 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.913299, 11.911271, 6.026725)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+coin_amount = 2
+red_coin = true
+yellow_coin = false
+hitbox_size = Vector3(1.7, 2.327, 1.7)
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="koopa" parent="." unique_id=1402922750 instance=ExtResource("39_noeb5")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -4.044733, 30.991035, 44.314438)
+race_mode = false
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="pressed" from="Interface/CanvasLayer/PauseMenuPanel/Panel/Button" to="Interface/CanvasLayer" method="_on_button_pressed"]

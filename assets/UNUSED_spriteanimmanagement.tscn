@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dvtx1d5ryju88"]
+
+[ext_resource type="SpriteFrames" uid="uid://bjqjf75gtoqox" path="res://assets/spriteframes/spriteframes_particles.tres" id="1_cmmco"]
+[ext_resource type="Script" uid="uid://capv6iqnc6gul" path="res://assets/REFERENCES_Particles.gd" id="1_uy2r4"]
+
+[node name="Node3D" type="Node3D" unique_id=569786254 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_uy2r4")
+sprite = NodePath("AnimatedSprite3D")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1865880483]
+pixel_size = 0.002
+texture_filter = 5
+sprite_frames = ExtResource("1_cmmco")
+animation = &"sparkle_animation"
+frame_progress = 0.7093103

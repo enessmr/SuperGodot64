@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b0itmstncdh3o" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Doors/Doors/door.tscn" id="21_kl2pj"]
 [ext_resource type="Script" uid="uid://d0ak76u87aww3" path="res://addons/libsm64_godot/handlers/libsm64_surface_objects_handler.gd" id="22_qnc5p"]
 [ext_resource type="PackedScene" uid="uid://dslerdaxajnnx" path="res://assets/castle_course.tscn" id="23_rd3vv"]
+[ext_resource type="PackedScene" uid="uid://phmmbt5nprlo" path="res://models/yoshi_egg.tscn" id="23_wmw5l"]
 [ext_resource type="Script" uid="uid://dw1eldpluvr31" path="res://libsm64_godot_demo/shared/globals/level_globals.gd" id="37_fedet"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qo70i"]
@@ -37,7 +38,6 @@ ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
 glow_enabled = true
-fog_enabled = true
 fog_mode = 1
 fog_light_energy = 0.62
 fog_density = 0.7209
@@ -314,6 +314,7 @@ unique_name_in_owner = true
 [node name="RomPickerDialog" parent="Interface" unique_id=2031306569 instance=ExtResource("12_tx7pf")]
 unique_name_in_owner = true
 oversampling_override = 1.0
+position = Vector2i(0, 36)
 size = Vector2i(515, 180)
 always_on_top = true
 
@@ -448,6 +449,9 @@ material = SubResource("StandardMaterial3D_x1kpf")
 [node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="." unique_id=1260558988]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61409, 2.5715027, -23.274693)
 mesh = SubResource("ArrayMesh_x1kpf")
+
+[node name="yoshi_egg" parent="." unique_id=2119096712 instance=ExtResource("23_wmw5l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.580475, -6.5761843, -16.697245)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="pressed" from="Interface/CanvasLayer/PauseMenuPanel/Panel/Button" to="Interface/CanvasLayer" method="_on_button_pressed"]

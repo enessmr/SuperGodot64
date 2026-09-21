@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://duwx5w712telv"]
+
+[node name="Node3D" type="Node3D" unique_id=142184619]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1499257373]
+projection = 1
+
+[node name="Label3D" type="Label3D" parent="." unique_id=2080042421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8596671)
+text = "Game Over (Press A)"

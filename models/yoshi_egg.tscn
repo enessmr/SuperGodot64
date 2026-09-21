@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://phmmbt5nprlo"]
+
+[ext_resource type="PackedScene" uid="uid://dfr40tgbnqan5" path="res://models/yoshi_egg.blend" id="1_opjb7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_poaj4"]
+transparency = 2
+alpha_scissor_threshold = 1.0
+alpha_antialiasing_mode = 0
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_opjb7"]
+material = SubResource("StandardMaterial3D_poaj4")
+size = Vector3(2.006607, 1.9984131, 2.0444946)
+
+[node name="yoshi_egg" unique_id=2119096712 instance=ExtResource("1_opjb7")]
+
+[node name="Camera" parent="." index="1" unique_id=1558980822]
+visible = false
+
+[node name="Light" parent="." index="2" unique_id=2110072618]
+visible = false
+light_energy = 0.0
+omni_range = 0.003
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=1024834489 groups=["libsm64_surface_objects"]]
+mesh = SubResource("BoxMesh_opjb7")

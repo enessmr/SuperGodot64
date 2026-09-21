@@ -50,6 +50,35 @@ var action: LibSM64.ActionFlags:
 		LibSM64.set_mario_action(_id, value)
 		_action = value
 
+var coin_count: int = 0
+
+func add_coins(amount: int) -> void:
+	coin_count = clampi(coin_count + amount, 0, 999)
+
+func get_save_coin_count() -> int:
+	return clampi(coin_count, 0, 255)
+
+var lives: int = 4
+
+func add_lives(amount: int) -> void:
+	var amountie: int = 0
+
+	while amountie < amount:
+		if lives >= 100:
+			return
+
+		lives = clampi(lives + 1, -127, 100)
+		amountie += 1
+
+func remove_lives(amount: int) -> void:
+	var amountie: int = 0
+
+	while amountie < amount:
+		if lives <= 0 && lives > -1:
+			get_tree().change_scene_to_packed(preload("res://assets/file_select/game_over.tscn"))
+
+		lives = clampi(lives - 1, 0, 100)
+		amountie += 1
 
 var action_name: StringName:
 	get:
@@ -808,6 +837,26 @@ func heal(wedges: int) -> void:
 
 	LibSM64.mario_heal(_id, wedges)
 
+var _was_dead: bool = false
+
+func _is_mario_dead() -> bool:
+	match _action:
+		LibSM64.ACT_DEATH_EXIT:
+			return true
+		LibSM64.ACT_UNUSED_DEATH_EXIT:
+			return true
+		LibSM64.ACT_FALLING_DEATH_EXIT:
+			return true
+		LibSM64.ACT_SPECIAL_DEATH_EXIT:
+			return true
+	var is_dead: bool = _is_mario_dead()
+
+	if is_dead and not _was_dead:
+		remove_lives(1)
+
+	_was_dead = is_dead
+
+	return false
 
 func kill() -> void:
 	if _id < 0:

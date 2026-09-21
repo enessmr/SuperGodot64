@@ -18,6 +18,17 @@ extends Node3D
 @export var star_spawn_offset: float = 3.0
 @export var mesh: MeshInstance3D
 
+@export_category("Sparkles")
+@export var sprite_frames_file: SpriteFrames = preload("res://assets/spriteframes/spriteframes_particles.tres")
+@export var sprite_color: Color = Color("#FCFD63")
+@export var sprite_pixel_size := 0.0017
+@export var animationname := "sparkle_animation"
+@export var sparkle_radius_x := 0.7
+@export var sparkle_radius_y := 0.7
+@export var sparkle_radius_z := 0.7
+@export var sparkle_count := 4
+@export var sparkle_interval := 0.12
+
 var _star_spawn_active: bool = false
 var _star_spawn_time: float = 0.0
 
@@ -32,6 +43,9 @@ var _camera_star_grab: Marker3D = null
 var _is_collected: bool = false
 var _star_grab_active: bool = false
 
+var _sparkles: Array[AnimatedSprite3D] = []
+var _sparkle_timer: float = 0.0
+
 
 func _ready() -> void:
 	area_3d.area_entered.connect(_on_area_3d_area_entered)
@@ -42,7 +56,100 @@ func _ready() -> void:
 	if star_spawn_horizontal_curve == null:
 		star_spawn_horizontal_curve = _make_default_horizontal_curve()
 
+	_create_sparkles()
 	_find_mactors_and_camera()
+
+
+func _create_sparkles() -> void:
+	for sparkle in _sparkles:
+		if is_instance_valid(sparkle):
+			sparkle.queue_free()
+
+	_sparkles.clear()
+
+	for i in sparkle_count:
+		var sparkle := AnimatedSprite3D.new()
+
+		add_child(sparkle)
+
+		sparkle.sprite_frames = sprite_frames_file
+		sparkle.modulate = sprite_color
+		sparkle.pixel_size = sprite_pixel_size
+		sparkle.centered = true
+		sparkle.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		sparkle.animation = animationname
+		sparkle.alpha_cut = SpriteBase3D.ALPHA_CUT_OPAQUE_PREPASS
+		sparkle.visible = false
+
+		_sparkles.append(sparkle)
+
+
+func _randomize_sparkle_position(sparkle: AnimatedSprite3D) -> void:
+	sparkle.position = Vector3(
+		randf_range(-sparkle_radius_x, sparkle_radius_x),
+		randf_range(-sparkle_radius_y, sparkle_radius_y),
+		randf_range(-sparkle_radius_z, sparkle_radius_z)
+	)
+
+
+func _spawn_sparkle() -> void:
+	if _sparkles.is_empty():
+		return
+
+	var sparkle: AnimatedSprite3D = _sparkles.pick_random()
+
+	if not is_instance_valid(sparkle):
+		return
+
+	_randomize_sparkle_position(sparkle)
+
+	sparkle.visible = true
+	sparkle.frame = 0
+	sparkle.play(animationname)
+
+
+func _update_sparkles(delta: float) -> void:
+	_sparkle_timer += delta
+
+	if _sparkle_timer >= sparkle_interval:
+		_sparkle_timer = 0.0
+		_spawn_sparkle()
+
+
+func _stop_sparkles() -> void:
+	for sparkle in _sparkles:
+		if not is_instance_valid(sparkle):
+			continue
+
+		sparkle.stop()
+		sparkle.visible = false
+
+
+func _process(delta: float) -> void:
+	if _star_spawn_active:
+		_update_star_spawn(delta)
+		_update_sparkles(delta)
+		return
+
+	rotation_degrees.y += 180.0 * delta
+
+	if _star_grab_active and is_instance_valid(_mario):
+		if is_instance_valid(_camera_rig):
+			_mario.face_toward_global_position(
+				_camera_rig.global_position
+			)
+
+	if visible and not _is_collected:
+		if not is_instance_valid(_mario):
+			_find_mactors_and_camera()
+
+		if is_instance_valid(_mario):
+			var dist: float = global_position.distance_to(
+				_mario.global_position
+			)
+
+			if dist <= give_radius:
+				_try_collect(_mario)
 
 
 func _find_mactors_and_camera() -> void:
@@ -75,34 +182,6 @@ func _find_mactors_and_camera() -> void:
 		) as Marker3D
 
 
-func _process(delta: float) -> void:
-	if _star_spawn_active:
-		_update_star_spawn(delta)
-		return
-
-	rotation_degrees.y += 180.0 * delta
-
-	# During the star cutscene, continuously force Mario's
-	# libsm64 face angle toward the camera.
-	if _star_grab_active and is_instance_valid(_mario):
-		if is_instance_valid(_camera_rig):
-			_mario.face_toward_global_position(
-				_camera_rig.global_position
-			)
-
-	if visible and not _is_collected:
-		if not is_instance_valid(_mario):
-			_find_mactors_and_camera()
-
-		if is_instance_valid(_mario):
-			var dist: float = global_position.distance_to(
-				_mario.global_position
-			)
-
-			if dist <= give_radius:
-				_try_collect(_mario)
-
-
 func play_star_spawn_animation(spawn_pos: Variant = null) -> void:
 	_find_mactors_and_camera()
 
@@ -125,8 +204,11 @@ func play_star_spawn_animation(spawn_pos: Variant = null) -> void:
 
 	_star_spawn_time = 0.0
 	_star_spawn_active = true
+	_sparkle_timer = 0.0
 
 	position = _star_spawn_old_pos
+
+	_spawn_sparkle()
 
 	area_3d.set_deferred("monitoring", false)
 	area_3d.set_deferred("monitorable", false)
@@ -197,6 +279,7 @@ func _update_star_spawn(delta: float) -> void:
 
 	if ratio >= 1.0:
 		_star_spawn_active = false
+		_stop_sparkles()
 		_activate_star()
 
 
@@ -280,7 +363,6 @@ func _start_star_grab() -> void:
 		_mario._collecting_star = false
 		return
 
-	# Camera_StarGrab supplies the complete target transform.
 	var target_pos: Vector3 = _camera_star_grab.global_position
 	var target_rot: Vector3 = _camera_star_grab.global_rotation
 
@@ -316,8 +398,6 @@ func _start_star_grab() -> void:
 		LibSM64.ACT_STAR_DANCE_NO_EXIT
 	)
 
-	# Face Mario toward the camera rig using libsm64's
-	# internal face-angle API instead of Node3D.look_at().
 	_mario.face_toward_global_position(
 		_camera_rig.global_position
 	)
@@ -354,7 +434,6 @@ func _start_star_grab() -> void:
 			LibSM64.ACT_IDLE
 		)
 
-	# Return to the exact transform the CameraRig had before the cutscene.
 	if is_instance_valid(_camera_rig):
 		var return_tween: Tween = get_tree().create_tween()
 		return_tween.set_parallel(true)

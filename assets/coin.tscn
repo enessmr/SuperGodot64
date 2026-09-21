@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b2tvsuqqps36k"]
+
+[ext_resource type="BoxMesh" uid="uid://tgy6c8yc27t8" path="res://assets/coinhitboxmesh.tres" id="1_5habd"]
+[ext_resource type="Script" uid="uid://c5ubuqwnjoo1b" path="res://assets/coin.gd" id="1_82w1j"]
+[ext_resource type="SpriteFrames" uid="uid://p6ogo202fgf0" path="res://assets/coin_rotation_frames.tres" id="3_klnt7"]
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_dnlj8"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=1342995159]
+mesh = SubResource("PlaceholderMesh_dnlj8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1296341562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1542604, 0)
+mesh = ExtResource("1_5habd")
+script = ExtResource("1_82w1j")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="MeshInstance3D" unique_id=566983471]
+modulate = Color(0.8901961, 0.8901961, 0, 1)
+pixel_size = 0.002
+billboard = 1
+sprite_frames = ExtResource("3_klnt7")
+animation = &"rotation"
+frame_progress = 0.003329979
+
+[node name="Node3D" type="Node3D" parent="MeshInstance3D" unique_id=1995840177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5129747, 0)
+
+[node name="Node3D2" type="Node3D" parent="MeshInstance3D" unique_id=976555194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.513, 0)

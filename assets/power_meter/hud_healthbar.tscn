@@ -24,7 +24,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(540, 112.999985)]
+"values": [Vector2(540, -171)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -36,7 +36,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(517, 0)]
+"values": [Vector2(517, -284.5)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -48,7 +48,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(557, 0)]
+"values": [Vector2(557, -284.5)]
 }
 
 [sub_resource type="Animation" id="Animation_4eqju"]
@@ -138,9 +138,10 @@ _data = {
 &"move_fromup": SubResource("Animation_4io5l")
 }
 
-[node name="hud (healthbar)" type="CanvasLayer" unique_id=723167950 node_paths=PackedStringArray("anim")]
+[node name="hud (healthbar)" type="CanvasLayer" unique_id=723167950 node_paths=PackedStringArray("anim", "power_meter")]
 script = ExtResource("1_tdx4m")
 anim = NodePath("AnimationPlayer")
+power_meter = NodePath("Control")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1759231445]
 libraries/ = SubResource("AnimationLibrary_4eqju")
@@ -162,9 +163,9 @@ anchor_top = 0.0015432099
 anchor_right = 0.509838
 anchor_bottom = 0.13117307
 offset_left = -29.0
-offset_top = -1.0
+offset_top = -285.5
 offset_right = -28.999084
-offset_bottom = -1.0
+offset_bottom = -285.5
 grow_horizontal = 2
 texture = ExtResource("2_d0tvq")
 expand_mode = 5
@@ -174,11 +175,12 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.48400003
-anchor_right = 1.0
+anchor_right = 0.518
 anchor_bottom = 0.13000001
 offset_left = -0.5680542
-offset_right = -555.0
-offset_bottom = -0.23995972
+offset_top = -284.5
+offset_right = 0.26397705
+offset_bottom = -284.73996
 grow_horizontal = 2
 texture = ExtResource("3_ge6jt")
 expand_mode = 5
@@ -190,9 +192,9 @@ anchor_top = 0.20500001
 anchor_right = 0.48900002
 anchor_bottom = 0.20500001
 offset_left = -17.568054
-offset_top = -19.840027
+offset_top = -303.84003
 offset_right = 16.671997
-offset_bottom = 20.159943
+offset_bottom = -263.8401
 grow_horizontal = 2
 mouse_filter = 2
 

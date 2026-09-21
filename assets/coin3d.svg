@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 123 123" fill="none">
+  <defs>
+    <!-- Inner shadow to make the star look carved in -->
+    <filter id="carved" x="-30%" y="-30%" width="160%" height="160%">
+      <!-- Shadow cast on top-left inner edge -->
+      <feOffset dx="1.5" dy="1.5" in="SourceAlpha" result="offset"/>
+      <feGaussianBlur in="offset" stdDeviation="1.8" result="blur"/>
+      <feComposite in="blur" in2="SourceAlpha" operator="arithmetic"
+                   k2="-1" k3="1" result="shadowDiff"/>
+      <feFlood flood-color="#7A2E2E" flood-opacity="0.9" result="color"/>
+      <feComposite in="color" in2="shadowDiff" operator="in" result="innerShadow"/>
+      <feComposite in="innerShadow" in2="SourceGraphic" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Left shadow ellipse -->
+  <ellipse cx="56" cy="61.8" rx="32" ry="40" fill="#BE5858"/>
+
+  <!-- Right main ellipse -->
+  <ellipse cx="62" cy="61.8" rx="32" ry="40" fill="#FF5555"/>
+
+  <!-- Star carved into the shape, tilted with scale -->
+  <polygon
+    points="62,36 68.5,53 86,54 73,66 78.5,83.5 62,72.5 46.5,83.5 52,66 38,54 55.5,53"
+    fill="#E04A4A"
+    filter="url(#carved)"
+    transform="translate(62, 61.8) scale(0.9, 1.2) translate(-62, -61.8)"
+  />
+</svg>
