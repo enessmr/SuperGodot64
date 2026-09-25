@@ -51,9 +51,11 @@ var action: LibSM64.ActionFlags:
 		_action = value
 
 var coin_count: int = 0
+signal coins_changed
 
 func add_coins(amount: int) -> void:
 	coin_count = clampi(coin_count + amount, 0, 999)
+	coins_changed.emit()
 
 func get_save_coin_count() -> int:
 	return clampi(coin_count, 0, 255)
@@ -68,6 +70,7 @@ func add_lives(amount: int) -> void:
 			return
 
 		lives = clampi(lives + 1, -127, 100)
+		lives_changed.emit()
 		amountie += 1
 
 func remove_lives(amount: int) -> void:
@@ -78,7 +81,10 @@ func remove_lives(amount: int) -> void:
 			get_tree().change_scene_to_packed(preload("res://assets/file_select/game_over.tscn"))
 
 		lives = clampi(lives - 1, 0, 100)
+		lives_changed.emit()
 		amountie += 1
+		
+signal lives_changed
 
 var action_name: StringName:
 	get:
@@ -342,6 +348,8 @@ func _ready() -> void:
 
 	_mesh = ArrayMesh.new()
 	_mesh_instance.mesh = _mesh
+	_mesh_instance.ignore_occlusion_culling = true
+	lives_changed.emit()
 
 	_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 	_vanish_material.albedo_color.a = 0.5
@@ -472,6 +480,7 @@ func _update_lerped_members_from_mario_state(lerp_t: float) -> void:
 
 	_invincibility_time = mario_state.invincibility_time
 
+signal stars_changed
 
 func _update_mesh(lerp_t: float) -> void:
 	var material: StandardMaterial3D
@@ -1085,6 +1094,7 @@ func collect_star() -> void:
 # pausing Mario, and playing the sound effects.
 func _get_power_star(_star_id: int) -> void:
 	stars_collected += 1
+	stars_changed.emit()
 
 
 func is_collecting_star() -> bool:

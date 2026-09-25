@@ -8,6 +8,10 @@ extends Node3D
 @export var give_radius: float = 2.0
 @export var anim: AnimationPlayer
 
+## Uncheck for stars that are already placed in the level
+## and should be collectable immediately.
+@export var spawn_with_animation: bool = true
+
 @export_category("Star")
 @export var star_id: int = 1
 
@@ -17,6 +21,7 @@ extends Node3D
 @export var star_spawn_duration: float = 1.0
 @export var star_spawn_offset: float = 3.0
 @export var mesh: MeshInstance3D
+@export var jumping: bool = false
 
 @export_category("Sparkles")
 @export var sprite_frames_file: SpriteFrames = preload("res://assets/spriteframes/spriteframes_particles.tres")
@@ -28,6 +33,8 @@ extends Node3D
 @export var sparkle_radius_z := 0.7
 @export var sparkle_count := 4
 @export var sparkle_interval := 0.12
+
+var _spawned: bool = false
 
 var _star_spawn_active: bool = false
 var _star_spawn_time: float = 0.0
@@ -58,6 +65,15 @@ func _ready() -> void:
 
 	_create_sparkles()
 	_find_mactors_and_camera()
+
+	if spawn_with_animation:
+		# Star must not be visible/collectable until
+		# play_star_spawn_animation() is called.
+		mesh.visible = true
+		area_3d.monitoring = false
+		area_3d.monitorable = false
+	else:
+		_activate_star()
 
 
 func _create_sparkles() -> void:
@@ -131,7 +147,10 @@ func _process(delta: float) -> void:
 		_update_sparkles(delta)
 		return
 
-	rotation_degrees.y += 180.0 * delta
+	if not _spawned:
+		return
+
+	mesh.rotation_degrees.y += 180.0 * delta
 
 	if _star_grab_active and is_instance_valid(_mario):
 		if is_instance_valid(_camera_rig):
@@ -139,16 +158,16 @@ func _process(delta: float) -> void:
 				_camera_rig.global_position
 			)
 
-	if visible and not _is_collected:
+	if not _is_collected:
 		if not is_instance_valid(_mario):
 			_find_mactors_and_camera()
 
 		if is_instance_valid(_mario):
-			var dist: float = global_position.distance_to(
+			var dist_squared: float = global_position.distance_squared_to(
 				_mario.global_position
 			)
 
-			if dist <= give_radius:
+			if dist_squared <= give_radius * give_radius:
 				_try_collect(_mario)
 
 
@@ -208,6 +227,12 @@ func play_star_spawn_animation(spawn_pos: Variant = null) -> void:
 
 	position = _star_spawn_old_pos
 
+	# Root stays visible so the child sparkles can render;
+	# only the mesh stays hidden until the rise finishes.
+	mesh.visible = false
+	_spawned = false
+
+	_stop_sparkles()
 	_spawn_sparkle()
 
 	area_3d.set_deferred("monitoring", false)
@@ -224,10 +249,11 @@ func _play_star_spawn_sounds() -> void:
 	if not is_instance_valid(_mario):
 		return
 
-	LibSM64.play_sound(
-		LibSM64.SOUND_GENERAL_STAR_APPEARS,
-		_mario.global_position
-	)
+	if jumping:
+		LibSM64.play_sound(
+			LibSM64.SOUND_GENERAL_STAR_APPEARS,
+			_mario.global_position
+		)
 
 	await get_tree().create_timer(0.3).timeout
 
@@ -243,19 +269,16 @@ func _play_star_spawn_sounds() -> void:
 func _update_star_spawn(delta: float) -> void:
 	_star_spawn_time += delta
 
+	var duration: float = maxf(star_spawn_duration, 0.001)
+
 	var ratio: float = clampf(
-		_star_spawn_time / star_spawn_duration,
+		_star_spawn_time / duration,
 		0.0,
 		1.0
 	)
 
-	var height_value: float = (
-		star_spawn_height_curve.sample_baked(ratio)
-	)
-
-	var horizontal_value: float = (
-		star_spawn_horizontal_curve.sample_baked(ratio)
-	)
+	var height_value: float = star_spawn_height_curve.sample_baked(ratio)
+	var horizontal_value: float = star_spawn_horizontal_curve.sample_baked(ratio)
 
 	position.x = lerpf(
 		_star_spawn_old_pos.x,
@@ -278,26 +301,28 @@ func _update_star_spawn(delta: float) -> void:
 	rotation_degrees.y += 360.0 * delta
 
 	if ratio >= 1.0:
+		position = _star_spawn_target_pos
 		_star_spawn_active = false
 		_stop_sparkles()
 		_activate_star()
 
 
 func _activate_star() -> void:
-	visible = true
+	_spawned = true
+	mesh.visible = true
 
 	area_3d.set_deferred("monitoring", true)
 	area_3d.set_deferred("monitorable", true)
 
 
 func _try_collect(mario: LibSM64Mario) -> void:
-	if _star_spawn_active:
+	if not _spawned or _star_spawn_active:
 		return
 
 	if _is_collected or _star_grab_active:
 		return
 
-	if not visible or not is_instance_valid(mario):
+	if not is_instance_valid(mario):
 		return
 
 	_is_collected = true
@@ -315,7 +340,9 @@ func _collect() -> void:
 	area_3d.set_deferred("monitoring", false)
 	area_3d.set_deferred("monitorable", false)
 
-	visible = false
+	# Hide only the mesh; hiding the root would also hide
+	# the %Sparkles burst during the grab cutscene.
+	mesh.visible = false
 
 
 func _start_star_grab() -> void:
@@ -338,11 +365,13 @@ func _start_star_grab() -> void:
 	var rig_orig_transform: Transform3D = _camera_rig.global_transform
 
 	mesh.visible = false
+	_mario._get_power_star(star_id)
 
-	LibSM64.play_sound(
-		LibSM64.SOUND_MENU_STAR_SOUND,
-		_mario.global_position
-	)
+	if jumping:
+		LibSM64.play_sound(
+			LibSM64.SOUND_MENU_STAR_SOUND,
+			_mario.global_position
+		)
 
 	await _wait_for_mario_to_land()
 
@@ -486,7 +515,7 @@ func _wait_for_mario_to_land() -> void:
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	if _star_spawn_active:
+	if not _spawned or _star_spawn_active:
 		return
 
 	var mario: LibSM64Mario = area.get_parent() as LibSM64Mario

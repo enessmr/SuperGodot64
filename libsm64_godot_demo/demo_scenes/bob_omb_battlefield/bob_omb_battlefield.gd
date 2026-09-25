@@ -18,9 +18,10 @@ func _ready() -> void:
 	# DiscordRPC.large_image = "game"
 	# DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
 	# DiscordRPC.refresh()
-	if LibSM64Global.rom.is_empty():
+	if LibSM64Global.rom.is_empty() and not SaveManager.has_cached_rom():
 		%RomPickerDialog.pick_rom()
 	else:
+		LibSM64Global.load_rom_file(SaveManager.get_rom_path())
 		_init_libsm64() 
 
 
@@ -76,6 +77,19 @@ func _init_libsm64() -> void:
 	%LevelGlobals.music = musik
 	%LevelGlobals.play_musik()
 	%LibSM64AudioStreamPlayer.play()
+	lib_sm_64_mario.lives_changed.emit()
+	var YellowBoxStar2 = $ChainChompStar
+	YellowBoxStar2.global_position = global_position 
+			
+	%LevelGlobals.star_spawn(
+				YellowBoxStar2,
+				%ChainChompStarLoc,
+				%CameraRig,
+				lib_sm_64_mario,
+				true,
+				2,
+				false
+			)
 
 
 func _on_rom_picker_dialog_rom_loaded() -> void:

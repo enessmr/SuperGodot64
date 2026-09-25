@@ -210,8 +210,10 @@ joypads/ignore_joypad_on_unfocused_application=true
 
 [physics]
 
+common/physics_jitter_fix=2.0
 3d/physics_engine="Jolt Physics"
 
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+occlusion_culling/use_occlusion_culling=true

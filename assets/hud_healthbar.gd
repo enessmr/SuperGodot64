@@ -35,6 +35,9 @@ func _find_mario() -> void:
 	if is_instance_valid(_mario):
 		if not _mario.health_wedges_changed.is_connected(_on_health_changed):
 			_mario.health_wedges_changed.connect(_on_health_changed)
+			_mario.lives_changed.connect(_render_lives)
+			_mario.coins_changed.connect(_render_coins)
+			_mario.stars_changed.connect(_render_stars)
 		_update_health_bar()
 		return
 
@@ -48,7 +51,11 @@ func _find_mario() -> void:
 
 	_mario = mario
 	_mario.health_wedges_changed.connect(_on_health_changed)
+	_mario.lives_changed.connect(_render_lives)
+	_mario.coins_changed.connect(_render_coins)
+	_mario.stars_changed.connect(_render_stars)
 	_update_health_bar()
+	_render_lives()
 
 
 func _on_health_changed(_health_wedges: int) -> void:
@@ -160,3 +167,151 @@ func _update_power_meter_animation(delta: float) -> void:
 				_visible_timer = 0.0
 
 	power_meter.position.y = _power_meter_y
+
+const DIGIT_ANIMATIONS: Array[StringName] = [
+	&"segment2.00000.rgba16",
+	&"segment2.00200.rgba16",
+	&"segment2.00400.rgba16",
+	&"segment2.00600.rgba16",
+	&"segment2.00800.rgba16",
+	&"segment2.00A00.rgba16",
+	&"segment2.00C00.rgba16",
+	&"segment2.00E00.rgba16",
+	&"segment2.01000.rgba16",
+	&"segment2.01200.rgba16",
+]
+
+const MINUS_ANIMATION: StringName = &"segment2.02C00.rgba16"
+
+
+func _render_lives() -> void:
+	if not is_instance_valid(_mario):
+		return
+
+	var lives: int = _mario.lives
+	var negative: bool = lives < 0
+	var value: int = abs(lives)
+
+	# LibSM64 normally won't produce huge values, but keep the HUD
+	# within the three numeric character slots.
+	value = min(value, 999)
+
+	var ones: int = value % 10
+	var tens: int = (value / 10) % 10
+	var hundreds: int = (value / 100) % 10
+
+	# Ones digit
+	%Counter1.animation = DIGIT_ANIMATIONS[ones]
+	%Counter1.frame = 0
+	%Counter1.show()
+
+	# Tens digit
+	if value >= 10:
+		%Counter2.animation = DIGIT_ANIMATIONS[tens]
+		%Counter2.frame = 0
+		%Counter2.show()
+	else:
+		%Counter2.hide()
+
+	# Hundreds digit
+	if value >= 100:
+		%Counter3.animation = DIGIT_ANIMATIONS[hundreds]
+		%Counter3.frame = 0
+		%Counter3.show()
+	else:
+		%Counter3.hide()
+
+	# Minus sign
+	if negative:
+		%Counter4.animation = MINUS_ANIMATION
+		%Counter4.frame = 0
+		%Counter4.show()
+	else:
+		%Counter4.hide()
+
+func _render_coins() -> void:
+	if not is_instance_valid(_mario):
+		return
+
+	var coins: int = _mario.coin_count
+	var value: int = clamp(coins, 0, 999)
+
+	var ones: int = value % 10
+	var tens: int = (value / 10) % 10
+	var hundreds: int = (value / 100) % 10
+
+	# Coin icon
+	%Coin.show()
+
+	# X
+	%XC.show()
+
+	# Ones digit
+	if value <= 10:
+		%Counter1C.animation = DIGIT_ANIMATIONS[ones]
+		%Counter1C.frame = 0
+		%Counter1C.show()
+
+	# Tens digit
+	if value >= 10:
+		%Counter1C.animation = DIGIT_ANIMATIONS[tens]
+		%Counter1C.frame = 0
+		%Counter1C.show()
+		%Counter2C.animation = DIGIT_ANIMATIONS[ones]
+		%Counter2C.frame = 0
+		%Counter2C.show()
+	else:
+		%Counter2C.hide()
+
+	# Hundreds digit
+	if value >= 100:
+		%Counter1C.animation = DIGIT_ANIMATIONS[hundreds]
+		%Counter1C.frame = 0
+		%Counter1C.show()
+		%Counter2C.animation = DIGIT_ANIMATIONS[tens]
+		%Counter2C.frame = 0
+		%Counter2C.show()
+		%Counter3C.animation = DIGIT_ANIMATIONS[ones]
+		%Counter3C.frame = 0
+		%Counter3C.show()
+	else:
+		%Counter3C.hide()
+
+func _render_stars() -> void:
+	if not is_instance_valid(_mario):
+		return
+
+	var stars: int = clamp(_mario.stars_collected, 0, 999)
+
+	var ones: int = stars % 10
+	var tens: int = (stars / 10) % 10
+	var hundreds: int = (stars / 100) % 10
+
+	%Star.show()
+
+	# SM64 hides the X once the count reaches 100.
+	if stars < 100:
+		%XS.show()
+	else:
+		%XS.hide()
+
+	# Ones digit
+	%Counter1S.animation = DIGIT_ANIMATIONS[ones]
+	%Counter1S.frame = 0
+	%Counter1S.show()
+
+	# Tens digit
+	if stars >= 10:
+		%Counter2S.animation = DIGIT_ANIMATIONS[tens]
+		%Counter2S.frame = 0
+		%Counter2S.show()
+	else:
+		%Counter2S.hide()
+
+	# Hundreds digit
+	if stars >= 100:
+		%Counter3S.animation = DIGIT_ANIMATIONS[hundreds]
+		%Counter3S.frame = 0
+		%Counter3S.show()
+	else:
+		%Counter3S.hide()

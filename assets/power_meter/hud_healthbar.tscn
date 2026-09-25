@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cg5j77gg35ch8" path="res://assets/power_meter/power_meter_three_segments.rgba16.png" id="9_bk0pk"]
 [ext_resource type="Texture2D" uid="uid://cxdh5emnxmy31" path="res://assets/power_meter/power_meter_two_segments.rgba16.png" id="10_vqxpt"]
 [ext_resource type="Texture2D" uid="uid://dvquyq11nadrp" path="res://assets/power_meter/power_meter_one_segment.rgba16.png" id="11_txep6"]
+[ext_resource type="SpriteFrames" uid="uid://ddvtx2x06ts54" path="res://assets/spriteframes/spriteframes_HUD.tres" id="12_4io5l"]
 
 [sub_resource type="Animation" id="Animation_wo2et"]
 length = 0.001
@@ -340,3 +341,156 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("11_txep6")
 expand_mode = 1
+
+[node name="HUD_general" type="Control" parent="." unique_id=1351156765]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Lives" type="Control" parent="HUD_general" unique_id=1692236302]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Mario" type="AnimatedSprite2D" parent="HUD_general/Lives" unique_id=1017285316]
+unique_name_in_owner = true
+position = Vector2(60, 37)
+scale = Vector2(0.16, 0.16)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"mario_normal.rgba32"
+
+[node name="XM" type="AnimatedSprite2D" parent="HUD_general/Lives" unique_id=112123955]
+unique_name_in_owner = true
+position = Vector2(100, 37)
+scale = Vector2(0.06, 0.06)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"segment2.05600.rgba16"
+
+[node name="Counter1" type="AnimatedSprite2D" parent="HUD_general/Lives" unique_id=1652085513]
+unique_name_in_owner = true
+position = Vector2(136, 37)
+scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"segment2.00800.rgba16"
+
+[node name="Counter2" type="AnimatedSprite2D" parent="HUD_general/Lives" unique_id=591458906]
+unique_name_in_owner = true
+visible = false
+position = Vector2(169.99998, 37)
+scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"segment2.00000.rgba16"
+
+[node name="Counter3" type="AnimatedSprite2D" parent="HUD_general/Lives" unique_id=1333414407]
+unique_name_in_owner = true
+visible = false
+position = Vector2(204, 37)
+scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"00000.rgba16"
+
+[node name="Counter4" type="AnimatedSprite2D" parent="HUD_general/Lives" unique_id=1676900694]
+unique_name_in_owner = true
+visible = false
+position = Vector2(274, 37)
+scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"segment2.00400.rgba16"
+
+[node name="Coins" type="Control" parent="HUD_general" unique_id=1216862482]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -346.0
+offset_right = -306.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Coin" type="AnimatedSprite2D" parent="HUD_general/Coins" unique_id=1900430700]
+unique_name_in_owner = true
+position = Vector2(-81.96004, 36.04)
+scale = Vector2(0.082, 0.082)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"coin_hud.rgba16"
+
+[node name="XC" type="AnimatedSprite2D" parent="HUD_general/Coins" unique_id=567955612]
+unique_name_in_owner = true
+position = Vector2(-41.960007, 36.04)
+scale = Vector2(0.06, 0.06)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"segment2.05600.rgba16"
+
+[node name="Counter1C" type="AnimatedSprite2D" parent="HUD_general/Coins" unique_id=673975475]
+unique_name_in_owner = true
+position = Vector2(-5.960022, 36.04)
+scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"00000.rgba16"
+
+[node name="Counter2C" type="AnimatedSprite2D" parent="HUD_general/Coins" unique_id=686257938]
+unique_name_in_owner = true
+visible = false
+position = Vector2(27.919983, 36.92)
+scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"00000.rgba16"
+
+[node name="Counter3C" type="AnimatedSprite2D" parent="HUD_general/Coins" unique_id=101068135]
+unique_name_in_owner = true
+visible = false
+position = Vector2(62, 37)
+scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"00000.rgba16"
+
+[node name="Stars" type="Control" parent="HUD_general" unique_id=1667713600]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -89.0
+offset_right = -49.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Star" type="AnimatedSprite2D" parent="HUD_general/Stars" unique_id=1886739675]
+unique_name_in_owner = true
+position = Vector2(-98.95998, 36.04)
+scale = Vector2(0.082, 0.082)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"segment2.05C00.rgba16"
+
+[node name="XS" type="AnimatedSprite2D" parent="HUD_general/Stars" unique_id=1539426986]
+unique_name_in_owner = true
+position = Vector2(-58.959946, 36.04)
+scale = Vector2(0.06, 0.06)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"segment2.05600.rgba16"
+
+[node name="Counter1S" type="AnimatedSprite2D" parent="HUD_general/Stars" unique_id=267866785]
+unique_name_in_owner = true
+position = Vector2(-22.95996, 36.04)
+scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"00000.rgba16"
+
+[node name="Counter2S" type="AnimatedSprite2D" parent="HUD_general/Stars" unique_id=547143100]
+unique_name_in_owner = true
+visible = false
+position = Vector2(12.920029, 35.92)
+scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"segment2.00000.rgba16"
+
+[node name="Counter3S" type="AnimatedSprite2D" parent="HUD_general/Stars" unique_id=770410191]
+unique_name_in_owner = true
+visible = false
+position = Vector2(46.920044, 35.92)
+scale = Vector2(0.07, 0.07)
+sprite_frames = ExtResource("12_4io5l")
+animation = &"00000.rgba16"

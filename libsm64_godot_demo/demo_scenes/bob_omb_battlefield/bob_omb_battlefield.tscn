@@ -39,6 +39,7 @@
 [ext_resource type="Script" uid="uid://dw1eldpluvr31" path="res://libsm64_godot_demo/shared/globals/level_globals.gd" id="34_dyj3n"]
 [ext_resource type="Script" uid="uid://c5ubuqwnjoo1b" path="res://assets/coin.gd" id="39_2mypb"]
 [ext_resource type="PackedScene" uid="uid://cc2r0nq7oxhyu" path="res://assets/koopa.tscn" id="39_noeb5"]
+[ext_resource type="ArrayOccluder3D" uid="uid://dpu20r208162w" path="res://assets/occcull/bob_omb_battlefield.occ" id="40_2mypb"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qo70i"]
 panorama = ExtResource("4_gg4l8")
@@ -601,6 +602,7 @@ unique_name_in_owner = true
 oversampling_override = 1.0
 position = Vector2i(0, 36)
 size = Vector2i(515, 180)
+visible = false
 always_on_top = true
 
 [node name="InputConfig" type="Node" parent="." unique_id=2075111149]
@@ -829,14 +831,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.314063, 30.719347, 43.622
 
 [node name="Star" parent="Sky Island" unique_id=1405926056 instance=ExtResource("34_3yayu")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.3367424, 3.2442074, 11.885761)
-visible = false
+star_id = 4
+jumping = true
 
 [node name="YellowBoxStarLocation" type="Marker3D" parent="Sky Island" unique_id=174875855]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.233282, 11.763054)
 
 [node name="EBox1" type="MeshInstance3D" parent="Sky Island" unique_id=88475494 node_paths=PackedStringArray("YellowBoxStar") groups=["libsm64_static_objects"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3367424, 3.2442074, 11.885761)
+transform = Transform3D(1.03, 0, 0, 0, 1.03, 0, 0, 0, 1.03, -0.3367424, 3.2442074, 11.885761)
 mesh = ExtResource("31_0mtt7")
 script = ExtResource("32_3uhyg")
 respawn_time = 10.0
@@ -900,9 +903,53 @@ yellow_coin = false
 hitbox_size = Vector3(1.7, 2.327, 1.7)
 metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
 
+[node name="Coin3D7" type="MeshInstance3D" parent="." unique_id=929681016 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.474873, 14.206973, 48.642914)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+coin_amount = 2
+red_coin = true
+yellow_coin = false
+hitbox_size = Vector3(1.7, 2.327, 1.7)
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D8" type="MeshInstance3D" parent="." unique_id=563560378 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.459133, 8.852603, -55.933537)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+coin_amount = 2
+red_coin = true
+yellow_coin = false
+hitbox_size = Vector3(1.7, 2.327, 1.7)
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D9" type="MeshInstance3D" parent="." unique_id=1651819311 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.459133, 8.852603, -66.85715)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+coin_amount = 2
+red_coin = true
+yellow_coin = false
+hitbox_size = Vector3(1.7, 2.327, 1.7)
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
 [node name="koopa" parent="." unique_id=1402922750 instance=ExtResource("39_noeb5")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -4.044733, 30.991035, 44.314438)
 race_mode = false
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="." unique_id=2054831053]
+occluder = ExtResource("40_2mypb")
+
+[node name="ChainChompStar" parent="." unique_id=1761649677 instance=ExtResource("34_3yayu")]
+transform = Transform3D(-0.53729963, 0, -0.8433914, 0, 1, 0, 0.8433914, 0, -0.53729963, -2.6307774, 10.913654, 15.672651)
+star_id = 7
+
+[node name="ChainChompStarLoc" type="Marker3D" parent="." unique_id=566501379]
+unique_name_in_owner = true
+transform = Transform3D(-0.53729963, 0, -0.8433914, 0, 1, 0, 0.8433914, 0, -0.53729963, -2.6307774, 10.913654, 15.672651)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="pressed" from="Interface/CanvasLayer/PauseMenuPanel/Panel/Button" to="Interface/CanvasLayer" method="_on_button_pressed"]

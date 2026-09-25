@@ -87,7 +87,7 @@ func _ready() -> void:
 	sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	sprite.animation = animationname
 	sprite.position.y = sprite_offset_y
-	sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_OPAQUE_PREPASS
+	# sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_OPAQUE_PREPASS
 	sprite.play()
 
 	if moving_coin:
@@ -271,11 +271,7 @@ func _use_coin() -> void:
 	_used = true
 
 	if _mario:
-		var cam: Vector3 = %CameraRig.global_position
-		var sound_pos := cam if %CameraRig else _mario.global_position
-
-		var new_coin_count: int = _mario.coin_count + coin_amount
-		new_coin_count = _mario.coin_count
+		_mario.add_coins(coin_amount)
 
 		LibSM64.mario_heal(
 			_mario._id,
@@ -284,15 +280,13 @@ func _use_coin() -> void:
 		
 
 		if yellow_coin:
-			LibSM64.play_sound(
-				LibSM64.SOUND_GENERAL_COIN,
-				sound_pos
-			)
+			LibSM64.play_sound_global(
+				LibSM64.SOUND_GENERAL_COIN)
 		elif red_coin:
-			LibSM64.play_sound(LibSM64.SOUND_MENU_COLLECT_RED_COIN, sound_pos)
+			LibSM64.play_sound_global(LibSM64.SOUND_MENU_COLLECT_RED_COIN)
 		elif blue_coin:
 			for i in coin_amount:
-				LibSM64.play_sound(LibSM64.SOUND_GENERAL_COIN, sound_pos)
+				LibSM64.play_sound_global(LibSM64.SOUND_GENERAL_COIN)
 				await get_tree().create_timer(0.2).timeout
 
 	_set_all_visible(false)

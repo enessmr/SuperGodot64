@@ -36,7 +36,7 @@ extends Node
 	"SEQ_EVENT_CUTSCENE_ENDING",
 	"SEQ_MENU_FILE_SELECT",
 	"SEQ_EVENT_CUTSCENE_LAKITU",
-    "SEQ_COUNT"
+	"SEQ_COUNT"
 )
 var music: int = 3
 
@@ -56,47 +56,11 @@ func _ready() -> void:
 	add_child(_cap_timer)
 
 
-func play_musik(start_cap: LibSM64.MarioFlags = LibSM64.MarioFlags.MARIO_NORMAL_CAP) -> void:
+func play_musik(
+	start_cap: LibSM64.MarioFlags = LibSM64.MarioFlags.MARIO_NORMAL_CAP
+) -> void:
 	if no_music:
 		return
-
-	var sequences = [
-		LibSM64.SEQ_SOUND_PLAYER,
-		LibSM64.SEQ_EVENT_CUTSCENE_COLLECT_STAR,
-		LibSM64.SEQ_MENU_TITLE_SCREEN,
-		LibSM64.SEQ_LEVEL_GRASS,
-		LibSM64.SEQ_LEVEL_INSIDE_CASTLE,
-		LibSM64.SEQ_LEVEL_WATER,
-		LibSM64.SEQ_LEVEL_HOT,
-		LibSM64.SEQ_LEVEL_BOSS_KOOPA,
-		LibSM64.SEQ_LEVEL_SNOW,
-		LibSM64.SEQ_LEVEL_SLIDE,
-		LibSM64.SEQ_LEVEL_SPOOKY,
-		LibSM64.SEQ_EVENT_PIRANHA_PLANT,
-		LibSM64.SEQ_LEVEL_UNDERGROUND,
-		LibSM64.SEQ_MENU_STAR_SELECT,
-		LibSM64.SEQ_EVENT_POWERUP,
-		LibSM64.SEQ_EVENT_METAL_CAP,
-		LibSM64.SEQ_EVENT_KOOPA_MESSAGE,
-		LibSM64.SEQ_LEVEL_KOOPA_ROAD,
-		LibSM64.SEQ_EVENT_HIGH_SCORE,
-		LibSM64.SEQ_EVENT_MERRY_GO_ROUND,
-		LibSM64.SEQ_EVENT_RACE,
-		LibSM64.SEQ_EVENT_CUTSCENE_STAR_SPAWN,
-		LibSM64.SEQ_EVENT_BOSS,
-		LibSM64.SEQ_EVENT_CUTSCENE_COLLECT_KEY,
-		LibSM64.SEQ_EVENT_ENDLESS_STAIRS,
-		LibSM64.SEQ_LEVEL_BOSS_KOOPA_FINAL,
-		LibSM64.SEQ_EVENT_CUTSCENE_CREDITS,
-		LibSM64.SEQ_EVENT_SOLVE_PUZZLE,
-		LibSM64.SEQ_EVENT_TOAD_MESSAGE,
-		LibSM64.SEQ_EVENT_PEACH_MESSAGE,
-		LibSM64.SEQ_EVENT_CUTSCENE_INTRO,
-		LibSM64.SEQ_EVENT_CUTSCENE_VICTORY,
-		LibSM64.SEQ_EVENT_CUTSCENE_ENDING,
-		LibSM64.SEQ_MENU_FILE_SELECT,
-		LibSM64.SEQ_EVENT_CUTSCENE_LAKITU
-	]
 
 	if (start_cap & LibSM64.MarioFlags.MARIO_METAL_CAP) != 0:
 		LibSM64.play_music(
@@ -120,18 +84,14 @@ func play_musik(start_cap: LibSM64.MarioFlags = LibSM64.MarioFlags.MARIO_NORMAL_
 		_cap_timer.start(VANISH_CAP_DURATION)
 
 	else:
-		LibSM64.play_music(
-			LibSM64.SEQ_PLAYER_LEVEL,
-			sequences[music_index]
-		)
-		_cap_timer.stop()
+		play_level_music()
 
 
 func play_level_music() -> void:
 	if no_music:
 		return
 
-	var sequences = [
+	var sequences: Array[int] = [
 		LibSM64.SEQ_SOUND_PLAYER,
 		LibSM64.SEQ_EVENT_CUTSCENE_COLLECT_STAR,
 		LibSM64.SEQ_MENU_TITLE_SCREEN,
@@ -177,7 +137,7 @@ func play_level_music() -> void:
 
 func _on_cap_timer_timeout() -> void:
 	play_level_music()
-	
+
 
 func star_spawn(
 	star: Node3D,
@@ -185,19 +145,34 @@ func star_spawn(
 	camera: Node3D,
 	mario: Node3D,
 	is_vertical: bool = false,
-	star_type: int = 2
+	star_type: int = 2,
+	jumping: bool = false
 ) -> void:
-	# Let this script handle the star's spinning.
-	star._star_spawn_active = false
+	if not is_instance_valid(star):
+		return
 
-	# Make the star visible immediately.
+	if not is_instance_valid(desired_point):
+		return
+
+	if not is_instance_valid(camera):
+		return
+
+	if not is_instance_valid(mario):
+		return
+
+	var original_camera_transform: Transform3D = camera.global_transform
+	var mario_old_process_mode: Node.ProcessMode = mario.process_mode
+
+	# This function controls the star movement.
+	star._star_spawn_active = false
 	star.visible = true
 
-	var original_transform := camera.global_transform
+	# ---------------------------------------------------------
+	# PAUSE MARIO ONLY FOR JUMPING STAR SEQUENCES
+	# ---------------------------------------------------------
 
-	# --- PAUSE MARIO ---
-	var mario_old_process_mode := mario.process_mode
-	mario.process_mode = Node.PROCESS_MODE_DISABLED
+	if jumping:
+		mario.process_mode = Node.PROCESS_MODE_DISABLED
 
 	# ---------------------------------------------------------
 	# STAR SPAWN SOUND / MUSIC
@@ -205,24 +180,24 @@ func star_spawn(
 
 	match star_type:
 		1:
-			# Type 1: Bosses, etc.
-			LibSM64.play_sound(
-				LibSM64.SOUND_ENV_STAR,
-				star.global_position
-			)
+			if jumping:
+				LibSM64.play_sound(
+					LibSM64.SOUND_ENV_STAR,
+					star.global_position
+				)
 
 		2:
-			# Type 2: Yellow boxes, etc.
-			LibSM64.play_sound(
-				LibSM64.SOUND_GENERAL_STAR_APPEARS,
-				star.global_position
-			)
-
-			star.visible = true
+			if jumping:
+				LibSM64.play_sound(
+					LibSM64.SOUND_GENERAL_STAR_APPEARS,
+					star.global_position
+				)
 
 			await get_tree().create_timer(0.8).timeout
 
 			if not is_instance_valid(star):
+				if jumping:
+					mario.process_mode = mario_old_process_mode
 				return
 
 			LibSM64.play_music(
@@ -230,126 +205,126 @@ func star_spawn(
 				LibSM64.SEQ_EVENT_CUTSCENE_STAR_SPAWN
 			)
 
-	# Make sure the star is visible after the sound delay.
-	star.visible = true
-
 	# ---------------------------------------------------------
-	# MOVE CAMERA TO STAR
+	# CAMERA
 	# ---------------------------------------------------------
+	# Only move the camera when jumping is enabled.
+	# Normal star spawns NEVER touch the camera.
 
-	var camera_offset := Vector3.ZERO
-	var initial_camera_target := star.global_position + camera_offset
+	if jumping:
+		var camera_tween: Tween = create_tween()
 
-	var camera_tween := create_tween()
-
-	camera_tween.tween_property(
-		camera,
-		"global_position",
-		initial_camera_target,
-		0.5
-	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-
-	await camera_tween.finished
-
-	if not is_instance_valid(star):
-		return
-
-	star.visible = true
-
-	# ---------------------------------------------------------
-	# STAR BOUNCE
-	# ---------------------------------------------------------
-
-	var star_tween := create_tween()
-
-	if is_vertical:
-		# First Bounce: Up
-		star_tween.tween_property(
-			star,
+		camera_tween.tween_property(
+			camera,
 			"global_position",
-			desired_point.global_position + Vector3.UP * 1.5,
-			0.3
-		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			star.global_position,
+			0.5
+		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
-		# First Bounce: Down
-		star_tween.tween_property(
-			star,
-			"global_position",
-			desired_point.global_position,
-			0.3
-		).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		await camera_tween.finished
 
-		# Second Bounce: Up
-		star_tween.tween_property(
-			star,
-			"global_position",
-			desired_point.global_position + Vector3.UP * 0.75,
-			0.2
-		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
-		# Second Bounce: Down
-		star_tween.tween_property(
-			star,
-			"global_position",
-			desired_point.global_position,
-			0.2
-		).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	else:
-		# Normal Movement
-		star_tween.tween_property(
-			star,
-			"global_position",
-			desired_point.global_position,
-			1.0
-		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
-	# ---------------------------------------------------------
-	# LOCK CAMERA TO STAR + SPIN STAR
-	# ---------------------------------------------------------
-
-	while star_tween.is_running():
 		if not is_instance_valid(star):
+			camera.global_transform = original_camera_transform
+			mario.process_mode = mario_old_process_mode
 			return
 
-		# Keep the camera locked to the star.
-		camera.global_position = star.global_position + camera_offset
-
-		# Keep the star spinning independently.
-		star.rotation_degrees.y += 180.0 * get_process_delta_time()
-
-		await get_tree().process_frame
-
 	# ---------------------------------------------------------
-	# RETURN CAMERA TO ORIGINAL TRANSFORM
+	# STAR MOVEMENT
 	# ---------------------------------------------------------
 
-	var return_tween := create_tween()
-	return_tween.set_parallel(true)
+	if jumping:
+		var star_tween: Tween = create_tween()
 
-	return_tween.tween_property(
-		camera,
-		"global_position",
-		original_transform.origin,
-		0.5
-	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		if is_vertical:
+			star_tween.tween_property(
+				star,
+				"global_position",
+				desired_point.global_position + Vector3.UP * 1.5,
+				0.3
+			).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
-	return_tween.tween_property(
-		camera,
-		"global_rotation",
-		original_transform.basis.get_euler(),
-		0.5
-	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+			star_tween.tween_property(
+				star,
+				"global_position",
+				desired_point.global_position,
+				0.3
+			).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
-	await return_tween.finished
+			star_tween.tween_property(
+				star,
+				"global_position",
+				desired_point.global_position + Vector3.UP * 0.75,
+				0.2
+			).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+			star_tween.tween_property(
+				star,
+				"global_position",
+				desired_point.global_position,
+				0.2
+			).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		else:
+			star_tween.tween_property(
+				star,
+				"global_position",
+				desired_point.global_position,
+				1.0
+			).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+		# Camera follows the star ONLY during jumping.
+		while star_tween.is_running():
+			if not is_instance_valid(star):
+				break
+
+			camera.global_position = star.global_position
+
+			await get_tree().process_frame
+
+	else:
+		# Normal star spawn.
+		# No camera movement whatsoever.
+		star.global_position = desired_point.global_position
+
+	# ---------------------------------------------------------
+	# FINISH
+	# ---------------------------------------------------------
 
 	if not is_instance_valid(star):
+		if jumping:
+			camera.global_transform = original_camera_transform
+			mario.process_mode = mario_old_process_mode
 		return
 
-	# Guarantee that the camera is restored exactly.
-	camera.global_transform = original_transform
+	star.global_position = desired_point.global_position
 
-	# The star is now collectible.
+	# The star can now be collected.
 	star._activate_star()
 
-	# --- UNPAUSE MARIO ---
-	mario.process_mode = mario_old_process_mode
+	# ---------------------------------------------------------
+	# RETURN CAMERA
+	# ---------------------------------------------------------
+
+	if jumping:
+		var return_tween: Tween = create_tween()
+		return_tween.set_parallel(true)
+
+		return_tween.tween_property(
+			camera,
+			"global_position",
+			original_camera_transform.origin,
+			0.5
+		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+		return_tween.tween_property(
+			camera,
+			"global_rotation",
+			original_camera_transform.basis.get_euler(),
+			0.5
+		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+		await return_tween.finished
+
+		if is_instance_valid(camera):
+			camera.global_transform = original_camera_transform
+
+		mario.process_mode = mario_old_process_mode

@@ -87,7 +87,8 @@ func obj_matching_spawning(
 				%CameraRig,
 				_mario,
 				true,
-				2
+				2,
+				true
 			)
 
 		"Bob-omb":

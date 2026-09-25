@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://giamyb8mf3px"]
+
+[ext_resource type="SpriteFrames" uid="uid://ddvtx2x06ts54" path="res://assets/spriteframes/spriteframes_HUD.tres" id="1_3w0ci"]
+
+[node name="Node3D" type="Node3D" unique_id=176012030]
+
+[node name="Control" type="Control" parent="." unique_id=1722330396]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="AnimatedSprite2D" parent="Control" unique_id=1309564689]
+sprite_frames = ExtResource("1_3w0ci")
+animation = &"mario_normal.rgba32"
