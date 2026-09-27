@@ -14,6 +14,15 @@ extends Node3D
 
 @export_category("Star")
 @export var star_id: int = 1
+@export var star_name := "King Bob-Omb Atop the Mountain"
+
+## Makes this star a display-only star.
+## Display stars cannot be collected and do not use spawn/collection behavior.
+@export var display_star: bool = false
+
+## Only affects display stars.
+## When enabled, the display star continuously rotates.
+@export var hover: bool = false
 
 @export_category("Star Spawn")
 @export var star_spawn_height_curve: Curve
@@ -33,6 +42,7 @@ extends Node3D
 @export var sparkle_radius_z := 0.7
 @export var sparkle_count := 4
 @export var sparkle_interval := 0.12
+
 
 var _spawned: bool = false
 
@@ -55,6 +65,11 @@ var _sparkle_timer: float = 0.0
 
 
 func _ready() -> void:
+	# Display stars are completely independent from collectible stars.
+	if display_star:
+		_setup_display_star()
+		return
+
 	area_3d.area_entered.connect(_on_area_3d_area_entered)
 
 	if star_spawn_height_curve == null:
@@ -74,6 +89,20 @@ func _ready() -> void:
 		area_3d.monitorable = false
 	else:
 		_activate_star()
+
+
+func _setup_display_star() -> void:
+	# Display stars are always visible.
+	_spawned = true
+	_is_collected = false
+	_star_spawn_active = false
+	_star_grab_active = false
+
+	mesh.visible = true
+
+	# A display star must never be collectible.
+	area_3d.monitoring = false
+	area_3d.monitorable = false
 
 
 func _create_sparkles() -> void:
@@ -142,6 +171,17 @@ func _stop_sparkles() -> void:
 
 
 func _process(delta: float) -> void:
+	# Display-star behavior.
+	#
+	# Display stars never enter the collectible-star state machine.
+	# hover only works when display_star is enabled.
+	if display_star:
+		if hover:
+			mesh.rotation_degrees.y += 180.0 * delta
+
+		return
+
+	# Normal collectible-star behavior.
 	if _star_spawn_active:
 		_update_star_spawn(delta)
 		_update_sparkles(delta)
@@ -202,6 +242,10 @@ func _find_mactors_and_camera() -> void:
 
 
 func play_star_spawn_animation(spawn_pos: Variant = null) -> void:
+	# Display stars do not have spawn animations.
+	if display_star:
+		return
+
 	_find_mactors_and_camera()
 
 	if star_spawn_height_curve == null:
@@ -260,10 +304,11 @@ func _play_star_spawn_sounds() -> void:
 	if not is_instance_valid(_mario):
 		return
 
-	LibSM64.play_music(
-		LibSM64.SEQ_PLAYER_LEVEL,
-		LibSM64.SEQ_EVENT_CUTSCENE_STAR_SPAWN
-	)
+	if jumping:
+		LibSM64.play_music(
+			LibSM64.SEQ_PLAYER_LEVEL,
+			LibSM64.SEQ_EVENT_CUTSCENE_STAR_SPAWN
+		)
 
 
 func _update_star_spawn(delta: float) -> void:
@@ -308,6 +353,10 @@ func _update_star_spawn(delta: float) -> void:
 
 
 func _activate_star() -> void:
+	# Display stars don't use the collectible activation system.
+	if display_star:
+		return
+
 	_spawned = true
 	mesh.visible = true
 
@@ -316,6 +365,10 @@ func _activate_star() -> void:
 
 
 func _try_collect(mario: LibSM64Mario) -> void:
+	# Extra protection against display stars ever being collected.
+	if display_star:
+		return
+
 	if not _spawned or _star_spawn_active:
 		return
 
@@ -367,11 +420,10 @@ func _start_star_grab() -> void:
 	mesh.visible = false
 	_mario._get_power_star(star_id)
 
-	if jumping:
-		LibSM64.play_sound(
-			LibSM64.SOUND_MENU_STAR_SOUND,
-			_mario.global_position
-		)
+	LibSM64.play_sound(
+		LibSM64.SOUND_MENU_STAR_SOUND,
+		_mario.global_position
+	)
 
 	await _wait_for_mario_to_land()
 
@@ -515,6 +567,10 @@ func _wait_for_mario_to_land() -> void:
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
+	# Display stars never participate in collision collection.
+	if display_star:
+		return
+
 	if not _spawned or _star_spawn_active:
 		return
 

@@ -1,0 +1,83 @@
+[gd_scene format=4 uid="uid://blaqdfgx388ej"]
+
+[ext_resource type="PackedScene" uid="uid://capa37xppf8nu" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Peach's Castle Interior_ 1F/Peach's Castle Interior 1F/TrapFloor.dae" id="1_ad2xc"]
+[ext_resource type="Texture2D" uid="uid://byb1rkg3nlkff" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Peach's Castle Interior_ 1F/Peach's Castle Interior 1F/tex_9005000.png" id="2_j62v5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5x3h8"]
+resource_name = "Mat0"
+cull_mode = 2
+albedo_texture = ExtResource("2_j62v5")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7q4ut"]
+_surfaces = [{
+"aabb": AABB(0, -1.01, -3.06, 3.58, 1.01, 6.13),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAEAAEABQAAAAIAAwAAAAUABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"name": "Mat0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("////////AAD//wAAAAAAAP//AAD//wAA/////wAAAAAAAAAAAAAAAAAA/////wAAAAAAAP//AAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6kn4j"]
+resource_name = "Mesh"
+_surfaces = [{
+"aabb": AABB(0, -1.01, -3.06, 3.58, 1.01, 6.13),
+"attribute_data": PackedByteArray("/3//f///l53/f5ed////fxTK/3//f3idFMp4nf9//3////9//3+Xnf//l53/f/9/FMp4nf9/eJ0Uyv9/FMoAABTKCb3/fwm9/38AAA=="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkACwAMAA0ACwAOAAwADwAQABEADwARABIA"),
+"material": SubResource("StandardMaterial3D_5x3h8"),
+"name": "Mat0",
+"primitive": 3,
+"uv_scale": Vector4(5.9257813, 4.0546875, 0, 0),
+"vertex_count": 19,
+"vertex_data": PackedByteArray("////////ILL//wAAAADj0v//AAD//+OS/////wAAGOP/////AACDHwAAAAAAAAAA//8AAAAAAAAAAP//AABBHAAA//8AADUKAAAAAP//AAAAAAAAAAAAAAAA/////7ii//8AAP//45IAAAAA//8brf///////5ax/////wAAe+D///////+WsQAA/////7iiAAD//wAAveMCsOES/38AAP9/AABuvMIpAOeteP//cZgaz/9/JvAYtvXv7UMbT/9///9xmJDeR6//fwAA/3///0CuMkYA5614QK4yRpDeR68m8Bi2")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_7q4ut")
+
+[sub_resource type="Animation" id="Animation_j62v5"]
+resource_name = "fall"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node0_culling/Node1_display/Node2_display/Mesh0:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5707964, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node0_culling/Node1_display/Node2_display/Mesh0:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -3.0681744, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5x3h8"]
+_data = {
+&"fall": SubResource("Animation_j62v5")
+}
+
+[node name="TrapFloor" unique_id=316425513 instance=ExtResource("1_ad2xc")]
+
+[node name="Mesh0" parent="Node0_culling/Node1_display/Node2_display" parent_id_path=PackedInt32Array(1183753341) index="0" unique_id=837186264]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -3.0681744, 0)
+mesh = SubResource("ArrayMesh_6kn4j")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=747147171]
+libraries/ = SubResource("AnimationLibrary_5x3h8")

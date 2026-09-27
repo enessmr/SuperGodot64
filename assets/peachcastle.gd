@@ -16,10 +16,11 @@ func _ready() -> void:
 	if %RomPickerDialog:
 		%RomPickerDialog.rom_loaded.connect(_on_rom_picker_dialog_rom_loaded)
 	
-	if LibSM64Global.rom.is_empty():
+	if LibSM64Global.rom.is_empty() and not SaveManager.has_cached_rom():
 		%RomPickerDialog.pick_rom()
 	else:
-		_init_libsm64()
+		LibSM64Global.load_rom_file(SaveManager.get_rom_path())
+		_init_libsm64() 
 
 
 func _unhandled_input(event: InputEvent) -> void:

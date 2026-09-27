@@ -87,7 +87,7 @@ func _ready() -> void:
 	sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	sprite.animation = animationname
 	sprite.position.y = sprite_offset_y
-	# sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_OPAQUE_PREPASS
+	sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_OPAQUE_PREPASS
 	sprite.play()
 
 	if moving_coin:

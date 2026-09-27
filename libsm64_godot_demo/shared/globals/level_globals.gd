@@ -200,10 +200,11 @@ func star_spawn(
 					mario.process_mode = mario_old_process_mode
 				return
 
-			LibSM64.play_music(
-				LibSM64.SEQ_PLAYER_ENV,
-				LibSM64.SEQ_EVENT_CUTSCENE_STAR_SPAWN
-			)
+			if jumping:
+				LibSM64.play_music(
+					LibSM64.SEQ_PLAYER_ENV,
+					LibSM64.SEQ_EVENT_CUTSCENE_STAR_SPAWN
+				)
 
 	# ---------------------------------------------------------
 	# CAMERA

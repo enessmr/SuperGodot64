@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://c3qrkb062knfa"]
+
+[ext_resource type="PackedScene" uid="uid://mtpsmjjbymwb" path="res://models/toad.fbx" id="1_bn3lv"]
+[ext_resource type="Script" uid="uid://dqurw05clh27n" path="res://assets/toad.gd" id="2_00ced"]
+
+[node name="toad" unique_id=1853591663 instance=ExtResource("1_bn3lv")]
+script = ExtResource("2_00ced")
+
+[node name="Skeleton3D" parent="ArmatureObj" parent_id_path=PackedInt32Array(604223992) index="0" unique_id=1650658517]
+bones/7/position = Vector3(0, 0.0058999998, 0)
+bones/7/rotation = Quaternion(0, 0.7070729, 0, 0.7071406)
+bones/8/rotation = Quaternion(0.18234268, 0.18365856, 0.6854668, 0.6805556)
+bones/9/rotation = Quaternion(-7.450125e-09, -8.748202e-11, -6.5924155e-11, 1)
+bones/10/rotation = Quaternion(-0.49988043, -0.5000856, -0.4998805, 0.5001534)
+bones/12/rotation = Quaternion(-0.50178427, -0.49817556, -0.5017843, 0.49824324)
+bones/14/rotation = Quaternion(-0.50178427, -0.49817556, -0.5017843, 0.49824324)
+bones/16/rotation = Quaternion(2.353055e-09, 1.7340318e-09, -0.7096445, 0.7045599)
+bones/17/rotation = Quaternion(-0.18301061, 0.1829931, -0.68298286, 0.68304837)
+bones/18/rotation = Quaternion(1.4833974e-08, 2.910383e-11, 2.9103837e-11, 1)
+bones/19/rotation = Quaternion(-0.5003101, 0.49965593, 0.50031006, 0.49972373)
+bones/21/rotation = Quaternion(2.353055e-09, 1.7340318e-09, -0.7096445, 0.7045599)
+bones/22/rotation = Quaternion(0.18301056, -0.18299302, -0.6829829, 0.6830483)
+bones/23/rotation = Quaternion(-1.4779289e-12, 6.3968386e-11, 1.6385115e-11, 1)
+bones/24/rotation = Quaternion(0.5002144, -0.49975166, 0.5002144, 0.49981934)
+bones/26/rotation = Quaternion(2.353055e-09, 1.7340318e-09, -0.7096445, 0.7045599)
+bones/27/rotation = Quaternion(-0.13578725, -0.13123278, -0.68397456, 0.70464075)
+bones/28/rotation = Quaternion(-0.5003101, 0.49965593, 0.50031006, 0.49972373)
+bones/30/rotation = Quaternion(2.353055e-09, 1.7340318e-09, -0.7096445, 0.7045599)
+bones/31/rotation = Quaternion(0.21381105, -0.02596198, -0.7541622, 0.620363)
+bones/32/rotation = Quaternion(0.5007505, -0.49921465, 0.5007505, 0.49928233)
+
+[node name="skinned" parent="ArmatureObj/Skeleton3D" index="0" unique_id=1058901474]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="Light" parent="." index="1" unique_id=580228018]
+transform = Transform3D(-78.86751, -21.132492, 57.73503, 57.73503, -57.735035, 57.735016, 21.13249, 78.867516, 57.73503, 0, 0, 0)
+light_energy = 0.0
+sky_mode = 1
+
+[node name="Light_001" parent="." index="2" unique_id=1596110881]
+transform = Transform3D(-78.86751, -21.132492, 57.73503, 57.73503, -57.735035, 57.735016, 21.13249, 78.867516, 57.73503, 0, 0, 0)
+light_energy = 0.0
+sky_mode = 1
+
+[node name="Light_002" parent="." index="3" unique_id=1401323019]
+transform = Transform3D(-78.86751, -21.132492, 57.73503, 57.73503, -57.735035, 57.735016, 21.13249, 78.867516, 57.73503, 0, 0, 0)
+light_energy = 0.0
+sky_mode = 1
+
+[node name="Light_003" parent="." index="4" unique_id=1726967862]
+transform = Transform3D(-78.86751, -21.132492, 57.73503, 57.73503, -57.735035, 57.735016, 21.13249, 78.867516, 57.73503, 0, 0, 0)
+light_energy = 0.0
+sky_mode = 1
+
+[node name="Light_004" parent="." index="5" unique_id=1794712962]
+transform = Transform3D(-78.86751, -21.132492, 57.73503, 57.73503, -57.735035, 57.735016, 21.13249, 78.867516, 57.73503, 1, 0, 0)
+light_energy = 0.0
+sky_mode = 1
+
+[node name="Light_005" parent="." index="6" unique_id=1061873542]
+transform = Transform3D(-78.86751, -21.132492, 57.73503, 57.73503, -57.735035, 57.735016, 21.13249, 78.867516, 57.73503, 0, 0, 0)
+light_energy = 0.0
+sky_mode = 1

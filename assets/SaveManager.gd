@@ -154,7 +154,8 @@ func ensure_save_file(slot: String) -> bool:
 		"empty": true,
 		"stars": 0,
 		"coins": 0,
-		"lives": 4
+		"lives": 4,
+		"course_stars": {}   # e.g. {1: [1, 3], 2: [2]} — course number → array of star ids
 	}
 
 	return save_file(slot, empty_save)
@@ -179,3 +180,45 @@ func delete_file(slot: String) -> bool:
 	print("SaveManager: Deleted File ", slot.to_upper())
 
 	return true
+
+
+# ============================================================
+# STAR PROGRESS
+# ============================================================
+
+func is_star_collected(slot: String, course: int, star_id: int) -> bool:
+	var data = load_file(slot)
+
+	if data == null or not data.has("course_stars"):
+		return false
+
+	var collected: Array = data["course_stars"].get(course, [])
+
+	return collected.has(star_id)
+
+
+func set_star_collected(slot: String, course: int, star_id: int) -> bool:
+	var data = load_file(slot)
+
+	if data == null:
+		return false
+
+	if not data.has("course_stars"):
+		data["course_stars"] = {}
+
+	var collected: Array = data["course_stars"].get(course, [])
+
+	if not collected.has(star_id):
+		collected.append(star_id)
+
+	data["course_stars"][course] = collected
+
+	# Keep the total star count in sync
+	var total := 0
+
+	for course_list in data["course_stars"].values():
+		total += course_list.size()
+
+	data["stars"] = total
+
+	return save_file(slot, data)

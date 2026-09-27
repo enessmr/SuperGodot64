@@ -5,7 +5,7 @@ extends Node3D
 @onready var lib_sm_64_mario: LibSM64Mario = $LibSM64Mario
 
 var _libsm64_was_init := false
-var musik: int = 3
+@export var musik: int = 3
 
 
 func _ready() -> void:

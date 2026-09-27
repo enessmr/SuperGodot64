@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://da07nygw3fa26"]
 
 [ext_resource type="Script" uid="uid://bsrm11mlsi0su" path="res://assets/vcutm.gd" id="1_pfipr"]
-[ext_resource type="Texture2D" uid="uid://iciud4yc2j0n" path="res://assets/Backgrounds/selected_sprites_10/sprite-1-1.png" id="2_pfipr"]
 [ext_resource type="Script" uid="uid://b4n6vr1utqly6" path="res://addons/libsm64_godot/libsm64_mario/libsm64_mario.gd" id="5_4khne"]
 [ext_resource type="Texture2D" uid="uid://dwqqxrof1by6x" path="res://assets/sprite-7-4.png" id="6_hov0x"]
 [ext_resource type="PackedScene" uid="uid://yt8kbrfd41gi" path="res://libsm64_godot_demo/shared/camera_rig/camera_rig.tscn" id="7_tb4kd"]
@@ -17,15 +16,14 @@
 [ext_resource type="Script" uid="uid://dw1eldpluvr31" path="res://libsm64_godot_demo/shared/globals/level_globals.gd" id="18_lsajm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nqyip"]
-panorama = ExtResource("2_pfipr")
 
 [sub_resource type="Sky" id="Sky_fjdmo"]
 sky_material = SubResource("PanoramaSkyMaterial_nqyip")
 
 [sub_resource type="Environment" id="Environment_wxohf"]
-background_mode = 1
+background_mode = 2
 sky = SubResource("Sky_fjdmo")
-ambient_light_source = 2
+ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
 reflected_light_source = 2
 tonemap_mode = 2
@@ -65,7 +63,9 @@ script = ExtResource("1_pfipr")
 start_cap = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1440695222]
-transform = Transform3D(1, 0, 0, 0, -0.3218306, 0.94679725, 0, -0.9467974, -0.32183045, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.32183057, 0.94679725, 0, -0.94679725, -0.3218306, 12.887001, 0, 0)
+light_energy = 0.4
+light_angular_distance = 90.0
 shadow_enabled = true
 sky_mode = 1
 
@@ -80,14 +80,6 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.40379, 64.91373, -61.283363)
 script = ExtResource("5_4khne")
 camera = NodePath("CameraRig")
-interpolate = null
-mario_inputs_stick_left = null
-mario_inputs_stick_right = null
-mario_inputs_stick_up = null
-mario_inputs_stick_down = null
-mario_inputs_button_a = null
-mario_inputs_button_b = null
-mario_inputs_button_z = null
 
 [node name="Sparkles" type="GPUParticles3D" parent="LibSM64Mario" unique_id=1476477493]
 unique_name_in_owner = true
@@ -180,6 +172,7 @@ unique_name_in_owner = true
 [node name="RomPickerDialog" parent="Interface" unique_id=2031306569 instance=ExtResource("12_n3wtx")]
 unique_name_in_owner = true
 oversampling_override = 1.0
+position = Vector2i(0, 36)
 size = Vector2i(515, 180)
 always_on_top = true
 

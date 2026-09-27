@@ -136,7 +136,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"impact_smoke",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -177,9 +177,9 @@ animations = [{
 "duration": 1.4,
 "texture": ExtResource("30_355bw")
 }],
-"loop": 1,
+"loop": 2,
 "name": &"sparkle_animation",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -255,7 +255,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_p2g8o")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"water_bubble",
 "speed": 15.0
 }, {

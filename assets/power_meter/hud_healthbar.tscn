@@ -380,7 +380,7 @@ animation = &"segment2.00800.rgba16"
 [node name="Counter2" type="AnimatedSprite2D" parent="HUD_general/Lives" unique_id=591458906]
 unique_name_in_owner = true
 visible = false
-position = Vector2(169.99998, 37)
+position = Vector2(163, 37)
 scale = Vector2(0.07, 0.07)
 sprite_frames = ExtResource("12_4io5l")
 animation = &"segment2.00000.rgba16"
@@ -388,7 +388,7 @@ animation = &"segment2.00000.rgba16"
 [node name="Counter3" type="AnimatedSprite2D" parent="HUD_general/Lives" unique_id=1333414407]
 unique_name_in_owner = true
 visible = false
-position = Vector2(204, 37)
+position = Vector2(193, 37)
 scale = Vector2(0.07, 0.07)
 sprite_frames = ExtResource("12_4io5l")
 animation = &"00000.rgba16"
@@ -396,10 +396,10 @@ animation = &"00000.rgba16"
 [node name="Counter4" type="AnimatedSprite2D" parent="HUD_general/Lives" unique_id=1676900694]
 unique_name_in_owner = true
 visible = false
-position = Vector2(274, 37)
+position = Vector2(224, 37)
 scale = Vector2(0.07, 0.07)
 sprite_frames = ExtResource("12_4io5l")
-animation = &"segment2.00400.rgba16"
+animation = &"segment2.00000.rgba16"
 
 [node name="Coins" type="Control" parent="HUD_general" unique_id=1216862482]
 layout_mode = 1
@@ -435,7 +435,7 @@ animation = &"00000.rgba16"
 [node name="Counter2C" type="AnimatedSprite2D" parent="HUD_general/Coins" unique_id=686257938]
 unique_name_in_owner = true
 visible = false
-position = Vector2(27.919983, 36.92)
+position = Vector2(24, 37)
 scale = Vector2(0.07, 0.07)
 sprite_frames = ExtResource("12_4io5l")
 animation = &"00000.rgba16"
@@ -443,7 +443,7 @@ animation = &"00000.rgba16"
 [node name="Counter3C" type="AnimatedSprite2D" parent="HUD_general/Coins" unique_id=101068135]
 unique_name_in_owner = true
 visible = false
-position = Vector2(62, 37)
+position = Vector2(54, 37)
 scale = Vector2(0.07, 0.07)
 sprite_frames = ExtResource("12_4io5l")
 animation = &"00000.rgba16"
@@ -482,7 +482,7 @@ animation = &"00000.rgba16"
 [node name="Counter2S" type="AnimatedSprite2D" parent="HUD_general/Stars" unique_id=547143100]
 unique_name_in_owner = true
 visible = false
-position = Vector2(12.920029, 35.92)
+position = Vector2(6.9999847, 36)
 scale = Vector2(0.07, 0.07)
 sprite_frames = ExtResource("12_4io5l")
 animation = &"segment2.00000.rgba16"
@@ -490,7 +490,7 @@ animation = &"segment2.00000.rgba16"
 [node name="Counter3S" type="AnimatedSprite2D" parent="HUD_general/Stars" unique_id=770410191]
 unique_name_in_owner = true
 visible = false
-position = Vector2(46.920044, 35.92)
+position = Vector2(37, 36)
 scale = Vector2(0.07, 0.07)
 sprite_frames = ExtResource("12_4io5l")
 animation = &"00000.rgba16"

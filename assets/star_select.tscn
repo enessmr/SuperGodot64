@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://dtrxu2ntu4a4n"]
+
+[ext_resource type="Script" uid="uid://yh8lrx4lla7c" path="res://assets/star_select.gd" id="1_0grg1"]
+[ext_resource type="Texture2D" uid="uid://l1igoeh5j8n1" path="res://assets/course_select.png" id="1_tqb54"]
+[ext_resource type="FontFile" uid="uid://bbugorqp10c0d" path="res://assets/Mario64.ttf" id="2_mvpjh"]
+[ext_resource type="SpriteFrames" uid="uid://ddvtx2x06ts54" path="res://assets/spriteframes/spriteframes_HUD.tres" id="4_eyuvi"]
+[ext_resource type="Script" uid="uid://db7w8a8uq84jv" path="res://models/Nintendo 64 - Super Mario 64 - Objects - Power Star/Power Star/power_star.gd" id="5_wb1ly"]
+[ext_resource type="ArrayMesh" uid="uid://dmkjihlj26uct" path="res://models/star_not_collected_display.tres" id="6_8vncw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pxfdq"]
+font = ExtResource("2_mvpjh")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wb1ly"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_8vncw"]
+
+[sub_resource type="Environment" id="Environment_8vncw"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_v3hcc"]
+offsets = PackedFloat32Array(0.7074468, 0.99937665)
+colors = PackedColorArray(0.84313726, 0.7490196, 0, 1, 0.99607843, 0.9647059, 0.0627451, 1)
+
+[node name="Node3D" type="Node3D" unique_id=953751174]
+script = ExtResource("1_0grg1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1613406358]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -238.0
+offset_right = -39.0
+offset_bottom = -198.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture = ExtResource("1_tqb54")
+expand_mode = 1
+
+[node name="CourseLabel" type="Label" parent="." unique_id=1114110366]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -56.0
+offset_right = 129.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_pxfdq")
+
+[node name="StarLabel" type="Label" parent="." unique_id=2086936596]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_top = 218.0
+offset_right = 129.0
+offset_bottom = 256.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_pxfdq")
+uppercase = true
+
+[node name="LibSM64AudioStreamPlayer" type="LibSM64AudioStreamPlayer" parent="." unique_id=1226540578]
+unique_name_in_owner = true
+
+[node name="Control" type="Control" parent="." unique_id=335310385]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -166.0
+offset_right = 22.0
+offset_bottom = -126.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CourseNumberTens" type="AnimatedSprite2D" parent="Control" unique_id=1905941540]
+unique_name_in_owner = true
+visible = false
+position = Vector2(10.000061, 20.99997)
+scale = Vector2(0.06, 0.06)
+sprite_frames = ExtResource("4_eyuvi")
+animation = &"00200.rgba16"
+
+[node name="CourseNumberCenter" type="AnimatedSprite2D" parent="Control" unique_id=511039583]
+unique_name_in_owner = true
+visible = false
+position = Vector2(21, 21)
+scale = Vector2(0.06, 0.06)
+sprite_frames = ExtResource("4_eyuvi")
+animation = &"00200.rgba16"
+
+[node name="CourseNumberOnes" type="AnimatedSprite2D" parent="Control" unique_id=942463956]
+unique_name_in_owner = true
+visible = false
+position = Vector2(31, 21)
+scale = Vector2(0.06, 0.06)
+sprite_frames = ExtResource("4_eyuvi")
+animation = &"00000.rgba16"
+
+[node name="Sparkles" type="GPUParticles3D" parent="." unique_id=353875612]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7899735)
+emitting = false
+amount = 1
+amount_ratio = 0.0
+process_material = SubResource("ParticleProcessMaterial_wb1ly")
+draw_pass_1 = SubResource("QuadMesh_8vncw")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=176263073]
+projection = 1
+current = true
+size = 2.453
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1553430255]
+environment = SubResource("Environment_8vncw")
+
+[node name="Stars" type="Node3D" parent="." unique_id=1264873924]
+unique_name_in_owner = true
+
+[node name="PowerStar3D" type="Node3D" parent="Stars" unique_id=898023753 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.97982484, 0.72354305, -2.4666348)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/PowerStar3D" unique_id=1151009665]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/PowerStar3D" unique_id=358525536]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/PowerStar3D/MeshInstance3D" unique_id=1535850972]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D2" type="Node3D" parent="Stars" unique_id=2133614120 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.98, 0.72354305, -2.466661)
+script = ExtResource("5_wb1ly")
+star_id = 7
+star_name = "Behind the Chain Chomp's Gate"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/PowerStar3D2" unique_id=668288549]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/PowerStar3D2" unique_id=1135042826]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/PowerStar3D2/MeshInstance3D" unique_id=1265227670]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
