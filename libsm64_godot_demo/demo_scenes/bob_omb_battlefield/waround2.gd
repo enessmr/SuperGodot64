@@ -1,14 +1,17 @@
 extends MeshInstance3D
 
+@export var interpolate: bool = true
 @export var source_body: RigidBody3D
 @export var fixed_y_degrees: float = -45.0
 
 var original_scale: Vector3
 
 func _ready() -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
 	original_scale = scale
 
 func _physics_process(_delta: float) -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
 	if not source_body:
 		return
 

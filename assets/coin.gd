@@ -16,9 +16,20 @@ const DESPAWN_SEC := INF                     # effectively never despawn
 @export var red_coin : bool = false
 @export var blue_coin : bool = false
 @export var yellow_coin : bool = true
+@onready var red_coin_players: Array[AudioStreamPlayer] = [
+	get_node_or_null("%RedCoin1Player") as AudioStreamPlayer,
+	get_node_or_null("%RedCoin2Player") as AudioStreamPlayer,
+	get_node_or_null("%RedCoin3Player") as AudioStreamPlayer,
+	get_node_or_null("%RedCoin4Player") as AudioStreamPlayer,
+	get_node_or_null("%RedCoin5Player") as AudioStreamPlayer,
+	get_node_or_null("%RedCoin6Player") as AudioStreamPlayer,
+	get_node_or_null("%RedCoin7Player") as AudioStreamPlayer,
+	get_node_or_null("%RedCoin8Player") as AudioStreamPlayer,
+]
 
 @export_group("Moving Coin Mode")
 @export var moving_coin := false
+@export var interpolate: bool = true
 @export var gravity := 30.0
 @export var bounce_damping := 0.5
 @export var ground_friction := 0.85
@@ -27,7 +38,7 @@ const DESPAWN_SEC := INF                     # effectively never despawn
 @export_group("Hitbox")
 ## Full extents of the hitbox. Vertical range runs from
 ## (origin.y + hitbox_bottom_offset) up by hitbox_size.y.
-@export var hitbox_size := Vector3(1.0, 2.327, 1.0)
+@export var hitbox_size := Vector3(1.5, 2.327, 1.5)
 @export var mario_center_height := 0.8
 
 ## Distance from Coin3D's origin down to the bottom of the hitbox.
@@ -53,6 +64,8 @@ const DESPAWN_SEC := INF                     # effectively never despawn
 @export var ray_extra_offset := 0.0
 
 var _used := false
+# Spawned coins become collectible on their first descent (SM64 coin.inc.c).
+var _spawn_collectible := true
 var _velocity := Vector3.ZERO
 var _grounded := false
 var _bounce_count := 0
@@ -63,7 +76,12 @@ var sprite: AnimatedSprite3D
 var _mario: LibSM64Mario = null
 
 
+func _apply_interpolation_setting() -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
+
+
 func _ready() -> void:
+	_apply_interpolation_setting()
 	_try_find_mario()
 
 	sprite = AnimatedSprite3D.new()
@@ -98,19 +116,23 @@ func _try_find_mario() -> void:
 	if is_instance_valid(_mario):
 		return
 
-	_mario = get_parent().get_node_or_null("LibSM64Mario") as LibSM64Mario
+	_mario = get_tree().current_scene.find_child("LibSM64Mario", true, false) as LibSM64Mario
 
 
 func _init_moving_coin() -> void:
-	var yaw := randf_range(0.0, TAU)
-	var forward_speed := randf_range(0.0, 10.0)
-
+	reset_physics_interpolation()
+	var velocity_scale := 1.0 / (LibSM64.scale_factor * LibSM64.tick_delta_time)
+	# bhv_spawned_coin_init draws vertical speed, forward speed, then yaw.
+	_velocity.y = (SM64RNG.random_float() * 10.0 + 30.0 + (20.0 if blue_coin else 0.0)) * velocity_scale
+	var forward_speed := SM64RNG.random_float() * 10.0 * velocity_scale
+	var yaw := float(SM64RNG.random_u16()) * TAU / 65536.0
 	_velocity.x = sin(yaw) * forward_speed
 	_velocity.z = cos(yaw) * forward_speed
-	_velocity.y = randf_range(0.0, 10.0) + 30.0
+	_spawn_collectible = false
 
 
 func _physics_process(delta: float) -> void:
+	_apply_interpolation_setting()
 	if _used:
 		return
 
@@ -118,11 +140,13 @@ func _physics_process(delta: float) -> void:
 
 	if moving_coin:
 		_process_moving_coin(delta)
+		if _velocity.y <= 0.0:
+			_spawn_collectible = true
 
 	if not _mario:
 		return
 
-	if _mario_in_hitbox():
+	if _spawn_collectible and _mario_in_hitbox():
 		_use_coin()
 
 
@@ -167,7 +191,8 @@ func _process_moving_coin(delta: float) -> void:
 		var to := from + step_motion
 
 		var query := PhysicsRayQueryParameters3D.create(from, to)
-		query.exclude = [self]
+		# A Coin3D is a MeshInstance3D, not a physics body to exclude.
+		query.collision_mask = 1 | LibSM64SurfaceHandlerBase.OBJECT_COLLISION_LAYER
 
 		var hit := space_state.intersect_ray(query)
 
@@ -198,7 +223,7 @@ func _process_moving_coin(delta: float) -> void:
 		floor_from + Vector3.DOWN * MAX_STEP
 	)
 
-	floor_query.exclude = [self]
+	floor_query.collision_mask = 1 | LibSM64SurfaceHandlerBase.OBJECT_COLLISION_LAYER
 
 	var floor_hit := space_state.intersect_ray(floor_query)
 
@@ -269,6 +294,9 @@ func _use_coin() -> void:
 		return
 
 	_used = true
+	_set_all_visible(false)
+	sprite.stop()
+	_play_collection_sparkle()
 
 	if _mario:
 		_mario.add_coins(coin_amount)
@@ -283,14 +311,35 @@ func _use_coin() -> void:
 			LibSM64.play_sound_global(
 				LibSM64.SOUND_GENERAL_COIN)
 		elif red_coin:
-			LibSM64.play_sound_global(LibSM64.SOUND_MENU_COLLECT_RED_COIN)
+			var index : int = CustomGlobals.red_coin_count
+
+			if index >= 0 and index < red_coin_players.size() and red_coin_players[index] != null:
+				red_coin_players[index].play()
+
+			CustomGlobals.red_coin_count += 1
 		elif blue_coin:
 			for i in coin_amount:
 				LibSM64.play_sound_global(LibSM64.SOUND_GENERAL_COIN)
 				await get_tree().create_timer(0.2).timeout
 
-	_set_all_visible(false)
 	_on_used()
+
+
+func _play_collection_sparkle() -> void:
+	var sparkle := AnimatedSprite3D.new()
+	sparkle.name = "CoinCollectionSparkle"
+	# The shared particle resource loops; only this pickup should play once.
+	sparkle.sprite_frames = sprite_frames_file_2.duplicate() as SpriteFrames
+	sparkle.sprite_frames.set_animation_loop(&"sparkle", false)
+	sparkle.pixel_size = sprite.pixel_size
+	sparkle.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	sparkle.alpha_cut = SpriteBase3D.ALPHA_CUT_OPAQUE_PREPASS
+	sparkle.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+	# A separate scene node stays visible when the collected coin is hidden.
+	get_tree().current_scene.add_child(sparkle)
+	sparkle.global_position = global_position
+	sparkle.animation_finished.connect(sparkle.queue_free)
+	sparkle.play(&"sparkle")
 
 
 func _on_used() -> void:

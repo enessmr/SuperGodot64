@@ -22,17 +22,21 @@
 [ext_resource type="Script" uid="uid://bbq30kpxivduk" path="res://addons/libsm64_godot/handlers/libsm64_static_surfaces_handler.gd" id="17_i46gs"]
 [ext_resource type="Script" uid="uid://d0ak76u87aww3" path="res://addons/libsm64_godot/handlers/libsm64_surface_objects_handler.gd" id="18_2m751"]
 [ext_resource type="Texture2D" uid="uid://m16085b7tj8r" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Bob-omb Battlefield/Bob-omb Battlefield/tex_9006000.png" id="18_i46gs"]
+[ext_resource type="Texture2D" uid="uid://bthmu3eslu3l2" path="res://models/vanish_cap_box_front.rgba16.png" id="18_klyhr"]
+[ext_resource type="Texture2D" uid="uid://ccfcxev8dct0j" path="res://models/vanish_cap_box_side.rgba16.png" id="19_76rwr"]
 [ext_resource type="Script" uid="uid://snaocr6l3w1y" path="res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/tilt.gd" id="19_lb43m"]
+[ext_resource type="Script" uid="uid://bcpiuj1imli70" path="res://assets/tree.gd" id="21_a6rxy"]
 [ext_resource type="Script" uid="uid://d25hw6f5dof25" path="res://assets/Teleporter.gd" id="21_yho8d"]
 [ext_resource type="Script" uid="uid://bl0pfpmowxtu1" path="res://addons/libsm64_godot/components/libsm64_surface_properties_component.gd" id="22_pa7bu"]
 [ext_resource type="Script" uid="uid://4il4x2i7u2oc" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/purpleswitch.gd" id="24_rumaj"]
-[ext_resource type="ArrayMesh" uid="uid://co8ia1uc5h3ej" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/newmesh.tres" id="25_0nkfa"]
 [ext_resource type="Animation" uid="uid://b0ry1gs7xv18" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/gltf/push.anim" id="27_ri1hq"]
 [ext_resource type="Animation" uid="uid://wtbgg4otleco" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/gltf/release.anim" id="28_0mtt7"]
 [ext_resource type="Animation" uid="uid://cuaxesh2ib18a" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/rest.anim" id="29_3uhyg"]
 [ext_resource type="Animation" uid="uid://dq0usqkov57uv" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Purple Switch/Purple Switch/gltf/resthold.anim" id="30_80bhc"]
+[ext_resource type="Texture2D" uid="uid://u5oiviwjo3s5" path="res://models/purpleswitch_purple_switch_base.png" id="30_d0g5g"]
 [ext_resource type="Script" uid="uid://dp35slbbrbs08" path="res://libsm64_godot_demo/shared/hud/pausemenu.gd" id="30_ri1hq"]
 [ext_resource type="ArrayMesh" uid="uid://irh3fmv8q22d" path="res://models/EBox.tres" id="31_0mtt7"]
+[ext_resource type="Texture2D" uid="uid://dyxcnu7c756tr" path="res://models/purpleswitch_purple_switch_exclamation_point.png" id="31_klyhr"]
 [ext_resource type="Script" uid="uid://c1lftadwb37b7" path="res://assets/EBox.gd" id="32_3uhyg"]
 [ext_resource type="Script" uid="uid://d2kel0c3xe50" path="res://libsm64_godot_demo/resources/exclamationboxspawnableobjects.gd" id="33_80bhc"]
 [ext_resource type="PackedScene" uid="uid://cogupkrgo1k35" path="res://models/Nintendo 64 - Super Mario 64 - Objects - Power Star/Power Star/star.tscn" id="34_3yayu"]
@@ -40,6 +44,18 @@
 [ext_resource type="Script" uid="uid://c5ubuqwnjoo1b" path="res://assets/coin.gd" id="39_2mypb"]
 [ext_resource type="PackedScene" uid="uid://cc2r0nq7oxhyu" path="res://assets/koopa.tscn" id="39_noeb5"]
 [ext_resource type="ArrayOccluder3D" uid="uid://dpu20r208162w" path="res://assets/occcull/bob_omb_battlefield.occ" id="40_2mypb"]
+[ext_resource type="PackedScene" uid="uid://d4a47q8r4xips" path="res://models/elevators.tscn" id="42_47dsq"]
+[ext_resource type="PackedScene" uid="uid://dacik5c5ymhje" path="res://assets/Chain_Chomp_Gate.tscn" id="44_d8v43"]
+[ext_resource type="Script" uid="uid://8gepavafja6h" path="res://assets/bob_omb_3d.gd" id="47_c4lhm"]
+[ext_resource type="PackedScene" path="res://assets/bob_omb_3d.tscn" id="47_bobomb"]
+[ext_resource type="AudioStream" uid="uid://drscfqu0jtnsq" path="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00040 - SOUND_BANK_MENU - SOUND_MENU_COLLECT_RED_COIN_01.wav" id="47_xxi1y"]
+[ext_resource type="AudioStream" uid="uid://bcf28qu8gf34l" path="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00041 - SOUND_BANK_MENU - SOUND_MENU_COLLECT_RED_COIN_02.wav" id="48_c4lhm"]
+[ext_resource type="AudioStream" uid="uid://kb088pyixksb" path="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00042 - SOUND_BANK_MENU - SOUND_MENU_COLLECT_RED_COIN_03.wav" id="49_7n17i"]
+[ext_resource type="AudioStream" uid="uid://bexe5lfo6f74g" path="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00043 - SOUND_BANK_MENU - SOUND_MENU_COLLECT_RED_COIN_04.wav" id="50_y348f"]
+[ext_resource type="AudioStream" uid="uid://cuxayrb6g88iv" path="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00044 - SOUND_BANK_MENU - SOUND_MENU_COLLECT_RED_COIN_05.wav" id="51_n317h"]
+[ext_resource type="AudioStream" uid="uid://bbvxaa3dx4gm1" path="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00045 - SOUND_BANK_MENU - SOUND_MENU_COLLECT_RED_COIN_06.wav" id="52_3sy2g"]
+[ext_resource type="AudioStream" uid="uid://w6vikpv2u6n3" path="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00046 - SOUND_BANK_MENU - SOUND_MENU_COLLECT_RED_COIN_07.wav" id="53_3fpqn"]
+[ext_resource type="AudioStream" uid="uid://dv3aco0w2ntnn" path="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00047 - SOUND_BANK_MENU - SOUND_MENU_COLLECT_RED_COIN_08.wav" id="54_ae61o"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qo70i"]
 panorama = ExtResource("4_gg4l8")
@@ -61,6 +77,9 @@ fog_light_energy = 0.62
 fog_density = 0.7209
 fog_sky_affect = 0.0
 fog_depth_curve = 41.423645
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0087
+volumetric_fog_length = 52.55
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3yayu"]
 emission_shape = 1
@@ -82,6 +101,81 @@ size = Vector2(0.5, 0.5)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pxfdq"]
 height = 1.61
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57smt"]
+resource_name = "Material"
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_color = Color(1, 1, 1, 0.39215687)
+albedo_texture = ExtResource("18_klyhr")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2672o"]
+resource_name = "Material.001"
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.39215687)
+albedo_texture = ExtResource("19_76rwr")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_px1ra"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIAAwAFAAEABAACAAYAAwAHAAUABwAEAAYABwAGAAUA"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("//8AAP//AAAAAP////8AAP///////wAAAAAAAP//AAD//wAAAAAAAAAA//8AAAAA/////wAAAAAAAAAAAAAAAA==")
+}, {
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/////wAAAAAAAP////8AAAAA//8AAAAA////////AAAAAAAAAAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ughf2"]
+resource_name = "VCBox_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("vv/4/99/H4D//x+A33/4/9f///9GgHSApP90gBSA///e/9j//3//f97//38/gNj/LYDX/4v/GoDHf02A8f/X/w=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
+"material": SubResource("StandardMaterial3D_57smt"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(1.9980469, 1.9984498, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("//8AAP//AIAAAP////8AgP///////wCAAAAAAP//AIAAAAAA////vwAA//8AAP+/AAD//////78AAAAAAAD/v///AAAAAP+//////////7//////AAD/v///AAD///+/AAAAAAAAAAD/////AAAAAAAA//8AAAAA//8AAAAAAAD/f////3////9/////f////3////9/////f////3////9/AAD/fwAA/38AAP9/AADx//J/8f/yf+T/5X////9/")
+}, {
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("8n+//5v//3+b/7//8n//fxaA//+//79///+//9Z//38="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_2672o"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(2.0013757, 1.9999999, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/////wAA//8AAP///////wAA//8AAP////////////8AAAAAAAD/v///AAD///+///8AAAAA/78AAAAA////v/9//7//f/+//3//v/9//79BAN5/QQDef0EA3n9BAN5/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_px1ra")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_84846"]
 resource_name = "f3dlite_material.011"
@@ -156,6 +250,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofmd5")
 
+[sub_resource type="LibSM64SurfaceProperties" id="LibSM64SurfaceProperties_ph4o0"]
+
+[sub_resource type="LibSM64SurfaceProperties" id="LibSM64SurfaceProperties_a77iu"]
+surface_type = 22
+
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lb43m"]
 points = PackedVector3Array(-2.036712, 0.1380881, -8.858811, 1.8388214, 0.9685595, 8.857911, 1.8388214, 0.1380881, 8.857911, 1.8388214, 0.9685595, -8.858811, -2.036712, 0.9685595, 8.857911, -2.036712, 0.1380881, 8.857911, 1.8388214, 0.1380881, -8.858811, -2.036712, 0.9685595, -8.858811)
 
@@ -209,6 +308,110 @@ size = Vector3(4.4680176, 0.032592773, 5.016285)
 [sub_resource type="LibSM64SurfaceProperties" id="LibSM64SurfaceProperties_pxfdq"]
 surface_type = 50
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eqo2l"]
+resource_name = "f3dlite_material.006"
+transparency = 4
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("30_d0g5g")
+roughness = 0.5
+texture_repeat = false
+metadata/extras = {
+"UVanim": {
+"x": {},
+"y": {}
+},
+"combiner1": {},
+"f3d_mat": {},
+"libdragon_rdpq": {},
+"objex_bonus": {},
+"ootCollisionProperty": {},
+"ootMaterial": {},
+"rdp_settings": {},
+"tex0": {
+"tile_scroll": {}
+}
+}
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixid7"]
+resource_name = "f3dlite_material.007"
+transparency = 4
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("31_klyhr")
+roughness = 0.5
+texture_repeat = false
+metadata/extras = {
+"UVanim": {
+"x": {},
+"y": {}
+},
+"combiner1": {},
+"f3d_mat": {},
+"libdragon_rdpq": {},
+"objex_bonus": {},
+"ootCollisionProperty": {},
+"ootMaterial": {},
+"rdp_settings": {},
+"tex0": {
+"tile_scroll": {}
+}
+}
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_icuo1"]
+_surfaces = [{
+"aabb": AABB(-1.01, -7.625288e-08, -1.01, 2.03, 0.36000013, 2.03),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIAAwAFAAEABAACAAYAAwAHAAUABwAEAAYABwAGAAUA"),
+"name": "f3dlite_material.006",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("//8AAAAAAABKzP//SswAAErM/v+0MwAA//8AAP//AAAAAAAAAAAAALQz//9KzAAAtDP+/7QzAAAAAAAA//8AAA==")
+}, {
+"aabb": AABB(-0.59999996, 0.35999992, -0.59999996, 1.21, 1e-05, 1.21),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAACAAMA"),
+"name": "f3dlite_material.007",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAAAAAAD//w0D//8AAAAADQP//wAAAAAAAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_76rwr"]
+resource_name = "purpleswitch_purple_switch_seg8_dl_0800C718_mesh_001"
+_surfaces = [{
+"aabb": AABB(-1.01, -7.625288e-08, -1.01, 2.03, 0.36000013, 2.03),
+"attribute_data": PackedByteArray("/////4aBDib///////9O1P///////79R/////4aB////////hoEOJv///////79R/////4aB//////////+/Uf///////07U/////4aB////////hoEOJv///////79R/////4aB//////////+/Uf///////07U/////4aBDib///////9O1P///////79R/////4aBDib/////hoH//////////07U/////4aBDib/////hoH//////////07U"),
+"format": 34896613407,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcA"),
+"material": SubResource("StandardMaterial3D_eqo2l"),
+"name": "f3dlite_material.006",
+"primitive": 3,
+"uv_scale": Vector4(5.2421875, 11.71875, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("//8AAAAAMxRKzP//SswzFErM/v+0MzMUAAAAAAAA4ef//wAAAADi50rM/v+0M+LnAAAAAAAAsudKzP7/tDOy57Qz/v+0M7LnAAAAAP//9sQAAAAAAAD2xLQz/v+0M/bEAAAAAP//KsW0M/7/tDMqxbQz//9KzCrF//8AAP//rTi0M///SsytOErM//9KzK04//8AAP//LzkAAAAA//8wObQz//9KzDA5//8AAAAAnRT//wAA//+dFErM//9KzJ0UsDVvFLA1bxSvNW4U+rNFtPuzRbT7s0W0cLT0s3C09LNwtPSzVeTptlXk6bZV5Om27OTStuzk0rbs5NK2duE/HnbhPx524T8ekuGYHpPhmB6T4ZgeAjYYFAI2GBQCNhgU")
+}, {
+"aabb": AABB(-0.59999996, 0.35999992, -0.59999996, 1.21, 1e-05, 1.21),
+"attribute_data": PackedByteArray("////////V3L///////////////+eYv///////55iV3I="),
+"format": 34896613407,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAACAAMA"),
+"material": SubResource("StandardMaterial3D_ixid7"),
+"name": "f3dlite_material.007",
+"primitive": 3,
+"uv_scale": Vector4(2.4335938, 2.1601563, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//8AAAAA/7///w0D////vwAADQP///+/AAAAAAAA/7////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_icuo1")
+
 [sub_resource type="LibSM64SurfaceProperties" id="LibSM64SurfaceProperties_0nkfa"]
 surface_type = 21
 terrain_type = 1
@@ -254,70 +457,10 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("meshMesh0_1:position")
+tracks/3/path = NodePath("Area3D/CollisionShape3D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.19939166, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("meshMesh0_1:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5707964, 1.9852338e-23, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("meshMesh0_1:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("meshMesh0_1:blend_shapes/Key 1")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("meshMesh0_1:blend_shapes/Key 2")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Area3D/CollisionShape3D:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -384,66 +527,6 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(2.032562, 2.0325623, 0.31602186)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("meshMesh0_1:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.19939166, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("meshMesh0_1:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5707964, 1.9852338e-23, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("meshMesh0_1:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("meshMesh0_1:blend_shapes/Key 1")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("meshMesh0_1:blend_shapes/Key 2")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x8n0f"]
 _data = {
@@ -504,7 +587,8 @@ unique_name_in_owner = true
 visible = false
 
 [node name="LibSM64Mario" type="Node3D" parent="." unique_id=1692650312 node_paths=PackedStringArray("camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.773918, 36.64499, 47.27876)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9936347, 32.82859, 44.40896)
 script = ExtResource("2_uah3x")
 camera = NodePath("CameraRig")
 
@@ -620,14 +704,26 @@ mesh = ExtResource("11_4tv6h")
 script = ExtResource("11_jupr8")
 meshwc = NodePath(".")
 
+[node name="VCBox3D2" type="MeshInstance3D" parent="." unique_id=1104306718 node_paths=PackedStringArray("meshwc") groups=["libsm64_static_objects"]]
+transform = Transform3D(-0.26864982, 0, -0.4216957, 0, 0.5, 0, 0.4216957, 0, -0.26864982, -0.7377606, 10.994, 12.690201)
+mesh = SubResource("ArrayMesh_ughf2")
+script = ExtResource("11_jupr8")
+meshwc = NodePath(".")
+
 [node name="course" parent="." unique_id=1757629785 instance=ExtResource("13_vuajl")]
 transform = Transform3D(-4.371139e-07, -10, 4.371139e-07, 0, -4.371139e-07, -10, 10, -4.371139e-07, 1.9106854e-14, 0, 0, 0)
 
 [node name="Trees" type="Node3D" parent="." unique_id=2124911520]
 
-[node name="bubble_tree_mdl_mesh_!1" type="MeshInstance3D" parent="Trees" unique_id=2126105557 groups=["libsm64_surface_objects"]]
+[node name="bubble_tree_mdl_mesh_!1" type="MeshInstance3D" parent="Trees" unique_id=2126105557]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.721252, 1.2934352, -15.469842)
 mesh = SubResource("ArrayMesh_ow1a7")
+script = ExtResource("21_a6rxy")
+
+[node name="LibSM64SurfacePropertiesComponent" type="Node" parent="Trees/bubble_tree_mdl_mesh_!1" unique_id=312453519]
+script = ExtResource("22_pa7bu")
+surface_properties = SubResource("LibSM64SurfaceProperties_ph4o0")
+metadata/_custom_type_script = "uid://bl0pfpmowxtu1"
 
 [node name="bubble_tree_mdl_mesh_!2" type="MeshInstance3D" parent="Trees" unique_id=330876690 groups=["libsm64_surface_objects"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.749435, -0.0023480058, -42.683838)
@@ -680,6 +776,11 @@ mesh = SubResource("ArrayMesh_ow1a7")
 [node name="bubble_tree_mdl_mesh_!14" type="MeshInstance3D" parent="Trees" unique_id=1797763314 groups=["libsm64_surface_objects"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.530502, 30.721357, 40.95482)
 mesh = SubResource("ArrayMesh_ow1a7")
+
+[node name="LibSM64SurfacePropertiesComponent" type="Node" parent="Trees/bubble_tree_mdl_mesh_!14" unique_id=1305188957]
+script = ExtResource("22_pa7bu")
+surface_properties = SubResource("LibSM64SurfaceProperties_a77iu")
+metadata/_custom_type_script = "uid://bl0pfpmowxtu1"
 
 [node name="bubble_tree_mdl_mesh_!15" type="MeshInstance3D" parent="Trees" unique_id=2032232833 groups=["libsm64_surface_objects"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.73278, 20.04184, 67.96418)
@@ -791,15 +892,6 @@ metadata/_custom_type_script = "uid://bl0pfpmowxtu1"
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 53.965347, 26.830618, 5.550854)
 top_level = true
 
-[node name="Elevator" type="Node3D" parent="." unique_id=1084343856]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.081593, 4.797922, 17.829643)
-
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Elevator" unique_id=1897163794]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Elevator/AnimatableBody3D" unique_id=1309969502]
-
-[node name="AnimatableBody3D2" type="AnimatableBody3D" parent="Elevator" unique_id=457098077]
-
 [node name="Cave" type="Node3D" parent="." unique_id=1202600290]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.562996, 0.0011442155, -24.863337)
 
@@ -807,11 +899,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.562996, 0.0011442155, -24.
 transform = Transform3D(-0.42261833, 0, 0.90630776, 0, 1, 0, -0.90630776, 0, -0.42261833, -2.940075, 0, -0.4563694)
 script = ExtResource("24_rumaj")
 
-[node name="meshMesh0_1" type="MeshInstance3D" parent="Cave/purpleswitch1" unique_id=1264676275 groups=["libsm64_surface_objects"]]
-transform = Transform3D(1, -1.9852338e-23, -8.6777325e-31, 0, -4.371139e-08, 1, -1.9852338e-23, -1, -4.371139e-08, 0, 0.19939166, 0)
-mesh = ExtResource("25_0nkfa")
+[node name="purple_switch_seg8_dl_0800C718_mesh" type="MeshInstance3D" parent="Cave/purpleswitch1" unique_id=1760169638]
+mesh = SubResource("ArrayMesh_76rwr")
 
-[node name="LibSM64SurfacePropertiesComponent" type="Node" parent="Cave/purpleswitch1/meshMesh0_1" unique_id=1175228275]
+[node name="LibSM64SurfacePropertiesComponent" type="Node" parent="Cave/purpleswitch1/purple_switch_seg8_dl_0800C718_mesh" unique_id=1175228275]
 script = ExtResource("22_pa7bu")
 surface_properties = SubResource("LibSM64SurfaceProperties_0nkfa")
 metadata/_custom_type_script = "uid://bl0pfpmowxtu1"
@@ -832,6 +923,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.314063, 30.719347, 43.622
 [node name="Star" parent="Sky Island" unique_id=1405926056 instance=ExtResource("34_3yayu")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.3367424, 3.2442074, 11.885761)
 star_id = 4
+star_name = "Shoot to the Island in the Sky"
 jumping = true
 
 [node name="YellowBoxStarLocation" type="Marker3D" parent="Sky Island" unique_id=174875855]
@@ -846,50 +938,18 @@ respawn_time = 10.0
 object_spawnable = SubResource("Resource_3uhyg")
 YellowBoxStar = NodePath("../Star")
 
-[node name="LevelGlobals" type="Node" parent="." unique_id=676943002]
+[node name="LevelGlobals" type="Node" parent="." unique_id=676943002 groups=["level_globals"]]
 unique_name_in_owner = true
 script = ExtResource("34_dyj3n")
 
-[node name="DebugCoin3D" type="MeshInstance3D" parent="." unique_id=119426862 node_paths=PackedStringArray("meshwc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.262466, 31.86956, 46.340042)
+[node name="RedCoin8" type="MeshInstance3D" parent="." unique_id=119426862 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.564976, 37.662518, 40.94508)
 mesh = SubResource("BoxMesh_noeb5")
 script = ExtResource("39_2mypb")
 meshwc = NodePath(".")
-metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
-
-[node name="Coin3D" type="MeshInstance3D" parent="." unique_id=592537305 node_paths=PackedStringArray("meshwc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.46116, 1.1678228, -6.482637)
-mesh = SubResource("BoxMesh_noeb5")
-script = ExtResource("39_2mypb")
-meshwc = NodePath(".")
-metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
-
-[node name="Coin3D2" type="MeshInstance3D" parent="." unique_id=1472492745 node_paths=PackedStringArray("meshwc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.46116, 1.1678228, -3.382373)
-mesh = SubResource("BoxMesh_noeb5")
-script = ExtResource("39_2mypb")
-meshwc = NodePath(".")
-metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
-
-[node name="Coin3D3" type="MeshInstance3D" parent="." unique_id=2085850541 node_paths=PackedStringArray("meshwc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.46116, 1.1678228, -0.61290073)
-mesh = SubResource("BoxMesh_noeb5")
-script = ExtResource("39_2mypb")
-meshwc = NodePath(".")
-metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
-
-[node name="Coin3D4" type="MeshInstance3D" parent="." unique_id=1970415811 node_paths=PackedStringArray("meshwc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.46116, 1.1678228, 1.7132711)
-mesh = SubResource("BoxMesh_noeb5")
-script = ExtResource("39_2mypb")
-meshwc = NodePath(".")
-metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
-
-[node name="Coin3D5" type="MeshInstance3D" parent="." unique_id=1285224320 node_paths=PackedStringArray("meshwc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.46116, 1.1678228, 4.058752)
-mesh = SubResource("BoxMesh_noeb5")
-script = ExtResource("39_2mypb")
-meshwc = NodePath(".")
+coin_amount = 2
+red_coin = true
+yellow_coin = false
 metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
 
 [node name="Coin3D6" type="MeshInstance3D" parent="." unique_id=1453329532 node_paths=PackedStringArray("meshwc")]
@@ -904,7 +964,7 @@ hitbox_size = Vector3(1.7, 2.327, 1.7)
 metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
 
 [node name="Coin3D7" type="MeshInstance3D" parent="." unique_id=929681016 node_paths=PackedStringArray("meshwc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.474873, 14.206973, 48.642914)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.078182, 14.206973, 49.01065)
 mesh = SubResource("BoxMesh_noeb5")
 script = ExtResource("39_2mypb")
 meshwc = NodePath(".")
@@ -936,6 +996,28 @@ yellow_coin = false
 hitbox_size = Vector3(1.7, 2.327, 1.7)
 metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
 
+[node name="Coin3D11" type="MeshInstance3D" parent="." unique_id=1491776980 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(-0.42261833, 0, 0.90630776, 0, 1, 0, -0.90630776, 0, -0.42261833, 38.9545, 1.1666996, -26.415453)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+coin_amount = 2
+red_coin = true
+yellow_coin = false
+hitbox_size = Vector3(1.7, 2.327, 1.7)
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D12" type="MeshInstance3D" parent="." unique_id=1124192403 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(-0.34572214, 0, 0.938337, 0, 1, 0, -0.938337, 0, -0.34572214, 70.62161, 19.729134, 12.337404)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+coin_amount = 2
+red_coin = true
+yellow_coin = false
+hitbox_size = Vector3(1.7, 2.327, 1.7)
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
 [node name="koopa" parent="." unique_id=1402922750 instance=ExtResource("39_noeb5")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -4.044733, 30.991035, 44.314438)
 race_mode = false
@@ -950,6 +1032,518 @@ star_id = 7
 [node name="ChainChompStarLoc" type="Marker3D" parent="." unique_id=566501379]
 unique_name_in_owner = true
 transform = Transform3D(-0.53729963, 0, -0.8433914, 0, 1, 0, 0.8433914, 0, -0.53729963, -2.6307774, 10.913654, 15.672651)
+
+[node name="Elevators" parent="." unique_id=1976644069 instance=ExtResource("42_47dsq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -44.82151, 2.621667, 16.117615)
+
+[node name="CCGate" parent="." unique_id=749363400 instance=ExtResource("44_d8v43")]
+transform = Transform3D(0.54133403, 0, 0.8408076, 0, 1, 0, -0.8408076, 0, 0.54133403, -4.4189796, 7.6099844, 14.619955)
+
+[node name="Objects" type="Node3D" parent="." unique_id=777287123]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="0x36_Star_Cage_Bars_(Exploding)" type="Node3D" parent="Objects" unique_id=1509835020]
+transform = Transform3D(0.8290374, 0, -0.55919313, 0, 1, 0, 0.55919313, 0, 0.8290374, 14.559999, 7.68, 4.46)
+
+[node name="0x37_Tilting_Bridge" type="Node3D" parent="Objects" unique_id=1546377368]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -23.029999, 7.17, 10.24)
+
+[node name="0x0_Openable_Grills" type="Node3D" parent="Objects" unique_id=1953569137]
+transform = Transform3D(0.90630776, 0, 0.42261827, 0, 1, 0, -0.42261827, 0, 0.90630776, -20.5, 0, -30.689999)
+
+[node name="0xCF_Purple_Switch_(for_Grills)" type="Node3D" parent="Objects" unique_id=440899306]
+transform = Transform3D(0.8910065, 0, 0.4539905, 0, 1, 0, -0.4539905, 0, 0.8910065, -22.83, 0, -36.82)
+
+[node name="0xCA_Checkerboard_Elevators" type="Node3D" parent="Objects" unique_id=2005948747]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.119999, 3, 46.11)
+
+[node name="0x0_Metal_Ball_Generator" type="Node3D" parent="Objects" unique_id=554057488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.349999, 38.399998, -55.61)
+
+[node name="0x0_Metal_Ball_Generator_2" type="Node3D" parent="Objects" unique_id=1878155810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.349999, 38.399998, -55.61)
+
+[node name="0x0_Metal_Ball_Generator2" type="Node3D" parent="Objects" unique_id=1422638587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24, 28.25, -54)
+
+[node name="0x0_Metal_Ball_Generator_3" type="Node3D" parent="Objects" unique_id=1008943365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24, 28.25, -54)
+
+[node name="0xB4_Metal_Ball" type="Node3D" parent="Objects" unique_id=2110263739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.929999, 8.86, -35.649998)
+
+[node name="0xB4_Metal_Ball2" type="Node3D" parent="Objects" unique_id=550377692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85, 8.86, -43.01)
+
+[node name="0xB4_Metal_Ball3" type="Node3D" parent="Objects" unique_id=1117735199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.93, 8.86, -34.14)
+
+[node name="0xC3_Pink_Bob-omb_(Message)" type="Node3D" parent="Objects" unique_id=597213886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.23, 1.4, 60.17)
+
+[node name="0xC3_Pink_Bob-omb_(Message)2" type="Node3D" parent="Objects" unique_id=1018516442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.5, 0, 66.799995)
+
+[node name="0xC3_Pink_Bob-omb_(Open_Cannons)" type="Node3D" parent="Objects" unique_id=2033171770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.23, 1.4, 60.17)
+
+[node name="0xC3_Pink_Bob-omb_(Message)3" type="Node3D" parent="Objects" unique_id=1179195367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.5, 0, 66.799995)
+
+[node name="0x80_Cannon" type="Node3D" parent="Objects" unique_id=974410996]
+transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, -56.94, 1.28, 56)
+
+[node name="0xC9_Cannon_(Closed)" type="Node3D" parent="Objects" unique_id=1995589264]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -56.94, 1.28, 56)
+
+[node name="0x0_Koopa_Flag" type="Node3D" parent="Objects" unique_id=800728010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.04, 42.42, -46.03)
+
+[node name="0x68_Koopa" type="Node3D" parent="Objects" unique_id=1686253682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 7.7, 65)
+
+[node name="0x56_King_Bob-omb" type="Node3D" parent="Objects" unique_id=2087087270]
+transform = Transform3D(-0.6560958, 0, -0.75467765, 0, 1, 0, 0.75467765, 0, -0.6560958, 16.359999, 42.42, -55.67)
+
+[node name="0x68_Koopa2" type="Node3D" parent="Objects" unique_id=483275353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.04, 0, 52.21)
+
+[node name="0x0_Star_for_Red_Coins_(Hidden)" type="Node3D" parent="Objects" unique_id=908210589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 10, 24)
+
+[node name="0x0_Star_(Hidden)" type="Node3D" parent="Objects" unique_id=1596256961]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66, 10, 12.5)
+
+[node name="0x7A_Star" type="Node3D" parent="Objects" unique_id=689370656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 12, 3)
+
+[node name="0x0_Warp_(Mario_Start_1)" type="Node3D" parent="Objects" unique_id=500533844]
+transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, -65.58, 10, 64.64)
+
+[node name="0x0_Warp_(Fading)" type="Node3D" parent="Objects" unique_id=1678210536]
+transform = Transform3D(-0.74319035, 0, -0.6690801, 0, 1, 0, 0.6690801, 0, -0.74319035, 5.83, 26.83, -53.87)
+
+[node name="0x0_Warp_(Fading)2" type="Node3D" parent="Objects" unique_id=175903178]
+transform = Transform3D(-0.7313982, 0, -0.6819506, 0, 1, 0, 0.6819506, 0, -0.7313982, 16.8, 38.35, -55.23)
+
+[node name="0x0_Warp_(Fading)3" type="Node3D" parent="Objects" unique_id=264591713]
+transform = Transform3D(-0.29237175, 0, 0.9563047, 0, 1, 0, -0.9563047, 0, -0.29237175, -66.119995, 10.24, -33.51)
+
+[node name="0x0_Warp_(Fading)4" type="Node3D" parent="Objects" unique_id=1631466610]
+transform = Transform3D(-0.707149, 0, -0.7070645, 0, 1, 0, 0.7070645, 0, -0.707149, 19.8, 7.68, 66.18)
+
+[node name="0x66_Chain_Chomp" type="Node3D" parent="Objects" unique_id=1901875122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 7.35, 19.199999)
+
+[node name="0x81_Breakable_Box_(Big)" type="Node3D" parent="Objects" unique_id=1932050071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.79, 0, 68.27)
+
+[node name="0xC0_Goomba" type="Node3D" parent="Objects" unique_id=825524276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.13, 1.52, 57.78)
+
+[node name="0xC0_Goomba2" type="Node3D" parent="Objects" unique_id=819992669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4199998, 4, 54.329998)
+
+[node name="0x0_Water_Bubble_Drop" type="Node3D" parent="Objects" unique_id=1007454011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.2, 40, 48)
+
+[node name="0x0_Water_Bubble_Drop2" type="Node3D" parent="Objects" unique_id=1650756939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.41, 37.64, -7.43)
+
+[node name="0x0_Water_Bubble_Drop3" type="Node3D" parent="Objects" unique_id=1814105985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.079998, 37.69, -20.359999)
+
+[node name="0x80_Cannon2" type="Node3D" parent="Objects" unique_id=406149329]
+transform = Transform3D(0.70710665, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.70710665, 13.88, 29.179998, -23.83)
+
+[node name="0x6B_Poundable_Wooden_Log" type="Node3D" parent="Objects" unique_id=7965345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 7.68, 18)
+
+[node name="0x6B_Poundable_Wooden_Log2" type="Node3D" parent="Objects" unique_id=1305348518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 7.68, 18)
+
+[node name="0x6B_Poundable_Wooden_Log3" type="Node3D" parent="Objects" unique_id=269005112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 7.68, 30)
+
+[node name="0x6B_Poundable_Wooden_Log4" type="Node3D" parent="Objects" unique_id=681611593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 7.68, 30)
+
+[node name="0x7C_Wooden_Signpost" type="Node3D" parent="Objects" unique_id=1381897370]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -40, 0, 60.5)
+
+[node name="0x7C_Wooden_Signpost2" type="Node3D" parent="Objects" unique_id=969306004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 7.68, 32.579998)
+
+[node name="0xC9_Cannon_(Closed)2" type="Node3D" parent="Objects" unique_id=1376741116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.18, 13.32, -35.329998)
+
+[node name="0xC9_Cannon_(Closed)3" type="Node3D" parent="Objects" unique_id=524774490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.489998, 20.8, -70.659996)
+
+[node name="0xC9_Cannon_(Closed)4" type="Node3D" parent="Objects" unique_id=762997960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.43, 30.71, -24.51)
+
+[node name="0xC9_Cannon_(Closed)5" type="Node3D" parent="Objects" unique_id=1829921565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.52, 30.72, 12.29)
+
+[node name="0xC9_Cannon_(Closed)6" type="Node3D" parent="Objects" unique_id=738994100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.76, 15.37, 46.1)
+
+[node name="0xBC_Bob-omb" type="Node3D" parent="Objects" unique_id=1804710905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.8, 0, -52)
+
+[node name="BobOmb3D" parent="Objects/0xBC_Bob-omb" instance=ExtResource("47_bobomb") unique_id=1857960709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41285306, 0)
+
+[node name="0xBC_Bob-omb2" type="Node3D" parent="Objects" unique_id=401716442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.88, 8.849999, -38.129997)
+
+[node name="BobOmb3D" parent="Objects/0xBC_Bob-omb2" instance=ExtResource("47_bobomb") unique_id=1736476886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1407413, 0)
+
+[node name="0xBC_Bob-omb3" type="Node3D" parent="Objects" unique_id=1075286280]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.289997, 10.24, -17.72)
+
+[node name="BobOmb3D" parent="Objects/0xBC_Bob-omb3" instance=ExtResource("47_bobomb") unique_id=759723850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1793509, 0)
+
+[node name="0xBC_Bob-omb4" type="Node3D" parent="Objects" unique_id=1305479986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8, 8.91, -21.199999)
+
+[node name="BobOmb3D" parent="Objects/0xBC_Bob-omb4" instance=ExtResource("47_bobomb") unique_id=846429388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500082, 0)
+
+[node name="0xBC_Bob-omb5" type="Node3D" parent="Objects" unique_id=1612536210]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 10.24, -4.6)
+
+[node name="BobOmb3D" parent="Objects/0xBC_Bob-omb5" instance=ExtResource("47_bobomb") unique_id=1409015960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0626945, 0)
+
+[node name="0xBC_Bob-omb6" type="Node3D" parent="Objects" unique_id=1114590486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.88, 20.02, -56.079998)
+
+[node name="BobOmb3D" parent="Objects/0xBC_Bob-omb6" instance=ExtResource("47_bobomb") unique_id=1200448486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.197258, 0)
+
+[node name="0x78_Recovery_Heart" type="Node3D" parent="Objects" unique_id=157680187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.03, 36.59, -70.7)
+
+[node name="0x0_Coin_Formation" type="Node3D" parent="Objects" unique_id=1104276497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.6, 10.599999, -53.399998)
+
+[node name="0x0_Coin_Formation2" type="Node3D" parent="Objects" unique_id=1926618072]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.29, 0, 56.68)
+
+[node name="Coin3D" type="MeshInstance3D" parent="Objects/0x0_Coin_Formation2" unique_id=592537305 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219, 1.168, -5.349)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D2" type="MeshInstance3D" parent="Objects/0x0_Coin_Formation2" unique_id=1472492745 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219, 1.168, -2.674)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D3" type="MeshInstance3D" parent="Objects/0x0_Coin_Formation2" unique_id=2085850541 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219, 1.168, 0)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D4" type="MeshInstance3D" parent="Objects/0x0_Coin_Formation2" unique_id=1970415811 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219, 1.168, 2.675)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="Coin3D5" type="MeshInstance3D" parent="Objects/0x0_Coin_Formation2" unique_id=1285224320 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21884155, 1.1678228, 5.3487544)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="0x0_Coin_Formation3" type="Node3D" parent="Objects" unique_id=1637830308]
+transform = Transform3D(0.29028463, 0, 0.95694035, 0, 1, 0, -0.95694035, 0, 0.29028463, 18.51, 29.17, -22.34)
+
+[node name="0xD7_Red_Coin" type="Node3D" parent="Objects" unique_id=1190855655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 7.68, 24)
+
+[node name="0xD7_Red_Coin2" type="Node3D" parent="Objects" unique_id=1715755757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 7.68, 24)
+
+[node name="0xD7_Red_Coin3" type="Node3D" parent="Objects" unique_id=867208120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.349999, 19.199999, -71.61)
+
+[node name="0xD7_Red_Coin4" type="Node3D" parent="Objects" unique_id=129546927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 10, 19.199999)
+
+[node name="0xD7_Red_Coin5" type="Node3D" parent="Objects" unique_id=1459129976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 9.8, 44.399998)
+
+[node name="0xD7_Red_Coin6" type="Node3D" parent="Objects" unique_id=1182283162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.55, 0, -40.829998)
+
+[node name="0xD7_Red_Coin7" type="Node3D" parent="Objects" unique_id=920835276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.34, 13.5199995, 8.61)
+
+[node name="0xD7_Red_Coin8" type="Node3D" parent="Objects" unique_id=844180932]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 36.719997, 16.289999)
+
+[node name="0x89_[!]_Box" type="Node3D" parent="Objects" unique_id=1335704965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.1, 13, -21.699999)
+
+[node name="0x82_Breakable_Box_(Small)" type="Node3D" parent="Objects" unique_id=453598282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.399998, 0, 61.8)
+
+[node name="0x7C_Wooden_Signpost3" type="Node3D" parent="Objects" unique_id=1032695842]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -40, 0, 63)
+
+[node name="0xD4_1-up_Mushroom_(hidden)" type="Node3D" parent="Objects" unique_id=1602099776]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.6, 10.599999, -53.399998)
+
+[node name="0x0_Hidden_1-up_Trigger" type="Node3D" parent="Objects" unique_id=1341936949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.6, 10.599999, -53.399998)
+
+[node name="0x0_Hidden_1-up_Trigger2" type="Node3D" parent="Objects" unique_id=1343604748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.6, 10.599999, -53.399998)
+
+[node name="0x0_Hidden_1-up_Trigger3" type="Node3D" parent="Objects" unique_id=1328516792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.6, 10.599999, -56.399998)
+
+[node name="0x0_Hidden_1-up_Trigger4" type="Node3D" parent="Objects" unique_id=1884389187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.6, 10.4, -50.399998)
+
+[node name="0x89_[!]_Box2" type="Node3D" parent="Objects" unique_id=1714669878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.89, 33.399998, 18.18)
+
+[node name="0xBC_Bob-omb7" type="Node3D" parent="Objects" unique_id=634442469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 7.5699997, 37)
+
+[node name="0xBC_Bob-omb8" type="Node3D" parent="Objects" unique_id=806554626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 0, -28)
+
+[node name="0xBC_Bob-omb9" type="Node3D" parent="Objects" unique_id=2085082450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -9.5)
+
+[node name="0xBC_Bob-omb10" type="Node3D" parent="Objects" unique_id=973231005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5, 0, 17.5)
+
+[node name="0xBC_Bob-omb11" type="Node3D" parent="Objects" unique_id=1904557073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 34.5)
+
+[node name="0xD4_1-up_Mushroom" type="Node3D" parent="Objects" unique_id=594870812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.31, 0, -42.01)
+
+[node name="0x0_1-up_Mushroom_(Hidden_in_tree_or_pole)" type="Node3D" parent="Objects" unique_id=1961751953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.44, 14, 60.16)
+
+[node name="0x0_Three_Goombas" type="Node3D" parent="Objects" unique_id=1147127494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.399998, 7.68, 62.8)
+
+[node name="0x0_Three_Goombas2" type="Node3D" parent="Objects" unique_id=1120160999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.6, 8.7699995, 20)
+
+[node name="0x0_Three_Goombas3" type="Node3D" parent="Objects" unique_id=1569687405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.5, 7.68, 12.5)
+
+[node name="0x89_[!]_Box3" type="Node3D" parent="Objects" unique_id=407449800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.5, 65)
+
+[node name="0x7C_Wooden_Signpost4" type="Node3D" parent="Objects" unique_id=1040096958]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0.65999997, 0, 69.77)
+
+[node name="0x7C_Wooden_Signpost5" type="Node3D" parent="Objects" unique_id=1813034666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.94, 30.72, 18.46)
+
+[node name="0x7C_Wooden_Signpost6" type="Node3D" parent="Objects" unique_id=1757284537]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -31.099998, 1.04, 50.64)
+
+[node name="0x7C_Wooden_Signpost7" type="Node3D" parent="Objects" unique_id=2084726241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.6, 20.41, -66.4)
+
+[node name="0x7C_Wooden_Signpost8" type="Node3D" parent="Objects" unique_id=1612399486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.199997, 7.68, 29.57)
+
+[node name="0x0_Coin_Formation4" type="Node3D" parent="Objects" unique_id=1194472698]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.059999, 53.17, 12.5)
+
+[node name="0x0_Hidden_Star_Trigger_(Secrets)" type="Node3D" parent="Objects" unique_id=1927032857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.059999, 55.17, 12.5)
+
+[node name="0x81_Breakable_Box_(Big)2" type="Node3D" parent="Objects" unique_id=88657453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.57, 20.27, -67.14)
+
+[node name="0x0_Coin_Formation5" type="Node3D" parent="Objects" unique_id=539631674]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 34, 12.5)
+
+[node name="0x0_Coin_Formation6" type="Node3D" parent="Objects" unique_id=51802648]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 20, 34, 12.5)
+
+[node name="0x0_Coin_Formation7" type="Node3D" parent="Objects" unique_id=484146382]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 30, 34, 12.5)
+
+[node name="0x0_Hidden_Star_Trigger_(Secrets)2" type="Node3D" parent="Objects" unique_id=1159452849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 36, 12.5)
+
+[node name="0x0_Hidden_Star_Trigger_(Secrets)3" type="Node3D" parent="Objects" unique_id=888160998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 36, 12.5)
+
+[node name="0x0_Hidden_Star_Trigger_(Secrets)4" type="Node3D" parent="Objects" unique_id=1695385270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 36, 12.5)
+
+[node name="0xBC_Bob-omb12" type="Node3D" parent="Objects" unique_id=227180385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2699995, 28.97, -24.949999)
+
+[node name="0x0_Coin_Formation8" type="Node3D" parent="Objects" unique_id=1296788758]
+transform = Transform3D(-0.47139663, 0, 0.8819213, 0, 1, 0, -0.8819213, 0, -0.47139663, 48.36, 30.789999, -27.07)
+
+[node name="0x7C_Wooden_Signpost9" type="Node3D" parent="Objects" unique_id=1355762515]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -35.3, 14.15, 4.2999997)
+
+[node name="0x7C_Wooden_Signpost10" type="Node3D" parent="Objects" unique_id=1095683438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.53, 30.73, 21.8)
+
+[node name="0x74_Yellow_Coin_(for_triggers?)" type="Node3D" parent="Objects" unique_id=588765904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.059999, 55.17, 12.5)
+
+[node name="0x74_Yellow_Coin_(for_triggers?)2" type="Node3D" parent="Objects" unique_id=217235027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 36, 12.5)
+
+[node name="0x74_Yellow_Coin_(for_triggers?)3" type="Node3D" parent="Objects" unique_id=125090764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 36, 12.5)
+
+[node name="0x74_Yellow_Coin_(for_triggers?)4" type="Node3D" parent="Objects" unique_id=1816695832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 36, 12.5)
+
+[node name="0x0_Hidden_Star_Trigger_(Secrets)5" type="Node3D" parent="Objects" unique_id=1021245722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 42, 12.5)
+
+[node name="0x7C_Wooden_Signpost11" type="Node3D" parent="Objects" unique_id=1447538789]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -22.24, 9.9, -43.59)
+
+[node name="0x7C_Wooden_Signpost12" type="Node3D" parent="Objects" unique_id=835742698]
+transform = Transform3D(0.5141028, 0, 0.8577286, 0, 1, 0, -0.8577286, 0, 0.5141028, 39.11, 35.29, -70.81)
+
+[node name="0x7C_Wooden_Signpost13" type="Node3D" parent="Objects" unique_id=1759173046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 10.24, -20.99)
+
+[node name="0x81_Breakable_Box_(Big)3" type="Node3D" parent="Objects" unique_id=673805730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.79, 0, 66.27)
+
+[node name="0x89_[!]_Box4" type="Node3D" parent="Objects" unique_id=791920509]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.399998, 33.5, 12)
+
+[node name="0x0_Coin_Formation9" type="Node3D" parent="Objects" unique_id=1692279033]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 40, 12.5)
+
+[node name="0x74_Yellow_Coin_(for_triggers?)5" type="Node3D" parent="Objects" unique_id=553970811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 42, 12.5)
+
+[node name="0x82_Breakable_Box_(Small)2" type="Node3D" parent="Objects" unique_id=1408730050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68, 10.24, 0.39999998)
+
+[node name="0x17_Bubbly_Tree" type="Node3D" parent="Objects" unique_id=1954297133]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.92, 10.24, -46.539997)
+
+[node name="0x17_Bubbly_Tree2" type="Node3D" parent="Objects" unique_id=495191087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.089999, 1.4399999, 50.94)
+
+[node name="0x17_Bubbly_Tree3" type="Node3D" parent="Objects" unique_id=1211402165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.95, 7.68, 30.72)
+
+[node name="0x17_Bubbly_Tree4" type="Node3D" parent="Objects" unique_id=1666657281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.19, 7.68, 20.48)
+
+[node name="0x17_Bubbly_Tree5" type="Node3D" parent="Objects" unique_id=433992660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.44, 8.63, 60.16)
+
+[node name="0x17_Bubbly_Tree6" type="Node3D" parent="Objects" unique_id=1074671753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.549995, 7.68, 35.84)
+
+[node name="0x17_Bubbly_Tree7" type="Node3D" parent="Objects" unique_id=2144908309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.3, 9, -65.07)
+
+[node name="0x17_Bubbly_Tree8" type="Node3D" parent="Objects" unique_id=128995131]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.04, 10.24, -48.66)
+
+[node name="0x17_Bubbly_Tree9" type="Node3D" parent="Objects" unique_id=1893953774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.329998, 21.939999, -76.6)
+
+[node name="0x17_Bubbly_Tree10" type="Node3D" parent="Objects" unique_id=1292080336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.95, 7.68, 15.36)
+
+[node name="0x17_Bubbly_Tree11" type="Node3D" parent="Objects" unique_id=1201064522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.68, 0, 47.68)
+
+[node name="0x17_Bubbly_Tree12" type="Node3D" parent="Objects" unique_id=1686850196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.829998, 7.68, 25.599998)
+
+[node name="0x17_Bubbly_Tree13" type="Node3D" parent="Objects" unique_id=1722641978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.719997, 10.24, -4.2999997)
+
+[node name="0x17_Bubbly_Tree14" type="Node3D" parent="Objects" unique_id=1740583908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.96, 30.72, 16.38)
+
+[node name="0x17_Bubbly_Tree15" type="Node3D" parent="Objects" unique_id=1315344691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.99, 20.08, -55.87)
+
+[node name="0x17_Bubbly_Tree16" type="Node3D" parent="Objects" unique_id=908827903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.109999, 7.68, 59.17)
+
+[node name="0x17_Bubbly_Tree17" type="Node3D" parent="Objects" unique_id=1517632826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.079998, 9.2699995, 37.719997)
+
+[node name="Coin3D10" type="MeshInstance3D" parent="." unique_id=701909099 node_paths=PackedStringArray("meshwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.110428, 11.706251, 16.952654)
+mesh = SubResource("BoxMesh_noeb5")
+script = ExtResource("39_2mypb")
+meshwc = NodePath(".")
+coin_amount = 2
+red_coin = true
+yellow_coin = false
+hitbox_size = Vector3(2.5, 2.327, 2.5)
+metadata/_custom_type_script = "uid://c5ubuqwnjoo1b"
+
+[node name="GroupOfRCPlayers" type="Node" parent="." unique_id=853938576]
+
+[node name="RedCoin1Player" type="AudioStreamPlayer" parent="GroupOfRCPlayers" unique_id=1984540589]
+unique_name_in_owner = true
+stream = ExtResource("47_xxi1y")
+
+[node name="RedCoin2Player" type="AudioStreamPlayer" parent="GroupOfRCPlayers" unique_id=1287991259]
+unique_name_in_owner = true
+stream = ExtResource("48_c4lhm")
+
+[node name="RedCoin3Player" type="AudioStreamPlayer" parent="GroupOfRCPlayers" unique_id=819339624]
+unique_name_in_owner = true
+stream = ExtResource("49_7n17i")
+
+[node name="RedCoin4Player" type="AudioStreamPlayer" parent="GroupOfRCPlayers" unique_id=735765935]
+unique_name_in_owner = true
+stream = ExtResource("50_y348f")
+
+[node name="RedCoin5Player" type="AudioStreamPlayer" parent="GroupOfRCPlayers" unique_id=462560894]
+unique_name_in_owner = true
+stream = ExtResource("51_n317h")
+
+[node name="RedCoin6Player" type="AudioStreamPlayer" parent="GroupOfRCPlayers" unique_id=669385727]
+unique_name_in_owner = true
+stream = ExtResource("52_3sy2g")
+
+[node name="RedCoin7Player" type="AudioStreamPlayer" parent="GroupOfRCPlayers" unique_id=2130735229]
+unique_name_in_owner = true
+stream = ExtResource("53_3fpqn")
+
+[node name="RedCoin8Player" type="AudioStreamPlayer" parent="GroupOfRCPlayers" unique_id=248823199]
+unique_name_in_owner = true
+stream = ExtResource("54_ae61o")
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="pressed" from="Interface/CanvasLayer/PauseMenuPanel/Panel/Button" to="Interface/CanvasLayer" method="_on_button_pressed"]

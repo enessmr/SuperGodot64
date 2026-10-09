@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b5fe6hxikxoft"
+path="res://.godot/imported/00010 - SOUND_BANK_MENU - SOUND_MENU_HAND_APPEAR.wav-968c28b3a471b96739d4fc050a92b495.sample"
+
+[deps]
+
+source_file="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00010 - SOUND_BANK_MENU - SOUND_MENU_HAND_APPEAR.wav"
+dest_files=["res://.godot/imported/00010 - SOUND_BANK_MENU - SOUND_MENU_HAND_APPEAR.wav-968c28b3a471b96739d4fc050a92b495.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

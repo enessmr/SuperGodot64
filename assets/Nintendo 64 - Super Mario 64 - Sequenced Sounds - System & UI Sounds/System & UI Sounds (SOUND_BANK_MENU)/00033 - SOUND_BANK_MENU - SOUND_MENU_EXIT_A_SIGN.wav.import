@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dtn3smmtxdteo"
+path="res://.godot/imported/00033 - SOUND_BANK_MENU - SOUND_MENU_EXIT_A_SIGN.wav-82f7f303102611e19ffb27f4c3e6df55.sample"
+
+[deps]
+
+source_file="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00033 - SOUND_BANK_MENU - SOUND_MENU_EXIT_A_SIGN.wav"
+dest_files=["res://.godot/imported/00033 - SOUND_BANK_MENU - SOUND_MENU_EXIT_A_SIGN.wav-82f7f303102611e19ffb27f4c3e6df55.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

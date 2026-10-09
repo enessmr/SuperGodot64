@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://deu6midmrb03t"
+path="res://.godot/imported/00020 - SOUND_BANK_MENU - SOUND_MENU_COIN_ITS_A_ME_MARIO.wav-4a9e7337b1afbd01ec0b6f1b26ce7796.sample"
+
+[deps]
+
+source_file="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00020 - SOUND_BANK_MENU - SOUND_MENU_COIN_ITS_A_ME_MARIO.wav"
+dest_files=["res://.godot/imported/00020 - SOUND_BANK_MENU - SOUND_MENU_COIN_ITS_A_ME_MARIO.wav-4a9e7337b1afbd01ec0b6f1b26ce7796.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

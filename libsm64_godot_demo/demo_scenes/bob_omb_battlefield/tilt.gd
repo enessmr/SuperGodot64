@@ -1,5 +1,6 @@
 extends RigidBody3D
 
+@export var interpolate: bool = true
 @export var spring_strength: float = 20.0
 @export var damping: float = 5.0
 
@@ -10,12 +11,14 @@ var rest_rotation: Basis
 
 
 func _ready() -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
 	# Remember the platform's starting orientation.
 	rest_rotation = global_transform.basis
 	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
 	center_of_mass = Vector3(-0.003, -0.025, -0.001)
 
 func _physics_process(_delta: float) -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
 	# Get the platform's current rotation relative to its starting rotation.
 	var relative_basis := rest_rotation.inverse() * global_transform.basis
 

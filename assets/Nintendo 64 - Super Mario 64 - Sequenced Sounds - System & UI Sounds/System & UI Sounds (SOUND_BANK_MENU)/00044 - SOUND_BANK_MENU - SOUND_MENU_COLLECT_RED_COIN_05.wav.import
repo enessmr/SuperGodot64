@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cuxayrb6g88iv"
+path="res://.godot/imported/00044 - SOUND_BANK_MENU - SOUND_MENU_COLLECT_RED_COIN_05.wav-be1e38005b114c7b61c59a19ecf5a628.sample"
+
+[deps]
+
+source_file="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00044 - SOUND_BANK_MENU - SOUND_MENU_COLLECT_RED_COIN_05.wav"
+dest_files=["res://.godot/imported/00044 - SOUND_BANK_MENU - SOUND_MENU_COLLECT_RED_COIN_05.wav-be1e38005b114c7b61c59a19ecf5a628.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -2,17 +2,21 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvw"]
 render_priority = 1
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
+transparency = 1
 cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+metallic = 1.0
+roughness = 0.08
 
 [resource]
 next_pass = SubResource("StandardMaterial3D_mvw")
 transparency = 3
 alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
+cull_mode = 2
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 metallic = 1.0
-roughness = 0.1
+metallic_specular = 1.0
+roughness = 0.08

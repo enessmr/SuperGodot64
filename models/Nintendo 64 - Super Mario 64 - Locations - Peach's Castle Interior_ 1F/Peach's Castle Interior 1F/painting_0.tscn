@@ -99,6 +99,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_42wyt"]
+vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("6_twddm")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ibsvq"]
@@ -179,8 +180,7 @@ entry_ripple_magnitude = 1.0
 entry_dispersion_factor = 0.1
 trigger_distance = 0.1
 material = SubResource("StandardMaterial3D_42wyt")
-anim_path = null
-_course_number = null
+_star_amount = null
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="2" unique_id=1726062837]
 libraries/ = SubResource("AnimationLibrary_twddm")

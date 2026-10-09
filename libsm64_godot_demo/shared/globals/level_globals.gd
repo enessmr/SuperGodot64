@@ -1,3 +1,4 @@
+class_name LevelGlobals
 extends Node
 
 @export_enum(
@@ -49,6 +50,7 @@ var _cap_timer: Timer
 
 
 func _ready() -> void:
+	add_to_group("level_globals")
 	_cap_timer = Timer.new()
 	_cap_timer.one_shot = true
 	_cap_timer.wait_time = VANISH_CAP_DURATION
@@ -87,9 +89,23 @@ func play_musik(
 		play_level_music()
 
 
+func play_shell_riding_music() -> void:
+	if no_music:
+		return
+	var shell_music_sequence: int = LibSM64.SEQ_EVENT_POWERUP | LibSM64.SEQ_VARIATION
+	LibSM64.play_music(LibSM64.SEQ_PLAYER_LEVEL, shell_music_sequence)
+
+
+func stop_shell_riding_music() -> void:
+	var shell_music_sequence: int = LibSM64.SEQ_EVENT_POWERUP | LibSM64.SEQ_VARIATION
+	LibSM64.stop_background_music(shell_music_sequence)
+	play_level_music()
+
+
 func play_level_music() -> void:
 	if no_music:
 		return
+	_cap_timer.stop()
 
 	var sequences: Array[int] = [
 		LibSM64.SEQ_SOUND_PLAYER,
@@ -129,9 +145,12 @@ func play_level_music() -> void:
 		LibSM64.SEQ_EVENT_CUTSCENE_LAKITU
 	]
 
+	var selected_music_index: int = clampi(music_index, 0, sequences.size() - 1)
+	if selected_music_index != music_index:
+		push_warning("LevelGlobals: music index %d is out of range; using %d." % [music_index, selected_music_index])
 	LibSM64.play_music(
 		LibSM64.SEQ_PLAYER_LEVEL,
-		sequences[music_index]
+		sequences[selected_music_index]
 	)
 
 

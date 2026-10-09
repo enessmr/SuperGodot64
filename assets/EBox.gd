@@ -3,6 +3,7 @@
 class_name EBox3D
 extends MeshInstance3D
 
+@export var interpolate: bool = true
 @export var give_radius := 2.0
 @export var respawnable: bool = false
 @export var respawn_time := 0.0
@@ -13,7 +14,12 @@ var _used := false
 var _mario: LibSM64Mario = null
 
 
+func _apply_interpolation_setting() -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
+
+
 func _ready() -> void:
+	_apply_interpolation_setting()
 	_find_mario()
 
 
@@ -26,6 +32,7 @@ func _find_mario() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	_apply_interpolation_setting()
 	if _used:
 		return
 

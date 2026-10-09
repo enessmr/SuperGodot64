@@ -70,7 +70,7 @@ albedo_color = Color(1, 1, 1, 0)
 material = SubResource("StandardMaterial3D_pxfdq")
 size = Vector3(1, 2.377, 1)
 
-[node name="VCUTM" type="Node3D" unique_id=394103755]
+[node name="Peach\'s Castle Interior" type="Node3D" unique_id=394103755]
 script = ExtResource("1_ytnnx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1440695222]

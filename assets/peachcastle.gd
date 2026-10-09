@@ -69,8 +69,8 @@ func _init_libsm64() -> void:
 
 	%LevelGlobals.music = musik
 	%LevelGlobals.play_musik()
-	LibSM64.play_sound_global(LibSM64.SOUND_AIR_CASTLE_OUTDOORS_AMBIENT)
 	%LibSM64AudioStreamPlayer.play()
+	LibSM64.play_sound_global(LibSM64.SOUND_AIR_CASTLE_OUTDOORS_AMBIENT)
 
 
 func _on_rom_picker_dialog_rom_loaded() -> void:

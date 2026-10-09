@@ -13,6 +13,8 @@ var musik: int = 3
 
 func _ready() -> void:
 	%BattlefieldMesh.mesh = BombOmbBattlefieldSurfaces.generate_godot_mesh()
+	LibSM64SurfaceHandlerBase.register_object_collision(
+		%BattlefieldMesh, %BattlefieldMesh.mesh.get_faces(), %BattlefieldMesh.global_transform)
 	%BattlefieldMesh.mesh.surface_set_material(0, preload("res://libsm64_godot_demo/resources/bob_omb_battlefield_material.tres"))
 	# DiscordRPC.app_id = 1544689931560026183
 	# DiscordRPC.large_image = "game"
@@ -66,8 +68,13 @@ func _init_libsm64() -> void:
 		push_error("LibSM64: Mario failed to create (id < 0)")
 	elif lib_sm_64_mario.action == LibSM64.ActionFlags.ACT_UNINITIALIZED:
 		push_warning("LibSM64: Mario action uninitialized after create; waiting for first tick")
-
-	lib_sm_64_mario.interact_cap(start_cap)
+	
+	LibSM64.mario_interact_cap(
+		lib_sm_64_mario._id,
+		start_cap,
+		0,
+		false
+	)
 
 	%DebugHUD.mario = lib_sm_64_mario
 	%HUD._mario = lib_sm_64_mario

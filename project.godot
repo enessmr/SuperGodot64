@@ -8,6 +8,8 @@
 
 config_version=5
 
+dummy=false
+
 [application]
 
 config/name="SUPER GODOT 64"
@@ -17,8 +19,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SM64RNG="*res://assets/sm64_rng.gd"
 CustomGlobals="*uid://dycu6la5h7v51"
 SaveManager="*uid://dknllexaq7iun"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=true
 
 [display]
 
@@ -32,6 +39,10 @@ project/assembly_name="SUPER GODOT 64"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/libsm64_godot/plugin.cfg")
+
+[global_group]
+
+level_globals=""
 
 [input]
 

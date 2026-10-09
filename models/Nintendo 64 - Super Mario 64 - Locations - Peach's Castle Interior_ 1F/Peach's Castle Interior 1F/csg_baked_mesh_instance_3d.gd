@@ -57,6 +57,9 @@ var anim: AnimationPlayer
 @export var _course_id := 1
 @export var _course_name := "BOB-OMB BATTLEFIELD"
 @export var _course_number := 1
+@export var _star_amount := 2
+@export var _star_ids: Array[int] = []
+@export var _star_names: Array[String] = []
 @export var scene_to_warp := "res://libsm64_godot_demo/demo_scenes/bob_omb_battlefield/bob_omb_battlefield.tscn"
 var scene_tree: SceneTree = get_tree()
 
@@ -160,17 +163,6 @@ func _update_mario_position() -> void:
 	mario_local_x = local_position.x
 	mario_local_y = local_position.y
 	mario_local_z = local_position.z
-
-	print(
-		"Mario local: ",
-		mario_local_x,
-		", ",
-		mario_local_y,
-		", ",
-		mario_local_z,
-		" | Entry distance: ",
-		entry_distance
-	)
 
 
 func _update_painting_state() -> void:
@@ -686,6 +678,9 @@ func _stop_and_hide_mario_on_entry() -> void:
 	CustomGlobals.course_name = _course_name
 	CustomGlobals.course_number = _course_number
 	CustomGlobals.scene = scene_to_warp
+	CustomGlobals.star_amount = _star_amount
+	CustomGlobals.star_names = _star_names
+	CustomGlobals.star_ids = _star_ids
 
 	LibSM64.stop_background_music(
 		LibSM64.SEQ_LEVEL_INSIDE_CASTLE

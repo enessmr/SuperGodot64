@@ -29,6 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://bkfct24yfqpqh" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Peach's Castle Interior_ 1F/Peach's Castle Interior 1F/tex_700D800.png" id="23_e4pxc"]
 [ext_resource type="Texture2D" uid="uid://4ruqxdyhutxp" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Peach's Castle Interior_ 1F/Peach's Castle Interior 1F/tex_700C800.png" id="24_vo2ip"]
 [ext_resource type="PackedScene" uid="uid://c3qrkb062knfa" path="res://models/toad.tscn" id="25_vo2ip"]
+[ext_resource type="Script" uid="uid://dowbs6023ctjc" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Peach's Castle Interior_ 1F/Peach's Castle Interior 1F/painting_1.gd" id="28_q2ak0"]
+[ext_resource type="Script" uid="uid://dvd3fsm6yu6p5" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Peach's Castle Interior_ 1F/Peach's Castle Interior 1F/painting_2.gd" id="30_fjatl"]
+[ext_resource type="Script" uid="uid://dblj7hlxdkh1v" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Peach's Castle Interior_ 1F/Peach's Castle Interior 1F/painting_3.gd" id="32_4yiv4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3bcr"]
 resource_name = "Mat0"
@@ -431,7 +434,9 @@ shadow_mesh = SubResource("ArrayMesh_g8b7p")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1wc7"]
 resource_name = "Mat7"
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("3_qcljl")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_n58rv"]
@@ -2902,7 +2907,7 @@ _data = {
 &"fade_in": SubResource("Animation_q2ak0")
 }
 
-[node name="Area1_bake" unique_id=1905288865 instance=ExtResource("1_2pexy")]
+[node name="Painting1" unique_id=1905288865 instance=ExtResource("1_2pexy")]
 
 [node name="Mesh0" parent="Node0_root/Node3_master_list/Node4_perspective/Node5_camera/Node6_switch/Node7_start/Node8_display/Node9_display" parent_id_path=PackedInt32Array(1259154286) index="0" unique_id=1442488215 groups=["libsm64_static_surfaces"]]
 mesh = SubResource("ArrayMesh_6x7n1")
@@ -3545,10 +3550,24 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 44.6
 mesh = SubResource("ArrayMesh_6pyt6")
 
 [node name="Painting1" parent="Objects/P0x1_Cool_Cool_Mountain" parent_id_path=PackedInt32Array(2088794155) index="0" unique_id=313512929 instance=ExtResource("11_mua2t")]
+script = ExtResource("28_q2ak0")
+course_id = 4
+course_name = "COOL, COOL MOUNTAIN"
+course_number = 4
+star_ids = Array[int]([41])
+star_names = Array[String](["Wall Kicks Will Work"])
 
 [node name="Painting2" parent="Objects/P0x2_Whomps_Fortress" parent_id_path=PackedInt32Array(981817777) index="0" unique_id=95923859 instance=ExtResource("12_lt0wh")]
+script = ExtResource("30_fjatl")
+course_id = 2
+course_number = 2
+star_ids = Array[int]([12, 13, 14, 15, 16, 17])
 
 [node name="Painting3" parent="Objects/P0x3_Jolly_Roger_Bay" parent_id_path=PackedInt32Array(170027006) index="0" unique_id=1352059755 instance=ExtResource("13_x0q16")]
+script = ExtResource("32_4yiv4")
+course_id = 3
+course_number = 3
+star_ids = Array[int]([22, 23, 24, 25, 26, 27])
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." index="3" unique_id=1816169692]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 20.262815, 8.923054, 12.191887)

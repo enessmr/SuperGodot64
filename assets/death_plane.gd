@@ -2,6 +2,9 @@
 class_name DeathPlane
 extends MeshInstance3D
 
+@export_category("Interpolation")
+@export var interpolate: bool = true
+
 @export_category("Death Plane")
 @export var secret_level_plane := false
 
@@ -16,11 +19,18 @@ var _used := false
 @onready var _mario: LibSM64Mario = null
 
 
+func _apply_interpolation_setting() -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
+
+
 func _ready() -> void:
+	_apply_interpolation_setting()
+	reset_physics_interpolation()
 	_mario = get_parent().get_node_or_null("LibSM64Mario") as LibSM64Mario
 
 
 func _physics_process(delta: float) -> void:
+	_apply_interpolation_setting()
 	if _used:
 		return
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cs1dc6wap1d5g"
+path="res://.godot/imported/00035 - SOUND_BANK_MENU - SOUND_MENU_STAR_SOUND_OKEY_DOKEY.wav-2839bfe5e795babf43dfeb9aba74de87.sample"
+
+[deps]
+
+source_file="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00035 - SOUND_BANK_MENU - SOUND_MENU_STAR_SOUND_OKEY_DOKEY.wav"
+dest_files=["res://.godot/imported/00035 - SOUND_BANK_MENU - SOUND_MENU_STAR_SOUND_OKEY_DOKEY.wav-2839bfe5e795babf43dfeb9aba74de87.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

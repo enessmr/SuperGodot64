@@ -25,6 +25,7 @@ func load_static_surfaces() -> void:
 		if faces.is_empty():
 			push_error("Faces array empty, skipping node %s" % node_3d.name)
 			continue
+		register_object_collision(node_3d, faces, node_3d.global_transform)
 
 		for i in range(0, faces.size(), 3):
 			var v1 := node_3d.global_transform * faces[i + 0]

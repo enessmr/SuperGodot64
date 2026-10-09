@@ -26,7 +26,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 offsets = PackedFloat32Array(0.7074468, 0.99937665)
 colors = PackedColorArray(0.84313726, 0.7490196, 0, 1, 0.99607843, 0.9647059, 0.0627451, 1)
 
-[node name="Node3D" type="Node3D" unique_id=953751174]
+[node name="Star Select" type="Node3D" unique_id=953751174]
 script = ExtResource("1_0grg1")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1613406358]
@@ -134,7 +134,35 @@ environment = SubResource("Environment_8vncw")
 [node name="Stars" type="Node3D" parent="." unique_id=1264873924]
 unique_name_in_owner = true
 
-[node name="PowerStar3D" type="Node3D" parent="Stars" unique_id=898023753 node_paths=PackedStringArray("mesh")]
+[node name="StarsAmount1" type="Node3D" parent="Stars" unique_id=1856695222]
+unique_name_in_owner = true
+visible = false
+
+[node name="PowerStar3D" type="Node3D" parent="Stars/StarsAmount1" unique_id=446961620 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.724, -2.467)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount1/PowerStar3D" unique_id=2088187299]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount1/PowerStar3D" unique_id=544593619]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount1/PowerStar3D/MeshInstance3D" unique_id=1107001545]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="StarsAmount2" type="Node3D" parent="Stars" unique_id=112653247]
+unique_name_in_owner = true
+visible = false
+
+[node name="PowerStar3D" type="Node3D" parent="Stars/StarsAmount2" unique_id=898023753 node_paths=PackedStringArray("mesh")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.97982484, 0.72354305, -2.4666348)
 script = ExtResource("5_wb1ly")
 star_id = 4
@@ -143,18 +171,18 @@ display_star = true
 mesh = NodePath("MeshInstance3D")
 metadata/_custom_type_script = "uid://db7w8a8uq84jv"
 
-[node name="Area3D" type="Area3D" parent="Stars/PowerStar3D" unique_id=1151009665]
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount2/PowerStar3D" unique_id=1151009665]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/PowerStar3D" unique_id=358525536]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount2/PowerStar3D" unique_id=358525536]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
 mesh = ExtResource("6_8vncw")
 
-[node name="Trail3D" type="Trail3D" parent="Stars/PowerStar3D/MeshInstance3D" unique_id=1535850972]
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount2/PowerStar3D/MeshInstance3D" unique_id=1535850972]
 custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
 color = Color(0.99215686, 0.9647059, 0.06666667, 1)
 color_gradient = SubResource("Gradient_v3hcc")
 
-[node name="PowerStar3D2" type="Node3D" parent="Stars" unique_id=2133614120 node_paths=PackedStringArray("mesh")]
+[node name="PowerStar3D2" type="Node3D" parent="Stars/StarsAmount2" unique_id=2133614120 node_paths=PackedStringArray("mesh")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.98, 0.72354305, -2.466661)
 script = ExtResource("5_wb1ly")
 star_id = 7
@@ -163,13 +191,389 @@ display_star = true
 mesh = NodePath("MeshInstance3D")
 metadata/_custom_type_script = "uid://db7w8a8uq84jv"
 
-[node name="Area3D" type="Area3D" parent="Stars/PowerStar3D2" unique_id=668288549]
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount2/PowerStar3D2" unique_id=668288549]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/PowerStar3D2" unique_id=1135042826]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount2/PowerStar3D2" unique_id=1135042826]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
 mesh = ExtResource("6_8vncw")
 
-[node name="Trail3D" type="Trail3D" parent="Stars/PowerStar3D2/MeshInstance3D" unique_id=1265227670]
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount2/PowerStar3D2/MeshInstance3D" unique_id=1265227670]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="StarsAmount3" type="Node3D" parent="Stars" unique_id=1835069117]
+unique_name_in_owner = true
+visible = false
+
+[node name="PowerStar3D" type="Node3D" parent="Stars/StarsAmount3" unique_id=1424415962 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.97982484, 0.72354305, -2.4666348)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount3/PowerStar3D" unique_id=571273876]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount3/PowerStar3D" unique_id=1241347705]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount3/PowerStar3D/MeshInstance3D" unique_id=1570677784]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D2" type="Node3D" parent="Stars/StarsAmount3" unique_id=1851478668 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.98, 0.72354305, -2.466661)
+script = ExtResource("5_wb1ly")
+star_id = 7
+star_name = "Behind the Chain Chomp's Gate"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount3/PowerStar3D2" unique_id=1636847935]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount3/PowerStar3D2" unique_id=1721472462]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount3/PowerStar3D2/MeshInstance3D" unique_id=205612221]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D3" type="Node3D" parent="Stars/StarsAmount3" unique_id=1319973569 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.724, -2.467)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount3/PowerStar3D3" unique_id=1179567656]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount3/PowerStar3D3" unique_id=1541137074]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount3/PowerStar3D3/MeshInstance3D" unique_id=2057905348]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="StarsAmount4" type="Node3D" parent="Stars" unique_id=251714771]
+unique_name_in_owner = true
+visible = false
+
+[node name="PowerStar3D" type="Node3D" parent="Stars/StarsAmount4" unique_id=1748195511 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.8083563, 0.72354305, -2.4666348)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount4/PowerStar3D" unique_id=657220480]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount4/PowerStar3D" unique_id=1656659217]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount4/PowerStar3D/MeshInstance3D" unique_id=712486781]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D3" type="Node3D" parent="Stars/StarsAmount4" unique_id=124172466 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.26642823, 0.724, -2.467)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount4/PowerStar3D3" unique_id=1849946234]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount4/PowerStar3D3" unique_id=936055347]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount4/PowerStar3D3/MeshInstance3D" unique_id=1851801739]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D4" type="Node3D" parent="Stars/StarsAmount4" unique_id=832692957 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.282053, 0.724, -2.467)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount4/PowerStar3D4" unique_id=236722455]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount4/PowerStar3D4" unique_id=681690812]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount4/PowerStar3D4/MeshInstance3D" unique_id=1916877802]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D6" type="Node3D" parent="Stars/StarsAmount4" unique_id=378179656 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.861866, 0.72354305, -2.466661)
+script = ExtResource("5_wb1ly")
+star_id = 7
+star_name = "Behind the Chain Chomp's Gate"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount4/PowerStar3D6" unique_id=792133221]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount4/PowerStar3D6" unique_id=1772096505]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount4/PowerStar3D6/MeshInstance3D" unique_id=801936422]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="StarsAmount5" type="Node3D" parent="Stars" unique_id=1337368837]
+unique_name_in_owner = true
+visible = false
+
+[node name="PowerStar3D" type="Node3D" parent="Stars/StarsAmount5" unique_id=478279990 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -1.1023636, 0.72354305, -2.4666348)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount5/PowerStar3D" unique_id=1638275981]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount5/PowerStar3D" unique_id=818718507]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount5/PowerStar3D/MeshInstance3D" unique_id=107572679]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D3" type="Node3D" parent="Stars/StarsAmount5" unique_id=1462560144 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.56043553, 0.724, -2.467)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount5/PowerStar3D3" unique_id=44543296]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount5/PowerStar3D3" unique_id=1028369313]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount5/PowerStar3D3/MeshInstance3D" unique_id=1098605144]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D4" type="Node3D" parent="Stars/StarsAmount5" unique_id=1219411065 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.01195433, 0.724, -2.467)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount5/PowerStar3D4" unique_id=792703534]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount5/PowerStar3D4" unique_id=719530855]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount5/PowerStar3D4/MeshInstance3D" unique_id=89123342]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D6" type="Node3D" parent="Stars/StarsAmount5" unique_id=498120670 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.5678587, 0.72354305, -2.466661)
+script = ExtResource("5_wb1ly")
+star_id = 7
+star_name = "Behind the Chain Chomp's Gate"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount5/PowerStar3D6" unique_id=1182660314]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount5/PowerStar3D6" unique_id=96758914]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount5/PowerStar3D6/MeshInstance3D" unique_id=757280498]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D7" type="Node3D" parent="Stars/StarsAmount5" unique_id=1421117704 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 1.1117785, 0.72354305, -2.466661)
+script = ExtResource("5_wb1ly")
+star_id = 7
+star_name = "Behind the Chain Chomp's Gate"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount5/PowerStar3D7" unique_id=1332406139]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount5/PowerStar3D7" unique_id=683439930]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount5/PowerStar3D7/MeshInstance3D" unique_id=683405628]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="StarsAmount6" type="Node3D" parent="Stars" unique_id=409703684]
+unique_name_in_owner = true
+visible = false
+
+[node name="PowerStar3D" type="Node3D" parent="Stars/StarsAmount6" unique_id=1283764572 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -1.3984563, 0.72354305, -2.4666348)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount6/PowerStar3D" unique_id=1127798809]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount6/PowerStar3D" unique_id=1016423151]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount6/PowerStar3D/MeshInstance3D" unique_id=826524948]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D2" type="Node3D" parent="Stars/StarsAmount6" unique_id=968789323 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.818084, 0.72354305, -2.4666348)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount6/PowerStar3D2" unique_id=198934190]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount6/PowerStar3D2" unique_id=1866654040]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount6/PowerStar3D2/MeshInstance3D" unique_id=1533289235]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D3" type="Node3D" parent="Stars/StarsAmount6" unique_id=550749226 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.26642823, 0.724, -2.467)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount6/PowerStar3D3" unique_id=556446546]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount6/PowerStar3D3" unique_id=1825441470]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount6/PowerStar3D3/MeshInstance3D" unique_id=1959295001]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D4" type="Node3D" parent="Stars/StarsAmount6" unique_id=411925575 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.282053, 0.724, -2.467)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount6/PowerStar3D4" unique_id=595893877]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount6/PowerStar3D4" unique_id=732943380]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount6/PowerStar3D4/MeshInstance3D" unique_id=396639365]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D5" type="Node3D" parent="Stars/StarsAmount6" unique_id=1087361375 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.8248842, 0.724, -2.467)
+script = ExtResource("5_wb1ly")
+star_id = 4
+star_name = "Shoot into the Wild Blue"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount6/PowerStar3D5" unique_id=1086690261]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount6/PowerStar3D5" unique_id=450796758]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount6/PowerStar3D5/MeshInstance3D" unique_id=1520436134]
+custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+color = Color(0.99215686, 0.9647059, 0.06666667, 1)
+color_gradient = SubResource("Gradient_v3hcc")
+
+[node name="PowerStar3D6" type="Node3D" parent="Stars/StarsAmount6" unique_id=1390910775 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 1.387322, 0.72354305, -2.466661)
+script = ExtResource("5_wb1ly")
+star_id = 7
+star_name = "Behind the Chain Chomp's Gate"
+display_star = true
+mesh = NodePath("MeshInstance3D")
+metadata/_custom_type_script = "uid://db7w8a8uq84jv"
+
+[node name="Area3D" type="Area3D" parent="Stars/StarsAmount6/PowerStar3D6" unique_id=233866419]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stars/StarsAmount6/PowerStar3D6" unique_id=664310603]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 0, 0)
+mesh = ExtResource("6_8vncw")
+
+[node name="Trail3D" type="Trail3D" parent="Stars/StarsAmount6/PowerStar3D6/MeshInstance3D" unique_id=1026574243]
 custom_aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
 color = Color(0.99215686, 0.9647059, 0.06666667, 1)
 color_gradient = SubResource("Gradient_v3hcc")

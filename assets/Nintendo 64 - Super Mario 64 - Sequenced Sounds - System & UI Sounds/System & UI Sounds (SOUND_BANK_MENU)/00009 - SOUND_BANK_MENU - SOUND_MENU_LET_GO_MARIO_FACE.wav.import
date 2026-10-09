@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cgklwj6me720m"
+path="res://.godot/imported/00009 - SOUND_BANK_MENU - SOUND_MENU_LET_GO_MARIO_FACE.wav-858faa7f89d79ccebe21c5d6286b650e.sample"
+
+[deps]
+
+source_file="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00009 - SOUND_BANK_MENU - SOUND_MENU_LET_GO_MARIO_FACE.wav"
+dest_files=["res://.godot/imported/00009 - SOUND_BANK_MENU - SOUND_MENU_LET_GO_MARIO_FACE.wav-858faa7f89d79ccebe21c5d6286b650e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

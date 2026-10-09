@@ -34,6 +34,7 @@ enum ToadAction {
 const ACT_READING_NPC_DIALOG := 0x38000382
 const ACT_READING_AUTOMATIC_DIALOG := 0x0C4003D7
 
+@export var interpolate: bool = true
 @export var player: Node3D               ## mario.gd / SM64Mario node
 @export var start_facing_west := true
 @export var can_patrol := true
@@ -60,7 +61,13 @@ var _warned := {}
 @onready var _visual: Node3D = _find_visual()
 
 
+func _apply_interpolation_setting() -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
+
+
 func _ready() -> void:
+	_apply_interpolation_setting()
+	reset_physics_interpolation()
 	add_to_group("toads")
 	_facing_west = start_facing_west
 	if _anim == null:
@@ -85,6 +92,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	_apply_interpolation_setting()
 	_timer -= delta
 	if _anim == null:
 		return
@@ -133,7 +141,7 @@ func _enter_standing() -> void:
 	_running = false
 	_anim.speed_scale = 1.0
 	_play_stand()
-	_timer = randf_range(2.0, 6.0)  # idle pause before pacing again
+	_timer = SM64RNG.random_float_range(2.0, 6.0)  # idle pause before pacing again
 
 func _enter_walking() -> void:
 	_action = ToadAction.WALKING

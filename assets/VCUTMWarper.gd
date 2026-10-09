@@ -2,6 +2,7 @@
 class_name VCUTMWarper
 extends MeshInstance3D
 
+@export var interpolate: bool = true
 @export var WARP_NODE_B: PackedScene
 @export var scene_warp: bool = false
 @export var destination_teleporter: Teleporter
@@ -21,7 +22,13 @@ var _previous_action: int = -1
 @onready var ws: ColorRect = $TeleporterCVLayer/ColorRect
 
 
+func _apply_interpolation_setting() -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
+
+
 func _ready() -> void:
+	_apply_interpolation_setting()
+	reset_physics_interpolation()
 	_mario = _find_mario()
 
 	if _mario:
@@ -33,6 +40,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	_apply_interpolation_setting()
 	if not _mario or not is_instance_valid(_mario):
 		_mario = _find_mario()
 

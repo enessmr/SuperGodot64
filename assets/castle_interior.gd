@@ -78,10 +78,19 @@ func _init_libsm64() -> void:
 	print("Painting node: ", painting)
 
 	if painting != null:
-		painting.set("painting_size", 8.0)
+		painting.set("painting_size", 6.0)
 	$"Area1_bake/Objects/P0x0_Bob-omb_Battlefield/Painting0/Node0_root/Node1_scale/Mesh3".painting_size = 6
 	$"Area1_bake/Objects/P0x0_Bob-omb_Battlefield/Painting0/Node0_root/Node1_scale/Mesh3".painting_width = 6
 	$"Area1_bake/Objects/P0x0_Bob-omb_Battlefield/Painting0/Node0_root/Node1_scale/Mesh3".painting_height = 6
+	$"Area1_bake/Objects/P0x1_Cool_Cool_Mountain/Painting1/Node0_root2/Node1_scale/Mesh3".painting_size = 6
+	$"Area1_bake/Objects/P0x1_Cool_Cool_Mountain/Painting1/Node0_root2/Node1_scale/Mesh3".painting_width = 6
+	$"Area1_bake/Objects/P0x1_Cool_Cool_Mountain/Painting1/Node0_root2/Node1_scale/Mesh3".painting_height = 6
+	$"Area1_bake/Objects/P0x2_Whomps_Fortress/Painting2/Node0_root2/Node1_scale/Mesh3".painting_size = 6
+	$"Area1_bake/Objects/P0x2_Whomps_Fortress/Painting2/Node0_root2/Node1_scale/Mesh3".painting_width = 6
+	$"Area1_bake/Objects/P0x2_Whomps_Fortress/Painting2/Node0_root2/Node1_scale/Mesh3".painting_height = 6
+	$"Area1_bake/Objects/P0x3_Jolly_Roger_Bay/Painting3/Node0_root2/Node1_scale/Mesh3".painting_size = 6
+	$"Area1_bake/Objects/P0x3_Jolly_Roger_Bay/Painting3/Node0_root2/Node1_scale/Mesh3".painting_width = 6
+	$"Area1_bake/Objects/P0x3_Jolly_Roger_Bay/Painting3/Node0_root2/Node1_scale/Mesh3".painting_height = 6
 	$"Area1_bake/Objects/0xDD_Toad/toad".player = lib_sm_64_mario
 	$"Area1_bake/Objects/0xDD_Toad2/toad".player = lib_sm_64_mario
 	$"Area1_bake/Objects/0xDD_Toad3/toad".player = lib_sm_64_mario

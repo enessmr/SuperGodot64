@@ -3,15 +3,19 @@ extends Node3D
 var _libsm64_was_init := false
 var course_number: int = 1
 
+@onready var stars_amount_1 = %StarsAmount1
+@onready var stars_amount_2 = %StarsAmount2
+@onready var stars_amount_3 = %StarsAmount3
+@onready var stars_amount_4 = %StarsAmount4
+@onready var stars_amount_5 = %StarsAmount5
+@onready var stars_amount_6 = %StarsAmount6
+
 var _stars: Array[PowerStar3D] = []
 var _selected_index: int = 0
 var _loading: bool = false
 
-# TODO: implement save slot selection. Falls back to slot A for now.
 var _save_slot: String = "a"
 
-# Level to load when pressing A on the hovered star.
-# Settable in the inspector OR in code: star_select.level_path = "res://levels/course_1.tscn"
 @export_file("*.tscn", "*.scn", "*.tres") var level_path: String = ""
 
 const COLLECTED_STAR_MESH: Mesh = preload("res://models/star.tres")
@@ -35,52 +39,112 @@ const MINUS_ANIMATION: StringName = &"segment2.02C00.rgba16"
 func _ready() -> void:
 	if %RomPickerDialog:
 		%RomPickerDialog.rom_loaded.connect(_on_rom_picker_dialog_rom_loaded)
-	
+
 	if LibSM64Global.rom.is_empty() and not SaveManager.has_cached_rom():
 		%RomPickerDialog.pick_rom()
 	else:
 		LibSM64Global.load_rom_file(SaveManager.get_rom_path())
-		_init_libsm64() 
+		_init_libsm64()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"ui_cancel"):
-		_toggle_mouse_lock()
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if not event.pressed or event.echo:
+			return
 
+		print("KEY PRESSED: ", event.keycode)
 
-func _toggle_mouse_lock() -> void:
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	else:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if event.keycode == KEY_A:
+			_move_selection(-1)
+		elif event.keycode == KEY_D:
+			_move_selection(1)
+		elif event.keycode == KEY_ENTER:
+			_enter_level()
+		elif event.keycode == KEY_SPACE:
+			_enter_level()
+		elif event.keycode == KEY_ESCAPE:
+			_toggle_mouse_lock()
 
 
 func _process(_delta: float) -> void:
 	if _stars.is_empty():
 		return
 
-	# Move left (A) — stops at the lowest star id.
-	if Input.is_action_just_pressed(&"libsm64_mario_inputs_stick_left"):
-		if _selected_index > 0:
-			_selected_index -= 1
-			_update_hover()
-			LibSM64.play_sound_global(LibSM64.SOUND_MENU_CHANGE_SELECT)
+	if Input.is_action_just_pressed(
+		&"libsm64_mario_inputs_stick_left"
+	):
+		_move_selection(-1)
 
-	# Move right (D) — stops at the highest star id.
-	if Input.is_action_just_pressed(&"libsm64_mario_inputs_stick_right"):
-		if _selected_index < _stars.size() - 1:
-			_selected_index += 1
-			_update_hover()
-			LibSM64.play_sound_global(LibSM64.SOUND_MENU_CHANGE_SELECT)
+	if Input.is_action_just_pressed(
+		&"libsm64_mario_inputs_stick_right"
+	):
+		_move_selection(1)
 
-	# Press A (jump) on the hovered star → load the level.
-	if Input.is_action_just_pressed(&"libsm64_mario_inputs_button_a"):
-		_enter_level()
+
+func _move_selection(direction: int) -> void:
+	var visible_stars: Array[PowerStar3D] = []
+
+	for star: PowerStar3D in _stars:
+		if star.is_visible_in_tree():
+			visible_stars.append(star)
+
+	print(
+		"MOVE SELECTION | direction=",
+		direction,
+		" | visible=",
+		visible_stars.size(),
+		" | current=",
+		_selected_index
+	)
+
+	if visible_stars.is_empty():
+		print("NO VISIBLE STARS")
+		return
+
+	var new_index: int = _selected_index + direction
+
+	if new_index < 0:
+		new_index = 0
+
+	if new_index >= visible_stars.size():
+		new_index = visible_stars.size() - 1
+
+	if new_index == _selected_index:
+		print("Already at selection boundary.")
+		return
+
+	_selected_index = new_index
+
+	print("NEW SELECTED INDEX: ", _selected_index)
+
+	_update_hover()
+
+	LibSM64.play_sound_global(
+		LibSM64.SOUND_MENU_CHANGE_SELECT
+	)
 
 
 func _enter_level() -> void:
 	if _loading:
 		return
+
+	if _stars.is_empty():
+		return
+
+	var visible_stars: Array[PowerStar3D] = []
+
+	for star: PowerStar3D in _stars:
+		if star.is_visible_in_tree():
+			visible_stars.append(star)
+
+	if visible_stars.is_empty():
+		return
+
+	_selected_index = clamp(
+		_selected_index,
+		0,
+		visible_stars.size() - 1
+	)
 
 	level_path = CustomGlobals.scene
 
@@ -96,76 +160,189 @@ func _enter_level() -> void:
 
 	_loading = true
 
-	# Stash the selected star id so the level knows which star to spawn.
-	CustomGlobals.selected_star_id = _stars[_selected_index].star_id
+	CustomGlobals.selected_star_id = visible_stars[_selected_index].star_id
 
 	get_tree().change_scene_to_packed(scene)
 
 
-func _on_tree_exiting():
+func _on_tree_exiting() -> void:
 	if _libsm64_was_init:
 		LibSM64Global.terminate()
 
 
 func _init_libsm64() -> void:
 	_libsm64_was_init = LibSM64Global.init()
+
 	if not _libsm64_was_init:
 		push_error("Failed to initialize LibSM64Global")
 		return
 
-	%CourseLabel.text = ""
-	%Stars.hide()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	await get_tree().create_timer(0.4).timeout
 	_render_course_number()
-	%Stars.show()
+
 	course_number = CustomGlobals.course_number
-	_select_lowest_star()
 	%CourseLabel.text = CustomGlobals.course_name
+
+	%Stars.hide()
+
+	await get_tree().create_timer(0.4).timeout
+
+	%Stars.show()
+
+	print("STAR AMOUNT = ", CustomGlobals.star_amount)
+
+	update_star_amount_visibility()
+	_select_lowest_star()
+
 	%LibSM64AudioStreamPlayer.play()
-	LibSM64.play_music(LibSM64.SEQ_PLAYER_LEVEL, LibSM64.SEQ_MENU_STAR_SELECT)
+
+	LibSM64.play_music(
+		LibSM64.SEQ_PLAYER_LEVEL,
+		LibSM64.SEQ_MENU_STAR_SELECT
+	)
 
 
 func _collect_stars() -> void:
 	_stars.clear()
 
-	for child in %Stars.get_children():
-		if child is PowerStar3D:
-			_stars.append(child)
+	_find_power_stars(%Stars)
 
-	# Sort by star_id so index 0 is always the lowest id.
-	_stars.sort_custom(
-		func(a: PowerStar3D, b: PowerStar3D) -> bool:
-			return a.star_id < b.star_id
+	# Star Select is shared by every course. Apply the course's exported data
+	# to only the currently visible display stars, in their scene order.
+	var visible_stars: Array[PowerStar3D] = []
+	for star: PowerStar3D in _stars:
+		if star.is_visible_in_tree():
+			visible_stars.append(star)
+
+	var course_star_ids: Array[int] = []
+	var course_star_names: Array[String] = []
+	var raw_star_ids: Variant = CustomGlobals.get("star_ids")
+	var raw_star_names: Variant = CustomGlobals.get("star_names")
+	if raw_star_ids is Array:
+		for star_id: Variant in raw_star_ids:
+			course_star_ids.append(int(star_id))
+	if raw_star_names is Array:
+		for star_name: Variant in raw_star_names:
+			course_star_names.append(str(star_name))
+	for i: int in visible_stars.size():
+		var star: PowerStar3D = visible_stars[i]
+		if i < course_star_ids.size():
+			star.star_id = course_star_ids[i]
+		if i < course_star_names.size():
+			star.star_name = course_star_names[i]
+		else:
+			star.star_name = "Star %d" % (star.star_id)
+
+	_stars = visible_stars
+	_stars.sort_custom(func(a: PowerStar3D, b: PowerStar3D) -> bool:
+		return a.star_id < b.star_id
 	)
 
-	# Swap meshes for stars already collected in the save file.
-	for star in _stars:
-		if SaveManager.is_star_collected(_save_slot, course_number, star.star_id):
+	print("FOUND ", _stars.size(), " VISIBLE POWER STARS")
+
+	for i in _stars.size():
+		var star: PowerStar3D = _stars[i]
+
+		star.hover = false
+
+		print(
+			"STAR ",
+			i,
+			" | ID=",
+			star.star_id,
+			" | visible_in_tree=",
+			star.is_visible_in_tree()
+		)
+
+		if SaveManager.is_star_collected(
+			_save_slot,
+			course_number,
+			star.star_id
+		):
 			if is_instance_valid(star.mesh):
 				star.mesh.mesh = COLLECTED_STAR_MESH
+
+
+func _find_power_stars(node: Node) -> void:
+	for child: Node in node.get_children():
+		if child is PowerStar3D:
+			_stars.append(child as PowerStar3D)
+
+		_find_power_stars(child)
 
 
 func _select_lowest_star() -> void:
 	_collect_stars()
 
-	if _stars.is_empty():
+	var visible_stars: Array[PowerStar3D] = []
+
+	for star: PowerStar3D in _stars:
+		if star.is_visible_in_tree():
+			visible_stars.append(star)
+
+	if visible_stars.is_empty():
+		print("NO VISIBLE STARS")
 		return
 
 	_selected_index = 0
+
+	print(
+		"INITIAL SELECTED INDEX: ",
+		_selected_index,
+		" | VISIBLE STARS: ",
+		visible_stars.size()
+	)
+
 	_update_hover()
 
 
 func _update_hover() -> void:
-	for i in _stars.size():
-		# Reset the mesh rotation back to 0 degrees.
-		if is_instance_valid(_stars[i].mesh):
-			_stars[i].mesh.rotation_degrees = Vector3(-90, 0, 0)
-	
-		_stars[i].hover = (i == _selected_index)
+	var visible_stars: Array[PowerStar3D] = []
 
-	# Show the hovered star's name.
-	%StarLabel.text = _stars[_selected_index].star_name
+	for star: PowerStar3D in _stars:
+		if star.is_visible_in_tree():
+			visible_stars.append(star)
+
+	if visible_stars.is_empty():
+		return
+
+	_selected_index = clamp(
+		_selected_index,
+		0,
+		visible_stars.size() - 1
+	)
+
+	print("UPDATING HOVER: ", _selected_index)
+
+	for star: PowerStar3D in _stars:
+		star.hover = false
+
+	for i in visible_stars.size():
+		var star: PowerStar3D = visible_stars[i]
+
+		star.hover = i == _selected_index
+
+		if is_instance_valid(star.mesh):
+			if i == _selected_index:
+				star.mesh.rotation_degrees = Vector3(
+					-90.0,
+					0.0,
+					0.0
+				)
+			else:
+				star.mesh.rotation_degrees = Vector3(
+					-90.0,
+					0.0,
+					20.0
+				)
+
+	%StarLabel.text = visible_stars[_selected_index].star_name
+
+
+func _toggle_mouse_lock() -> void:
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _on_rom_picker_dialog_rom_loaded() -> void:
@@ -178,23 +355,30 @@ func _render_course_number() -> void:
 	var ones: int = value % 10
 	var tens: int = (value / 10) % 10
 
-	# Center digit
 	if value <= 10:
 		%CourseNumberCenter.animation = DIGIT_ANIMATIONS[ones]
 		%CourseNumberCenter.frame = 0
 		%CourseNumberCenter.show()
 
-	# Tens and ones digit
 	if value >= 10:
 		%CourseNumberCenter.hide()
+
 		%CourseNumberTens.animation = DIGIT_ANIMATIONS[tens]
 		%CourseNumberTens.frame = 0
 		%CourseNumberTens.show()
+
 		%CourseNumberOnes.animation = DIGIT_ANIMATIONS[ones]
 		%CourseNumberOnes.frame = 0
 		%CourseNumberOnes.show()
 	else:
 		%CourseNumberTens.hide()
 		%CourseNumberOnes.hide()
-	
-	# In SM64, there are only 15 courses that does the star select.
+
+
+func update_star_amount_visibility() -> void:
+	stars_amount_1.visible = CustomGlobals.star_amount == 1
+	stars_amount_2.visible = CustomGlobals.star_amount == 2
+	stars_amount_3.visible = CustomGlobals.star_amount == 3
+	stars_amount_4.visible = CustomGlobals.star_amount == 4
+	stars_amount_5.visible = CustomGlobals.star_amount == 5
+	stars_amount_6.visible = CustomGlobals.star_amount == 6

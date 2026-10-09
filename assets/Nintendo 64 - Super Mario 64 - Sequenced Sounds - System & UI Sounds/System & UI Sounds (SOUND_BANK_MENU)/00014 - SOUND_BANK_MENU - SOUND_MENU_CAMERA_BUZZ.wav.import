@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://2gw7rjb00s6t"
+path="res://.godot/imported/00014 - SOUND_BANK_MENU - SOUND_MENU_CAMERA_BUZZ.wav-fbf01b6e55258e68767c07c8b3f36a64.sample"
+
+[deps]
+
+source_file="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00014 - SOUND_BANK_MENU - SOUND_MENU_CAMERA_BUZZ.wav"
+dest_files=["res://.godot/imported/00014 - SOUND_BANK_MENU - SOUND_MENU_CAMERA_BUZZ.wav-fbf01b6e55258e68767c07c8b3f36a64.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

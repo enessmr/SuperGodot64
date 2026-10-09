@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ck5s4uvqhvlpi"
+path="res://.godot/imported/00002 - SOUND_BANK_MENU - SOUND_MENU_PAUSE.wav-e8387752c2987f8ffe3a912c2ef6d9f5.sample"
+
+[deps]
+
+source_file="res://assets/Nintendo 64 - Super Mario 64 - Sequenced Sounds - System & UI Sounds/System & UI Sounds (SOUND_BANK_MENU)/00002 - SOUND_BANK_MENU - SOUND_MENU_PAUSE.wav"
+dest_files=["res://.godot/imported/00002 - SOUND_BANK_MENU - SOUND_MENU_PAUSE.wav-e8387752c2987f8ffe3a912c2ef6d9f5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

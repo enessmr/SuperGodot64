@@ -1,0 +1,545 @@
+[gd_scene format=4 uid="uid://d4a47q8r4xips"]
+
+[ext_resource type="Script" uid="uid://cvbeq8f4550mo" path="res://models/elevators.gd" id="1_72swx"]
+[ext_resource type="Texture2D" uid="uid://c3r65qy85q4ob" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Checkerboard Lift/Checkerboard Lift/tex_800C840.png" id="1_wkc4d"]
+[ext_resource type="Texture2D" uid="uid://d4ggxhj31enis" path="res://models/Nintendo 64 - Super Mario 64 - Map Objects - Checkerboard Lift/Checkerboard Lift/tex_800CC40.png" id="2_72swx"]
+[ext_resource type="Texture2D" uid="uid://c5galwge6uft" path="res://models/checkerboard_platform_checkerboard_platform.rgba16.png" id="4_6i2u4"]
+[ext_resource type="Texture2D" uid="uid://d20wl85jgidvx" path="res://models/checkerboard_platform_checkerboard_platform_side.rgba16.png" id="5_mpg6p"]
+
+[sub_resource type="Animation" id="Animation_72swx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../Path3D2/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/Node2_display:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node0_culling/Node1_display/Node2_display:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../Path3D2/PathFollow3D:progress_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node0_culling/Node1_display/ArmatureObj:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../../Path3D2/PathFollow3D/AnimatableBody3D/MeshInstance3D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.1415927, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshInstance3D:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.1415927, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wkc4d"]
+resource_name = "animatablebodyshit"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../Path3D2/PathFollow3D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../Path3D2/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/Node2_display:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.5, 4.866667, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-3.1415927, 0, 0), Vector3(-3.1415927, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node0_culling/Node1_display/Node2_display:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.1666667, 3.6666667, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-3.1415927, 0, 0), Vector3(-3.1415927, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node0_culling/Node1_display/ArmatureObj:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-3.1415927, 0, 0), Vector3(-3.1415927, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../../Path3D2/PathFollow3D/AnimatableBody3D/MeshInstance3D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.5, 4.8867, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-3.1415927, 0, 0), Vector3(-3.1415927, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshInstance3D:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-3.1415927, 0, 0), Vector3(-3.1415927, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_72swx"]
+_data = {
+&"RESET": SubResource("Animation_72swx"),
+&"animatablebodyshit": SubResource("Animation_wkc4d")
+}
+
+[sub_resource type="Curve3D" id="Curve3D_bhjx4"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, -2, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 2, 0, 0, 3.6, 0, 0, 2, 0, 0, 0, 0, 0.002, 3.626, -2.641, 0, 0, 0, 0, -2, 0, 0, -1, -2.587),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7omcj"]
+data = PackedVector3Array(-2.55, -0.25, 1.54, -2.55, 0.26, -1.53, -2.55, 0.26, 1.54, -2.55, -0.25, 1.54, -2.55, -0.25, -1.53, -2.55, 0.26, -1.53, 2.56, -0.25, -1.53, 2.56, -0.25, 1.54, 2.56, 0.26, 1.54, 2.56, -0.25, -1.53, 2.56, 0.26, 1.54, 2.56, 0.26, -1.53)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6i2u4"]
+data = PackedVector3Array(2.56, -0.25, 1.54, 2.56, -0.25, -1.53, -2.55, -0.25, -1.53, 2.56, -0.25, 1.54, -2.55, -0.25, -1.53, -2.55, -0.25, 1.54, 2.56, 0.26, -1.53, 2.56, 0.26, 1.54, -2.55, 0.26, 1.54, 2.56, 0.26, -1.53, -2.55, 0.26, 1.54, -2.55, 0.26, -1.53, -2.55, -0.25, -1.53, 2.56, 0.26, -1.53, -2.55, 0.26, -1.53, -2.55, -0.25, -1.53, 2.56, -0.25, -1.53, 2.56, 0.26, -1.53, 2.56, -0.25, 1.54, -2.55, -0.25, 1.54, -2.55, 0.26, 1.54, 2.56, -0.25, 1.54, -2.55, 0.26, 1.54, 2.56, 0.26, 1.54)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j14tr"]
+resource_name = "Mat0"
+cull_mode = 2
+albedo_texture = ExtResource("1_wkc4d")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_eke2i"]
+_surfaces = [{
+"aabb": AABB(-2.55, -0.25, -1.53, 5.1099997, 0.51, 3.07),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAGAAcA"),
+"name": "Mat0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD//wAAAAAAAP//AAD//wAA////////AAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mpg6p"]
+resource_name = "Mesh"
+_surfaces = [{
+"aabb": AABB(-2.55, -0.25, -1.53, 5.1099997, 0.51, 3.07),
+"attribute_data": PackedByteArray("//////9//3////9//3//////////f////3//f////38="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAGAAcA"),
+"material": SubResource("StandardMaterial3D_j14tr"),
+"name": "Mat0",
+"primitive": 3,
+"uv_scale": Vector4(2.9375, 1.875, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP///78AAP//AAD/vwAA//////+/AAAAAAAA/7///wAAAAD/v///AAD///+//////////7//////AAD/v/9/////f////3////9/////fwAA/38AAP9/AAD/fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_eke2i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_narop"]
+resource_name = "Mat1"
+cull_mode = 2
+albedo_texture = ExtResource("2_72swx")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pw6s2"]
+_surfaces = [{
+"aabb": AABB(-2.55, -0.25, -1.53, 5.1099997, 0.51, 3.07),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAACAAQAAgADAAUAAAAEAAYAAwAGAAUAAAAGAAcAAwAHAAYA"),
+"name": "Mat1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("//8AAP//AAD//wAAAAAAAAAAAAAAAAAA/////wAAAAAAAAAA//8AAAAA//8AAAAAAAD/////AAD///////8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gr78w"]
+resource_name = "Mesh2"
+_surfaces = [{
+"aabb": AABB(-2.55, -0.25, -1.53, 5.1099997, 0.51, 3.07),
+"attribute_data": PackedByteArray("////////7z3/f+89/3//////7z3//////3////9/7z3//+69/3//f////3//f+69///uvf9/7r3/f/9/////fw=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAALAAkADAANAA4ADAAOAA8A"),
+"material": SubResource("StandardMaterial3D_narop"),
+"name": "Mat1",
+"primitive": 3,
+"uv_scale": Vector4(4.9375, 1.9375, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("//8AAP///1///wAAAAD/HwAAAAAAAP8fAAAAAP///1//////AAD/3/////////+fAAD//////58AAP//AAD/3wAAAAAAAP///////wAA//8AAP//AAD/////AAAAAP////8AAP///58AAAAA////nwAA//////+f/////////58AAP9/AAD/fwAA/38AAP9/////f////3////9/////f3yl////f4Ha/3+B2nyl//8AAP9/AAD/f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_pw6s2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6i2u4"]
+resource_name = "Material.001"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_6i2u4")
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2rdh2"]
+resource_name = "Material.002"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_mpg6p")
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_veoc6"]
+resource_name = "checkerboard_platform_skinnned-mesh_002"
+_surfaces = [{
+"aabb": AABB(-2.55, -0.2600001, -1.54, 5.1099997, 0.5100002, 3.07),
+"attribute_data": PackedByteArray("/////wAAHkAAAHg//////wAAHkAAAAC//////wAAAAAAAAC//////wAAAAAAAHg//////wAAHkAAAAC//////wAAHkAAAHg//////wAAAAAAAHg//////wAAAAAAAAC//////wAAHkAAAPA+/////wAAAAAAAAAA/////wAAHkAAAAAA/////wAAAAAAAPA+/////wAAHkAAAPA+/////wAAAAAAAPA+/////wAAAAAAAAAA/////wAAHkAAAAAA"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(-2.55, -0.2600001, -1.54, 5.11001, 0.51001024, 3.07)],
+"format": 34359745567,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAALAAkADAANAA4ADAAOAA8A"),
+"material": SubResource("StandardMaterial3D_6i2u4"),
+"name": "Material.001",
+"primitive": 3,
+"skin_data": PackedByteArray("AQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAA=="),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("CtcjQAQAgD64HsW/CtcjQPj/fz4K18M/MzMjwPj/fz4K18M/MzMjwAQAgD64HsW/CtcjQLwehb4K18M/CtcjQLQehb64HsW/MzMjwLQehb64HsW/MzMjwLwehb4K18M/MzMjwPj/fz4K18M/CtcjQLwehb4K18M/MzMjwLwehb4K18M/CtcjQPj/fz4K18M/CtcjQAQAgD64HsW/MzMjwAQAgD64HsW/MzMjwLQehb64HsW/CtcjQLQehb64HsW/VdVV1f+//0+oqqqq/9//X1VVqar/vwAwqypV1f/fACCpqlVVAOD/31PVqSoAwP7PqSqpKgDg/59WVVRVAMD/r1VVqar+H/+fqapVVf8//69WVVRV/x/+36iqqqr+P/7PVdVV1f+//6+rKlXV/9/+36kqqSoA4P+fU9WpKgDA/s8=")
+}, {
+"aabb": AABB(-2.55, -0.2600001, -1.54, 5.1099997, 0.5100002, 3.07),
+"attribute_data": PackedByteArray("/////wAAvD+UZGk//////wAAAAAAAAAA/////wAAvD8AAAAA/////wAAAAD//2U//////wAAvD+Ba38//////wAAAACTTH4//////wAAAAAAAAAA/////wAAvD8AAAAA"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(-2.55, -0.2600001, -1.54, 5.1099997, 0.51001024, 3.07)],
+"format": 34359745567,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAGAAcA"),
+"material": SubResource("StandardMaterial3D_2rdh2"),
+"name": "Material.002",
+"primitive": 3,
+"skin_data": PackedByteArray("AQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAA="),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("MzMjwAQAgD64HsW/MzMjwLwehb4K18M/MzMjwLQehb64HsW/MzMjwPj/fz4K18M/CtcjQPj/fz4K18M/CtcjQAQAgD64HsW/CtcjQLQehb64HsW/CtcjQLwehb4K18M/qypV1fzf/Y9WVVRVGiDxj6kqqSr+3/7vVVWpquAf7++oqqqqAGD+r1XVVdUIoPrPU9WpKvaf+q+pqlVV/1//zw==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="Skin" id="Skin_veoc6"]
+resource_name = "Skin"
+bind_count = 2
+bind/0/name = &"000-start_render_area"
+bind/0/bone = -1
+bind/0/pose = Transform3D(1, 0, 0, 0, -1, 1.1920929e-07, 0, -4.371139e-08, -1, 0, 0, 0)
+bind/1/name = &"000-displaylist"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, 0, 0, 0, -1, 1.1920929e-07, 0, -4.371139e-08, -1, 0, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6i2u4"]
+size = Vector3(5.100357, 0.50494385, 3.0617676)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mpg6p"]
+size = Vector3(3.5639648, 0.7303467, 2.4961243)
+
+[sub_resource type="Curve3D" id="Curve3D_6i2u4"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, -4.023, 0, 0, -2, 0, 0, 0, 0, 0.002, -4.02, 2.641, 0, 0, 0, 0, 2, 0, 0, 0, 2.587),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iynpn"]
+resource_name = "Material.001"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_6i2u4")
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbgj8"]
+resource_name = "Material.002"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_mpg6p")
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jadct"]
+resource_name = "checkerboard_platform_skinnned-mesh_002"
+_surfaces = [{
+"aabb": AABB(-2.55, -0.2600001, -1.54, 5.1099997, 0.5100002, 3.07),
+"attribute_data": PackedByteArray("/////wAAHkAAAHg//////wAAHkAAAAC//////wAAAAAAAAC//////wAAAAAAAHg//////wAAHkAAAAC//////wAAHkAAAHg//////wAAAAAAAHg//////wAAAAAAAAC//////wAAHkAAAPA+/////wAAAAAAAAAA/////wAAHkAAAAAA/////wAAAAAAAPA+/////wAAHkAAAPA+/////wAAAAAAAPA+/////wAAAAAAAAAA/////wAAHkAAAAAA"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(-2.55, -0.2600001, -1.54, 5.11001, 0.51001024, 3.07)],
+"format": 34359745567,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAALAAkADAANAA4ADAAOAA8A"),
+"material": SubResource("StandardMaterial3D_iynpn"),
+"name": "Material.001",
+"primitive": 3,
+"skin_data": PackedByteArray("AQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAA=="),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("CtcjQAQAgD64HsW/CtcjQPj/fz4K18M/MzMjwPj/fz4K18M/MzMjwAQAgD64HsW/CtcjQLwehb4K18M/CtcjQLQehb64HsW/MzMjwLQehb64HsW/MzMjwLwehb4K18M/MzMjwPj/fz4K18M/CtcjQLwehb4K18M/MzMjwLwehb4K18M/CtcjQPj/fz4K18M/CtcjQAQAgD64HsW/MzMjwAQAgD64HsW/MzMjwLQehb64HsW/CtcjQLQehb64HsW/VdVV1f+//0+oqqqq/9//X1VVqar/vwAwqypV1f/fACCpqlVVAOD/31PVqSoAwP7PqSqpKgDg/59WVVRVAMD/r1VVqar+H/+fqapVVf8//69WVVRV/x/+36iqqqr+P/7PVdVV1f+//6+rKlXV/9/+36kqqSoA4P+fU9WpKgDA/s8=")
+}, {
+"aabb": AABB(-2.55, -0.2600001, -1.54, 5.1099997, 0.5100002, 3.07),
+"attribute_data": PackedByteArray("/////wAAvD+UZGk//////wAAAAAAAAAA/////wAAvD8AAAAA/////wAAAAD//2U//////wAAvD+Ba38//////wAAAACTTH4//////wAAAAAAAAAA/////wAAvD8AAAAA"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(-2.55, -0.2600001, -1.54, 5.1099997, 0.51001024, 3.07)],
+"format": 34359745567,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAGAAcA"),
+"material": SubResource("StandardMaterial3D_vbgj8"),
+"name": "Material.002",
+"primitive": 3,
+"skin_data": PackedByteArray("AQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAA="),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("MzMjwAQAgD64HsW/MzMjwLwehb4K18M/MzMjwLQehb64HsW/MzMjwPj/fz4K18M/CtcjQPj/fz4K18M/CtcjQAQAgD64HsW/CtcjQLQehb64HsW/CtcjQLwehb4K18M/qypV1fzf/Y9WVVRVGiDxj6kqqSr+3/7vVVWpquAf7++oqqqqAGD+r1XVVdUIoPrPU9WpKvaf+q+pqlVV/1//zw==")
+}]
+blend_shape_mode = 0
+
+[node name="Elevators" type="Node3D" unique_id=1976644069]
+script = ExtResource("1_72swx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2017821971]
+root_node = NodePath("../Path3D/PathFollow3D/AnimatableBody3D")
+libraries/ = SubResource("AnimationLibrary_72swx")
+
+[node name="Path3D" type="Path3D" parent="." unique_id=1738306066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9961376, 0)
+curve = SubResource("Curve3D_bhjx4")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=460451616]
+transform = Transform3D(0.9999485, 0, 0, 0, 0.99998474, 0, 0, 0, 0.9999843, 0, -1, -9.313226e-10)
+progress = 18.134157
+rotation_mode = 0
+loop = false
+tilt_enabled = false
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Path3D/PathFollow3D" unique_id=574926586]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Path3D/PathFollow3D/AnimatableBody3D" unique_id=1202152052]
+transform = Transform3D(0.7, 0, 0, 0, -1.5, 6.119594e-08, 0, -1.3113416e-07, -0.7, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_7omcj")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Path3D/PathFollow3D/AnimatableBody3D" unique_id=819980833]
+transform = Transform3D(0.7, 0, 0, 0, 1.5, 0, 0, 0, 0.7, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_6i2u4")
+
+[node name="Node0_culling" type="Node3D" parent="Path3D/PathFollow3D/AnimatableBody3D" unique_id=1614055709]
+
+[node name="Node1_display" type="Node3D" parent="Path3D/PathFollow3D/AnimatableBody3D/Node0_culling" unique_id=2049624065]
+
+[node name="Node2_display" type="Node3D" parent="Path3D/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display" unique_id=675503820]
+transform = Transform3D(0.7, 0, 0, 0, 1.5, 0, 0, 0, 0.70000005, 0, 0, 0)
+
+[node name="Mesh0" type="MeshInstance3D" parent="Path3D/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/Node2_display" unique_id=743949904]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999999, 0, 0, 0)
+visible = false
+mesh = SubResource("ArrayMesh_mpg6p")
+
+[node name="Mesh1" type="MeshInstance3D" parent="Path3D/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/Node2_display" unique_id=1857178427]
+visible = false
+mesh = SubResource("ArrayMesh_gr78w")
+
+[node name="ArmatureObj" type="Node3D" parent="Path3D/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display" unique_id=579882439]
+transform = Transform3D(0.7, 0, 0, 0, 1.4388459, 0, 0, 0, 0.8183659, 0, 0, 0)
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Path3D/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/ArmatureObj" unique_id=2060772889]
+bones/0/name = "000-start_render_area"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 0, 0, 0, -1, -8.146034e-08, 0, 8.146034e-08, -1, 0, 0, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, 0, 0)
+bones/0/rotation = Quaternion(1, 0, 0, 4.073017e-08)
+bones/0/scale = Vector3(1, 1, 1)
+bones/0/skin_scale = Vector3(1, 1, 1)
+bones/1/name = "000-displaylist"
+bones/1/parent = 0
+bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+bones/1/enabled = true
+bones/1/position = Vector3(0, 0, 0)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/1/scale = Vector3(1, 1, 1)
+bones/1/skin_scale = Vector3(1, 1, 1)
+
+[node name="skinned" type="MeshInstance3D" parent="Path3D/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/ArmatureObj/Skeleton3D" unique_id=333330262]
+mesh = SubResource("ArrayMesh_veoc6")
+skin = SubResource("Skin_veoc6")
+skeleton = NodePath("..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/ArmatureObj/Skeleton3D" unique_id=1356880997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000786, 0.0074997577, -0.0043029753, -0.005012609)
+visible = false
+mesh = SubResource("BoxMesh_6i2u4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D/AnimatableBody3D" unique_id=1033733435 groups=["libsm64_surface_objects"]]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0.004150366, -0.007870197, -0.008681297)
+visible = false
+mesh = SubResource("BoxMesh_mpg6p")
+
+[node name="Path3D2" type="Path3D" parent="." unique_id=433183546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0069995, -2.617817)
+curve = SubResource("Curve3D_6i2u4")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D2" unique_id=2005527614]
+transform = Transform3D(0.9999485, 0, 0, 0, 0.99998474, 0, 0, 0, 0.9999843, 0, 0, 0)
+rotation_mode = 0
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Path3D2/PathFollow3D" unique_id=1257598813]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Path3D2/PathFollow3D/AnimatableBody3D" unique_id=839551991]
+transform = Transform3D(0.7, 0, 0, 0, -1.5, 6.119594e-08, 0, -1.3113416e-07, -0.7, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_7omcj")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Path3D2/PathFollow3D/AnimatableBody3D" unique_id=1494067335]
+transform = Transform3D(0.7, 0, 0, 0, 1.5, 0, 0, 0, 0.7, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_6i2u4")
+
+[node name="Node0_culling" type="Node3D" parent="Path3D2/PathFollow3D/AnimatableBody3D" unique_id=211438338]
+
+[node name="Node1_display" type="Node3D" parent="Path3D2/PathFollow3D/AnimatableBody3D/Node0_culling" unique_id=2036197993]
+
+[node name="Node2_display" type="Node3D" parent="Path3D2/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display" unique_id=1326525309]
+transform = Transform3D(0.7, 0, 0, 0, 1.5, 0, 0, 0, 0.70000005, 0, 0, 0)
+
+[node name="Mesh0" type="MeshInstance3D" parent="Path3D2/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/Node2_display" unique_id=1455202785]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999999, 0, 0, 0)
+visible = false
+mesh = SubResource("ArrayMesh_mpg6p")
+
+[node name="Mesh1" type="MeshInstance3D" parent="Path3D2/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/Node2_display" unique_id=2117056437]
+visible = false
+mesh = SubResource("ArrayMesh_gr78w")
+
+[node name="ArmatureObj2" type="Node3D" parent="Path3D2/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/Node2_display" unique_id=2141499559]
+transform = Transform3D(1, 0, 0, 0, 0.95923054, 0, 0, 0, 1.1690944, 0, 0, 0)
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Path3D2/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/Node2_display/ArmatureObj2" unique_id=707881335]
+bones/0/name = "000-start_render_area"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 0, 0, 0, -1, -8.146034e-08, 0, 8.146034e-08, -1, 0, 0, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, 0, 0)
+bones/0/rotation = Quaternion(1, 0, 0, 4.073017e-08)
+bones/0/scale = Vector3(1, 1, 1)
+bones/0/skin_scale = Vector3(1, 1, 1)
+bones/1/name = "000-displaylist"
+bones/1/parent = 0
+bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+bones/1/enabled = true
+bones/1/position = Vector3(0, 0, 0)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/1/scale = Vector3(1, 1, 1)
+bones/1/skin_scale = Vector3(1, 1, 1)
+
+[node name="skinned" type="MeshInstance3D" parent="Path3D2/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/Node2_display/ArmatureObj2/Skeleton3D" unique_id=239393742]
+mesh = SubResource("ArrayMesh_jadct")
+skin = SubResource("Skin_veoc6")
+skeleton = NodePath("..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D2/PathFollow3D/AnimatableBody3D/Node0_culling/Node1_display/Node2_display/ArmatureObj2/Skeleton3D" unique_id=10410288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000786, 0.0074997577, -0.0043029753, -0.005012609)
+visible = false
+mesh = SubResource("BoxMesh_6i2u4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D2/PathFollow3D/AnimatableBody3D" unique_id=1537731857 groups=["libsm64_surface_objects"]]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0.004150366, -0.007870197, -0.008681297)
+visible = false
+mesh = SubResource("BoxMesh_mpg6p")

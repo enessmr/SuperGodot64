@@ -1,5 +1,6 @@
 extends Node3D
 
+@export var interpolate: bool = true
 @export var cap_time := 100.0
 @export var give_radius := 2.0
 
@@ -7,9 +8,11 @@ var _used := false
 @onready var _mario: LibSM64Mario = null
 
 func _ready() -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
 	_mario = get_parent().get_node_or_null("LibSM64Mario") as LibSM64Mario
 
 func _physics_process(delta: float) -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
 	if _used:
 		return
 	if not _mario:

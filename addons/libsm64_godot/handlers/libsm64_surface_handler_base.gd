@@ -1,6 +1,54 @@
 class_name LibSM64SurfaceHandlerBase
 extends Node
 
+# Reserved for Godot objects that must see the same geometry as Mario.
+# Groups alone do not participate in Godot physics queries.
+const OBJECT_COLLISION_LAYER: int = 1 << 31
+const OBJECT_COLLISION_NAME := "_LibSM64ObjectCollision"
+
+
+static func register_object_collision(node: Node3D, faces: PackedVector3Array,
+		world_transform: Transform3D) -> void:
+	if faces.is_empty() or node.get_meta("libsm64_mesh_only", false):
+		return
+	var body := node.get_node_or_null(OBJECT_COLLISION_NAME) as StaticBody3D
+	if body == null:
+		body = StaticBody3D.new()
+		body.name = OBJECT_COLLISION_NAME
+		body.top_level = true
+		body.collision_layer = OBJECT_COLLISION_LAYER
+		body.collision_mask = 0
+		node.add_child(body, false, Node.INTERNAL_MODE_BACK)
+		var collider := CollisionShape3D.new()
+		collider.name = "Shape"
+		body.add_child(collider)
+	var collider := body.get_node("Shape") as CollisionShape3D
+	# Re-registration can follow an edited/replaced mesh as well as unloading.
+	if collider.shape == null or (collider.shape as ConcavePolygonShape3D).get_faces() != faces:
+		var shape := ConcavePolygonShape3D.new()
+		shape.backface_collision = true
+		shape.set_faces(faces)
+		collider.shape = shape
+	body.global_transform = world_transform
+	body.collision_layer = OBJECT_COLLISION_LAYER
+
+
+static func move_object_collision(node: Node3D, world_transform: Transform3D) -> void:
+	var body := node.get_node_or_null(OBJECT_COLLISION_NAME) as StaticBody3D
+	if body != null:
+		body.global_transform = world_transform
+
+
+static func disable_object_collision(node: Node3D) -> void:
+	var body := node.get_node_or_null(OBJECT_COLLISION_NAME) as StaticBody3D
+	if body != null:
+		body.collision_layer = 0
+
+
+static func object_collision_rid(node: Node3D) -> RID:
+	var body := node.get_node_or_null(OBJECT_COLLISION_NAME) as StaticBody3D
+	return body.get_rid() if body != null else RID()
+
 ## This node contains the common functionality between [LibSM64StaticSurfacesHandler] and [LibSM64SurfaceObjectsHandler].
 ## This node is not meant to be used directly. Use [LibSM64StaticSurfacesHandler] or [LibSM64SurfaceObjectsHandler] instead.
 

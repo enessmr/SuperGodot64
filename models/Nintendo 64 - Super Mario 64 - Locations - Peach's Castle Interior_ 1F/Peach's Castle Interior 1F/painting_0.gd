@@ -5,6 +5,7 @@ var _mario: LibSM64Mario = null
 @export var course_id := 1
 @export var course_name := "BOB-OMB BATTLEFIELD"
 @export var course_number := 1
+@export var star_amount := 2
 
 @export var star_ids: Array[int] = [1, 2, 3, 4, 5, 6]
 
@@ -27,6 +28,9 @@ func _find_mario() -> void:
 	$Node0_root/Node1_scale/Mesh3._course_id = course_id
 	$Node0_root/Node1_scale/Mesh3._course_name = course_name
 	$Node0_root/Node1_scale/Mesh3._course_number = course_number
+	$Node0_root/Node1_scale/Mesh3._star_amount = star_amount
+	$Node0_root/Node1_scale/Mesh3._star_ids = star_ids
+	$Node0_root/Node1_scale/Mesh3._star_names = star_names
 
 func get_star_name(star_id: int) -> String:
 	var index := star_ids.find(star_id)

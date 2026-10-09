@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://assets/KoopaShell3D.gd" id="1_shell_script"]
+[ext_resource type="PackedScene" path="res://models/koopa_shell.tscn" id="2_shell_model"]
+
+[node name="KoopaShell3D" type="MeshInstance3D"]
+script = ExtResource("1_shell_script")
+
+[node name="Model" parent="." instance=ExtResource("2_shell_model")]
+
+

@@ -16,6 +16,10 @@ var vanish_cap: bool = false
 
 @export var camera: Node3D
 @export var interpolate: bool = true
+## Local-space offset applied to the LibSM64 collision/render position.
+## Visual node remains at the raw SM64 position; use for riding-shell support.
+var collision_position_offset: Vector3 = Vector3.ZERO
+var _last_collision_position_offset: Vector3 = Vector3.ZERO
 
 @export_group("Mario Inputs Actions", "mario_inputs_")
 @export var mario_inputs_stick_left := &"libsm64_mario_inputs_stick_left"
@@ -307,11 +311,11 @@ var _metal_wing_vanish_material := preload(
 ) as StandardMaterial3D
 
 var _wing_vanish_material := preload(
-	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_material.tres"
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_wing_material.tres"
 ) as StandardMaterial3D
 
 var _metal_vanish_material := preload(
-	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_metal_vanish_wing_material.tres"
+	"res://addons/libsm64_godot/libsm64_mario/libsm64_mario_vanish_metal_material.tres"
 ) as StandardMaterial3D
 
 
@@ -469,7 +473,7 @@ func _update_lerped_members_from_mario_state(lerp_t: float) -> void:
 	else:
 		mario_state = _mario_interpolator.mario_state_current
 
-	global_position = mario_state.position
+	_set_visual_position_from_state(mario_state.position)
 	_velocity = mario_state.velocity
 	_forward_velocity = mario_state.forward_velocity
 
@@ -520,65 +524,22 @@ func _update_mesh(lerp_t: float) -> void:
 	else:
 		material = _default_material
 
-	if caps == LibSM64.MARIO_VANISH_CAP:
-		var cap_time: float = 0.0
-		var mstate = _mario_interpolator.mario_state_current
+	var cap_time: float = 0.0
+	var mario_state: Variant = _mario_interpolator.mario_state_current
+	if mario_state is Dictionary:
+		cap_time = float(mario_state.get("cap_time", 0.0))
+	elif mario_state != null:
+		var state_cap_time: Variant = mario_state.get("cap_time")
+		if state_cap_time != null:
+			cap_time = float(state_cap_time)
 
-		if mstate:
-			if typeof(mstate) == TYPE_DICTIONARY:
-				if mstate.has("cap_time"):
-					cap_time = float(mstate["cap_time"])
-			else:
-				if mstate.has_method("get"):
-					var maybe = mstate.get("cap_time")
-
-					if maybe != null:
-						cap_time = float(maybe)
-
-		var use_default_material: bool = false
-
-		if cap_time > 0.0 and cap_time <= 2.0:
-			use_default_material = int(Time.get_ticks_msec() / 80.0) % 2 == 0
-
-		if cap_time > 0.0 and cap_time <= 2.0:
-			_vanish_material.transparency = (
-				BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
-				if int(Time.get_ticks_msec() / 80.0) % 2 == 0
-				else BaseMaterial3D.TRANSPARENCY_DISABLED
-			)
-
-		else:
-			_vanish_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
-
-	var cap_time_mesh: float = 0.0
-	var mstate_mesh = _mario_interpolator.mario_state_current
-
-	if mstate_mesh:
-		if typeof(mstate_mesh) == TYPE_DICTIONARY:
-			if mstate_mesh.has("cap_time"):
-				cap_time_mesh = float(mstate_mesh["cap_time"])
-		else:
-			if mstate_mesh.has_method("get"):
-				var maybe_mesh = mstate_mesh.get("cap_time")
-
-				if maybe_mesh != null:
-					cap_time_mesh = float(maybe_mesh)
-
-	var use_default_material_for_mesh: bool = false
-
-	if (caps & (
-		LibSM64.MARIO_METAL_CAP |
-		LibSM64.MARIO_VANISH_CAP
-	)) != 0:
-		if cap_time_mesh > 0.0 and cap_time_mesh <= 2.0:
-			use_default_material_for_mesh = (
-				int(Time.get_ticks_msec() / 80.0) % 2 == 0
-			)
-
+	# Preserve the selected material through the entire cap timer. If the
+	# vanish cap is expiring, flicker the whole Mario mesh by toggling its
+	# visibility rather than swapping out a combined-cap material.
 	var final_material: StandardMaterial3D = material
-
-	if use_default_material_for_mesh:
-		final_material = _default_material
+	_mesh_instance.visible = true
+	if (caps & LibSM64.MARIO_VANISH_CAP) != 0 and cap_time > 0.0 and cap_time <= 2.0:
+		_mesh_instance.visible = int(Time.get_ticks_msec() / 80.0) % 2 == 0
 
 	var array_mesh_triangles: Array
 
@@ -616,6 +577,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	if play_mode == PlayMode.FRAME_ADVANCE:
+		_update_collision_position_offset()
 		_tick()
 		_update_non_lerped_members_from_mario_state()
 
@@ -626,6 +588,9 @@ func _physics_process(delta: float) -> void:
 
 	_physics_time_since_last_tick += delta
 
+	# Apply changes made to the rider offset to LibSM64 before its next sim tick.
+	_update_collision_position_offset()
+
 	while _physics_time_since_last_tick >= LibSM64.tick_delta_time:
 		_tick()
 
@@ -634,10 +599,31 @@ func _physics_process(delta: float) -> void:
 		_update_non_lerped_members_from_mario_state()
 
 
+func _set_visual_position_from_state(position: Vector3) -> void:
+	global_position = position + collision_position_offset
+	_last_collision_position_offset = collision_position_offset
+
+
+func _update_collision_position_offset() -> void:
+	if collision_position_offset == _last_collision_position_offset:
+		return
+	if _id < 0 or _mario_interpolator.mario_state_current == null:
+		return
+	var previous_offset: Vector3 = _last_collision_position_offset
+	var raw_position: Vector3 = _mario_interpolator.mario_state_current.position
+	var adjusted_position: Vector3 = raw_position + previous_offset - collision_position_offset
+	LibSM64.set_mario_position(_id, adjusted_position)
+	_mario_interpolator.mario_state_current.position = adjusted_position
+	_mario_interpolator.mario_state_previous.position = adjusted_position
+	global_position = raw_position + previous_offset
+	_last_collision_position_offset = collision_position_offset
+
+
 func pause_game() -> void:
 	if _id < 0:
 		return
 
+	_update_collision_position_offset()
 	_mario_interpolator.mario_state_previous = (
 		_mario_interpolator.mario_state_current
 	)
@@ -646,7 +632,7 @@ func pause_game() -> void:
 		_mario_interpolator.array_mesh_triangles_current
 	)
 
-	global_position = _mario_interpolator.mario_state_current.position
+	_set_visual_position_from_state(_mario_interpolator.mario_state_current.position)
 	_face_angle = _mario_interpolator.mario_state_current.face_angle
 
 	_physics_time_since_last_tick = 0.0
@@ -659,6 +645,7 @@ func resume_game() -> void:
 	if _id < 0:
 		return
 
+	_update_collision_position_offset()
 	_mario_interpolator.mario_state_previous = (
 		_mario_interpolator.mario_state_current
 	)
@@ -667,7 +654,7 @@ func resume_game() -> void:
 		_mario_interpolator.array_mesh_triangles_current
 	)
 
-	global_position = _mario_interpolator.mario_state_current.position
+	_set_visual_position_from_state(_mario_interpolator.mario_state_current.position)
 	_face_angle = _mario_interpolator.mario_state_current.face_angle
 
 	_physics_time_since_last_tick = 0.0
@@ -680,6 +667,7 @@ func advance_one_frame() -> void:
 	if _id < 0:
 		return
 
+	_update_collision_position_offset()
 	if play_mode == PlayMode.PAUSED:
 		_mario_interpolator.mario_state_previous = (
 			_mario_interpolator.mario_state_current
@@ -689,7 +677,7 @@ func advance_one_frame() -> void:
 			_mario_interpolator.array_mesh_triangles_current
 		)
 
-		global_position = _mario_interpolator.mario_state_current.position
+		_set_visual_position_from_state(_mario_interpolator.mario_state_current.position)
 		_face_angle = _mario_interpolator.mario_state_current.face_angle
 
 		_physics_time_since_last_tick = 0.0
@@ -707,6 +695,7 @@ func toggle_pause() -> void:
 
 
 func _update_non_lerped_members_from_mario_state() -> void:
+	_set_visual_position_from_state(_mario_interpolator.mario_state_current.position)
 	_health = _mario_interpolator.mario_state_current.health
 	_action = _mario_interpolator.mario_state_current.action
 	_anim_id = _mario_interpolator.mario_state_current.anim_id
@@ -716,6 +705,8 @@ func _update_non_lerped_members_from_mario_state() -> void:
 
 
 func create() -> void:
+	collision_position_offset = Vector3.ZERO
+	_last_collision_position_offset = Vector3.ZERO
 	if _id >= 0:
 		delete()
 
@@ -782,10 +773,11 @@ func teleport(to_global_position: Vector3) -> void:
 
 	LibSM64.set_mario_position(_id, to_global_position)
 
-	global_position = to_global_position
+	global_position = to_global_position + collision_position_offset
+	_last_collision_position_offset = collision_position_offset
 
-	_mario_interpolator.mario_state_current.position = global_position
-	_mario_interpolator.mario_state_previous.position = global_position
+	_mario_interpolator.mario_state_current.position = to_global_position
+	_mario_interpolator.mario_state_previous.position = to_global_position
 
 	reset_interpolation()
 

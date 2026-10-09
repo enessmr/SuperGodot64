@@ -2,6 +2,7 @@
 class_name Teleporter
 extends MeshInstance3D
 
+@export var interpolate: bool = true
 @export var WARP_NODE_B: Marker3D
 @export var destination_teleporter: Teleporter
 @export var warp_radius := 2.0
@@ -20,7 +21,13 @@ var _previous_action: int = -1
 @onready var ws: ColorRect = $TeleporterCVLayer/ColorRect
 
 
+func _apply_interpolation_setting() -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
+
+
 func _ready() -> void:
+	_apply_interpolation_setting()
+	reset_physics_interpolation()
 	_mario = get_parent().get_node_or_null(
 		"FinalLibSM64MarioLoc"
 	) as LibSM64Mario
@@ -38,6 +45,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	_apply_interpolation_setting()
 	if not _mario:
 		_mario = get_parent().get_node_or_null(
 			"FinalLibSM64MarioLoc"

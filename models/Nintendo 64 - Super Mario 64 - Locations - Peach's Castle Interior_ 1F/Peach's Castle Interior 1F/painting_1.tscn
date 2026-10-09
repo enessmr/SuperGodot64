@@ -252,6 +252,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0u850"]
+vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("7_phn7n")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mmcxv"]
@@ -347,8 +348,9 @@ trigger_distance = 70.0
 entry_distance = 10.0
 auto_enter = false
 material = SubResource("StandardMaterial3D_k4old")
+_star_amount = null
 
-[node name="Mesh3" type="MeshInstance3D" parent="Node0_root2/Node1_scale" index="3" unique_id=1405251815 node_paths=PackedStringArray("anim")]
+[node name="Mesh3" type="MeshInstance3D" parent="Node0_root2/Node1_scale" index="3" unique_id=1405251815]
 mesh = SubResource("ArrayMesh_mmcxv")
 surface_material_override/0 = SubResource("StandardMaterial3D_xrs25")
 script = ExtResource("6_7tuec")
@@ -357,7 +359,7 @@ entry_ripple_magnitude = 1.0
 entry_dispersion_factor = 0.1
 trigger_distance = 0.1
 material = SubResource("StandardMaterial3D_0u850")
-anim = NodePath("../../../AnimationPlayer2")
+_star_amount = null
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="3" unique_id=396071078]
 libraries/ = SubResource("AnimationLibrary_o6ocl")

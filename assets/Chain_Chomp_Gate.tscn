@@ -1,0 +1,74 @@
+[gd_scene format=4 uid="uid://dacik5c5ymhje"]
+
+[ext_resource type="Texture2D" uid="uid://c2qtif2mcf3ur" path="res://models/Nintendo 64 - Super Mario 64 - Locations - Bob-omb Battlefield/Bob-omb Battlefield/tex_9008800.png" id="1_o2lub"]
+[ext_resource type="Script" uid="uid://bl0pfpmowxtu1" path="res://addons/libsm64_godot/components/libsm64_surface_properties_component.gd" id="2_4fyme"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkluv"]
+resource_name = "Mat0"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_o2lub")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2wcpf"]
+_surfaces = [{
+"aabb": AABB(-5.1099997, 0, 0, 10.23, 6.3999996, 1e-05),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAwABAAAA"),
+"name": "Mat0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("CtejQAAAAAAAAAAAHoWjwMzMzEAAAAAACtejQMzMzEAAAAAAHoWjwAAAAAAAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4fyme"]
+resource_name = "Mesh"
+_surfaces = [{
+"aabb": AABB(-5.1099997, 0, 0, 10.23, 6.3999996, 1e-05),
+"attribute_data": PackedByteArray("AIDgwACwoMAAgHc/AIB3PwCA4MAAgHc/AIB3PwCwoMA="),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAwABAAAA"),
+"material": SubResource("StandardMaterial3D_lkluv"),
+"name": "Mat0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("CtejQAAAAAAAAAAAHoWjwMzMzEAAAAAACtejQMzMzEAAAAAAHoWjwAAAAAAAAAAA/3//fwAA/7//f/9/AAD/v/9//38AAP+//3//fwAA/78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_2wcpf")
+
+[sub_resource type="BoxMesh" id="BoxMesh_o2lub"]
+size = Vector3(10.22522, 6.9002686, 0.19763184)
+
+[sub_resource type="LibSM64SurfaceProperties" id="LibSM64SurfaceProperties_pxfdq"]
+surface_type = 123
+terrain_type = 1
+
+[node name="CCGate" type="Node3D" unique_id=749363400]
+
+[node name="Node0_culling" type="Node3D" parent="." unique_id=11110141]
+
+[node name="Node1_display" type="Node3D" parent="Node0_culling" unique_id=1845889598]
+
+[node name="Node2_display" type="Node3D" parent="Node0_culling/Node1_display" unique_id=700863105]
+
+[node name="Mesh0" type="MeshInstance3D" parent="Node0_culling/Node1_display/Node2_display" unique_id=1225139076]
+mesh = SubResource("ArrayMesh_4fyme")
+
+[node name="Collider" type="MeshInstance3D" parent="Node0_culling/Node1_display/Node2_display" unique_id=1008890219 groups=["libsm64_surface_objects"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0044555664, 2.9501343, 0.039123535)
+visible = false
+mesh = SubResource("BoxMesh_o2lub")
+
+[node name="LibSM64SurfacePropertiesComponent" type="Node" parent="Node0_culling/Node1_display/Node2_display/Collider" unique_id=1396975661]
+script = ExtResource("2_4fyme")
+surface_properties = SubResource("LibSM64SurfaceProperties_pxfdq")
+metadata/_custom_type_script = "uid://bl0pfpmowxtu1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=126849990]

@@ -1,5 +1,7 @@
 extends Marker3D
 
+@export var interpolate: bool = false
+
 
 @onready var _h_axis := $HorizontalAxis as Marker3D
 @onready var _v_axis := $HorizontalAxis/VerticalAxis as Marker3D
@@ -17,7 +19,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	_toggle_mouse_lock()
 
 
+func _ready() -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
+
+
 func _physics_process(delta: float) -> void:
+	PhysicsInterpolationSetting.apply_to(self, interpolate)
 	_camera_rotation(delta)
 
 

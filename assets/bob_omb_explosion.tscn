@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3]
+
+[sub_resource type="StandardMaterial3D" id="ExplosionMaterial"]
+shading_mode = 0
+transparency = 1
+albedo_color = Color(1, 0.45, 0.05, 0.8)
+emission_enabled = true
+emission = Color(1, 0.3, 0.02, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="SphereMesh" id="ExplosionMesh"]
+material = SubResource("ExplosionMaterial")
+radius = 0.5
+height = 1.0
+
+[node name="BobOmbExplosion" type="MeshInstance3D"]
+mesh = SubResource("ExplosionMesh")

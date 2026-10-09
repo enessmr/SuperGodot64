@@ -13,8 +13,13 @@ extends Node3D
 @export var spawn_with_animation: bool = true
 
 @export_category("Star")
+
+## The ID used by LibSM64 when this star is collected.
+## Star Select also uses this ID to sort stars from left to right.
 @export var star_id: int = 1
-@export var star_name := "King Bob-Omb Atop the Mountain"
+
+## Name displayed by Star Select or other UI.
+@export var star_name: String = "King Bob-Omb Atop the Mountain"
 
 ## Makes this star a display-only star.
 ## Display stars cannot be collected and do not use spawn/collection behavior.
@@ -25,6 +30,7 @@ extends Node3D
 @export var hover: bool = false
 
 @export_category("Star Spawn")
+
 @export var star_spawn_height_curve: Curve
 @export var star_spawn_horizontal_curve: Curve
 @export var star_spawn_duration: float = 1.0
@@ -33,15 +39,19 @@ extends Node3D
 @export var jumping: bool = false
 
 @export_category("Sparkles")
-@export var sprite_frames_file: SpriteFrames = preload("res://assets/spriteframes/spriteframes_particles.tres")
+
+@export var sprite_frames_file: SpriteFrames = preload(
+	"res://assets/spriteframes/spriteframes_particles.tres"
+)
+
 @export var sprite_color: Color = Color("#FCFD63")
-@export var sprite_pixel_size := 0.0017
-@export var animationname := "sparkle_animation"
-@export var sparkle_radius_x := 0.7
-@export var sparkle_radius_y := 0.7
-@export var sparkle_radius_z := 0.7
-@export var sparkle_count := 4
-@export var sparkle_interval := 0.12
+@export var sprite_pixel_size: float = 0.0017
+@export var animationname: String = "sparkle_animation"
+@export var sparkle_radius_x: float = 0.7
+@export var sparkle_radius_y: float = 0.7
+@export var sparkle_radius_z: float = 0.7
+@export var sparkle_count: int = 4
+@export var sparkle_interval: float = 0.12
 
 
 var _spawned: bool = false
@@ -82,8 +92,8 @@ func _ready() -> void:
 	_find_mactors_and_camera()
 
 	if spawn_with_animation:
-		# Star must not be visible/collectable until
-		# play_star_spawn_animation() is called.
+		# The mesh is visible in the scene, but the star cannot
+		# be collected until the spawn animation activates it.
 		mesh.visible = true
 		area_3d.monitoring = false
 		area_3d.monitorable = false
@@ -92,7 +102,6 @@ func _ready() -> void:
 
 
 func _setup_display_star() -> void:
-	# Display stars are always visible.
 	_spawned = true
 	_is_collected = false
 	_star_spawn_active = false
@@ -100,19 +109,19 @@ func _setup_display_star() -> void:
 
 	mesh.visible = true
 
-	# A display star must never be collectible.
+	# Display stars can never be collected.
 	area_3d.monitoring = false
 	area_3d.monitorable = false
 
 
 func _create_sparkles() -> void:
-	for sparkle in _sparkles:
+	for sparkle: AnimatedSprite3D in _sparkles:
 		if is_instance_valid(sparkle):
 			sparkle.queue_free()
 
 	_sparkles.clear()
 
-	for i in sparkle_count:
+	for i: int in sparkle_count:
 		var sparkle := AnimatedSprite3D.new()
 
 		add_child(sparkle)
@@ -131,9 +140,9 @@ func _create_sparkles() -> void:
 
 func _randomize_sparkle_position(sparkle: AnimatedSprite3D) -> void:
 	sparkle.position = Vector3(
-		randf_range(-sparkle_radius_x, sparkle_radius_x),
-		randf_range(-sparkle_radius_y, sparkle_radius_y),
-		randf_range(-sparkle_radius_z, sparkle_radius_z)
+		SM64RNG.random_float_range(-sparkle_radius_x, sparkle_radius_x),
+		SM64RNG.random_float_range(-sparkle_radius_y, sparkle_radius_y),
+		SM64RNG.random_float_range(-sparkle_radius_z, sparkle_radius_z)
 	)
 
 
@@ -141,7 +150,7 @@ func _spawn_sparkle() -> void:
 	if _sparkles.is_empty():
 		return
 
-	var sparkle: AnimatedSprite3D = _sparkles.pick_random()
+	var sparkle: AnimatedSprite3D = _sparkles[SM64RNG.random_linear_offset(0, _sparkles.size())]
 
 	if not is_instance_valid(sparkle):
 		return
@@ -162,7 +171,7 @@ func _update_sparkles(delta: float) -> void:
 
 
 func _stop_sparkles() -> void:
-	for sparkle in _sparkles:
+	for sparkle: AnimatedSprite3D in _sparkles:
 		if not is_instance_valid(sparkle):
 			continue
 
@@ -170,11 +179,10 @@ func _stop_sparkles() -> void:
 		sparkle.visible = false
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# Display-star behavior.
 	#
 	# Display stars never enter the collectible-star state machine.
-	# hover only works when display_star is enabled.
 	if display_star:
 		if hover:
 			mesh.rotation_degrees.y += 180.0 * delta
@@ -271,8 +279,8 @@ func play_star_spawn_animation(spawn_pos: Variant = null) -> void:
 
 	position = _star_spawn_old_pos
 
-	# Root stays visible so the child sparkles can render;
-	# only the mesh stays hidden until the rise finishes.
+	# Keep the PowerStar3D root visible so the sparkles can render.
+	# Only the actual star mesh is hidden during the animation.
 	mesh.visible = false
 	_spawned = false
 
@@ -393,8 +401,8 @@ func _collect() -> void:
 	area_3d.set_deferred("monitoring", false)
 	area_3d.set_deferred("monitorable", false)
 
-	# Hide only the mesh; hiding the root would also hide
-	# the %Sparkles burst during the grab cutscene.
+	# Hide only the mesh.
+	# The root must remain visible so the sparkle burst can render.
 	mesh.visible = false
 
 
@@ -418,6 +426,8 @@ func _start_star_grab() -> void:
 	var rig_orig_transform: Transform3D = _camera_rig.global_transform
 
 	mesh.visible = false
+
+	# Use this PowerStar3D's actual star ID.
 	_mario._get_power_star(star_id)
 
 	LibSM64.play_sound(
